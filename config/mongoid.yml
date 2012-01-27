@@ -1,0 +1,22 @@
+development:
+  host: localhost
+  database: critique_me_development
+
+test:
+  host: localhost
+  database: critique_me_test
+
+staging:
+  host: none
+  port: none
+  username: none
+  password: none
+  database: critique_me_stg
+
+# set these environment variables on your prod server
+production:
+  host: none
+  port: none
+  username: none
+  password: none
+  database: critique_me
