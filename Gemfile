@@ -33,6 +33,6 @@ group :test do
 end
 gem "sendgrid"
 gem "compass", ">= 0.12.alpha", :groups => :assets
-gem "github", :group => :development
+#gem "github", :group => :development
 gem "engineyard", :group => :development
 gem "seed_blocks", :path => "../../seed_blocks"

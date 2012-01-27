@@ -11,6 +11,7 @@ AdminUser.create :first_name => "Jonathan", :last_name => "Geggatt", :password =
   PathPage.create :page_type => :register, :name => "default_reg_v1", :experiment => experiment, :layout => "prototype"
   PathPage.create :page_type => :share, :name => "default_share_v1", :experiment => experiment, :layout => "prototype"
   experiment.generate_variant_combinations
+  experiment.update_attribute :active, true
 end
 
 # Default Invite pieces
