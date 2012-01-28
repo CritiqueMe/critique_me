@@ -1,0 +1,93 @@
+@import "compass/css3/border-radius"
+@import "compass"
+
+// formtastic css
+.inputs, .buttons
+  border: 0px
+  padding: 20px 0px
+  margin-bottom: 0px
+
+  label, input, .fragments, .fragments-group
+    float: left
+
+  input
+    width: 270px
+    font-size: 1.2em
+
+  select
+    padding: 6px 5px
+    border-color: #BBBBBB
+    width: 281px
+
+  textarea
+    width: 270px
+    height: 70px
+
+  li
+    float: left
+    margin-right: 10px
+    padding-bottom: 0px
+    list-style: none
+    width: 90%
+
+    label
+      width: 85px
+      text-align: right
+      font-weight: normal
+      color: #848484
+
+      abbr
+        display: none
+
+  .label
+    position: relative
+    margin: 0.5em 1.5em 0.5em 0
+    padding: 0.5em 0
+
+  .inline-errors
+    text-align: right
+    margin-bottom: 5px
+    font-weight: bold
+
+.fragments
+  clear: left
+  border: 0px
+  padding: 0px
+  width: 390px
+  margin-bottom: 0px
+
+  .label
+    height: 18px
+    margin: 9px 18px 0px 0px
+    padding: 9px 0px
+    position: relative
+    float: left
+
+    label
+      font-size: 12px
+
+  .fragments-group
+    margin: .5em 0
+    padding: 0 0
+    width: 70%
+
+    li
+      width: auto
+
+      label
+        display: none
+      select
+        width: auto
+        padding: 6px 5px
+        border-color: #BBBBBB
+
+.buttons
+  padding-top: 0px
+  margin-left: 103px
+
+  input
+    width: auto
+    padding: 10px 25px
+    border: 1px solid #BBBBBB
+    @include border-radius(5px, 5px)
+    @include background-image(linear-gradient(#d2d2d2, white))
