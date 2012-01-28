@@ -7,7 +7,7 @@ test:
   database: critique_me_test
 
 staging:
-  host: staff
+  host: staff.mongohq.com
   port: 10030
   username: seed_blocks
   password: 533dbl0ck5
