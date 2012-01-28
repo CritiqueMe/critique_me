@@ -12,6 +12,7 @@ SEED_BLOCKS_ENGINE_CONFIG = {
     :fb_app_secret        => "",
     :default_from_address => "contact@critique_me.com",
     :host                 => host,
+    :http_authenticate    => ["staging", "production"],
     :http_basic_id        => "critique_me",
     :http_basic_pass      => ""
 }
