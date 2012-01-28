@@ -34,4 +34,4 @@ gem "compass", ">= 0.12.alpha", :groups => :assets
 gem "engineyard", :group => :development
 
 #gem "seed_blocks", :path => "../../seed_blocks"
-gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "ce2e2effeb"
+gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "c6285f3586"
