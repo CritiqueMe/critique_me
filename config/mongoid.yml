@@ -7,10 +7,10 @@ test:
   database: critique_me_test
 
 staging:
-  host: none
-  port: none
-  username: none
-  password: none
+  host: staff
+  port: 10030
+  username: seed_blocks
+  password: 533dbl0ck5
   database: critique_me_stg
 
 # set these environment variables on your prod server
