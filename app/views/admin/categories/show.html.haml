@@ -1,0 +1,13 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All Categories".html_safe, admin_categories_path
+      = link_to "Edit Category &raquo;".html_safe, edit_admin_category_path(@category)
+
+%h1 Show Category
+
+%ul.show_page
+  %li
+    %label Name:
+    %p= @category.name
+    .clear

@@ -1,0 +1,9 @@
+= semantic_form_for @category, :url => url do |f|
+  = f.inputs do
+    = f.input :name
+    .clearer
+  = f.buttons do
+    - if @category.new_record?
+      = f.commit_button "Create Category"
+    - else
+      = f.commit_button "Edit Category"

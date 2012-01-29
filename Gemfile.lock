@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 04189dee41480e226a95ed520d6c6d611609e5ba
-  ref: 04189dee41
+  revision: adf114c519617b5d5d40bd9593fed55ec0bf4391
+  ref: adf114c519
   specs:
     seed_blocks (0.0.1)
       bson_ext
@@ -137,7 +137,7 @@ GEM
     mime-types (1.17.2)
     mongo (1.5.2)
       bson (= 1.5.2)
-    mongoid (2.4.2)
+    mongoid (2.4.3)
       activemodel (~> 3.1)
       mongo (~> 1.3)
       tzinfo (~> 0.3.22)
@@ -201,7 +201,7 @@ GEM
     turn (0.8.3)
       ansi
     tzinfo (0.3.31)
-    uglifier (1.2.2)
+    uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
     valium (0.5.0)

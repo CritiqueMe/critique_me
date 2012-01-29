@@ -1,0 +1,24 @@
+= content_for :side_menu do
+  &nbsp;
+
+%h1
+  CritiqueMe Questions
+
+%table.merchants.smoothness.highlighter
+  %thead
+    %tr
+      %th User
+      %th Question
+      %th Category
+      %th &nbsp;
+  %tfoot
+    %tr
+      %td{:colspan => 4}
+        = will_paginate
+  %tbody
+    - if @questions.empty?
+      %tr
+        %td{:colspan => 4}
+          %em No questions found.
+    - else
+      = render @questions

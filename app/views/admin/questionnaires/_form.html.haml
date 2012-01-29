@@ -1,0 +1,10 @@
+= semantic_form_for @questionnaire, :url => url do |f|
+  = f.inputs do
+    = f.input :name
+    .clearer
+
+  = f.buttons do
+    - if @questionnaire.new_record?
+      = f.commit_button "Create Questionnaire"
+    - else
+      = f.commit_button "Edit Questionnaire"

@@ -1,0 +1,5 @@
+%tr{:class => cycle('odd', 'even')}
+  %td.user= link_to question.user.email, '#'
+  %td.question= question.question_text
+  %td.category= question.category.name
+  %td.actions

@@ -1,0 +1,7 @@
+%tr
+  %td.question_item
+    = link_to question.question_text, '#'
+    %br
+    Posted on:
+    %span.quiet= question.created_at.strftime "%-m/%-d/%Y %I:%M %p"
+  %td.see_answers= link_to image_tag("/assets/dashboard/see_answers.jpg")

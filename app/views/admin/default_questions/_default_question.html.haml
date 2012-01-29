@@ -1,0 +1,21 @@
+%tr{:class => cycle('odd', 'even')}
+  %td.question= link_to default_question.question_text, admin_default_question_path(default_question)
+  %td.qtype= Question::QUESTION_TYPES[default_question.question_type]
+  %td.category= link_to default_question.category.name, admin_category_path(default_question.category)
+  %td.questionnaire
+    - if default_question.questionnaire
+      = link_to(default_question.questionnaire.name, admin_questionnaire_path(default_question.questionnaire))
+    - else
+      None
+  %td.active
+    %small= default_question.active ? 'Active' : 'Inactive'
+  %td.actions
+    = image_tag 'admin/icons/tool.png', :class => 'tools', 'data-menu' => "#menu_default_question_#{default_question.id}"
+    %ul[default_question, :menu]
+      %li= link_to 'Show', admin_default_question_path(default_question), :class => 'show'
+      %li= link_to 'Edit', edit_admin_default_question_path(default_question), :class => 'edit'
+      %li
+        - if default_question.active?
+          = link_to 'Deactivate', deactivate_admin_default_question_path(default_question), :class => 'deactivate', :method => :put
+        - else
+          = link_to 'Activate', activate_admin_default_question_path(default_question), :class => 'activate', :method => :put

@@ -1,0 +1,24 @@
+#dash_sidebar
+  - if defined?(@user.avatar)
+    #avatar= image_tag(@user.avatar.url ? @user.avatar.normal.url : "/assets/dashboard/default_avatar.jpg")
+    #change_avatar
+      .buttons= button_to "Change Photo", '#'
+    #sub_avatar
+      %em.quiet Photos should be less than 1MB in size.
+  #profile_nav
+    %h4 Profile Settings
+    %ul
+      - if params['action'] == "your_profile"
+        %li.selected.loud Your Profile &raquo;
+      - else
+        %li= link_to "Your Profile", your_profile_path
+
+      - if params['action'] == "privacy_options"
+        %li.selected.loud Privacy Options &raquo;
+      - else
+        %li= link_to "Privacy Options", privacy_options_path
+
+      - if params['action'] == "change_password"
+        %li.selected.loud Change Password &raquo;
+      - else
+        %li= link_to "Change Password", change_password_path

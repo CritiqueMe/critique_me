@@ -1,0 +1,40 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "sb_formtastic"
+  = stylesheet_link_tag "dashboard/index"
+
+= render :partial => "dash_nav"
+
+.prepend-top.prepend-1.span-22.append-1
+  %fieldset
+    %legend Your Dashboard
+
+    .span-4
+      = render :partial => "dash_sidebar"
+    .span-16
+      .inner_tabs
+        %ul
+          - if @collection_filter == "questions"
+            %li.selected Questions Posted
+            %li= link_to "Answers Posted", dashboard_path(:coll => "answers")
+          - else
+            %li= link_to "Questions Posted", dashboard_path(:coll => "questions")
+            %li.selected Answers Posted
+          .clear
+      %table#dashtable
+        %tbody
+          - if @collection_filter == "questions"
+            - if @collection.empty?
+              %tr
+                %td.none_posted
+                  No Questions posted yet.  #{link_to "Post one now!", questions_path}
+            - else
+              = render :partial => "question_line_item", :collection => @collection, :as => :question
+          - else
+            - if @collection.empty?
+              %tr
+                %td.none_posted
+                  No Answers posted yet.
+            - else
+              = render :partial => "answer_line_item", :collection => @collection, :as => :answer
+
+

@@ -1,0 +1,25 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "New Category &raquo;".html_safe, new_admin_category_path
+
+%h1
+  CritiqueMe Question Categories
+
+%table.merchants.smoothness.highlighter
+  %thead
+    %tr
+      %th Category
+      %th Questions Asked
+      %th &nbsp;
+  %tfoot
+    %tr
+      %td{:colspan => 6}
+        = will_paginate
+  %tbody
+    - if @categories.empty?
+      %tr
+        %td{:colspan => 4}
+          %em No Question Categories found.  #{link_to "Create one now &raquo;".html_safe, new_admin_category_path}
+    - else
+      = render @categories

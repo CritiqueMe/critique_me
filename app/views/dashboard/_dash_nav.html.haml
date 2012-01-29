@@ -1,0 +1,11 @@
+.span-24#dash_nav
+  %ul
+    - if params['controller'] == "dashboard"
+      %li.selected= link_to "Dashboard", dashboard_path
+    - else
+      %li= link_to "Dashboard", dashboard_path
+
+    - if params['controller'] == 'questions'
+      %li.selected= link_to "Questions", questions_path
+    - else
+      %li= link_to "Questions", questions_path

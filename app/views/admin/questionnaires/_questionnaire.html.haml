@@ -1,0 +1,15 @@
+%tr{:class => cycle('odd', 'even')}
+  %td.name= link_to questionnaire.name, admin_questionnaire_path(questionnaire)
+  %td.count= number_with_delimiter questionnaire.default_questions.count
+  %td.active
+    %small= questionnaire.active ? 'Active' : 'Inactive'
+  %td.actions
+    = image_tag 'admin/icons/tool.png', :class => 'tools', 'data-menu' => "#menu_questionnaire_#{questionnaire.id}"
+    %ul[questionnaire, :menu]
+      %li= link_to 'Show', admin_questionnaire_path(questionnaire), :class => 'show'
+      %li= link_to 'Edit', edit_admin_questionnaire_path(questionnaire), :class => 'edit'
+      %li
+        - if questionnaire.active?
+          = link_to 'Deactivate', deactivate_admin_questionnaire_path(questionnaire), :class => 'deactivate', :method => :put
+        - else
+          = link_to 'Activate', activate_admin_questionnaire_path(questionnaire), :class => 'activate', :method => :put

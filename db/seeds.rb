@@ -7,9 +7,8 @@ AdminUser.create :first_name => "Jonathan", :last_name => "Geggatt", :password =
     :traffic_group => traffic_group,
     :name => "default_#{traffic_group}_v1"
   })
-  PathFlow.create :experiment => experiment, :flow => [:register, :share]
+  PathFlow.create :experiment => experiment, :flow => [:register]
   PathPage.create :page_type => :register, :name => "default_reg_v1", :experiment => experiment, :layout => "prototype"
-  PathPage.create :page_type => :share, :name => "default_share_v1", :experiment => experiment, :layout => "prototype"
   experiment.generate_variant_combinations
   experiment.update_attribute :active, true
 end

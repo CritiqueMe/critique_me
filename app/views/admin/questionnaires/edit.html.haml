@@ -1,0 +1,9 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All".html_safe, admin_questionnaires_path
+      = link_to "&laquo; Show".html_safe, admin_questionnaire_path(@questionnaire)
+
+%h1 Edit Questionnaire
+
+= render :partial => "form", :locals => {:url => admin_questionnaire_path(@questionnaire)}

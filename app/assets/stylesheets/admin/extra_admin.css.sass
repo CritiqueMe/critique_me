@@ -1,0 +1,39 @@
+header
+  .nav
+    li.icon > a
+      &.questions
+        background-image: image-url('admin/icons/comment-gold.png')
+
+
+// custom question_type formtastic input
+.qt_choices
+  width: 530px
+  float: left
+  padding-left: 0px
+
+  li
+    float: left
+    width: 165px
+    margin-right: 10px !important
+.multi_choice
+  margin-left: 240px
+  label
+    display: none !important
+  input
+    width: 890px !important
+  .inline-errors
+    margin-left: 0px !important
+
+#multiple_choice_answers
+  position: relative
+
+  &.hidden
+    display: none
+
+  #add_answers
+    padding-left: 240px
+    font-weight: 1.2em
+  #add_button
+    position: absolute
+    bottom: 29px
+    right: 155px

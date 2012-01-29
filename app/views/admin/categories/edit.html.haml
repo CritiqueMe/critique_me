@@ -1,0 +1,9 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All Categories".html_safe, admin_categories_path
+      = link_to "&laquo; This Category".html_safe, admin_category_path(@category)
+
+%h1 Edit Question Category
+
+= render :partial => "form", :locals => {:url => admin_category_path(@category)}

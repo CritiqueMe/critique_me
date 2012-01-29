@@ -45,6 +45,10 @@ module CritiqueMe
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.precompile += %w( prototype.css cm_formtastic.css )
+    config.assets.precompile += %w( prototype.css )
+
+    config.generators do |g|
+      g.orm :active_record
+    end
   end
 end

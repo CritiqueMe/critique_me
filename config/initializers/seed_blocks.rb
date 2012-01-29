@@ -6,13 +6,13 @@ host = case Rails.env
 
 # SeedBlocks config
 SEED_BLOCKS_ENGINE_CONFIG = {
-    :app_name             => "critique_me",
-    :user_validations     => [],
+    :app_name             => "Critique Me",
+    :user_validations     => [:password, :first_name, :last_name, :birthday],
     :fb_app_id            => "",
     :fb_app_secret        => "",
     :default_from_address => "contact@critique_me.com",
     :host                 => host,
     :http_authenticate    => ["staging", "production"],
     :http_basic_id        => "critique_me",
-    :http_basic_pass      => ""
+    :http_basic_pass      => "cr1t1qu3"
 }

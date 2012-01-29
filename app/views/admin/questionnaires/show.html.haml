@@ -1,0 +1,33 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All".html_safe, admin_questionnaires_path
+      = link_to "Edit &raquo;".html_safe, edit_admin_questionnaire_path(@questionnaire)
+      - if @questionnaire.active?
+        = link_to "Deactivate &raquo;".html_safe, deactivate_admin_questionnaire_path(@questionnaire), :method => :put
+      - else
+        = link_to "Activate &raquo;".html_safe, activate_admin_questionnaire_path(@questionnaire), :method => :put
+
+%h1 Show Questionnaire
+
+%ul.show_page
+  %li
+    %label Name:
+    %p= @questionnaire.name
+    .clear
+  %li
+    %label Active?:
+    %p= @questionnaire.active ? "Active" : "Inactive"
+    .clear
+  %li
+    %label Questions:
+    %p
+      - if @questionnaire.default_questions.empty?
+        No questions yet.  #{link_to "Add one now &raquo;".html_safe, new_admin_default_question_path(:questionnaire_id => @questionnaire.id)}
+      - else
+        - @questionnaire.default_questions.each_with_index do |q, i|
+          = "#{i+1}) #{link_to q.question_text, admin_default_question_path(q)}".html_safe
+          %br
+        %br
+        = link_to "Add another question &raquo;".html_safe, new_admin_default_question_path(:questionnaire_id => @questionnaire.id)
+    .clear
