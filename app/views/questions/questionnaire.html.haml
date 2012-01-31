@@ -1,0 +1,44 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "sb_formtastic"
+  = stylesheet_link_tag "questions/screen"
+
+= render :partial => "dashboard/dash_nav"
+
+.prepend-top.prepend-1.span-22.append-1
+  %fieldset
+    %legend Setup a New Question
+
+    .span-20
+      .inner_tabs
+        %ul
+          %li= link_to "Create Your Own Question", new_question_path
+          %li.selected Choose a Question
+          .clear
+
+      #choices-header
+        .span-8#title
+          Questionnaire
+          %span &raquo; #{@questionnaire.name}
+        .span-8#blurb
+          %div Click
+          #closer= image_tag "questions/x_button.png"
+          %div to remove questions
+          .clear
+        .span-3#back
+          = link_to "&laquo Back".html_safe, choose_question_path
+
+      .span-19#questionnaires-choice
+        %ol
+          - @questionnaire.default_questions.each do |dq|
+            %li.question{:data => {:default_question_id => dq.id}}
+              %span.q= dq.question_text
+              .remover= link_to image_tag("questions/x_button.png"), '#'
+        %fieldset.buttons
+          = form_tag({}, :remote => true) do
+            = hidden_field_tag :default_question_ids, @questionnaire.default_questions.value_of(:id).join(",")
+            = submit_tag "Post question and invite friends"
+
+#share_dialog
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "questions/questionnaire"

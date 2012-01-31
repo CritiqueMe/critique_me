@@ -1,4 +1,6 @@
 @import "dashboard/inner_tabs"
+@import "compass"
+
 
 // formtastic
 .inputs
@@ -27,6 +29,11 @@
 .buttons
   margin-left: 170px
   padding-top: 15px
+  li
+    width: auto
+  .spinner
+    display: none
+    padding-top: 10px
 
 .inline-errors
   clear: left
@@ -51,3 +58,81 @@
     position: absolute
     bottom: 3px
     right: 155px
+
+
+// questionnaires page
+#single_questions
+  ol
+    padding-left: 0px
+    list-style: decimal inside none
+    li
+      border: 2px solid #c5c5c5
+      background: #e8e8e8
+      color: #5e5e5e
+      padding: 5px 10px
+      margin-bottom: 10px
+      cursor: pointer
+      &.hover
+        border-color: #535353
+        @include background-image(linear-gradient(#ffffff, #e8e8e8))
+#questionnaires
+  ul
+    padding-left: 0px
+    list-style: none outside none
+    li
+      &.q
+        border: 5px solid #c5c5c5
+        padding: 5px
+        cursor: pointer
+        margin-bottom: 10px
+        h5
+          background: #e8e8e8
+          padding: 3px
+        ol
+          padding: 5px
+          list-style: decimal inside none
+          li
+            margin-bottom: 10px
+      &.hover
+        border-color: #535353
+        @include background-image(linear-gradient(#ffffff, #e8e8e8))
+
+#choices-header
+  #title
+    font-size: 1.8em
+    font-weight: bold
+    color: #969696
+    span
+      color: black
+      font-size: 0.7em
+  #blurb
+    padding-top: 12px
+    div
+      float: left
+      &#closer
+        padding: 0px 3px
+  #back
+    text-align: right
+    padding-top: 12px
+#questionnaires-choice
+  ol
+    padding-left: 0px
+    list-style: decimal inside none
+    border-bottom: 1px solid #e6e6e6
+    margin: 0px
+    .question
+      position: relative
+      background: white
+      border-top: 1px solid #e6e6e6
+      padding: 10px 5px
+      &.hover
+        background: #f7f7f7
+      .remover
+        position: absolute
+        top: 10px
+        right: 10px
+      .q
+        font-weight: bold
+        color: #6e7393
+  .buttons
+    margin-left: 0px

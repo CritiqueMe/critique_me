@@ -1,5 +1,5 @@
 %tr{:class => cycle('odd', 'even')}
-  %td.user= link_to question.user.email, '#'
+  %td.user= link_to question.user.email, admin_user_path(question.user)
   %td.question= question.question_text
-  %td.category= question.category.name
+  %td.category= link_to question.category.name, admin_category_path(question.category)
   %td.actions

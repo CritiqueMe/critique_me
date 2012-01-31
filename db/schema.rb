@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129205654) do
+ActiveRecord::Schema.define(:version => 20120131043525) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -135,10 +135,10 @@ ActiveRecord::Schema.define(:version => 20120129205654) do
 
   create_table "multiple_choice_options", :force => true do |t|
     t.integer  "question_id"
-    t.integer  "default_multiple_choice_question_id"
     t.text     "answer_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "default_multiple_choice_option_id"
   end
 
   create_table "path_element_groups", :force => true do |t|

@@ -7,6 +7,7 @@
 #  questionnaire_id :integer(4)
 #  question_type    :integer(4)      default(0)
 #  question_text    :text
+#  active           :boolean         default(true)
 #
 
 class DefaultQuestion < ActiveRecord::Base
@@ -16,6 +17,9 @@ class DefaultQuestion < ActiveRecord::Base
   accepts_nested_attributes_for :default_multiple_choice_options
 
   validates_presence_of :category_id, :question_text, :question_type, :message => "Required"
+
+  scope :active, where(:active => true)
+  scope :not_in_questionnaire, where(:questionnaire_id => nil)
 
   private
 

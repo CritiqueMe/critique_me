@@ -79,7 +79,37 @@ add_multiple_choice_answer = () ->
 num_existing_answers = () ->
   $('.mchoice').length
 
-# this is where the jquery document ready function begins
-$ ->
+
+init_after_question = () ->
+  $('#new_question').bind("ajax:beforeSend", (evt, xhr, settings) ->
+    $('.buttons input').val("Creating Question...")
+    $('.spinner').fadeIn()
+    #$('#qform').html('<img src="/assets/admin/layout/form_spinner.gif" />')
+  ).bind("ajax:complete", (evt, xhr, status) ->
+    resp = xhr.responseText
+    re = /error/
+    if re.test(resp)
+      $('#qform').html(resp)
+      init_page()
+    else
+      $('#share_dialog').dialog
+        title: "Share Your Question With Friends"
+        resizable: false
+        draggable: true
+        modal: true
+        show: 'fade'
+        hide: 'fade'
+        width: 500
+        height: 500
+        dialogClass: 'share-modal'
+      .html(resp)
+  )
+
+init_page = ->
   init_question_types()
   init_add_answer_link()
+  init_after_question()
+
+
+$ ->
+  init_page()

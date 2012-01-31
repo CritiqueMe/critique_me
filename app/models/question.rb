@@ -26,5 +26,24 @@ class Question < ActiveRecord::Base
 
   QUESTION_TYPES = [:multiple_choice, :true_false, :open_text]
 
+  validates :user_id, :presence => true
   validates_presence_of :category_id, :question_text, :question_type, :message => "Required"
+
+  def self.create_from_default_question(dq, user)
+    q = Question.create({
+        :user_id => user.id,
+        :question_type => dq.question_type,
+        :question_text => dq.question_text,
+        :category_id => dq.category_id,
+        :default_question_id => dq.id
+    })
+    dq.default_multiple_choice_options.each do |o|
+      MultipleChoiceOption.create({
+          :question_id => q.id,
+          :answer_text => o.answer_text,
+          :default_multiple_choice_option_id => o.id
+      })
+    end if q.question_type == QUESTION_TYPES.index(:multiple_choice)
+    q
+  end
 end
