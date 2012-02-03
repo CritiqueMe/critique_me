@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 8365f1961577435173b867ab115278152b7009c3
-  ref: 8365f19615
+  revision: 492b17c7f108f1b5b4709c5f43efacf5be2fd574
+  ref: 492b17c7f1
   specs:
     seed_blocks (0.0.1)
       bson_ext
@@ -67,7 +67,7 @@ GEM
     builder (3.0.0)
     carrierwave (0.5.8)
       activesupport (~> 3.0)
-    chronic (0.6.6)
+    chronic (0.6.7)
     chunky_png (1.2.5)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -76,7 +76,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    compass (0.12.alpha.4)
+    compass (0.12.rc.1)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
@@ -209,7 +209,7 @@ GEM
     whenever (0.7.2)
       activesupport (>= 2.3.4)
       chronic (~> 0.6.3)
-    will_paginate (3.0.2)
+    will_paginate (3.0.3)
 
 PLATFORMS
   ruby

@@ -1,0 +1,17 @@
+= form_tag({}, :remote => true, :id => 'contact_importer') do
+  %fieldset.inputs
+    %ol
+      - if flash[:importer_error]
+        %li.error= flash[:importer_error]
+      %li
+        %label <span class='provider'></span> Username
+        = text_field_tag "email"
+        %span.pad-left @<span class='provider downcase'></span>.com
+      %li
+        %label <span class='provider'></span> Password
+        = password_field_tag "password"
+  %fieldset.buttons
+    %ol
+      %li
+        = hidden_field_tag "provider"
+        = submit_tag "Get Contacts"

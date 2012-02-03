@@ -1,0 +1,17 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "sb_formtastic"
+  = stylesheet_link_tag "questions/screen"
+
+= render :partial => "dashboard/dash_nav"
+
+.prepend-top.prepend-1.span-22.append-1
+  %fieldset
+    %legend Edit Question
+
+    .span-20
+      #qform= render :partial => "questions/form"
+
+#share_dialog
+
+- content_for :extra_javascripts do
+  = javascript_include_tag 'questions/questions'

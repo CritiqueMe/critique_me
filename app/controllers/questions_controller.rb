@@ -3,6 +3,10 @@ class QuestionsController < ApplicationController
 
   before_filter :enforce_login
 
+  def question
+    @question = Question.find(params['id'])
+  end
+
   def new_question
     if params['question']
       @question = Question.new(params['question'])
@@ -10,6 +14,7 @@ class QuestionsController < ApplicationController
       @question.multiple_choice_options.delete_all unless @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
       @question.save
       if @question.valid?
+        post_question_to_open_graph(@question) if @question.post_to_wall
         redirect_to share_path(@question)
       else
         render :partial => "questions/form"
@@ -18,6 +23,19 @@ class QuestionsController < ApplicationController
       @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice))
       3.times do
         @question.multiple_choice_options.build
+      end
+    end
+  end
+
+  def edit_question
+    @question = Question.find(params['id'])
+    if params['question']
+      @question.update_attributes params['question']
+      @question.multiple_choice_options.delete_all unless @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+      if @question.valid?
+        redirect_to share_path(@question)
+      else
+        render :partial => "questions/form"
       end
     end
   end
@@ -48,5 +66,13 @@ class QuestionsController < ApplicationController
       end
       redirect_to share_path(questions.first)
     end
+  end
+
+
+  private
+
+  def post_question_to_open_graph(question)
+    token = ''
+    `curl -F 'question=#{question_url(question)}' -F 'access_token=#{token}' https://graph.facebook.com/me/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:ask`
   end
 end

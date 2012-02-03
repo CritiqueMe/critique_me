@@ -29,6 +29,8 @@ class Question < ActiveRecord::Base
   validates :user_id, :presence => true
   validates_presence_of :category_id, :question_text, :question_type, :message => "Required"
 
+  attr_accessor :post_to_wall
+
   def self.create_from_default_question(dq, user)
     q = Question.create({
         :user_id => user.id,

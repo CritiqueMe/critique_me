@@ -1,1 +1,57 @@
-Your question was created: #{@question.question_text}
+.qpreview
+  /.qimage
+  .qtext
+    = @question.question_text
+    %span.edit= link_to "Edit Question &raquo;".html_safe, edit_question_path(@question)
+  .qanswers
+    - if @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+      = select_tag 'mc', options_for_select(@question.multiple_choice_options.map(&:answer_text))
+    - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
+      = radio_button_tag 'tf', 1
+      %label True
+      = radio_button_tag 'tf', 0
+      %label False
+    - elsif @question.question_type == Question::QUESTION_TYPES.index(:open_text)
+      = text_area_tag 'ot'
+
+  #box_header Invite your friends to answer
+  #invite_box
+    #invite_nav
+      %ul
+        %li.selected= link_to "Facebook", '#', :class => "facebook"
+        %li= link_to "Twitter", '#', :class => "twitter"
+        %li= link_to "Gmail", '#', :class => "gmail"
+        %li= link_to "Yahoo", '#', :class => "yahoo"
+        %li= link_to "Hotmail/Live", '#', :class => "hotmail"
+        %li= link_to "Manually", '#', :class => "manual"
+        %li= link_to "Critiquers", '#', :class => "critiquers"
+    #invite_content
+      .content_block#facebook.selected
+        = render :partial => "partials/fb_like_button"
+
+      .content_block#twitter
+        = render :partial => "partials/tweet_button", :locals => {:hashtag => "CritiqueMe", :text => "Come answer my question!", :related => ''}
+
+      .content_block#contact
+        .content_header Invite Your <span class='provider'></span> Contacts
+        #email_entry.content_form= render :partial => "share/get_contacts"
+        #select_contacts
+          #contact_table.content_form
+        #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
+
+      .content_block#manual
+        Have a stack of business cards?  Invite your contacts manually via email.
+        = form_tag manual_share_path, :remote => true do
+          %fieldset.inputs.single_row.inline
+            = text_field_tag 'emails'
+            .buttons.inline= submit_tag "Invite"
+            .inline#manual_spinner= image_tag "/assets/admin/layout/form_spinner.gif"
+        %small Lots of people to invite?  Separate multiple email addresses with commas
+
+
+      .content_block#critiquers
+        Critiquers
+
+    .clear
+
+= javascript_include_tag "share/share"

@@ -1,6 +1,7 @@
 - content_for :extra_css do
   = stylesheet_link_tag "sb_formtastic"
   = stylesheet_link_tag "dashboard/index"
+  = stylesheet_link_tag "share/share"
 
 = render :partial => "dash_nav"
 
@@ -37,4 +38,8 @@
             - else
               = render :partial => "answer_line_item", :collection => @collection, :as => :answer
 
+#share_dialog
+#post_share_dialog
 
+- content_for :extra_javascripts do
+  = javascript_include_tag "dashboard/inviter"

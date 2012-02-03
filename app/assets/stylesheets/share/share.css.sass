@@ -1,0 +1,128 @@
+.qpreview
+  .qtext
+    .edit
+      a
+        color: #6778b0
+  .qanswer
+
+  #box_header
+    text-transform: uppercase
+    font-weight: bold
+    text-align: right
+  #invite_box
+    border-top: 1px solid #cbcbcb
+    border-left: 1px solid #cbcbcb
+    #invite_nav
+      width: 170px
+      float: left
+      ul
+        list-style: none
+        padding-left: 0px
+        margin-bottom: 0px
+        li
+          line-height: 36px
+          font-size: 16px
+          background: #eeeff4
+          border-bottom: 1px solid #cbcbcb
+          border-right: 1px solid #cbcbcb
+          &.selected
+            background: white
+            border-right: 1px solid white
+          a
+            background-repeat: no-repeat
+            background-position: 8px 3px
+            padding-left: 32px
+            text-decoration: none
+            &:hover
+              text-decoration: underline
+            &.facebook
+              background-image: image-url('share/icon_fb.jpg')
+            &.twitter
+              background-image: image-url('share/icon_twitter.jpg')
+            &.gmail
+              background-image: image-url('share/icon_gmail.jpg')
+            &.yahoo
+              background-image: image-url('share/icon_yahoo.jpg')
+            &.hotmail
+              background-image: image-url('share/icon_hotmail.jpg')
+            &.manual
+              background-image: image-url('share/icon_manual.jpg')
+            &.critiquers
+              background-image: image-url('share/icon_manual.jpg')
+    #invite_content
+      float: left
+      width: 590px
+      padding-top: 20px
+      .content_block
+        display: none
+        &.selected
+          display: block
+        &#twitter
+          iframe
+            width: 400px !important
+
+        .content_header
+          font-size: 16px
+        .content_form
+          ol
+            li
+              list-style: none
+              label
+                padding-right: 15px
+                line-height: 40px
+                width: 105px
+                color: black
+              span
+                line-height: 40px
+                &.pad-left
+                  padding-left: 10px
+              &.error
+                padding-bottom: 0.8em
+          fieldset
+            &.buttons
+              margin-left: 120px
+
+        .provider
+          text-transform: capitalize
+          &.downcase
+            text-transform: none
+        .error_cntr
+          margin: 15px 0px 0px
+        #select_contacts
+          display: none
+          #contact_table
+            .contacts
+              border: 1px solid #cbcbcb
+              height: 265px
+              overflow-y: scroll
+            .buttons
+              margin-left: 0px
+        #contact_form_spinner
+          display: none
+          text-align: center
+          padding-top: 20px
+        &#manual
+          .buttons
+            float: left
+            margin-left: 15px
+          #manual_spinner
+            display: none
+            padding: 10px
+            float: left
+
+#oops_dlg
+  #blurb
+    padding: 10px 0px 15px
+    b
+      font-weight: bold
+  #oops_button
+    text-align: center
+
+
+#thanks_dlg
+  #blurb
+    padding: 10px 0px 15px
+  #ask_more
+    text-align: center
+  #no_thanks
+    text-align: center

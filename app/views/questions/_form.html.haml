@@ -14,6 +14,6 @@
       = g.input :answer_text, :as => :string, :label => "Answer ##{cnt}", :wrapper_html => {:class => 'mchoice'}
 
   = f.buttons do
-    = f.commit_button "Create Your Question"
+    = f.commit_button(@question.id ? "Edit Your Question" : "Create Your Question")
     .spinner= image_tag "/assets/admin/layout/form_spinner.gif"
     .clear
