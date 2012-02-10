@@ -80,6 +80,8 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    compass-rails (1.0.0.rc.2)
+      compass (~> 0.12.rc.0)
     date_validator (0.6.3)
       activemodel (~> 3.0)
     engineyard (1.4.22)
@@ -216,7 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.1.0)
-  compass (>= 0.12.alpha)
+  compass-rails
   engineyard
   jquery-rails
   rails (= 3.1.3)

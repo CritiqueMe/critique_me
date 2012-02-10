@@ -30,7 +30,8 @@ group :test do
   gem 'turn', :require => false
 end
 gem "sendgrid"
-gem "compass", ">= 0.12.alpha", :groups => :assets
+#gem "compass", ">= 0.12.alpha", :group => :assets
+gem "compass-rails", :group => :assets
 gem "engineyard", :group => :development
 
 #gem "seed_blocks", :path => "../../seed_blocks"
