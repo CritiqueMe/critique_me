@@ -99,7 +99,7 @@ init_after_question = () ->
         modal: true
         show: 'fade'
         hide: 'fade'
-        width: 500
+        width: 800
         height: 500
         dialogClass: 'share-modal'
       .html(resp)

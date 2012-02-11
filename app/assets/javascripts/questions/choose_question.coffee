@@ -12,7 +12,7 @@ init_single_questions = ->
       modal: true
       show: 'fade'
       hide: 'fade'
-      width: 500
+      width: 800
       height: 500
       dialogClass: 'share-modal'
     .html('<img src="/assets/admin/layout/form_spinner.gif" />')
