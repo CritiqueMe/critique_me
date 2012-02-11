@@ -17,7 +17,7 @@ end
 # SeedBlocks config
 SEED_BLOCKS_ENGINE_CONFIG = {
     :app_name             => "Critique Me",
-    :user_validations     => [:password, :first_name, :last_name, :birthday],
+    :user_validations     => [:password, :first_name, :last_name],
     :fb_app_id            => fb_app_id,
     :fb_app_secret        => fb_app_secret,
     :fb_app_namespace     => fb_app_namespace,
