@@ -1,8 +1,8 @@
 class QuestionsController < ApplicationController
   layout 'prototype'
 
-  before_filter :enforce_login
-  before_filter :get_fb_access_token
+  before_filter :enforce_login, :except => :question
+  before_filter :get_fb_access_token, :except => :question
 
   def question
     @question = Question.find(params['id'])
