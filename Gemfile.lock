@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: fd59e0c010354e20d2f24a23a25fe0856a3948b1
-  ref: fd59e0c010
+  revision: 846c5bf51bbc24409e0d38141055360651f99314
+  ref: 846c5bf51b
   specs:
     seed_blocks (0.0.1)
       bson_ext
