@@ -22,6 +22,10 @@ CritiqueMe::Application.routes.draw do
   match '/choose_question(/:id)',           :to => 'questions#choose_question', :as => :choose_question
   match '/questionnaire/:id',               :to => 'questions#questionnaire',   :as => :questionnaire
 
+  match '/answer/new',                      :to => 'answers#new',               :as => :new_answer
+
+  match '/path_answer',                      :to => 'welcome#path_answer',       :as => :path_answer
+
   match '/share/:question_id',              :to => 'share#index',               :as => :share
   match '/manual_share',                    :to => 'share#manual_share',        :as => :manual_share
   match '/get_contacts',                    :to => 'share#get_contacts',        :as => :get_contacts

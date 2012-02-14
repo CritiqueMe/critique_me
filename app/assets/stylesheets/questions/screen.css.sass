@@ -146,3 +146,88 @@
         color: #6e7393
   .buttons
     margin-left: 0px
+
+#qpage
+  .byline
+    font-size: 1.4em
+    color: #969696
+  .qimage
+    float: left
+  .qcontent
+    float: left
+    width: 100%
+    .qtext
+      font-size: 1.2em
+      padding: 10px 0px
+    .buttons
+      float: right
+      padding-top: 0px
+      margin-left: 0px
+    .answers
+      .header
+        background: #eaeaea
+        font-weight: bold
+        padding: 5px
+      #none_yet
+        text-align: center
+        padding: 10px 0px
+        background: #f6f6f6
+      ol
+        background: #f6f6f6
+        margin: 0px
+        list-style-position: inside
+        li
+          padding: 10px 5px
+
+#answer_dialog
+  display: none
+  .byline
+    padding-top: 15px
+    color: #969696
+  .qimage
+    float: left
+  .qcontent
+    float: left
+    padding-top: 10px
+    .qtext
+      font-size: 1.2em
+
+    fieldset
+      border: 0px
+      margin: 0px
+      label
+        display: none
+      ol
+        list-style-type: none
+        padding-left: 0px
+        margin: 0px
+        textarea
+          width: 250px
+          height: 80px
+    .buttons
+      margin: 0px
+      padding: 10px 0px
+
+    .choices-group
+      .choice
+        label
+          display: block
+          font-weight: normal
+          input
+            width: auto
+            margin-right: 10px
+
+.buttons
+  input
+    width: auto
+    padding: 10px 25px
+    border: 1px solid #BBBBBB
+    @include border-radius(5px, 5px)
+    @include background-image(linear-gradient(#d2d2d2, white))
+
+#answer_posted_dialog
+  display: none
+  .posted
+    font-size: 1.2em
+    font-weight: bold
+    padding-bottom: 15px

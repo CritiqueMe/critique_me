@@ -1,0 +1,23 @@
+#answer_dialog
+  .byline #{@question.user.first_last_initial} asked:
+  .qimage
+  .qcontent
+    .qtext= @question.question_text
+    .qform
+      = semantic_form_for @answer, :url => post_url do |f|
+        = f.inputs do
+          - if @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+            = f.input :multiple_choice_option_id, :as => :select, :collection => @question.multiple_choice_options, :label_method => :answer_text
+          - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
+            = f.input :true_false_answer, :as => :radio, :collection => ['true', 'false']
+          - elsif @question.question_type == Question::QUESTION_TYPES.index(:open_text)
+            = f.input :open_text_answer
+        = f.buttons do
+          = f.input :question_id, :as => :hidden
+          = f.input :user_id, :as => :hidden
+          = f.commit_button "Post Answer"
+  .clear
+  .answer_footer
+    Don't worry, your answers are anonymous!  #{@question.user.first_name.capitalize} will only see your answer once at least four other people have answered and we won't tell him whose answer was whose!
+  .answer_link
+    = link_to "You can also create your own question!", new_question_path

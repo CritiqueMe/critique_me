@@ -19,5 +19,12 @@
 
 #share_dialog
 
+- if flash[:notice] == "Answer Posted"
+  #answer_posted_dialog
+    .posted Your Answer has been Posted!
+    Close this dialog to begin creating your own question that you can share with your friends!
+
+
 - content_for :extra_javascripts do
   = javascript_include_tag 'questions/questions'
+  = javascript_include_tag "questions/answer_posted" if flash[:notice] == 'Answer Posted'

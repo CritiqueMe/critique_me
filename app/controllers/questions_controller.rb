@@ -6,6 +6,25 @@ class QuestionsController < ApplicationController
 
   def question
     @question = Question.find(params['id'])
+    @answer = Answer.new(:question => @question, :user => @user)
+    if params['fb_action_ids']  # This is the result of an FB click
+      if @user
+        # redirect to a logged-in user answer page?
+      else
+        session[:referrer_id] = @question.user_id  # make sure the user gets a viral path
+        session[:clicked_question_id] = @question.id
+        tracker = ViralEntrance.create(
+            :inviter_id => session[:referrer_id],
+            :source => 'fb_question',
+            :fb_source => params['fb_source'],
+            :state => "entered"
+        )
+        session[:viral_entrance_id] = tracker.id
+        redirect_to welcome_path and return
+      end
+    else
+
+    end
     render :layout => false
   end
 
@@ -81,6 +100,8 @@ class QuestionsController < ApplicationController
     token = session[:fb_access_token]
     response = `curl -s -F 'question=#{question_url(question)}' -F 'access_token=#{token}' 'https://graph.facebook.com/me/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:ask'`
     Rails.logger.info "posted to open graph, response = #{response}"
+    json = JSON.parse(response)
+    question.update_attribute :fb_question_id, json["id"]
   end
 
 
