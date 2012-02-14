@@ -1,6 +1,5 @@
 .prepend-top.prepend-1.span-22.append-1#fb_redirect{:data => {:perms_url => fb_perms_redirect_url('publish_stream,publish_actions')}}
-  %fieldset
-    %legend Redirecting...
+  Redirecting...
 
 = content_for :extra_javascripts do
-  = javascript_include_tag "path_pages/fb_permissions/redirector.coffee"
+  = javascript_include_tag "path_pages/fb_permissions/redirector"
