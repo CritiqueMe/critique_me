@@ -1,7 +1,7 @@
 AdminUser.create :first_name => "Jonathan", :last_name => "Geggatt", :password => "p@55w0rd", :password_confirmation => "p@55w0rd", :email => "jgeggatt@gmail.com", :role => 100
 
 # Create a default landing path for each traffic group
-[:organic, :affiliate, :viral].each do |traffic_group|
+[:organic, :affiliate].each do |traffic_group|
   experiment = Experiment.create({
     :conversion_event => "register",
     :traffic_group => traffic_group,
@@ -12,6 +12,18 @@ AdminUser.create :first_name => "Jonathan", :last_name => "Geggatt", :password =
   experiment.generate_variant_combinations
   experiment.update_attribute :active, true
 end
+
+# viral is a bit different
+experiment = Experiment.create({
+    :conversion_event => "register",
+    :traffic_group => :viral,
+    :name => "default_viral_v1"
+})
+PathFlow.create :experiment => experiment, :flow => [:fb_permissions, :answer]
+PathPage.create :page_type => :fb_permissions, :name => "default_perms_v1", :experiment => experiment, :layout => "prototype"
+PathPage.create :page_type => :answer, :name => "default_answer_v1", :experiment => experiment, :layout => "prototype"
+experiment.generate_variant_combinations
+experiment.update_attribute :active, true
 
 # Default Invite pieces
 InviteTemplate.create :name => "default_invite_v1"
