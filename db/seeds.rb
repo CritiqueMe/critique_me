@@ -21,7 +21,7 @@ experiment = Experiment.create({
 })
 PathFlow.create :experiment => experiment, :flow => [:fb_permissions, :answer]
 PathPage.create :page_type => :fb_permissions, :name => "default_perms_v1", :experiment => experiment, :layout => "prototype"
-PathPage.create :page_type => :answer, :name => "default_answer_v1", :experiment => experiment, :layout => "prototype"
+PathPage.create :page_type => :answer, :name => "default_answer_v1", :experiment => experiment, :layout => "none"
 experiment.generate_variant_combinations
 experiment.update_attribute :active, true
 

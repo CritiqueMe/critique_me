@@ -1,6 +1,6 @@
 %tr
   %td.question_item
-    = link_to question.question_text, '#'
+    = link_to question.question_text, question_path(question)
     %br
     Posted on:
     %span.quiet= question.created_at.strftime "%-m/%-d/%Y %I:%M %p"

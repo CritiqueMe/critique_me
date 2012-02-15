@@ -1,18 +1,21 @@
 .qpreview
-  /.qimage
-  .qtext
-    = @question.question_text
-    %span.edit= link_to "Edit Question &raquo;".html_safe, edit_question_path(@question)
-  .qanswers
-    - if @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-      = select_tag 'mc', options_for_select(@question.multiple_choice_options.map(&:answer_text))
-    - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
-      = radio_button_tag 'tf', 1
-      %label True
-      = radio_button_tag 'tf', 0
-      %label False
-    - elsif @question.question_type == Question::QUESTION_TYPES.index(:open_text)
-      = text_area_tag 'ot'
+  - if @question.photo.url
+    .qimage= image_tag @question.photo.thumb.url
+  .qcontent
+    .qtext
+      = @question.question_text
+      %span.edit= link_to "Edit Question &raquo;".html_safe, edit_question_path(@question)
+    .qanswers
+      - if @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+        = select_tag 'mc', options_for_select(@question.multiple_choice_options.map(&:answer_text))
+      - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
+        = radio_button_tag 'tf', 1
+        %label True
+        = radio_button_tag 'tf', 0
+        %label False
+      - elsif @question.question_type == Question::QUESTION_TYPES.index(:open_text)
+        = text_area_tag 'ot'
+  .clear
 
   #box_header Invite your friends to answer
   #invite_box

@@ -36,9 +36,10 @@ class QuestionsController < ApplicationController
       @question.save
       if @question.valid?
         post_question_to_open_graph(@question) if @question.post_to_wall
-        redirect_to share_path(@question)
+        #redirect_to share_path(@question)
+        redirect_to question_path(@question)
       else
-        render :partial => "questions/form"
+        #render :partial => "questions/form"
       end
     else
       @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => true)
@@ -55,9 +56,10 @@ class QuestionsController < ApplicationController
       @question.multiple_choice_options.delete_all unless @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
       if @question.valid?
         # TODO: post changes to OpenGraph
-        redirect_to share_path(@question)
+        #redirect_to share_path(@question)
+        redirect_to question_path(@question)
       else
-        render :partial => "questions/form"
+        #render :partial => "questions/form"
       end
     end
   end

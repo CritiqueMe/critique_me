@@ -1,6 +1,7 @@
 #answer_dialog
   .byline #{@question.user.first_last_initial} asked:
-  .qimage
+  - if @question.photo.url
+    .qimage= image_tag @question.photo.try(:url)
   .qcontent
     .qtext= @question.question_text
     .qform

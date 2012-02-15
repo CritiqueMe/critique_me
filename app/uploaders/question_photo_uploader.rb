@@ -31,15 +31,15 @@ class QuestionPhotoUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process :scale => [200, 300]
 
-  process :resize_to_fit => [640, 640]
+  process :resize_to_limit => [160,160]
 
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
-  version :normal do
-    process :resize_to_fill => [600, 290]
+  version :thumb do
+    process :resize_to_fit => [70,70]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

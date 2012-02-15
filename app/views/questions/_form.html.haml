@@ -1,7 +1,8 @@
-= semantic_form_for @question, :url => new_question_path, :remote => (@admin_user ? false : true) do |f|
+= semantic_form_for @question, :url => new_question_path, :multipart => true do |f|
   = f.inputs do
     = f.input :category, :prompt => "Choose a category", :collection => Category.for_select
     = f.input :question_text, :as => :string, :prompt => "Ask your friend a question", :label => "Question"
+    = f.input :photo, :label => "Add a Picture"
     = f.input :question_type, :as => :question_type, :label => "Answer Format"
     .clearer
 

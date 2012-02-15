@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131043525) do
+ActiveRecord::Schema.define(:version => 20120212003437) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20120131043525) do
     t.text     "open_text_answer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fb_answer_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -197,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20120131043525) do
     t.string   "photo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fb_question_id"
   end
 
   create_table "security_codes", :force => true do |t|
