@@ -9,9 +9,20 @@ class WelcomeController < ApplicationController
   end
 
   def sb_prepare_page_type_variables
-    if @path_page.page_type == "answer" && session[:clicked_question_id]
-      @question = Question.where(:id => session[:clicked_question_id]).first
-      @answer = Answer.new(:question => @question, :user => @user)
+    if @path_page.page_type == "answer"
+      if session[:clicked_question_id]
+        @question = Question.where(:id => session[:clicked_question_id]).first
+        @answer = Answer.new(:question => @question, :user => @user)
+      elsif @referrer
+        if @referrer.questions.count > 0
+          @question = @referrer.questions.last
+          @answer = Answer.new(:question => @question, :user => @user)
+        else
+          # show canned question?  just move them along in the path for now
+          increment_page
+          redirect_to welcome_path
+        end
+      end
     end
   end
 end

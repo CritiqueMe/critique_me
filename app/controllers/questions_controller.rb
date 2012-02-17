@@ -7,10 +7,8 @@ class QuestionsController < ApplicationController
   def question
     @question = Question.find(params['id'])
     @answer = Answer.new(:question => @question, :user => @user)
-    if params['fb_action_ids']  # This is the result of an FB click
-      if @user
-        # redirect to a logged-in user answer page?
-      else
+    if params['fb_action_ids'] || params['cmfb']  # This is the result of an FB click
+      if @user.nil?
         session[:referrer_id] = @question.user_id  # make sure the user gets a viral path
         session[:clicked_question_id] = @question.id
         tracker = ViralEntrance.create(
