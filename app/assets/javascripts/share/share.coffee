@@ -97,7 +97,28 @@ init_manual_entry_form = ->
     pop_confirmation_dialog(xhr.responseText)
   )
 
+init_fb_friend_list = ->
+  $('#send_to_friends_form').bind("ajax:beforeSend", (evt, xhr, settings) ->
+    $('#select_friends').hide()
+    $('#contact_form_spinner').fadeIn()
+  ).bind("ajax:complete", (evt, xhr, status) ->
+    pop_confirmation_dialog(xhr.responseText)
+  )
+
+init_fb_selectors = ->
+  $('#fb_select_all').click () ->
+    $('.friends input').each (index) ->
+      $(this).prop('checked', true)
+    return false
+  $('#fb_unselect_all').click () ->
+    $('.friend_check').each (index) ->
+      $(this).prop('checked', false)
+    return false
+
+
 $ ->
   init_share_nav()
+  init_fb_friend_list()
+  init_fb_selectors()
   init_contact_importer()
   init_manual_entry_form()

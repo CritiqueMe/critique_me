@@ -1,21 +1,25 @@
 #fb_friend_select
   - if @question.fb_question_id  # question has been posted to facebook?
-    = form_tag(share_friends_path, :remote => true, :id => "send_to_friends_form") do
-      = hidden_field_tag "imported_friends", @fb_friends.map{|f| f['id']}.join(",")
-      .friends
-        %table
-          - fb_friends.each_with_index do |c, i|
-            %tr{:class => cycle('odd', 'even')}
-              %td= check_box_tag "friend_#{i}", "1", true, :class => "friend_check"
-              %td= c[:name]
-              %td= c[:email]
-      %p.selectors
-        %small
-          %em
-            = link_to "[select all]", '#', :id => 'select_all'
-            &nbsp;&nbsp;
-            = link_to "[unselect all]", '#', :id => 'unselect_all'
-      %p.buttons= submit_tag "Ask Friends Your Question"
+    - if @fb_friends && @fb_friends.length > 0
+      = form_tag(share_friends_path(:question_id => @question.id), :remote => true, :id => "send_to_friends_form") do
+        = hidden_field_tag "imported_friends", @fb_friends ? @fb_friends.map{|f| f['id']}.join(",") : ''
+        .friends
+          %table
+            - @fb_friends.each_with_index do |c, i|
+              %tr{:class => cycle('odd', 'even')}
+                %td= check_box_tag "friend_#{i}", "1", true, :class => "friend_check"
+                %td= image_tag "http://graph.facebook.com/#{c['id']}/picture"
+                %td= c['name']
+        %p.selectors
+          %small
+            %em
+              = link_to "[select all]", '#', :id => 'fb_select_all'
+              &nbsp;&nbsp;
+              = link_to "[unselect all]", '#', :id => 'fb_unselect_all'
+        %p.buttons= submit_tag "Ask Friends Your Question"
+
+    - else
+      = render :partial => "partials/fb_like_button"
 
 
   - else  # question has not yet been posted to facebook
