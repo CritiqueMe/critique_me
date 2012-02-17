@@ -46,7 +46,7 @@ class ShareController < ApplicationController
     @question = Question.find(params['question_id'])
     url = "https://graph.facebook.com/#{@user.fb_user_id}/feed"
     qtext = @question.question_text
-    response = `curl -s -F 'message="#{qtext}"' -F 'link=#{question_url(@question)}' #{"-F 'picture=#{@question.photo.thumb.url}'" if @question.photo.url} -F 'name=Critique Me' -F 'caption=Ask Your Friends Anything!' -F 'description="#{@user.first_name.capitalize} asked #{qtext}"' -F '#{url}'`
+    response = `curl -s -F 'message="#{qtext}"' -F 'link=#{question_url(@question)}' #{"-F 'picture=#{@question.photo.thumb.url}'" if @question.photo.url} -F 'name=Critique Me' -F 'caption=Ask Your Friends Anything!' -F 'description="#{@user.first_name.capitalize} asked #{qtext}"' '#{url}'`
     Rails.logger.info "aaaa #{response}"
     render :partial => "share/thanks", :locals => {:num_shared => params['imported_friends'].split(",").length}
   end
