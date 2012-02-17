@@ -10,6 +10,7 @@ class ShareController < ApplicationController
         render :text => "Failure: #{flash[:importer_error]}"
       end
     else
+      get_fb_friends if @user.fb_user_id
       render :partial => "share/dialog"
     end
   end
@@ -38,6 +39,19 @@ class ShareController < ApplicationController
       render :partial => "share/thanks", :locals => {:num_shared => invitees.length}
     else
       render :partial => "share/oops"
+    end
+  end
+
+  private
+
+  def get_fb_friends
+    url = "https://graph.facebook.com/me/friends?access_token=#{session[:fb_access_token]}"
+    response = `curl -s '#{url}'`
+    json = JSON.parse(response)
+    if json['error']
+      @fb_friends_error = json['error']['message']
+    else
+      @fb_friends = json['data'].sort{|a,b| a['name'] <=> b['name']}
     end
   end
 end

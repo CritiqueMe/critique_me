@@ -30,7 +30,8 @@
         %li= link_to "Critiquers", '#', :class => "critiquers"
     #invite_content
       .content_block#facebook.selected
-        = render :partial => "partials/fb_like_button"
+        =# render :partial => "partials/fb_like_button"
+        = render :partial => "partials/fb_friend_select"
 
       .content_block#twitter
         = render :partial => "partials/tweet_button", :locals => {:hashtag => "CritiqueMe", :text => "Come answer my question!", :related => ''}

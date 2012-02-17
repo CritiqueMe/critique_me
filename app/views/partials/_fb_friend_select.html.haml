@@ -1,0 +1,22 @@
+#fb_friend_select
+  - if @question.fb_question_id  # question has been posted to facebook?
+    = form_tag(share_friends_path, :remote => true, :id => "send_to_friends_form") do
+      = hidden_field_tag "imported_friends", @fb_friends.map{|f| f['id']}.join(",")
+      .friends
+        %table
+          - fb_friends.each_with_index do |c, i|
+            %tr{:class => cycle('odd', 'even')}
+              %td= check_box_tag "friend_#{i}", "1", true, :class => "friend_check"
+              %td= c[:name]
+              %td= c[:email]
+      %p.selectors
+        %small
+          %em
+            = link_to "[select all]", '#', :id => 'select_all'
+            &nbsp;&nbsp;
+            = link_to "[unselect all]", '#', :id => 'unselect_all'
+      %p.buttons= submit_tag "Ask Friends Your Question"
+
+
+  - else  # question has not yet been posted to facebook
+    = link_to "Ask Question on Facebook", '#'

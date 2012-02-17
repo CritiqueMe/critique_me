@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: daca202e3309d654657f92f7c637525700aa931a
-  ref: daca202e33
+  revision: fa21a1b17561b3aa38ff9a5e5a489d5c0de2c4c7
+  ref: fa21a1b175
   specs:
     seed_blocks (0.0.1)
       bson_ext
@@ -80,7 +80,7 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-rails (1.0.0.rc.2)
+    compass-rails (1.0.0.rc.3)
       compass (~> 0.12.rc.0)
     date_validator (0.6.3)
       activemodel (~> 3.0)
