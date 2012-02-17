@@ -30,4 +30,5 @@ CritiqueMe::Application.routes.draw do
   match '/manual_share',                    :to => 'share#manual_share',        :as => :manual_share
   match '/get_contacts',                    :to => 'share#get_contacts',        :as => :get_contacts
   match '/share_contacts',                  :to => 'share#share_contacts',      :as => :share_contacts
+  match '/share_friends',                   :to => 'share#share_friends',       :as => :share_friends
 end
