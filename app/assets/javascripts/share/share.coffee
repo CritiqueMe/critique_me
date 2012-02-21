@@ -119,7 +119,7 @@ init_post_to_graph_link = ->
   $('#post_to_graph_link').click ->
     qid = $(this).data("question-id")
     $.get '/post_to_graph/'+qid, (data) ->
-      $('')
+      pop_confirmation_dialog(data)
 
 $ ->
   init_share_nav()
