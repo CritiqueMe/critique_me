@@ -1,5 +1,8 @@
 #thanks_dlg
-  %h3 Congrats!  You just asked #{num_shared} friends your question
+  - if num_shared == 'all'
+    %h3 Congrats!  You just posted your question to Facebook!
+  - else
+    %h3 Congrats!  You just asked #{num_shared} friends your question!
   #blurb The more friends you ask, the more answers you'll get.  Want to ask some more?
   #ask_more= link_to "Yes!  Ask more friends!", '#'
   #no_thanks= link_to "No, thanks", '#'

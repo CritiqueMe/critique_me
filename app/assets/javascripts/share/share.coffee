@@ -115,6 +115,11 @@ init_fb_selectors = ->
       $(this).prop('checked', false)
     return false
 
+init_post_to_graph_link = ->
+  $('#post_to_graph_link').click ->
+    qid = $(this).data("question-id")
+    $.get 'post_to_graph/'+qid, (data) ->
+      $('')
 
 $ ->
   init_share_nav()
@@ -122,3 +127,4 @@ $ ->
   init_fb_selectors()
   init_contact_importer()
   init_manual_entry_form()
+  init_post_to_graph_link()

@@ -93,6 +93,12 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def post_to_graph
+    @question = Question.find(params['id'])
+    post_question_to_open_graph(@question)
+    render :partial => "share/thanks", :locals => {:num_shared => 'all'}
+  end
+
 
   private
 
