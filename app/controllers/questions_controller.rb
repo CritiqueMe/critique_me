@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
       @question.multiple_choice_options.delete_all unless @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
       @question.save
       if @question.valid?
-        post_question_to_open_graph(@question) if @question.post_to_wall
+        post_question_to_open_graph(@question) if @question.post_to_wall == "1"
         #redirect_to share_path(@question)
         redirect_to question_path(@question)
       else
