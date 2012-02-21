@@ -15,7 +15,10 @@
       = g.input :answer_text, :as => :string, :label => "Answer ##{cnt}", :wrapper_html => {:class => 'mchoice'}
 
   = f.inputs do
-    = f.input :post_to_wall, :as => :boolean, :label => "Post to Wall?", :wrapper_html => {:class => 'wallpost'}
+    - if valid_access_token?
+      = f.input :post_to_wall, :as => :boolean, :label => "Post to Wall?", :wrapper_html => {:class => 'wallpost'}
+    - else
+      %li#sign_in_input= oauth_link_tag "Sign in to Facebook to post to your wall"
 
   = f.buttons do
     = f.commit_button(@question.id ? "Edit Your Question" : "Create Your Question")

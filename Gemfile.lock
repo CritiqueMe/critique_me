@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 4b49a4b13069d9506367eb133f834c10b98b1bd1
-  ref: 4b49a4b130
+  revision: 991c149fb21853844e27bff2f98c8706e48d3133
+  ref: 991c149fb2
   specs:
     seed_blocks (0.0.1)
       bson_ext
@@ -60,7 +60,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.6)
     ansi (1.4.1)
-    arel (2.2.1)
+    arel (2.2.2)
     bson (1.5.2)
     bson_ext (1.5.2)
       bson (= 1.5.2)
