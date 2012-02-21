@@ -16,7 +16,9 @@
               = link_to "[select all]", '#', :id => 'fb_select_all'
               &nbsp;&nbsp;
               = link_to "[unselect all]", '#', :id => 'fb_unselect_all'
-        %p.buttons= submit_tag "Ask Friends Your Question"
+        %p.buttons
+          = submit_tag "Ask Friends Your Question", :disable_with => "Asking..."
+          #friend_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
 
     - else
       = render :partial => "partials/fb_like_button"

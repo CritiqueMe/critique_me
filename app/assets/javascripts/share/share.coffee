@@ -100,7 +100,7 @@ init_manual_entry_form = ->
 init_fb_friend_list = ->
   $('#send_to_friends_form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#select_friends').hide()
-    $('#contact_form_spinner').fadeIn()
+    $('#friend_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
     pop_confirmation_dialog(xhr.responseText)
   )
