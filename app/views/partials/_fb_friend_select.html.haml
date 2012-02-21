@@ -1,5 +1,5 @@
 #fb_friend_select
-  - if false#@question.fb_question_id  # question has been posted to facebook?
+  - if @question.fb_question_id  # question has been posted to facebook?
     - if @fb_friends && @fb_friends.length > 0
       = form_tag(share_friends_path(:question_id => @question.id), :remote => true, :id => "send_to_friends_form") do
         = hidden_field_tag "imported_friends", @fb_friends ? @fb_friends.map{|f| f['id']}.join(",") : ''
