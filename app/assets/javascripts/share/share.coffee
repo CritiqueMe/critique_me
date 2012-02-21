@@ -118,7 +118,7 @@ init_fb_selectors = ->
 init_post_to_graph_link = ->
   $('#post_to_graph_link').click ->
     qid = $(this).data("question-id")
-    $.get 'post_to_graph/'+qid, (data) ->
+    $.get '/post_to_graph/'+qid, (data) ->
       $('')
 
 $ ->
