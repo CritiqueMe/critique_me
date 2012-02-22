@@ -1,5 +1,7 @@
-PATH
-  remote: ../../seed_blocks
+GIT
+  remote: git@github.com:jgeggatt/SeedBlocks.git
+  revision: bbc6ebf2e0c0e60a4e9364f43f8a2c5eba72b24a
+  ref: bbc6ebf2e0
   specs:
     seed_blocks (0.0.1)
       bson_ext
