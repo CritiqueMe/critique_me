@@ -51,7 +51,7 @@
           - if @user == @question.user
             .buttons#share_question
               = button_to "Share with Friends", '#'
-          - else
+          - elsif @user.answers.where(:question_id => @question.id).count == 0
             .buttons#post_answer
               = button_to "Post Answer", '#'
           .qtext= @question.question_text

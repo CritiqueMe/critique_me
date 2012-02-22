@@ -16,4 +16,6 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
   belongs_to :multiple_choice_option
+
+  validates_uniqueness_of :user_id, :scope => :question_id
 end
