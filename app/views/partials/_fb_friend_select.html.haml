@@ -26,3 +26,4 @@
 
   - else  # question has not yet been posted to facebook
     = link_to "Ask Question on Facebook", '#', :id => "post_to_graph_link", :data => {"question-id" => @question.id}
+    #post_to_fb_spinner= image_tag("/assets/admin/layout/form_spinner.gif")

@@ -6,6 +6,6 @@ ActionMailer::Base.smtp_settings = {
     :port => 25,
     :authentication => :plain,
     :domain => "critique_me.com",
-    :user_name => "ryan@seedblocks.com",
+    :user_name => "seedblocks",
     :password => "momoney123"
 }
