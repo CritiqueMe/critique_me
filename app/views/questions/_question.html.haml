@@ -48,12 +48,13 @@
         - if @question.photo.url
           .qimage= image_tag @question.photo.thumb.url
         .qcontent
-          - if @user == @question.user
-            .buttons#share_question
-              = button_to "Share with Friends", '#'
-          - elsif @user.answers.where(:question_id => @question.id).count == 0
-            .buttons#post_answer
-              = button_to "Post Answer", '#'
+          - if @user
+            - if @user == @question.user
+              .buttons#share_question
+                = button_to "Share with Friends", '#'
+            - elsif @user.answers.where(:question_id => @question.id).count == 0
+              .buttons#post_answer
+                = button_to "Post Answer", '#'
           .qtext= @question.question_text
           .answers
             .header Answers Posted
