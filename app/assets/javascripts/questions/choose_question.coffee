@@ -18,8 +18,13 @@ init_single_questions = ->
       height: 500
       dialogClass: 'share-modal'
     .html('<img src="/assets/admin/layout/form_spinner.gif" />')
-    $.post 'choose_question/'+dqid, {headers: {'X-CSRF-Token': csrf_token}}, (data) ->
-      $('#share_dialog').html(data)
+    $.ajax({
+      type: 'POST',
+      url: 'choose_question/'+dqid,
+      headers: {'X-CSRF-Token': csrf_token},
+      success: (data) ->
+        $('#share_dialog').html(data)
+    })
 
 init_questionnaires = ->
   $('#questionnaires li.q').mouseover () ->
