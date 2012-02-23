@@ -5,7 +5,7 @@
 
 = render :partial => "dashboard/dash_nav"
 
-.prepend-top.prepend-1.span-22.append-1
+.prepend-top.prepend-1.span-22.append-1#all_content{:data => {:csrf_token => form_authenticity_token.to_s}}
   %fieldset
     %legend Setup a New Question
 

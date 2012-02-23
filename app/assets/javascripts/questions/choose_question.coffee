@@ -1,4 +1,6 @@
 init_single_questions = ->
+  csrf_token = $('#all_content').data('csrf_token')
+
   $('#single_questions li').mouseover () ->
     $(this).addClass("hover")
   .mouseleave () ->
@@ -16,7 +18,7 @@ init_single_questions = ->
       height: 500
       dialogClass: 'share-modal'
     .html('<img src="/assets/admin/layout/form_spinner.gif" />')
-    $.post 'choose_question/'+dqid, (data) ->
+    $.post 'choose_question/'+dqid, {headers: {'X-CSRF-Token': csrf_token}}, (data) ->
       $('#share_dialog').html(data)
 
 init_questionnaires = ->
