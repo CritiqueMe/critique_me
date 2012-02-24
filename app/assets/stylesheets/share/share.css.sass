@@ -83,17 +83,24 @@
               label
                 padding-right: 15px
                 line-height: 40px
-                width: 105px
+                width: 150px
                 color: black
+                float: left
               span
                 line-height: 40px
                 &.pad-left
                   padding-left: 10px
+              input
+                width: 250px
               &.error
                 padding-bottom: 0.8em
           fieldset
+            border: 0px
+            margin: 0px
             &.buttons
               margin-left: 120px
+              ol
+                padding: 0px
 
         .provider
           text-transform: capitalize
@@ -136,9 +143,19 @@
           #post_to_fb_spinner
             display: none
         &#manual
+          .inputs
+            padding-top: 10px
+          fieldset
+            border: 0px
+          input
+            width: 250px
+            float: left
           .buttons
             float: left
             margin-left: 15px
+            padding-top: 0px
+            input
+              width: auto
           #manual_spinner
             display: none
             padding: 10px

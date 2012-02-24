@@ -1,5 +1,6 @@
 = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
   = hidden_field_tag "imported_emails", @contacts.map{|c| c[:email]}.join(",")
+  = hidden_field_tag "question_id", @question.id
   .contacts
     %table
       - @contacts.each_with_index do |c, i|

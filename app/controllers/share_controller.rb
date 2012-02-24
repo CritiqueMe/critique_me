@@ -17,8 +17,9 @@ class ShareController < ApplicationController
 
   def manual_share
     if request.post?
+      question = Question.find(params['question_id'])
       invitees = params['emails'].gsub(" ", '').split(",").collect{|x| {:email => x}}
-      Invite.queue_invites(@user, invitees)
+      Invite.queue_invites(@user, invitees, question.id)
       if invitees.length >= 5
         render :partial => "share/thanks", :locals => {:num_shared => invitees.length}
       else
@@ -34,7 +35,8 @@ class ShareController < ApplicationController
     imported_emails.each_with_index do |c, i|
       invitees << {:email => c, :fb_user_id => nil} if params["contact_#{i}"]
     end
-    Invite.queue_invites(@user, invitees)
+    question = Question.find(params['question_id'])
+    Invite.queue_invites(@user, invitees, question.id)
     if invitees.length >= 5
       render :partial => "share/thanks", :locals => {:num_shared => invitees.length}
     else
