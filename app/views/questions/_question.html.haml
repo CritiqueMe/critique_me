@@ -58,7 +58,16 @@
           .qtext= @question.question_text
           .answers
             .header Answers Posted
-            - if @question.question_type == Question::QUESTION_TYPES.index(:open_text)
+            - if @question.answers.count < 5
+              #not_enough_answers
+                - if @question.user == @user
+                  - if @question.answers.count > 0
+                    You've only gotten #{pluralize @question.answers, 'answer'} so far!  You must get at least 5 answers to see the results
+                  - else
+                    You haven't gotten any answers to your question yet!
+                - else
+                  Not enough answers have been posted yet!
+            - elsif @question.question_type == Question::QUESTION_TYPES.index(:open_text)
               - if @question.answers.empty?
                 #none_yet
                   %em No Answers Posted Yet
