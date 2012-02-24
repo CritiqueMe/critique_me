@@ -9,4 +9,4 @@
       = link_to image_tag("/assets/dashboard/invite_friends.jpg"), '#', :data => {'question-id' => question.id}
   - else
     %td.see_answers
-      = link_to image_tag("/assets/dashboard/see_answers.jpg")
+      = link_to image_tag("/assets/dashboard/see_answers.jpg"), question_path(question)

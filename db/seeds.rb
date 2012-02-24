@@ -39,3 +39,8 @@ InviteFromLine.create :name => "reminder_from_v1", :from => "*inviter_full_name*
 EmailTemplate.create :name => "default_register_v1", :email_type => :register
 EmailSubject.create :name => "default_reg_subj_v1", :email_type => :register, :subject => "Thank you for registering!"
 EmailFromLine.create :name => "default_reg_from_v1", :email_type => :register, :from => "<contact@critique_me.com>"
+
+# Default :answers_gathered email
+EmailTemplate.create :name => "answers_v1", :email_type => :answers_gathered
+EmailSubject.create :name => "answers_subj_v1", :email_type => :answers_gathered, :subject => "You've gotten enough answers of your question!"
+EmailFromLine.create :name => "answers_from_v1", :email_type => :answers_gathered, :from => "<contact@critique_me.com>"

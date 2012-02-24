@@ -52,6 +52,7 @@ init_send_contacts_form = ->
     $('#select_contacts').hide()
     $('#contact_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
+    $('#select_contacts').show()
     pop_confirmation_dialog(xhr.responseText)
   )
 
@@ -73,18 +74,14 @@ pop_confirmation_dialog = (content) ->
   $('#oops_button a').click ->
     $('#post_share_dialog').dialog('close')
     $('#share_dialog').dialog('open')
-    $('#select_contacts').hide()
     $('#contact_form_spinner').hide()
     $('#manual_spinner').hide()
-    $('#email_entry').show()
     return false
   $('#ask_more a').click ->
     $('#post_share_dialog').dialog('close')
     $('#share_dialog').dialog('open')
-    $('#select_contacts').hide()
     $('#contact_form_spinner').hide()
     $('#manual_spinner').hide()
-    $('#email_entry').show()
     return false
   $('#no_thanks').click ->
     $('#post_share_dialog').dialog('close')

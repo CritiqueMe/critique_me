@@ -17,6 +17,7 @@ class Question < ActiveRecord::Base
   belongs_to :quiz
   belongs_to :category
   belongs_to :user
+  belongs_to :default_question
 
   has_many :multiple_choice_options, :dependent => :destroy
   accepts_nested_attributes_for :multiple_choice_options
@@ -28,6 +29,7 @@ class Question < ActiveRecord::Base
 
   validates :user_id, :presence => true
   validates_presence_of :category_id, :question_text, :question_type, :message => "Required"
+  validates_uniqueness_of :default_question_id, :scope => :user_id  # prevent users from reposting default questions
 
   attr_accessor :post_to_wall
 

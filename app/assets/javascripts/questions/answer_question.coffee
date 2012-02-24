@@ -1,6 +1,7 @@
 init_post_answer_button = ->
-  $('#post_answer input').click ->
-    $('#answer_dialog').dialog
+  $('.post_answer input').click ->
+    qid = $(this).data('question-id')
+    $('#answer_q'+qid).dialog
       title: "Answer a Question"
       resizable: false
       draggable: true

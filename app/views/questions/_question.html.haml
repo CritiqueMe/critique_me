@@ -45,54 +45,63 @@
 
       #qpage.prepend-1.span-22.append-1.prepend-top.append-bottom
         .byline #{@question.user.first_last_initial} asked:
-        - if @question.photo.url
-          .qimage= image_tag @question.photo.thumb.url
-        .qcontent
-          - if @user
-            - if @user == @question.user
-              .buttons#share_question
-                = button_to "Share with Friends", '#'
-            - elsif @user.answers.where(:question_id => @question.id).count == 0
-              .buttons#post_answer
-                = button_to "Post Answer", '#'
-          .qtext= @question.question_text
-          .answers
-            .header Answers Posted
-            - if @question.answers.count < 5
-              #not_enough_answers
-                - if @question.user == @user
-                  - if @question.answers.count > 0
-                    You've only gotten #{pluralize @question.answers, 'answer'} so far!  You must get at least 5 answers to see the results
+
+        - @questions.each do |q|
+          - if q.photo.url
+            .qimage= image_tag q.photo.thumb.url
+          .qcontent
+            - if @user
+              - if @user == q.user
+                .buttons.share_question{:data => {:question_id => q.id}}
+                  = button_to "Share with Friends", '#'
+              - elsif @user.answers.where(:question_id => q.id).count == 0
+                .buttons.post_answer
+                  = button_to "Post Answer", '#', :data => {:question_id => q.id}
+            .qtext= q.question_text
+            .answers
+              .header Answers Posted
+              - if q.answers.count < 5
+                #not_enough_answers
+                  - if q.user == @user
+                    - if q.answers.count > 0
+                      You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.
+                    - else
+                      You haven't gotten any answers to your question yet!
                   - else
-                    You haven't gotten any answers to your question yet!
-                - else
-                  Not enough answers have been posted yet!
-            - elsif @question.question_type == Question::QUESTION_TYPES.index(:open_text)
-              - if @question.answers.empty?
-                #none_yet
-                  %em No Answers Posted Yet
-              - else
+                    Not enough answers have been posted yet!
+              - elsif q.question_type == Question::QUESTION_TYPES.index(:open_text)
                 %ol
-                  - @question.answers.each do |a|
+                  - q.answers.each do |a|
                     %li= a.open_text_answer
-            - elsif @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-              %ol
-                - @question.multiple_choice_options.each do |mco|
+              - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+                %ol
+                  - q.multiple_choice_options.each do |mco|
+                    %li
+                      %b= mco.answer_text
+                      %em (#{q.answers.where(:multiple_choice_option_id => mco.id).count})
+              - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
+                %ol
                   %li
-                    %b= mco.answer_text
-                    %em (#{@question.answers.where(:multiple_choice_option_id => mco.id).count})
-            - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
-              %ol
-                %li
-                  %b True
-                  %em (#{@question.answers.where(:true_false_answer => true).count})
-                %li
-                  %b False
-                  %em (#{@question.answers.where(:true_false_answer => false).count})
+                    %b True
+                    %em (#{q.answers.where(:true_false_answer => true).count})
+                  %li
+                    %b False
+                    %em (#{q.answers.where(:true_false_answer => false).count})
+
+              - if a = @user.answers.where(:question_id => q.id).first
+                #your_answer
+                  %span Your Answer:
+                  - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
+                    = a.open_text_answer
+                  - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
+                    = a.true_false_answer
+                  - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+                    = a.multiple_choice_option.answer_text
+
+              = render :partial => "/questions/answer", :locals => {:question => q, :post_url => post_url}
 
       = render :partial => "partials/footer"
 
-    = render :partial => "/questions/answer", :locals => {:post_url => post_url}
     #share_dialog{:data => {:question_id => @question.id}}
     #post_share_dialog
 

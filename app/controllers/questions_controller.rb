@@ -6,6 +6,11 @@ class QuestionsController < ApplicationController
 
   def question
     @question = Question.find(params['id'])
+    if @questionnaire = @question.default_question.try(:questionnaire)
+      @questions = @question.user.questions.joins(:default_question).where('default_questions.questionnaire_id=?', @questionnaire.id)
+    else
+      @questions = [@question]
+    end
     @answer = Answer.new(:question => @question, :user => @user)
     if params['fb_action_ids'] || params['cmfb']  # This is the result of an FB click
       if @user.nil?

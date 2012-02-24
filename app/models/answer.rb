@@ -18,4 +18,11 @@ class Answer < ActiveRecord::Base
   belongs_to :multiple_choice_option
 
   validates_uniqueness_of :user_id, :scope => :question_id
+
+  after_create :notify_asker_of_answer
+
+  def notify_asker_of_answer
+    a_cnt = Answer.where(:question_id => self.question_id).count
+    EmailDelivery.user_mail(:answers_gathered, self.user, {:question_id => self.question_id}) if a_cnt == 5
+  end
 end
