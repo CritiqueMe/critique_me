@@ -88,7 +88,7 @@
                     %b False
                     %em (#{q.answers.where(:true_false_answer => false).count})
 
-              - if a = @user.answers.where(:question_id => q.id).first
+              - if @user && a = @user.answers.where(:question_id => q.id).first
                 #your_answer
                   %span Your Answer:
                   - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
