@@ -26,5 +26,11 @@
 
   #fb_post_to_graph_link{:style => "display:#{@question.fb_question_id ? 'none' : 'block'}"}
     - # question has not yet been posted to facebook
-    = link_to "Ask Question on Facebook", '#', :id => "post_to_graph_link", :data => {"question-id" => @question.id}
+    = link_to "Post to Your Facebook Timeline", '#', :id => "post_to_graph_link", :data => {"question-id" => @question.id}
+    %br
+    %br
+    = "- or -"
+    %br
+    %br
+    = link_to "Select Which Facebook Friends to Ask", '#', :id => 'show_friends_list_link'
     #post_to_fb_spinner= image_tag("/assets/admin/layout/form_spinner.gif")

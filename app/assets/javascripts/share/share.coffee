@@ -95,6 +95,11 @@ init_manual_entry_form = ->
   )
 
 init_fb_friend_list = ->
+  $('#show_friends_list_link').click () ->
+    $('#fb_post_to_graph_link').hide()
+    $('#fb_friend_list').fadeIn()
+    return false
+
   $('#send_to_friends_form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#select_friends').hide()
     $('#friend_form_spinner').fadeIn()
