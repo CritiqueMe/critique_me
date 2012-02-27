@@ -1,5 +1,5 @@
 #fb_friend_select
-  - if @question.fb_question_id  # question has been posted to facebook?
+  #fb_friend_list{:style => "display:#{@question.fb_question_id ? 'block' : 'none'}"}
     - if @fb_friends && @fb_friends.length > 0
       = form_tag(share_friends_path(:question_id => @question.id), :remote => true, :id => "send_to_friends_form") do
         = hidden_field_tag "imported_friends", @fb_friends ? @fb_friends.map{|f| f['id']}.join(",") : ''
@@ -24,6 +24,7 @@
       = render :partial => "partials/fb_like_button"
 
 
-  - else  # question has not yet been posted to facebook
+  #fb_post_to_graph_link{:style => "display:#{@question.fb_question_id ? 'none' : 'block'}"}
+    - # question has not yet been posted to facebook
     = link_to "Ask Question on Facebook", '#', :id => "post_to_graph_link", :data => {"question-id" => @question.id}
     #post_to_fb_spinner= image_tag("/assets/admin/layout/form_spinner.gif")

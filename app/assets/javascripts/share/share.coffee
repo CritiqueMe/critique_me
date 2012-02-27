@@ -120,6 +120,8 @@ init_post_to_graph_link = ->
     $.get '/post_to_graph/'+qid, (data) ->
       $('#post_to_fb_spinner').hide()
       $('#post_to_graph_link').show()
+      $('#fb_friend_list').show()
+      $('#fb_post_to_graph_link').hide()
       pop_confirmation_dialog(data)
 
 $ ->
