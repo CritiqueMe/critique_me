@@ -78,6 +78,11 @@ class QuestionsController < ApplicationController
     else
       @default_questions = DefaultQuestion.active.not_in_questionnaire
       @questionnaires = Questionnaire.active
+
+      # remove previously asked questions/questionnaires
+      asked_qs = @user.questions.where('default_question_id IS NOT NULL').all
+      @default_questions.reject!{|dq| asked_qs.any?{|q| q.default_question_id == dq.id}}
+      @questionnaires.reject!{|qn| asked_qs.any?{|q| q.default_question_id == qn.default_questions.first.id}}
     end
   end
 
