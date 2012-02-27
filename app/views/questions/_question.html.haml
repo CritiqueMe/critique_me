@@ -102,7 +102,7 @@
 
       = render :partial => "partials/footer"
 
-    #share_dialog{:data => {:question_id => @question.id}}
+    #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.answers.length < 5 ? 'pop' : 'hide')}}
     #post_share_dialog
 
     #powered_by_sb= link_to image_tag("dashboard/PoweredBySB.png"), "http://www.seedblocks.com", :target => "_blank"
@@ -112,7 +112,7 @@
     = javascript_include_tag "jquery-ui-1.8.15.min.js"
     = javascript_include_tag "questions/answer_question"
 
-    - if @question.user == @user && @question.answers.count < 5
+    - if @question.user == @user
       = javascript_include_tag "questions/show_share"
       = javascript_include_tag "share/share"
 

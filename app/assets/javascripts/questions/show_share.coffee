@@ -1,5 +1,5 @@
 show_share_dialog = (qid) ->
-  $('.share_dialog').dialog
+  $('#share_dialog').dialog
     title: "Share Your Question With Friends"
     resizable: false
     draggable: true
@@ -17,7 +17,9 @@ show_share_dialog = (qid) ->
 
 $ ->
   default_qid = $('#share_dialog').data('question_id')
-  show_share_dialog(default_qid)
+  show_dlg = $('#share_dialog').data('autoshow')
+  if show_dlg == 'pop'
+    show_share_dialog(default_qid)
   $('.share_question').click ->
     qid = $(this).data('question_id')
     show_share_dialog(qid)
