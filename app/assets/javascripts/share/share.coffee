@@ -115,10 +115,10 @@ init_fb_selectors = ->
 init_post_to_graph_link = ->
   $('#post_to_graph_link').click ->
     $('#post_to_graph_link').hide()
-    $('##post_to_fb_spinner').fadeIn()
+    $('#post_to_fb_spinner').fadeIn()
     qid = $(this).data("question-id")
     $.get '/post_to_graph/'+qid, (data) ->
-      $('##post_to_fb_spinner').hide()
+      $('#post_to_fb_spinner').hide()
       $('#post_to_graph_link').show()
       pop_confirmation_dialog(data)
 
