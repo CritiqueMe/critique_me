@@ -104,6 +104,7 @@ init_fb_friend_list = ->
     $('#select_friends').hide()
     $('#friend_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
+    $('#friend_form_spinner').hide()
     pop_confirmation_dialog(xhr.responseText)
   )
 
