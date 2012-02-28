@@ -12,10 +12,20 @@ class WelcomeController < ApplicationController
     if @path_page.page_type == "answer"
       if session[:clicked_question_id]
         @question = Question.where(:id => session[:clicked_question_id]).first
+        if @questionnaire = @question.default_question.try(:questionnaire)
+          @questions = @question.user.questions.joins(:default_question).where('default_questions.questionnaire_id=?', @questionnaire.id)
+        else
+          @questions = [@question]
+        end
         @answer = Answer.new(:question => @question, :user => @user)
       elsif @referrer
         if @referrer.questions.count > 0
           @question = @referrer.questions.last
+          if @questionnaire = @question.default_question.try(:questionnaire)
+            @questions = @question.user.questions.joins(:default_question).where('default_questions.questionnaire_id=?', @questionnaire.id)
+          else
+            @questions = [@question]
+          end
           @answer = Answer.new(:question => @question, :user => @user)
         else
           # show canned question?  just move them along in the path for now
