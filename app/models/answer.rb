@@ -21,6 +21,8 @@ class Answer < ActiveRecord::Base
 
   after_create :notify_asker_of_answer
 
+  attr_accessor :post_to_wall
+
   def notify_asker_of_answer
     a_cnt = Answer.where(:question_id => self.question_id).count
     EmailDelivery.user_mail(:answers_gathered, self.user, {:question_id => self.question_id}) if a_cnt == 5

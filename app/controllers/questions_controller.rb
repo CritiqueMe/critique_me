@@ -7,11 +7,13 @@ class QuestionsController < ApplicationController
   def question
     @question = Question.find(params['id'])
     if @questionnaire = @question.default_question.try(:questionnaire)
-      @questions = @question.user.questions.joins(:default_question).where('default_questions.questionnaire_id=?', @questionnaire.id)
+      @questions = @question.user.questions.joins(:default_question).
+          where('default_questions.questionnaire_id=?', @questionnaire.id).
+          where('questions.created_at>=? AND questions.created_at<?', @question.created_at-30.seconds, @question.created_at+30.seconds)
     else
       @questions = [@question]
     end
-    @answer = Answer.new(:question => @question, :user => @user)
+    @answer = Answer.new(:question => @question, :user => @user, :post_to_wall => true)
     if params['fb_action_ids'] || params['cmfb']  # This is the result of an FB click
       if @user.nil?
         session[:referrer_id] = @question.user_id  # make sure the user gets a viral path
@@ -78,11 +80,6 @@ class QuestionsController < ApplicationController
     else
       @default_questions = DefaultQuestion.active.not_in_questionnaire
       @questionnaires = Questionnaire.active
-
-      # remove previously asked questions/questionnaires
-      asked_qs = @user.questions.where('default_question_id IS NOT NULL').all
-      @default_questions.reject!{|dq| asked_qs.any?{|q| q.default_question_id == dq.id}}
-      @questionnaires.reject!{|qn| asked_qs.any?{|q| q.default_question_id == qn.default_questions.first.id}}
     end
   end
 
@@ -115,10 +112,9 @@ class QuestionsController < ApplicationController
   def post_question_to_open_graph(question)
     token = session[:fb_access_token]
     response = `curl -s -F 'question=#{question_url(question)}' -F 'access_token=#{token}' 'https://graph.facebook.com/me/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:ask'`
-    Rails.logger.info "posted to open graph, response = #{response}"
+    Rails.logger.info "posted question to open graph, response = #{response}"
     json = JSON.parse(response)
     question.update_attribute :fb_question_id, json["id"]
   end
-
 
 end

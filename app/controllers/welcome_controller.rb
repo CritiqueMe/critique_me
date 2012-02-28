@@ -17,7 +17,7 @@ class WelcomeController < ApplicationController
         else
           @questions = [@question]
         end
-        @answer = Answer.new(:question => @question, :user => @user)
+        @answer = Answer.new(:question => @question, :user => @user, :post_to_wall => true)
       elsif @referrer
         if @referrer.questions.count > 0
           @question = @referrer.questions.last
@@ -26,7 +26,7 @@ class WelcomeController < ApplicationController
           else
             @questions = [@question]
           end
-          @answer = Answer.new(:question => @question, :user => @user)
+          @answer = Answer.new(:question => @question, :user => @user, :post_to_wall => true)
         else
           # show canned question?  just move them along in the path for now
           increment_page

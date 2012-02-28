@@ -13,6 +13,11 @@
             = f.input :true_false_answer, :as => :radio, :collection => ['true', 'false']
           - elsif question.question_type == Question::QUESTION_TYPES.index(:open_text)
             = f.input :open_text_answer
+        = f.inputs do
+          - if valid_access_token?
+            = f.input :post_to_wall, :as => :boolean, :label => "Post to Facebook Timeline?", :wrapper_html => {:class => 'wallpost'}
+          - else
+            %li#sign_in_input= oauth_link_tag "Sign in to Facebook to post to your Timeline"
         = f.buttons do
           = f.input :question_id, :as => :hidden, :value => question.id
           = f.input :user_id, :as => :hidden
