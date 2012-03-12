@@ -115,7 +115,7 @@
     - if @question.user == @user
       = javascript_include_tag "questions/show_share"
       = javascript_include_tag "share/share"
-    - elsif @user && @user.answers.where(:question_id => @question.id) == 0
+    - elsif @user && @user.answers.where(:question_id => @question.id).count == 0
       = javascript_include_tag "questions/show_answer"
 
     = yield :extra_javascripts
