@@ -6,13 +6,11 @@
     = f.input :question_type, :as => :question_type, :label => "Answer Format"
     .clearer
 
-  - cnt = 0
   #multiple_choice_answers.hidden
     #add_answers.quiet Add Answers
     #add_button= link_to image_tag("/assets/questions/plus_button.jpg"), '#'
     = f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
-      - cnt += 1
-      = g.input :answer_text, :as => :string, :label => "Answer ##{cnt}", :wrapper_html => {:class => 'mchoice'}
+      = g.input :answer_text, :as => :string, :label => "Answer", :wrapper_html => {:class => 'mchoice'}
 
   = f.inputs do
     - if valid_access_token?

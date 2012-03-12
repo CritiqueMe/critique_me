@@ -48,9 +48,10 @@ class QuestionsController < ApplicationController
       end
     else
       @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => true)
-      3.times do
+      2.times do
         @question.multiple_choice_options.build
       end
+      Rails.logger.info "***** #{@question.multiple_choice_options.length}"
     end
   end
 

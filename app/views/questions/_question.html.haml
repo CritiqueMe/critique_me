@@ -115,5 +115,7 @@
     - if @question.user == @user
       = javascript_include_tag "questions/show_share"
       = javascript_include_tag "share/share"
+    - else
+      = javascript_include_tag "questions/show_answer"
 
     = yield :extra_javascripts

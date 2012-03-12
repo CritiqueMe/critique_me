@@ -12,7 +12,7 @@ select_question_type = (qtype, elem) ->
 
   # show/hide multiple choice answer boxes
   if qtype == 'multiple_choice'
-    num_to_add = 3 - num_existing_answers()
+    num_to_add = 2 - num_existing_answers()
     if num_to_add > 0
       add_multiple_choice_answer() for num in [1..num_to_add]
 
