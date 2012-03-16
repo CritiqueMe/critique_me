@@ -1,0 +1,40 @@
+- if @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
+  #before_see_answer Before you see what #{@question.user.first_name} answered about you, answer this question about your friends!
+  #see_answer{:style => "display:none"}
+    Question: #{@question.question_text_pretty}
+    %br
+    #{@question.user.first_name} chose: #{@question.answers.first.canned_question_choice.friend_name}
+  .bold_title#done_showing_answer{:style => "display:none"}
+    Answer another question about your friends.
+- else
+  .bold_title Answer another question about your friends.
+
+#spinner{:style => "display:none"}= image_tag "/assets/admin/layout/form_spinner.gif"
+- @canned_questions.each_with_index do |cq, i|
+  .canned_question
+    .qtext= cq.text
+    .skip= link_to "Skip this question &raquo;".html_safe, '#'
+    .choices
+      #qform
+        = form_tag(canned_answer_path(cq.id), :remote => true) do
+          = hidden_field_tag 'friend_ids', @canned_choices[i].map{|choice| choice[:id]}.join(",")
+          = hidden_field_tag 'friend_names', @canned_choices[i].map{|choice| choice[:name]}.join(",")
+          = hidden_field_tag 'chosen_friend'
+          = check_box_tag 'post_to_timeline', '1', true
+          Post to Timeline
+      %ol
+        - @canned_choices[i].each do |choice|
+          %li
+            .image
+              .wrap= image_tag "http://graph.facebook.com/#{choice[:id]}/picture?type=normal"
+            .name= choice[:name]
+            .button= link_to "Select", '#', :data => {:friend_id => choice[:id]}
+    .creator= link_to "Or, Create Your Own Question To Ask &raquo;".html_safe, new_question_path
+
+- if params['controller'] == 'questions'
+  = stylesheet_link_tag "questions/canned"
+  - content_for :extra_javascripts do
+    = javascript_include_tag "questions/canned"
+- else
+  = stylesheet_link_tag "questions/canned"
+  = javascript_include_tag "questions/canned"

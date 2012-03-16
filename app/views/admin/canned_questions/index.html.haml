@@ -1,0 +1,26 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "New Question &raquo;".html_safe, new_admin_canned_question_path
+
+%h1
+  CritiqueMe Canned Questions
+
+%table.merchants.smoothness.highlighter
+  %thead
+    %tr
+      %th Question
+      %th Num Friends
+      %th &nbsp;
+      %th &nbsp;
+  %tfoot
+    %tr
+      %td{:colspan => 6}
+        = will_paginate
+  %tbody
+    - if @canned_questions.empty?
+      %tr
+        %td{:colspan => 6}
+          %em No canned questions found.
+    - else
+      = render @canned_questions

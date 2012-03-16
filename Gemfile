@@ -34,6 +34,6 @@ gem "sendgrid"
 gem "compass-rails", :group => :assets
 gem "engineyard", :group => :development
 
-#gem "seed_blocks", :path => "../../seed_blocks"
-gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "c4f84b2abf"
+gem "seed_blocks", :path => "../../seed_blocks"
+#gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "c4f84b2abf"
 

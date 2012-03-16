@@ -30,6 +30,25 @@ class QuestionsController < ApplicationController
     else
 
     end
+
+    # prepare canned questions
+    if @question.user != @user
+      @canned_questions = CannedQuestion.active.limit(5).order("RAND()")
+      get_fb_friends
+      @canned_choices = @canned_questions.map do |cq|
+        this_q_choice = []
+        @fb_friends.shuffle!
+        cq.num_choices.times do |i|
+          friend = @fb_friends[i]
+          this_q_choice << {
+              :name => friend['name'],
+              :id => friend['id']
+          }
+        end
+        this_q_choice
+      end
+    end
+
     render :layout => false
   end
 

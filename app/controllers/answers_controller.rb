@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
 
-
   def new
     if request.post?
       @answer = Answer.new(params['answer'])
@@ -25,6 +24,32 @@ class AnswersController < ApplicationController
       redirect_to dashboard_path
     end
   end
+
+  def canned_answer
+    if request.post?
+      @canned_question = CannedQuestion.find(params['id'])
+      friend_ids = params['friend_ids'].split(",")
+      friend_names = params['friend_names'].split(",")
+      choices = []
+      friend_ids.each_with_index do |id, i|
+        choices << {:name => friend_names[i], :id => id}
+      end
+      q = Question.create_from_canned_question(@canned_question, @user, choices)
+      cqc = CannedQuestionChoice.where(:question_id => q.id, :friend_fb_id => params['chosen_friend']).first
+      a = Answer.create({
+          :user_id => @user.id,
+          :question_id => q.id,
+          :canned_question_choice_id => cqc.id
+      })
+      if params['post_to_timeline'] == '1'
+        post_answer_to_open_graph(a)
+      end
+      render :text => "success"
+    end
+  end
+
+
+
 
   private
 

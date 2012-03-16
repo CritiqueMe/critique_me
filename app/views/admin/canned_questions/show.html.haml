@@ -1,0 +1,33 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All Questions".html_safe, admin_canned_questions_path
+      = link_to "Edit Question &raquo;".html_safe, edit_admin_canned_question_path(@canned_question)
+      - if @canned_question.active?
+        = link_to "Deactivate &raquo;".html_safe, deactivate_admin_canned_question_path(@canned_question), :method => :put
+      - else
+        = link_to "Activate &raquo;".html_safe, activate_admin_canned_question_path(@canned_question), :method => :put
+
+%h1 Show Canned Question
+
+%ul.show_page
+  %li
+    %label Category:
+    %p
+      - if @canned_question.category
+        = link_to @canned_question.category.name, admin_category_path(@canned_question.category)
+      - else
+        None
+    .clear
+  %li
+    %label Question Text:
+    %p= @canned_question.text
+    .clear
+  %li
+    %label Num Friends:
+    %p= @canned_question.num_choices
+    .clear
+  %li
+    %label Active?:
+    %p= @canned_question.active ? "Active" : "Inactive"
+    .clear

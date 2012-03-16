@@ -1,0 +1,9 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All Questions".html_safe, admin_canned_questions_path
+      = link_to "&laquo; This Question".html_safe, admin_canned_question_path(@canned_question)
+
+%h1 Edit Canned Question
+
+= render :partial => "form", :locals => {:url => admin_canned_question_path(@canned_question)}

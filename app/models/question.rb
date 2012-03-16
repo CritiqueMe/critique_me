@@ -21,13 +21,14 @@ class Question < ActiveRecord::Base
 
   has_many :multiple_choice_options, :dependent => :destroy
   accepts_nested_attributes_for :multiple_choice_options
+  has_many :canned_question_choices
   has_many :answers
 
   mount_uploader :photo, QuestionPhotoUploader
 
-  QUESTION_TYPES = [:multiple_choice, :true_false, :open_text]
+  QUESTION_TYPES = [:multiple_choice, :true_false, :open_text, :canned_question]
 
-  validates :user_id, :presence => true
+  validates :user_id, :presence => true, :unless => Proc.new{|x| x.question_type == QUESTION_TYPES.index(:canned_question)}
   validates_presence_of :category_id, :question_text, :question_type, :message => "Required"
 
   attr_accessor :post_to_wall
@@ -48,5 +49,47 @@ class Question < ActiveRecord::Base
       })
     end if q.question_type == QUESTION_TYPES.index(:multiple_choice)
     q
+  end
+
+  def self.create_from_canned_question(cq, user, choices)
+    q = Question.create({
+        :user_id => user.id,
+        :question_type => QUESTION_TYPES.index(:canned_question),
+        :question_text => cq.text,
+        :category_id => cq.category_id,
+        :canned_question_id => cq.id
+    })
+    choices.each do |choice|
+      CannedQuestionChoice.create({
+        :question_id => q.id,
+        :friend_name => choice[:name],
+        :friend_fb_id => choice[:id]
+      })
+    end
+    q
+  end
+
+  def question_text_pretty
+    rtn = self.question_text
+    if canned_question_id
+      rtn += "  " + canned_question_choices_pretty + "?"
+    end
+    rtn
+  end
+
+  def canned_question_choices_pretty
+    choices = self.canned_question_choices
+    rtn = ""
+    choices.each_with_index do |c,i|
+      if i > 0
+        if i+1 == choices.length
+          rtn += " or "
+        else
+          rtn += ", "
+        end
+      end
+      rtn += c.friend_name
+    end
+    rtn
   end
 end

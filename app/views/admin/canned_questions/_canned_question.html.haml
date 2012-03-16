@@ -1,0 +1,15 @@
+%tr{:class => cycle('odd', 'even')}
+  %td.question= link_to canned_question.text, admin_canned_question_path(canned_question)
+  %td= canned_question.num_choices
+  %td.active
+    %small= canned_question.active ? 'Active' : 'Inactive'
+  %td.actions
+    = image_tag 'admin/icons/tool.png', :class => 'tools', 'data-menu' => "#menu_canned_question_#{canned_question.id}"
+    %ul[canned_question, :menu]
+      %li= link_to 'Show', admin_canned_question_path(canned_question), :class => 'show'
+      %li= link_to 'Edit', edit_admin_canned_question_path(canned_question), :class => 'edit'
+      %li
+        - if canned_question.active?
+          = link_to 'Deactivate', deactivate_admin_canned_question_path(canned_question), :class => 'deactivate', :method => :put
+        - else
+          = link_to 'Activate', activate_admin_canned_question_path(canned_question), :class => 'activate', :method => :put

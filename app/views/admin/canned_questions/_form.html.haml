@@ -1,0 +1,11 @@
+= semantic_form_for @canned_question, :url => url do |f|
+  = f.inputs do
+    = f.input :category, :prompt => "Choose a category", :collection => Category.for_select
+    = f.input :text, :as => :string, :label => "Question"
+    = f.input :num_choices, :as => :number, :label => "Number of Friend Choices"
+    .clearer
+  = f.buttons do
+    - if @canned_question.new_record?
+      = f.commit_button "Create Canned Question"
+    - else
+      = f.commit_button "Edit Canned Question"

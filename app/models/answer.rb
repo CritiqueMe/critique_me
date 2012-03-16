@@ -8,6 +8,7 @@
 #  multiple_choice_option_id :integer(4)
 #  true_false_answer         :boolean(1)
 #  open_text_answer          :text
+#  canned_question_choice_id :integer(4)
 #  created_at                :datetime
 #  updated_at                :datetime
 #
@@ -16,6 +17,7 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user
   belongs_to :multiple_choice_option
+  belongs_to :canned_question_choice
 
   validates_uniqueness_of :user_id, :scope => :question_id
 

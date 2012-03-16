@@ -1,6 +1,6 @@
 %tr
   %td
-    = link_to answer.question.question_text, question_path(answer.question)
+    = link_to answer.question.question_text_pretty, question_path(answer.question)
     %br
     Posted on:
     %span.light= answer.question.created_at.strftime "%-m/%-d/%Y %I:%M %p"

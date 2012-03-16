@@ -11,6 +11,10 @@ CritiqueMe::Application.routes.draw do
       put 'deactivate', :on => :member
       put 'activate', :on => :member
     end
+    resources :canned_questions do
+      put 'deactivate', :on => :member
+      put 'activate', :on => :member
+    end
   end
 
   match '/privacy_options',                 :to => 'dashboard#privacy_options', :as => :privacy_options
@@ -22,6 +26,7 @@ CritiqueMe::Application.routes.draw do
   match '/choose_question(/:id)',           :to => 'questions#choose_question', :as => :choose_question
   match '/questionnaire/:id',               :to => 'questions#questionnaire',   :as => :questionnaire
   match '/post_to_graph/:id',               :to => 'questions#post_to_graph',   :as => :post_to_graph
+  match '/canned_answer/:id',               :to => 'answers#canned_answer',     :as => :canned_answer
 
   match '/answer/new',                      :to => 'answers#new',               :as => :new_answer
 

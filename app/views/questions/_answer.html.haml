@@ -1,29 +1,34 @@
 .answer_dialog{:id => "answer_q"+question.id.to_s}
-  .byline #{question.user.first_last_initial} asked:
-  - if question.photo.url
-    .qimage= image_tag question.photo.try(:url)
-  .qcontent
-    .qtext= question.question_text
-    .qform
-      = semantic_form_for @answer, :url => post_url do |f|
-        = f.inputs do
-          - if question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-            = f.input :multiple_choice_option_id, :as => :select, :collection => question.multiple_choice_options, :label_method => :answer_text
-          - elsif question.question_type == Question::QUESTION_TYPES.index(:true_false)
-            = f.input :true_false_answer, :as => :radio, :collection => ['true', 'false']
-          - elsif question.question_type == Question::QUESTION_TYPES.index(:open_text)
-            = f.input :open_text_answer
-        = f.inputs do
-          - if valid_access_token?
-            = f.input :post_to_wall, :as => :boolean, :label => "Post to Facebook Timeline?", :wrapper_html => {:class => 'wallpost'}
-          - else
-            %li#sign_in_input= oauth_link_tag "Sign in to Facebook to post to your Timeline"
-        = f.buttons do
-          = f.input :question_id, :as => :hidden, :value => question.id
-          = f.input :user_id, :as => :hidden
-          = f.commit_button "Post Answer"
-  .clear
-  .answer_footer
-    Don't worry, your answers are anonymous!  #{question.user.first_name.capitalize} will only see your answer once at least four other people have answered and we won't tell him whose answer was whose!
-  .answer_link
-    = link_to "You can also create your own question!", new_question_path
+  #dlg_content
+    .byline #{question.user.first_last_initial} asked:
+    - if question.photo.url
+      .qimage= image_tag question.photo.try(:url)
+    .qcontent
+      .qtext= question.question_text_pretty
+      .qform
+        = semantic_form_for @answer, :url => post_url, :remote => true do |f|
+          = f.inputs do
+            - if question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+              = f.input :multiple_choice_option_id, :as => :select, :collection => question.multiple_choice_options, :member_label => :answer_text
+            - elsif question.question_type == Question::QUESTION_TYPES.index(:true_false)
+              = f.input :true_false_answer, :as => :radio, :collection => ['true', 'false']
+            - elsif question.question_type == Question::QUESTION_TYPES.index(:open_text)
+              = f.input :open_text_answer
+            - elsif question.question_type == Question::QUESTION_TYPES.index(:canned_question)
+              = f.input :canned_question_choice_id, :as => :select, :collection => question.canned_question_choices, :member_label => :friend_name
+          = f.inputs do
+            - if valid_access_token?
+              = f.input :post_to_wall, :as => :boolean, :label => "Post to Facebook Timeline?", :wrapper_html => {:class => 'wallpost'}
+            - else
+              %li#sign_in_input= oauth_link_tag "Sign in to Facebook to post to your Timeline"
+          = f.buttons do
+            = f.input :question_id, :as => :hidden, :value => question.id
+            = f.input :user_id, :as => :hidden
+            = f.commit_button "Post Answer"
+    .clear
+    .answer_footer
+      Don't worry, your answers are anonymous!  #{question.user.first_name.capitalize} will only see your answer once at least four other people have answered and we won't tell him whose answer was whose!
+    .answer_link
+      = link_to "You can also create your own question!", new_question_path
+
+  #post_answer_spinner{:style => "display: none"}= image_tag "/assets/admin/layout/form_spinner.gif"

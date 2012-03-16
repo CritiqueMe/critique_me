@@ -1,6 +1,7 @@
 %li.icon
   = link_to 'Questions', admin_questions_path, :class => 'questions'
   %ul
+    %li= link_to 'Canned Questions', admin_canned_questions_path, :class => 'canned_questions'
     %li= link_to 'User-Entered Questions', admin_questions_path, :class => 'questions'
     %li= link_to 'Default Questions', admin_default_questions_path, :class => 'default_questions'
     %li= link_to 'Question Categories', admin_categories_path, :class => 'question_categories'

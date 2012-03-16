@@ -1,0 +1,91 @@
+@import "compass"
+
+#before_see_answer, #see_answer
+  text-align: center
+  font-weight: bold
+  font-size: 14px
+  border: 2px solid #666
+  padding: 10px 0px
+  margin: 10px 0px
+
+.bold_title
+  text-align: center
+  font-weight: bold
+  font-size: 18px
+  padding: 15px 0px
+
+#spinner
+  width: 100%
+  text-align: center
+  padding: 50px 0px
+
+.canned_question
+  width: 750px
+  margin: 0px auto
+  display: none
+  .qtext
+    border: 2px solid #666
+    padding: 25px
+    width: 90%
+    margin: 0px auto
+    text-align: center
+    font-size: 14px
+    font-weight: bold
+  .skip
+    width: 98%
+    text-align: right
+    padding: 10px 0px
+    a
+      color: #6778B0
+  .choices
+    text-align: center
+    position: relative
+    #qform
+      position: absolute
+      top: -25px
+      left: 10px
+    ol
+      li
+        width: 150px
+        margin: 10px
+        height: 205px
+        border: 2px solid #666
+        text-align: center
+        display: inline-block
+        vertical-align: middle
+        div
+          width: 150px
+          margin: 0px auto
+          &.image
+            padding: 10px 0px
+            background: #ddd
+            width: 130px
+            margin-top: 10px
+            height: 103px
+            .wrap
+              line-height: 103px
+              width: auto
+              img
+                max-height: 100px
+                display: inline-block
+                vertical-align: middle
+          &.name
+            font-weight: bold
+            height: 17px
+            margin: 5px 0px 15px
+            overflow-y: hidden
+          &.button
+            height: 40px
+            margin-top: 10px
+            a
+              width: auto
+              padding: 10px 25px
+              border: 1px solid #BBBBBB
+              text-decoration: none
+              @include border-radius(5px, 5px)
+              @include background-image(linear-gradient(#d2d2d2, white))
+  .creator
+    text-align: center
+    padding-bottom: 20px
+    a
+      color: #6778B0

@@ -9,14 +9,14 @@
   %head{:prefix => "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# #{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}: http://ogp.me/ns/fb/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}#"}
     %meta{ :charset => "utf-8" }/
     %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
-    %title= @question.question_text
+    %title= @question.question_text_pretty
     %meta{ :name => "description", :content => "CritiqueMe" }/
     %meta{ :name => "author", :content => "critiqueme.com" }/
 
     %meta{ :property => "fb:app_id", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_id]}" }
     %meta{ :property => "og:type", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:question" }
     %meta{ :property => "og:url", :content => "#{question_url(@question)}" }
-    %meta{ :property => "og:title", :content => @question.question_text }
+    %meta{ :property => "og:title", :content => @question.question_text_pretty }
     %meta{ :property => "og:description", :content => "Answer the question now!" }
     - if @question.photo.url
       %meta{ :property => "og:image", :content => @question.photo.url }
@@ -44,7 +44,8 @@
       = render :partial => "dashboard/dash_nav"
 
       #qpage.prepend-1.span-22.append-1.prepend-top.append-bottom
-        .byline #{@question.user.first_last_initial} asked:
+        - unless @question.canned_question_id
+          .byline #{@question.user.first_last_initial} asked:
 
         - @questions.each do |q|
           - if q.photo.url
@@ -57,7 +58,8 @@
               - elsif @user.answers.where(:question_id => q.id).count == 0
                 .buttons.post_answer
                   = button_to "Post Answer", '#', :data => {:question_id => q.id}
-            .qtext= q.question_text
+            .qtext
+              = q.question_text_pretty
             .answers
               .header Answers Posted
               - if q.answers.count < 5
@@ -87,6 +89,12 @@
                   %li
                     %b False
                     %em (#{q.answers.where(:true_false_answer => false).count})
+              - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
+                %ol
+                  - q.canned_question_choices.each do |cqc|
+                    %li
+                      %b= cqc.friend_name
+                      %em (#{q.answers.where(:canned_question_choice_id => cqc.id).count})
 
               - if @user && a = @user.answers.where(:question_id => q.id).first
                 #your_answer
@@ -97,15 +105,19 @@
                     = a.true_false_answer
                   - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
                     = a.multiple_choice_option.answer_text
+                  - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
+                    = a.canned_question_choice.friend_name
 
               = render :partial => "/questions/answer", :locals => {:question => q, :post_url => post_url}
 
       = render :partial => "partials/footer"
 
     #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.answers.length < 5 ? 'pop' : 'hide')}}
-    #post_share_dialog
+    #post_share_dialog{:data => {:finish_path => @user == @question.user ? dashboard_path : new_question_path}}
 
     #powered_by_sb= link_to image_tag("dashboard/PoweredBySB.png"), "http://www.seedblocks.com", :target => "_blank"
+    - if @canned_questions
+      #canned_questions= render :partial => "canned/canned_questions"
 
 
     = javascript_include_tag "application"
@@ -115,6 +127,8 @@
     - if @question.user == @user
       = javascript_include_tag "questions/show_share"
       = javascript_include_tag "share/share"
+    - elsif @question.canned_question_id && @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
+      = javascript_include_tag "questions/show_canned"
     - elsif @user && @user.answers.where(:question_id => @question.id).count == 0
       = javascript_include_tag "questions/show_answer"
 

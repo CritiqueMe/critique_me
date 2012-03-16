@@ -53,10 +53,10 @@ init_send_contacts_form = ->
     $('#contact_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
     $('#select_contacts').show()
-    pop_confirmation_dialog(xhr.responseText)
+    pop_canned_questions_dialog(xhr.responseText)
   )
 
-pop_confirmation_dialog = (content) ->
+pop_canned_questions_dialog = (content) ->
   # hide the sharer dialog, show the thanks or oops dialog
   $('#share_dialog').dialog('close')
   $('#post_share_dialog').dialog
@@ -65,7 +65,8 @@ pop_confirmation_dialog = (content) ->
     modal: true
     show: 'fade'
     hide: 'fade'
-    width: 400
+    width: 800
+    height: 500
     position: 'center'
     dialogClass: 'share-modal'
   .html(content)
@@ -87,11 +88,14 @@ pop_confirmation_dialog = (content) ->
     $('#post_share_dialog').dialog('close')
     return false
 
+  # initialize canned question
+  $('#post_share_dialog .canned_question').first().show()
+
 init_manual_entry_form = ->
   $('#manual form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#manual_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
-    pop_confirmation_dialog(xhr.responseText)
+    pop_canned_questions_dialog(xhr.responseText)
   )
 
 init_fb_friend_list = ->
@@ -105,7 +109,7 @@ init_fb_friend_list = ->
     $('#friend_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
     $('#friend_form_spinner').hide()
-    pop_confirmation_dialog(xhr.responseText)
+    pop_canned_questions_dialog(xhr.responseText)
   )
 
 init_fb_selectors = ->
@@ -127,7 +131,7 @@ init_post_to_graph_link = ->
       $('#post_to_fb_spinner').hide()
       $('#fb_friend_list').show()
       $('#fb_post_to_graph_link').hide()
-      pop_confirmation_dialog(data)
+      pop_canned_questions_dialog(data)
 
 $ ->
   init_share_nav()

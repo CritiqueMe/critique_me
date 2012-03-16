@@ -3,8 +3,9 @@
     .qimage= image_tag @question.photo.thumb.url
   .qcontent
     .qtext
-      = @question.question_text
-      %span.edit= link_to "Edit Question &raquo;".html_safe, edit_question_path(@question)
+      = @question.question_text_pretty
+      - unless @question.canned_question_id
+        %span.edit= link_to "Edit Question &raquo;".html_safe, edit_question_path(@question)
     .qanswers
       - if @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
         - @question.multiple_choice_options.map(&:answer_text).each do |a|
