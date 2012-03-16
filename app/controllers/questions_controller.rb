@@ -25,6 +25,7 @@ class QuestionsController < ApplicationController
             :state => "entered"
         )
         session[:viral_entrance_id] = tracker.id
+        session[:straight_outta_fb] = true
         redirect_to welcome_path and return
       end
     else
