@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
     if @question.user != @user
       @canned_questions = CannedQuestion.active.limit(5).order("RAND()")
       get_fb_friends
-      if @fb_friends && @fb_friends.length > 0
+      if @fb_friends && @fb_friends.length >= 3
         @canned_choices = @canned_questions.map do |cq|
           this_q_choice = []
           @fb_friends.shuffle!
