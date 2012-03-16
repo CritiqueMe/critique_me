@@ -1,4 +1,4 @@
-- if @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
+- if @question && @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
   #before_see_answer Before you see what #{@question.user.first_name} answered about you, answer this question about your friends!
   #see_answer{:style => "display:none"}
     Question: #{@question.question_text_pretty}
