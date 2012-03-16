@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 86440dc6753c721b1e1e31182e95f5b187eb9082
-  ref: 86440dc675
+  revision: 4d3b3d8d4e5707340e4c2eed1edadf502a96884a
+  ref: 4d3b3d8d4e
   specs:
     seed_blocks (0.0.1)
       bson_ext
@@ -177,7 +177,7 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
-    responders (0.8.0)
+    responders (0.9.0)
       railties (~> 3.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
