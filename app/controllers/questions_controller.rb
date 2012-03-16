@@ -48,6 +48,9 @@ class QuestionsController < ApplicationController
           end
           this_q_choice
         end
+      else
+        # no fb friends, so let's not do the canned question thing
+        @canned_questions = nil
       end
     end
 
