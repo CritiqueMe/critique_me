@@ -31,7 +31,7 @@
             .button= link_to "Select", '#', :data => {:friend_id => choice[:id]}
     .creator= link_to "Or, Create Your Own Question To Ask &raquo;".html_safe, new_question_path
 
-- if params['controller'] == 'questions'
+- if params['controller'] == 'questions' || params['controller'] == 'welcome'
   = stylesheet_link_tag "questions/canned"
   - content_for :extra_javascripts do
     = javascript_include_tag "questions/canned"
