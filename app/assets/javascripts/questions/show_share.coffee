@@ -16,10 +16,9 @@ show_share_dialog = (qid) ->
 
 
 $ ->
-  default_qid = $('#share_dialog').data('question_id')
-  show_dlg = $('#share_dialog').data('autoshow')
-  if show_dlg == 'pop'
-    show_share_dialog(default_qid)
+  $('#not_enough_answers a').click ->
+    qid = $(this).parent().data('question_id')
+    show_share_dialog(qid)
   $('.share_question').click ->
     qid = $(this).data('question_id')
     show_share_dialog(qid)

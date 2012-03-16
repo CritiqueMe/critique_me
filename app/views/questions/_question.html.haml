@@ -63,12 +63,12 @@
             .answers
               .header Answers Posted
               - if q.answers.count < 5
-                #not_enough_answers
+                #not_enough_answers{:data => {:question_id => q.id}}
                   - if q.user == @user
                     - if q.answers.count > 0
-                      You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.
+                      You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.  #{link_to "Invite more friends now!", '#'}
                     - else
-                      You haven't gotten any answers to your question yet!
+                      You haven't gotten any answers to your question yet!  #{link_to "Invite some friends now!", '#'}
                   - else
                     Not enough answers have been posted yet!
               - elsif q.question_type == Question::QUESTION_TYPES.index(:open_text)

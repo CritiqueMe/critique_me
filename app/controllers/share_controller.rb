@@ -54,7 +54,7 @@ class ShareController < ApplicationController
       friend_ids << f if params["friend_#{i}"]
     end
 
-    response = `curl -s -F 'access_token=#{session[:fb_access_token]}' -F 'message=#{qtext}' -F 'link=#{question_url(@question, :cmfb => 1)}' #{"-F 'picture=#{@question.photo.thumb.url}'" if @question.photo.url} -F 'name=Critique Me' -F 'caption=Ask Your Friends Anything!' -F 'description=#{@user.first_name.capitalize} asked "#{qtext}"' -F 'privacy={"value":"CUSTOM", "friends":"SOME_FRIENDS", "allow":"#{friend_ids.join(",")}"}' '#{url}'`
+    response = `curl -s -F 'access_token=#{session[:fb_access_token]}' -F 'message=#{qtext}' -F 'link=#{question_url(@question, :cmfb => 1)}' #{"-F 'picture=#{@question.photo.thumb.url}'" if @question.photo.url} -F 'name=#{qtext}' -F 'caption=Ask Your Friends Anything!' -F 'description=#{@user.first_name.capitalize} asked "#{qtext}"' -F 'privacy={"value":"CUSTOM", "friends":"SOME_FRIENDS", "allow":"#{friend_ids.join(",")}"}' '#{url}'`
     Rails.logger.info "aaaa #{response}"
     # TODO: track this posting!
     if friend_ids.length >= 5
