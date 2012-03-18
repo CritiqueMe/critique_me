@@ -47,17 +47,27 @@
 
 #multiple_choice_answers
   position: relative
-
+  ol
+    position: relative
+    height: 40px
+    margin-bottom: 0px
+    li
+      height: 25px
   &.hidden
     display: none
 
   #add_answers
     padding-left: 190px
     font-weight: 1.2em
+  .minus_button
+    position: absolute
+    bottom: 3px
+    right: 136px
   #add_button
     position: absolute
     bottom: 3px
-    right: 155px
+    right: 124px
+    z-index: 5
 #question_post_to_wall_input
   margin-left: 170px
   font-size: 10px

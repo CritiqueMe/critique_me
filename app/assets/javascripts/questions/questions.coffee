@@ -60,6 +60,15 @@ init_question_types = ->
       select_question_type(qtype, $(this))
     )
 
+init_remove_answer_links = ->
+  $('.minus_button a').unbind().click ->
+    if num_existing_answers() > 2
+      $(this).parent().parent().parent().slideUp 400, () ->
+        $(this).remove()
+    else
+      alert "You must have at least two multiple choice options!"
+    return false
+
 init_add_answer_link = () ->
   $('#add_button a').click () ->
     add_multiple_choice_answer()
@@ -68,12 +77,18 @@ add_multiple_choice_answer = () ->
   new_li       = $('<li>').attr("id", q_class + "_" + mco_class + "s_attributes_" + num_existing_answers() + "_answer_text_input").addClass("mchoice string input required stringish")
   new_label    = $('<label>').addClass(" label").attr("for", q_class + "_" + mco_class + "s_attributes_" + num_existing_answers() + "_answer_text")
   new_input    = $('<input>').attr("id", q_class + "_" + mco_class + "s_attributes_" + num_existing_answers() + "_answer_text").attr("name", q_class + "[" + mco_class + "s_attributes][" + num_existing_answers() + "][answer_text]").attr("type", "text").val("")
+  new_div      = $('<div>').addClass("minus_button")
+  new_image    = $('<img>').attr("src", "/assets/questions/minus_button.jpg").attr("alt", "Minus Button")
+  new_link     = $('<a>').attr("href", "#").append(new_image)
   new_fieldset = $('<fieldset>').addClass("inputs multi_choice").append(
     $('<ol>').append(
       new_li.append(new_label).append(new_input)
+    ).append(
+      new_div.append(new_link)
     )
   )
   $('#multiple_choice_answers').append(new_fieldset)
+  init_remove_answer_links()
   return false
 
 num_existing_answers = () ->
@@ -84,6 +99,7 @@ num_existing_answers = () ->
 init_page = ->
   init_question_types()
   init_add_answer_link()
+  init_remove_answer_links()
 
 
 $ ->
