@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
   def path_answer
     @answer = Answer.new(params['answer'])
     @answer.save
+    post_answer_to_open_graph(@answer) if @answer.post_to_wall == "1"
     increment_page
     redirect_to welcome_path
   end
@@ -33,7 +34,19 @@ class WelcomeController < ApplicationController
           redirect_to welcome_path
         end
       end
-      Rails.logger.info "******* @answer = #{@answer.inspect}\n@user = #{@user.inspect}"
+    end
+  end
+
+
+  private
+
+  def post_question_to_open_graph(question)
+    if session[:fb_access_token]
+      token = session[:fb_access_token]
+      response = `curl -s -F 'question=#{question_url(question)}' -F 'access_token=#{token}' 'https://graph.facebook.com/me/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:ask'`
+      Rails.logger.info "posted question to open graph, response = #{response}"
+      json = JSON.parse(response)
+      question.update_attribute :fb_question_id, json["id"]
     end
   end
 end
