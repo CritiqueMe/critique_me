@@ -33,6 +33,7 @@ class WelcomeController < ApplicationController
           redirect_to welcome_path
         end
       end
+      Rails.logger.info "******* @answer = #{@answer.inspect}\n@user = #{@user.inspect}"
     end
   end
 end
