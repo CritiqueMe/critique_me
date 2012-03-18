@@ -40,14 +40,11 @@ class WelcomeController < ApplicationController
 
   private
 
-  def post_question_to_open_graph(question)
-    Rails.logger.info "&&&& fb_access_token = #{session[:fb_access_token]}"
-    if session[:fb_access_token]
-      token = session[:fb_access_token]
-      response = `curl -s -F 'question=#{question_url(question)}' -F 'access_token=#{token}' 'https://graph.facebook.com/me/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:ask'`
-      Rails.logger.info "posted question to open graph, response = #{response}"
-      json = JSON.parse(response)
-      question.update_attribute :fb_question_id, json["id"]
-    end
+  def post_answer_to_open_graph(answer)
+    token = session[:fb_access_token]
+    response = `curl -s -F 'question=#{question_url(answer.question)}' -F 'access_token=#{token}' 'https://graph.facebook.com/me/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:answer'`
+    Rails.logger.info "posted answer to open graph, response = #{response}"
+    json = JSON.parse(response)
+    answer.update_attribute :fb_answer_id, json["id"]
   end
 end
