@@ -77,10 +77,10 @@
                     %li= a.open_text_answer
               - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
                 %ol
-                  - q.multiple_choice_options.each do |mco|
+                  - q.multiple_choice_options.sort{|a,b| b.answers.count <=> a.answers.count}.each do |mco|
                     %li
                       %b= mco.answer_text
-                      %em (#{q.answers.where(:multiple_choice_option_id => mco.id).count})
+                      %em (#{mco.answers.count})
               - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
                 %ol
                   %li

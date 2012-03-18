@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
         #render :partial => "questions/form"
       end
     else
-      @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => true)
+      @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => false)
       2.times do
         @question.multiple_choice_options.build
       end
