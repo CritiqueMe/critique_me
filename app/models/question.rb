@@ -65,7 +65,7 @@ class Question < ActiveRecord::Base
         :friend_name => choice[:name],
         :friend_fb_id => choice[:id]
       })
-    end
+    end if q.id
     q
   end
 

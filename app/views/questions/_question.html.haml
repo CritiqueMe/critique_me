@@ -112,7 +112,7 @@
 
       = render :partial => "partials/footer"
 
-    #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.answers.length < 5 ? 'pop' : 'hide')}}
+    #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
     #post_share_dialog{:data => {:finish_path => @user == @question.user ? dashboard_path : new_question_path}}
 
     #powered_by_sb= link_to image_tag("dashboard/PoweredBySB.png"), "http://www.seedblocks.com", :target => "_blank"

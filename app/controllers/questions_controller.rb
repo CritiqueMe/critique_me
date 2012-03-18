@@ -67,6 +67,7 @@ class QuestionsController < ApplicationController
       if @question.valid?
         post_question_to_open_graph(@question) if @question.post_to_wall == "1"
         #redirect_to share_path(@question)
+        flash[:show_share] = true
         redirect_to question_path(@question)
       else
         #render :partial => "questions/form"

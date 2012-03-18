@@ -41,9 +41,7 @@ class AnswersController < ApplicationController
           :question_id => q.id,
           :canned_question_choice_id => cqc.id
       })
-      if params['post_to_timeline'] == '1'
-        post_answer_to_open_graph(a)
-      end
+      post_answer_to_open_graph(a) if params['post_to_timeline'] == '1'
       render :text => "success"
     end
   end
