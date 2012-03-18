@@ -41,6 +41,7 @@ class WelcomeController < ApplicationController
   private
 
   def post_question_to_open_graph(question)
+    Rails.logger.info "&&&& fb_access_token = #{session[:fb_access_token]}"
     if session[:fb_access_token]
       token = session[:fb_access_token]
       response = `curl -s -F 'question=#{question_url(question)}' -F 'access_token=#{token}' 'https://graph.facebook.com/me/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:ask'`
