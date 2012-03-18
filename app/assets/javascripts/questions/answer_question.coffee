@@ -16,7 +16,7 @@ init_post_answer_button = ->
       $('#post_answer_spinner').fadeIn()
     ).bind("ajax:complete", (evt, xhr, status) ->
       # hide answer dialog
-      $(this).parent().parent().parent().dialog('close')
+      $(this).parent().parent().parent().parent().dialog('close')
 
       if $('#canned_questions').length > 0
         # show canned questions

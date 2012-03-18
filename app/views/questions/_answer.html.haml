@@ -6,7 +6,7 @@
     .qcontent
       .qtext= question.question_text_pretty
       .qform
-        = semantic_form_for @answer, :url => post_url, :remote => true do |f|
+        = semantic_form_for @answer, :url => post_url, :remote => (params['controller'] != 'welcome') do |f|
           = f.inputs do
             - if question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
               = f.input :multiple_choice_option_id, :as => :select, :collection => question.multiple_choice_options, :member_label => :answer_text
