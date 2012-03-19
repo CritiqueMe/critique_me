@@ -60,11 +60,20 @@ init_question_types = ->
       select_question_type(qtype, $(this))
     )
 
+show_hide_minus_button = ->
+  if num_existing_answers() <= 2
+    $('.minus_button').fadeOut()
+  else
+    $('.minus_button').fadeIn()
+
 init_remove_answer_links = ->
+  show_hide_minus_button()
+
   $('.minus_button a').unbind().click ->
     if num_existing_answers() > 2
       $(this).parent().parent().parent().slideUp 400, () ->
         $(this).remove()
+        show_hide_minus_button()
     else
       alert "You must have at least two multiple choice options!"
     return false
