@@ -45,5 +45,6 @@ init_post_answer_button = ->
     )
     return false
 
+
 $ ->
   init_post_answer_button()

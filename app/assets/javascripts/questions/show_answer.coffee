@@ -43,8 +43,18 @@ show_answer_dialog = (qid) ->
   )
   return false
 
+init_flag_question_button = ->
+  $('.dlg_flagger a').click ->
+    answer_dlg = $(this).parent().parent().parent().parent().find('.answer_dialog')
+    qid = answer_dlg.data('question_id')
+    answer_dlg.dialog('close')
+    $('#flag_dlg_'+qid).dialog("open")
+
+    return false
+
 
 
 $ ->
   default_qid = $('#share_dialog').data('question_id')
   show_answer_dialog(default_qid)
+  init_flag_question_button()
