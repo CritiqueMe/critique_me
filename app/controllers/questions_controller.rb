@@ -6,6 +6,9 @@ class QuestionsController < ApplicationController
 
   def question
     @question = Question.find(params['id'])
+
+    redirect_to dashboard_path and return unless @question.active?
+
     if @questionnaire = @question.default_question.try(:questionnaire)
       @questions = @question.user.questions.joins(:default_question).
           where('default_questions.questionnaire_id=?', @questionnaire.id).
@@ -54,6 +57,9 @@ class QuestionsController < ApplicationController
         @canned_questions = nil
       end
     end
+
+    # build flagged_question object
+    @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id)
 
     render :layout => false
   end
@@ -131,6 +137,12 @@ class QuestionsController < ApplicationController
     @question = Question.find(params['id'])
     post_question_to_open_graph(@question)
     render :partial => "share/thanks", :locals => {:num_shared => 'all'}
+  end
+
+  def flag
+    @flagged_question = FlaggedQuestion.new(params['flagged_question'])
+    @flagged_question.save
+    redirect_to question_path(@flagged_question.question)
   end
 
 

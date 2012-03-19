@@ -34,6 +34,7 @@ class WelcomeController < ApplicationController
           redirect_to welcome_path
         end
       end
+      @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id)
     end
   end
 

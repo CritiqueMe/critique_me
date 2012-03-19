@@ -1,0 +1,35 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All Flags".html_safe, admin_flagged_questions_path
+      - unless @flagged_question.hidden?
+        = link_to "Hide &raquo;".html_safe, hide_admin_flagged_question_path(@flagged_question), :method => :put
+
+%h1 Show Flagged Question
+
+%ul.show_page
+  %li
+    %label Question:
+    %p= link_to @flagged_question.question.question_text, admin_question_path(@flagged_question.question)
+    .clear
+  %li
+    %label Flagger:
+    %p= link_to @flagged_question.user.full_name, admin_user_path(@flagged_question.user)
+    .clear
+  %li
+    %label Flag Reason
+    %p= @flagged_question.flag_reason
+    .clear
+  %li
+    %label Flagger Message:
+    %p= @flagged_question.message
+    .clear
+  %li
+    %label Hidden?:
+    %p= @flagged_question.hidden ? "Hidden" : "Showing"
+    .clear
+
+- if @flagged_question.question.active?
+  = link_to "Deactivate Offending Question", deactivate_admin_question_path(@flagged_question.question), :method => :put
+- else
+  = link_to "Reactivate Offending Question", activate_admin_question_path(@flagged_question.question), :method => :put

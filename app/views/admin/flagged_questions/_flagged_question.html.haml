@@ -1,0 +1,10 @@
+%tr{:class => cycle('odd', 'even')}
+  %td.question= link_to flagged_question.question.question_text, admin_question_path(flagged_question.question)
+  %td.flagger= link_to flagged_question.user.full_name, admin_user_path(flagged_question.user)
+  %td.category= flagged_question.flag_reason
+  %td.actions
+    = image_tag 'admin/icons/tool.png', :class => 'tools', 'data-menu' => "#menu_flagged_question_#{flagged_question.id}"
+    %ul[flagged_question, :menu]
+      %li= link_to 'Show', admin_flagged_question_path(flagged_question), :class => 'show'
+      %li
+        = link_to 'Hide', hide_admin_flagged_question_path(flagged_question), :class => 'deactivate', :method => :put

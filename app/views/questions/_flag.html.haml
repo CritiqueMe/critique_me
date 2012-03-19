@@ -1,0 +1,11 @@
+= semantic_form_for @flagged_question, :url => new_flag_path, :multipart => true do |f|
+  = f.inputs do
+    = f.input :question_id, :as => :hidden
+    = f.input :user_id, :as => :hidden
+    = f.input :flag_reason, :label => "Reason", :as => :select, :collection => ['Mature Content', 'Mean, Offensive, Bullying', 'Other']
+    = f.input :message, :label => "Extra Information"
+    .clearer
+  = f.buttons do
+    = f.commit_button "Flag Question"
+    .spinner= image_tag "/assets/admin/layout/form_spinner.gif"
+    .clear

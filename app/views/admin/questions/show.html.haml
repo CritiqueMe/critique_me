@@ -1,0 +1,28 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All Questions".html_safe, admin_questions_path
+      - unless @question.active?
+        = link_to "Deactivate &raquo;".html_safe, deactivate_admin_question_path(@question), :method => :put
+      - else
+        = link_to "Activate &raquo;".html_safe, activate_admin_question_path(@question), :method => :put
+
+%h1 Show Question
+
+%ul.show_page
+  %li
+    %label Question Text:
+    %p= @question.question_text
+    .clear
+  %li
+    %label User:
+    %p= link_to @question.user.email, admin_user_path(@question.user)
+    .clear
+  %li
+    %label Question Type:
+    %p= Question::QUESTION_TYPES[@question.question_type]
+    .clear
+  %li
+    %label Active?:
+    %p= @question.active? ? "Active" : "Inactive"
+    .clear
