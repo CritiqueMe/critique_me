@@ -1,7 +1,7 @@
 host = case Rails.env
          when "production" then "critique_me.com"
          when "staging" then "critiquestg.com"
-         else "critique_me.local:3000"
+         else "critiqueme.local:3000"
        end
 
 if Rails.env.production?

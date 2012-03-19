@@ -20,6 +20,8 @@
     %meta{ :property => "og:description", :content => "Answer the question now!" }
     - if @question.photo.url
       %meta{ :property => "og:image", :content => @question.photo.url }
+    - else
+      %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"}
 
     -# Mobile viewport optimized: j.mp/bplateviewport
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }/
