@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 7a756ad6bf72c77ffe9e8585efb3bc89f30d2ac4
-  ref: 7a756ad6bf
+  revision: 1454b23b65331826991c37d105009fbb55e6bb8b
+  ref: 1454b23b65
   specs:
     seed_blocks (0.0.1)
       bson_ext
@@ -184,10 +184,10 @@ GEM
     rmagick (2.12.2)
     ruby-hmac (0.4.0)
     sass (3.1.15)
-    sass-rails (3.1.5)
+    sass-rails (3.1.6)
       actionpack (~> 3.1.0)
       railties (~> 3.1.0)
-      sass (~> 3.1.10)
+      sass (>= 3.1.10)
       tilt (~> 1.3.2)
     sendgrid (1.0.1)
       json
