@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: db7838e2f4b78a95792d46f2dad0cb8d9e681f82
-  ref: db7838e2f4
+  revision: 0e2f2a3a08ec3b9e2132fe9635c25798db439599
+  ref: 0e2f2a3a08
   specs:
     seed_blocks (0.0.1)
       bson_ext
@@ -97,18 +97,18 @@ GEM
       json_pure
     erubis (2.7.0)
     escape (0.0.4)
-    excon (0.6.6)
+    excon (0.12.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
-    fog (0.9.0)
+    fog (1.2.0)
       builder
-      excon (~> 0.6.1)
-      formatador (>= 0.1.3)
-      json
+      excon (~> 0.12.0)
+      formatador (~> 0.2.0)
       mime-types
-      net-scp (>= 1.0.4)
-      net-ssh (>= 2.1.4)
-      nokogiri (>= 1.4.4)
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.1)
     formtastic (2.1.1)

@@ -92,4 +92,15 @@ class Question < ActiveRecord::Base
     end
     rtn
   end
+
+  # returns if the question has been shared with the minimum number of friends yet.  If a question has been posted to
+  # a user's timeline, that means all of his friends have seen it, so we return true.  Otherwise, count the total number
+  # of invites and fb_shares sent for this question
+  def shared_with_minimum?
+    if fb_question_id
+      true
+    else
+      num_invites = Invite.where(:tracking_object_id => self.id).count
+    end
+  end
 end

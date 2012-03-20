@@ -122,6 +122,17 @@ ActiveRecord::Schema.define(:version => 20120319025527) do
     t.datetime "updated_at"
   end
 
+  create_table "fb_share_templates", :force => true do |t|
+    t.string   "name"
+    t.text     "message"
+    t.string   "link_display"
+    t.string   "caption"
+    t.text     "description"
+    t.boolean  "active",       :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "flagged_questions", :force => true do |t|
     t.integer  "question_id"
     t.integer  "user_id"

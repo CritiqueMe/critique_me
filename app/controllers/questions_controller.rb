@@ -21,13 +21,19 @@ class QuestionsController < ApplicationController
       if @user.nil?
         session[:referrer_id] = @question.user_id  # make sure the user gets a viral path
         session[:clicked_question_id] = @question.id
-        tracker = ViralEntrance.create(
-            :inviter_id => session[:referrer_id],
-            :source => 'fb_question',
-            :fb_source => params['fb_source'],
-            :state => "entered"
-        )
-        session[:viral_entrance_id] = tracker.id
+        if params['cmfb']
+          session[:fb_share_tracking_object_id] = @question.id
+          session[:fb_share_cmfb] = params['cmfb']   # cmfb is a timestamp that helps us find the original FB Share event
+        else
+          tracker = ViralEntrance.create(
+              :inviter_id => session[:referrer_id],
+              :source => 'fb_question',
+              :fb_source => params['fb_source'],
+              :state => "entered"
+          )
+          session[:viral_entrance_id] = tracker.id
+        end
+
         session[:straight_outta_fb] = true
         redirect_to welcome_path and return
       end

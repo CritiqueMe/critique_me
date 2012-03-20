@@ -1,0 +1,21 @@
+%li
+  %label Available Substitutions
+  %ul.substitutions
+    %li
+      %label *question_text*
+      %code The question being asked by the user
+    %li
+      %label *inviter_first*
+      %code @inviter.first_name.try(:capitalize) || 'Your friend'
+    %li
+      %label *inviter_last_init*
+      %code (@inviter.last_name.capitalize[0,1] rescue '')
+    %li
+      %label *inviter_last*
+      %code @inviter.last_name.try(:capitalize) || ''
+    %li
+      %label *inviter_full_name*
+      %code @inviter.full_name || ''
+    %li
+      %label *inviter_email*
+      %code @inviter.email

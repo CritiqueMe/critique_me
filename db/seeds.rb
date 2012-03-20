@@ -35,6 +35,9 @@ InviteTemplate.create :name => "reminder_invite_v1", :reminder => true
 InviteSubject.create :name => "reminder_subject_v1", :subject => "An invitation from *inviter_full_name*...", :reminder => true
 InviteFromLine.create :name => "reminder_from_v1", :from => "*inviter_full_name* <*inviter_email*>", :reminder => true
 
+# Default FB Share Template
+FbShareTemplate.create :name => "share1", :message => "*question_text*", :caption => "Ask Your Friends Anything!", :description => '*inviter_first* asked "*question_text*"', :link_display => "*question_text*"
+
 # Default :register email
 EmailTemplate.create :name => "default_register_v1", :email_type => :register
 EmailSubject.create :name => "default_reg_subj_v1", :email_type => :register, :subject => "Thank you for registering!"
