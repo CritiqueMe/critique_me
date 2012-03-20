@@ -24,7 +24,6 @@ class QuestionsController < ApplicationController
         if params['cmfb']
           session[:fb_share_tracking_object_id] = @question.id
           session[:fb_share_cmfb] = params['cmfb']   # cmfb is a timestamp that helps us find the original FB Share event
-          Rails.logger.info "AAAA session = #{session.inspect}"
         else
           tracker = ViralEntrance.create(
               :inviter_id => session[:referrer_id],
