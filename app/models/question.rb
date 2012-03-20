@@ -101,6 +101,13 @@ class Question < ActiveRecord::Base
       true
     else
       num_invites = Invite.where(:tracking_object_id => self.id).count
+      num_fb_shares = Invite.where(:tracking_object_id => self.id).count
+      num_invites + num_fb_shares >= 5
     end
+  end
+
+  # we only allow users to share once per day
+  def already_shared_today?
+    FbShare.where(:tracking_object_id => self.id, :created_at.gte => Time.midnight).count > 0
   end
 end

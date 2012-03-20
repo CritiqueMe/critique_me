@@ -53,8 +53,19 @@ init_send_contacts_form = ->
     $('#contact_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
     $('#select_contacts').show()
+    # remove all already-selected contacts from the list
+    $('.contact_check').each (elem) ->
+      $(this).parent().parent().remove() if $(this).is(':checked')
+    recycle_contact_rows()
     pop_canned_questions_dialog(xhr.responseText)
   )
+
+recycle_contact_rows = ->
+  $('.contacts tr').each (index) ->
+    if index % 2 == 0
+      $(this).removeClass('odd').addClass('even')
+    else
+      $(this).removeClass('even').addClass('odd')
 
 pop_canned_questions_dialog = (content) ->
   # hide the sharer dialog, show the thanks or oops dialog
@@ -109,8 +120,19 @@ init_fb_friend_list = ->
     $('#friend_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
     $('#friend_form_spinner').hide()
+    # remove all already-selected friends from the list
+    $('.friend_check').each (elem) ->
+      $(this).parent().parent().remove() if $(this).is(':checked')
+    recycle_friend_rows()
     pop_canned_questions_dialog(xhr.responseText)
   )
+
+recycle_friend_rows = ->
+  $('.friends tr').each (index) ->
+    if index % 2 == 0
+      $(this).removeClass('odd').addClass('even')
+    else
+      $(this).removeClass('even').addClass('odd')
 
 init_fb_selectors = ->
   $('#fb_select_all').click () ->
