@@ -35,5 +35,5 @@ gem "compass-rails", :group => :assets
 gem "engineyard", :group => :development
 
 #gem "seed_blocks", :path => "../../seed_blocks"
-gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "8a03d39cbc"
+gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "0c1cea91b1"
 
