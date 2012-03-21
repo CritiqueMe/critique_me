@@ -71,19 +71,24 @@ class ShareController < ApplicationController
     else
       @canned_questions = CannedQuestion.active.limit(5).order("RAND()")
       get_fb_friends
-      @canned_choices = @canned_questions.map do |cq|
-        this_q_choice = []
-        @fb_friends.shuffle!
-        cq.num_choices.times do |i|
-          friend = @fb_friends[i]
-          this_q_choice << {
-              :name => friend['name'],
-              :id => friend['id']
-          }
+      if @fb_friends && @fb_friends.length >= 3
+        @canned_choices = @canned_questions.map do |cq|
+          this_q_choice = []
+          @fb_friends.shuffle!
+          cq.num_choices.times do |i|
+            friend = @fb_friends[i]
+            this_q_choice << {
+                :name => friend['name'],
+                :id => friend['id']
+            }
+          end
+          this_q_choice
         end
-        this_q_choice
+        render :partial => "canned/canned_questions"
+      else
+        # not enough fb friends, so let's not do the share thing
+        render :partial =>"share/thanks", :locals => {:num_shared => num_shared}
       end
-      render :partial => "canned/canned_questions"
     end
   end
 
