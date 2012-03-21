@@ -65,7 +65,7 @@ class QuestionsController < ApplicationController
     end
 
     # build flagged_question object
-    @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id)
+    @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id) if @user
 
     render :layout => false
   end

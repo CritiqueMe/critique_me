@@ -35,7 +35,7 @@
       Don't worry, your answers are anonymous!  #{question.user.first_name.capitalize} will only see your answer once at least four other people have answered and we won't tell him whose answer was whose!
     .answer_link
       = link_to "You can also create your own question!", new_question_path
-    - if @user.flagged_questions.where(:question_id => question.id).count == 0
+    - if @user && @user.flagged_questions.where(:question_id => question.id).count == 0
       .dlg_flagger= link_to "Flag This Question &raquo;".html_safe, '#'
 
   #post_answer_spinner{:style => "display: none"}= image_tag "/assets/admin/layout/form_spinner.gif"

@@ -112,7 +112,7 @@
 
               = render :partial => "/questions/answer", :locals => {:question => q, :post_url => post_url}
 
-            - unless @question.user == @user
+            - unless @user.nil? || @question.user == @user
               .flagger
                 - if @user.flagged_questions.where(:question_id => @question.id).count > 0
                   You have flagged this question.
