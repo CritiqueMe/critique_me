@@ -101,7 +101,7 @@ class Question < ActiveRecord::Base
       true
     else
       num_invites = Invite.where(:tracking_object_id => self.id).count
-      num_fb_shares = Invite.where(:tracking_object_id => self.id).count
+      num_fb_shares = FbShare.where(:tracking_object_id => self.id).count
       num_invites + num_fb_shares >= 5
     end
   end
