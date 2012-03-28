@@ -77,7 +77,7 @@ pop_canned_questions_dialog = (content) ->
     show: 'fade'
     hide: 'fade'
     width: 800
-    height: 500
+    height: 550
     position: 'center'
     dialogClass: 'share-modal'
   .html(content)
@@ -113,6 +113,7 @@ init_fb_friend_list = ->
   $('#show_friends_list_link').click () ->
     $('#fb_post_to_graph_link').hide()
     $('#fb_friend_list').fadeIn()
+    $('#fb_friend_blurb').fadeIn()
     return false
 
   $('#send_to_friends_form').bind("ajax:beforeSend", (evt, xhr, settings) ->
@@ -151,6 +152,7 @@ init_post_to_graph_link = ->
     qid = $(this).data("question-id")
     $.get '/post_to_graph/'+qid, (data) ->
       $('#post_to_fb_spinner').hide()
+      $('#fb_friend_blurb').show()
       $('#fb_friend_list').show()
       $('#fb_post_to_graph_link').hide()
       pop_canned_questions_dialog(data)

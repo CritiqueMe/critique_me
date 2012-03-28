@@ -6,6 +6,9 @@
     #{@question.user.first_name} chose: #{@question.answers.first.canned_question_choice.friend_name}
   .bold_title#done_showing_answer{:style => "display:none"}
     Answer another question about your friends.
+- elsif @question && @question.user == @user
+  .bold_title
+    You asked your friends to answer your question.  Now answer questions about your friends and find out what they said about you.  Answer questions now to find the answers.
 - else
   .bold_title Answer another question about your friends.
 

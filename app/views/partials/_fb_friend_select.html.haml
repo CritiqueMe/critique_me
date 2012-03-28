@@ -1,4 +1,10 @@
 #fb_friend_select
+  #fb_friend_blurb{:style => "display:#{@question.fb_question_id ? 'block' : 'none'}"}
+    Don't worry, your question won't be posted on Facebook.  Your friends will only receive an invitation to view your question privately.
+    %br
+    %br
+    The more friends you invite the better.  You can "invite all" or choose them one by one.  You must choose at least 5 friends so they know their answers will be anonymous.
+
   #fb_friend_list{:style => "display:#{@question.fb_question_id ? 'block' : 'none'}"}
     - if @fb_friends && @fb_friends.length > 0
       = form_tag(share_friends_path(:question_id => @question.id), :remote => true, :id => "send_to_friends_form") do
@@ -26,12 +32,15 @@
 
   #fb_post_to_graph_link{:style => "display:#{@question.fb_question_id ? 'none' : 'block'}"}
     - # question has not yet been posted to facebook
-    = link_to "Post to Your Facebook Timeline", '#', :id => "post_to_graph_link", :data => {"question-id" => @question.id}
+    %h3
+      %strong Choose a method to invite your friends to answer your question.
+    %br
+    Your question will not be posted on Facebook.  They will only see an invitation view and answer the question privately.
     - unless @question.already_shared_today?
       %br
       %br
-      = "- or -"
-      %br
-      %br
-      = link_to "Select Which Facebook Friends to Ask", '#', :id => 'show_friends_list_link'
+      = link_to "Click Here to Select Which Facebook Friends to Ask", '#', :id => 'show_friends_list_link'
+    %br
+    %br
+    = link_to "We Recommend Using Facebook", '#', :id => "post_to_graph_link", :data => {"question-id" => @question.id}
   #post_to_fb_spinner= image_tag("/assets/admin/layout/form_spinner.gif")

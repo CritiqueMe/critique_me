@@ -29,7 +29,7 @@ class Question < ActiveRecord::Base
   QUESTION_TYPES = [:multiple_choice, :true_false, :open_text, :canned_question]
 
   validates :user_id, :presence => true, :unless => Proc.new{|x| x.question_type == QUESTION_TYPES.index(:canned_question)}
-  validates_presence_of :category_id, :question_text, :question_type, :message => "Required"
+  validates_presence_of :question_text, :question_type, :message => "Required"
 
   attr_accessor :post_to_wall
 
