@@ -1,0 +1,14 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "sb_formtastic"
+  = stylesheet_link_tag "path_pages/#{@path_page.page_type.to_s}/#{@path_page.name}"
+
+.prepend-top.prepend-1.span-22.append-1
+  %h1 Ever wonder what your friends would reveal if the were being TOTALLY HONEST with you?
+  %br
+  %h4
+    What your friends say on our site is 100% anonymous and can't be traced back to them.  This means you can ask ANYTHING and they will reveal their honest feelings to YOU about ANY SUBJECT or ANY QUESTION.
+  %br
+  %fieldset
+    %legend Get Started Now
+    #fb_button{:style => "text-align:center"}
+      = link_to image_tag("/assets/welcome/login_or_signup_with_fb.jpg"), fb_perms_redirect_url('email,publish_stream,publish_actions')
