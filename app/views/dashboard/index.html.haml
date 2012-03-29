@@ -39,7 +39,7 @@
               = render :partial => "answer_line_item", :collection => @collection, :as => :answer
 
 #share_dialog
-#post_share_dialog
+#post_share_dialog{:data => {:finish_path => dashboard_path}}
 
 - content_for :extra_javascripts do
   = javascript_include_tag "dashboard/inviter"
