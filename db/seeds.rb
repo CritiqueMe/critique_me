@@ -3,25 +3,29 @@ AdminUser.create :first_name => "Jonathan", :last_name => "Geggatt", :password =
 # Create a default landing path for each traffic group
 [:organic, :affiliate].each do |traffic_group|
   experiment = Experiment.create({
+    :active => false,
     :conversion_event => "register",
     :traffic_group => traffic_group,
     :name => "default_#{traffic_group}_v1"
   })
-  PathFlow.create :experiment => experiment, :flow => [:register]
-  PathPage.create :page_type => :register, :name => "default_reg_v1", :experiment => experiment, :layout => "prototype"
+
+  experiment.path_flows.create :flow => [:register]
+  experiment.path_pages.create :page_type => :register, :name => "default_reg_v1", :layout => "prototype"
   experiment.generate_variant_combinations
   experiment.update_attribute :active, true
 end
 
 # viral is a bit different
 experiment = Experiment.create({
+    :active => false,
     :conversion_event => "register",
     :traffic_group => :viral,
     :name => "default_viral_v1"
 })
-PathFlow.create :experiment => experiment, :flow => [:fb_permissions, :answer]
-PathPage.create :page_type => :fb_permissions, :name => "default_perms_v1", :experiment => experiment, :layout => "prototype"
-PathPage.create :page_type => :answer, :name => "default_answer_v1", :experiment => experiment, :layout => "none"
+
+experiment.path_flows.create :flow => [:fb_permissions, :answer]
+experiment.path_pages.create :page_type => :fb_permissions, :name => "default_perms_v1", :layout => "prototype"
+experiment.path_pages.create :page_type => :answer, :name => "default_answer_v1", :layout => "none"
 experiment.generate_variant_combinations
 experiment.update_attribute :active, true
 
