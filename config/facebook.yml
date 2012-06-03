@@ -1,0 +1,26 @@
+development:
+  app_id: 437176729644075
+  secret_key: 38fabbe570f9dad2674fd5b5d8e50b42
+  #app_id: 145793745551509
+  #secret_key: f946593885b4af81781305206ded8185
+  callback_url: "http://wydtest.dev/fb_canvas_callback" # currently not used.. one day it will be
+  landing_url: "http://apps.facebook.com/wyd-testapp" # the default entry point for any non-canvas redirects
+  namespace: 'wyd-testapp'
+test:
+  app_id: 437176729644075 # wyd-test
+  secret_key: 38fabbe570f9dad2674fd5b5d8e50b42
+  callback_url: "http://wydtest.dev/fb_canvas_callback"
+  landing_url: "http://apps.facebook.com/wyd-testapp"
+  namespace: 'wyd-testapp'
+staging:
+  app_id: 145793745551509 # wyd-stag
+  secret_key: f946593885b4af81781305206ded8185
+  callback_url: "http://wydtest.dev/fb_canvas_callback"
+  landing_url: "http://apps.facebook.com/wyd-stg"
+  namespace: 'wyd-stg'
+production:
+  app_id: 217150938390983 # wyd-prod
+  secret_key: 8bb48dcb78e0313ad521a99c156c9e0a
+  callback_url: "http://wydtest.dev/fb_canvas_callback"
+  landing_url: "http://apps.facebook.com/wheresyourdollar"
+  namespace: 'wheresyourdollar'
