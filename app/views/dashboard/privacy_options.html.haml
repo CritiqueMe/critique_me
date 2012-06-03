@@ -18,5 +18,5 @@
         = semantic_form_for @user, :url => privacy_options_path do |f|
           = f.inputs do
             = f.input :privacy_ask_questions, :label => "Who can send you questions?", :as => :radio, :collection => [["Anyone can ask you questions.", 0], ["Only CritiqueMe members with name and photos can ask you questions.", 1]]
-          = f.buttons do
-            = f.commit_button "Save Changes"
+          = f.actions do
+            = f.action :submit, :label => "Save Changes"

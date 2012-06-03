@@ -22,7 +22,7 @@
     - else
       %li#sign_in_input= oauth_link_tag "Sign in to Facebook to post to your Timeline"
 
-  = f.buttons do
-    = f.commit_button(@question.id ? "Edit Your Question" : "Create Your Question")
+  = f.actions do
+    = f.action :submit, :label => @question.id ? "Edit Your Question" : "Create Your Question"
     .spinner= image_tag "/assets/admin/layout/form_spinner.gif"
     .clear

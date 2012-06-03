@@ -5,7 +5,7 @@
     = f.input :flag_reason, :label => "Reason", :as => :select, :collection => ['Mature Content', 'Mean, Offensive, Bullying', 'Other']
     = f.input :message, :label => "Extra Information"
     .clearer
-  = f.buttons do
-    = f.commit_button "Flag Question"
+  = f.actions do
+    = f.action :submit, :label => "Flag Question"
     .spinner= image_tag "/assets/admin/layout/form_spinner.gif"
     .clear

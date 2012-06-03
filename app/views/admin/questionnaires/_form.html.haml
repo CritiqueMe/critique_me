@@ -3,8 +3,8 @@
     = f.input :name
     .clearer
 
-  = f.buttons do
+  = f.actions do
     - if @questionnaire.new_record?
-      = f.commit_button "Create Questionnaire"
+      = f.action :submit, :label => "Create Questionnaire"
     - else
-      = f.commit_button "Edit Questionnaire"
+      = f.action :submit, :label => "Edit Questionnaire"

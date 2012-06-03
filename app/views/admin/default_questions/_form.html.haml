@@ -14,8 +14,8 @@
       - cnt += 1
       = g.input :answer_text, :as => :string, :label => "Answer ##{cnt}", :wrapper_html => {:class => 'mchoice'}
 
-  = f.buttons do
+  = f.actions do
     - if @default_question.new_record?
-      = f.commit_button "Create Default Question"
+      = f.action :submit, :label => "Create Default Question"
     - else
-      = f.commit_button "Edit Default Question"
+      = f.action :submit, :label => "Edit Default Question"

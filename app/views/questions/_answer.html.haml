@@ -26,10 +26,10 @@
               - else
                 %li#sign_in_input= oauth_link_tag "Sign in to Facebook to post to your Timeline"
 
-          = f.buttons do
+          = f.actions do
             = f.input :question_id, :as => :hidden, :value => question.id
             = f.input :user_id, :as => :hidden
-            = f.commit_button "Post Answer"
+            = f.action :submit, :label => "Post Answer"
     .clear
     .answer_footer
       Don't worry, your answers are anonymous!  #{question.user.first_name.capitalize} will only see your answer once at least four other people have answered and we won't tell him whose answer was whose!
