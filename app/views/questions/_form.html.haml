@@ -1,28 +1,35 @@
 = semantic_form_for @question, :url => new_question_path, :multipart => true do |f|
   = f.inputs do
+    = f.input :post_to_wall, :as => :public_private, :label => "Settings"
+
+    /
+      - if valid_access_token?
+        = f.input :post_to_wall, :as => :boolean, :label => "Settings"
+      - else
+        %li#sign_in_input
+          %label
+          = oauth_link_tag "Sign in to Facebook to post to your Timeline"
+
     =# f.input :category, :prompt => "Choose a category", :collection => Category.for_select
-    = f.input :question_text, :as => :string, :prompt => "Ask your friend a question", :label => "Enter Your Question"
-    = f.input :photo, :label => "Add a Picture <small><small><em>(optional)</em></small></small>".html_safe
-    %li#format_header Choose what type of question you are asking:
-    = f.input :question_type, :as => :question_type, :label => ""
+    = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Question"
+    = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe
+    = f.input :question_type, :as => :radio, :collection => [["Multiple Choice", 0], ["Yes or No", 1], ["Open Ended", 2]], :label => "Type"
     .clearer
 
   #multiple_choice_answers.hidden
-    #add_answers.quiet Add Answers
-    = f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
-      = g.input :answer_text, :as => :string, :label => "Answer", :wrapper_html => {:class => 'mchoice'}
-      .minus_button= link_to image_tag("/assets/questions/minus_button.jpg"), '#'
-    #add_button
-      = link_to image_tag("/assets/questions/plus_button.jpg"), '#'
-      #add_blurb Click to enter another answer choice
+    #add_answers Answers
+    #answers
+      - curr_char = 'A'
+      = f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
+        = g.input :answer_text, :as => :string, :label => curr_char, :wrapper_html => {:class => 'mchoice'}
+        .minus_button= link_to image_tag("/assets/questions/minus_button.png"), '#'
+        - curr_char = curr_char.succ
+      #add_button
+        = link_to image_tag("/assets/questions/plus_button.png"), '#'
+        #add_blurb Add another answer
 
-  = f.inputs do
-    - if valid_access_token?
-      = f.input :post_to_wall, :as => :boolean, :label => "Post to Facebook Timeline?", :wrapper_html => {:class => 'wallpost'}
-    - else
-      %li#sign_in_input= oauth_link_tag "Sign in to Facebook to post to your Timeline"
 
   = f.buttons do
-    = f.commit_button(@question.id ? "Edit Your Question" : "Create Your Question")
+    = f.commit_button(@question.id ? "Edit Question" : "Create Question")
     .spinner= image_tag "/assets/admin/layout/form_spinner.gif"
     .clear

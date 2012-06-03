@@ -1,0 +1,24 @@
+#public_preview
+  %label Preview
+  #preview
+    #hdr Preview Public Invite: Your question will be posted on Facebook.
+    #fakefb
+      #profile_image= image_tag "https://graph.facebook.com/#{@user.fb_user_id}/picture"
+      #profile_text
+        #name.blue.loud= @user.full_name
+        #message= @fb_share_template.build_message(@question, @user)
+        #double_preview
+          #double_img= image_tag @fb_share_template.build_image(@question) || "questions/default_share_image.jpg"
+          #double_text
+            - link_display = @fb_share_template.build_link_display(@question, @user)
+            #title.blue.loud= link_display == '' ? "CritiqueMe" : link_display
+            #caption.blue= @fb_share_template.build_caption(@question, @user)
+            #description.quiet= @fb_share_template.build_description(@question, @user)
+        #ftr
+          %span.blue Like
+          ·
+          %span.blue Comment
+          ·
+          %span.blue Share
+          ·
+          %span.quiet= Time.now.strftime "%A at %l:%M%P"

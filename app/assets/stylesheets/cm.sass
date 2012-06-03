@@ -1,0 +1,405 @@
+@import compass/css3
+@import compass/css3/border-radius
+@import compass/css3/font-face
+@include font-face("Clarendon BT Roman", font-files("clarendon_bt_roman.ttf", truetype))
+
+$border_grad: #f0f0f0 #f0f0f0 #f0f0f0 #ebebeb #e9e9e9 #e6e6e6 #e1e1e1
+$textarea_border_grad: #e1e1e1 #e9e9e9 #f0f0f0
+
+body
+  margin: 0px
+  font-family: 'helvetica neue', helvetica, arial, sans-serif
+  font-weight: 300
+  background-image: image-url('crosshatch.jpg')
+
+  #header
+    width: 100%
+    height: 45px
+    @include background-image(linear-gradient(#5aace5, #309ce5))
+    font-family: "Clarendon BT Roman"
+    position: relative
+
+    #logo
+      padding: 5px 15px
+    #nav
+      position: absolute
+      top: 0px
+      right: 0px
+      margin: 0px
+      padding: 0px
+      line-height: 45px
+      li
+        list-style-type: none
+        float: left
+        padding: 0px 25px
+        border-left: 1px solid #85c4ef
+        border-right: 1px solid #006fcc
+        a
+          color: white
+          text-decoration: none
+        &#dummy
+          border-left: 0px
+        &.selected
+          background: #0083cc
+          border: 0px
+
+  .cm_content
+    width: 1170px
+    margin: 0px auto
+
+    #newq_top
+      color: #5c6266
+      font-size: 20px
+      width: 800px
+      margin: 0px auto
+      padding: 25px 0px 15px
+      #newq_hdr
+        font-family: "Clarendon BT Roman"
+      #newq_subhdr
+        padding: 5px 0px
+      #newq_subsub
+        font-size: 16px
+        img
+          vertical-align: bottom
+
+    .inner_content
+      position: relative
+      padding-bottom: 25px
+      .fuzzy
+        background: white
+        border: 7px solid #e1e1e1
+        @include border-radius(15px)
+        -moz-border-bottom-colors: $border_grad
+        -moz-border-top-colors: $border_grad
+        -moz-border-left-colors: $border_grad
+        -moz-border-right-colors: $border_grad
+      .inner_nav
+        div
+          @include border-top-right-radius(0px)
+          @include border-bottom-right-radius(0px)
+          font-family: "Clarendon BT Roman"
+          border-right: 0px
+          width: 160px
+          padding: 20px 0px 20px 20px
+        #write
+          position: absolute
+          top: 0px
+          left: 0px
+        #choose
+          position: absolute
+          top: 55px
+          left: 0px
+          padding-top: 25px
+        .over
+          z-index: 10
+          color: #d8415e
+        .under
+          z-index: 0
+          a
+            color: #abafb2
+            text-decoration: none
+      .qcontainer
+        z-index: 1
+        position: relative
+        margin-left: 180px
+        width: 850px
+        @include border-top-left-radius(0px)
+        fieldset
+          border: 0px
+
+.formtastic
+  .inputs
+    padding: 0px
+    margin: 0px
+
+    ol
+      padding: 0px
+      margin: 0px !important
+    li
+      width: 99%
+      list-style-type: none
+      margin: 10px 0px
+      &.error
+        label
+          color: red
+    label
+      width: 150px !important
+      display: inline-block
+      font-family: "Clarendon BT Roman"
+      color: #abafb2
+      font-size: 13px
+      text-align: right
+      vertical-align: top
+      padding: 12px 10px 0px 0px
+      abbr
+        display: none
+    textarea
+      width: 500px
+      height: 50px
+      border: 3px solid #c4c9cc
+      color: #aaafb2
+      font-family: 'helvetica neue', helvetica, arial, sans-serif
+      font-size: 16px
+      padding: 10px 5px 5px
+      margin-left: 4px
+      @include border-top-left-radius(7px)
+      @include border-top-right-radius(7px)
+      -moz-border-top-colors: $textarea_border_grad
+      -moz-border-left-colors: $textarea_border_grad
+      -moz-border-right-colors: $textarea_border_grad
+      border-bottom: 0px
+
+    .public_private
+      input
+        display: none
+      .pubpriv
+        display: inline-block
+        div
+          float: left
+          padding: 10px 25px
+          @include background-image(linear-gradient(#ffffff, #f0f0f0))
+          border: 1px solid #c2c8cc
+        a
+          color: #5c6266
+          font-size: 16px
+          font-weight: bold
+          text-decoration: none
+        #priv
+          @include border-top-left-radius(5px)
+          @include border-bottom-left-radius(5px)
+        #pub
+          @include border-top-right-radius(5px)
+          @include border-bottom-right-radius(5px)
+        .selected
+          background: #585e62
+          a
+            color: white
+    #qphoto
+      display: inline-block
+      border: 3px solid #c4c9cc
+      border-top: 0px
+      @include border-bottom-left-radius(7px)
+      @include border-bottom-right-radius(7px)
+      -moz-border-bottom-colors: $textarea_border_grad
+      -moz-border-left-colors: $textarea_border_grad
+      -moz-border-right-colors: $textarea_border_grad
+      padding: 5px
+      width: 500px
+      background: #ecedee
+      #camera
+        display: inline-block
+        vertical-align: middle
+        padding: 5px 0px 0px 5px
+      #blurb
+        display: inline-block
+        padding: 0px 15px 0px 5px
+        color: #5c6266
+        font-size: 12px
+      #filefield
+        display: inline-block
+
+    #question_question_text_input
+      margin-bottom: 0px
+      .inline-errors
+        display: none
+      &.error
+        textarea
+          border: 3px solid red
+          margin-bottom: 3px
+    #question_photo_input
+      margin-top: -3px
+    #question_question_type_input
+      margin-bottom: 0px
+
+    .choices
+      padding: 0px
+      width: 720px
+      float: left
+      legend
+        float: left
+        padding: 0px
+    .inline-errors
+      display: inline-block
+      width: 60px
+      font-size: 12px
+      color: red
+      font-weight: bold
+      padding-top: 3px
+    .choices-group
+      display: inline-block
+      margin: 0px
+      li
+        display: inline-block
+        width: auto
+        margin-top: 5px
+        margin-bottom: 0px
+        height: 32px
+        label
+          font-family: 'helvetica neue', helvetica, arial, sans-serif
+          font-size: 14px
+          background: image-url('questions/radio_off.png') left bottom no-repeat
+          padding: 0px 30px 0px 0px
+          cursor: pointer
+          text-align: left
+          vertical-align: middle
+          color: #ABAFB2 !important
+
+          input[type='radio']
+            opacity: 0
+            width: 21px
+            height: 21px
+          &.radio_selected
+            background: image-url('questions/radio_on.png') left bottom no-repeat
+
+  .buttons
+    padding: 0px
+    ol
+      margin: 0px
+    li
+      list-style-type: none
+      &.button
+        text-align: center
+        padding: 30px 0px
+        input
+          font-family: "Clarendon BT Roman"
+          color: white
+          font-size: 24px
+          padding: 10px 30px
+          border: 1px solid #007acc
+          @include background-image(linear-gradient(#47a8eb, #1688d6))
+          @include border-radius(7px)
+          cursor: pointer
+    .spinner
+      position: absolute
+      top: 5px
+      right: 5px
+      display: none
+
+#multiple_choice_answers
+  position: relative
+  padding-bottom: 25px
+  ol
+    position: relative
+    height: 40px
+    margin: 0px
+    li
+      height: 25px
+      label
+        font-size: 16px
+        color: #5c6266
+        padding: 8px 0px 0px 2px
+        width: 18px !important
+        text-align: left
+      input
+        width: 220px
+        height: 20px
+        border: 3px solid #c4c9cc
+        color: #aaafb2
+        font-family: 'helvetica neue', helvetica, arial, sans-serif
+        font-size: 16px
+        padding: 5px
+        margin-left: 4px
+        @include border-radius(7px)
+        -moz-border-top-colors: $textarea_border_grad
+        -moz-border-left-colors: $textarea_border_grad
+        -moz-border-right-colors: $textarea_border_grad
+
+
+  #add_answers
+    width: 150px !important
+    display: inline-block
+    font-family: "Clarendon BT Roman"
+    color: #abafb2
+    font-size: 13px
+    text-align: right
+    vertical-align: top
+    padding: 21px 10px 0px 0px
+  #answers
+    display: inline-block
+    position: relative
+    width: 500px
+    li
+      &.error
+        input
+          border: 3px solid red
+      font-size: 16px
+    .minus_button
+      position: absolute
+      top: 8px
+      left: 270px
+    #add_button
+      position: absolute
+      bottom: -35px
+      left: -4px
+      z-index: 5
+      #add_blurb
+        position: absolute
+        left: 30px
+        top: 5px
+        width: 300px
+        font-size: 12px
+        color: #aaafb2
+        font-family: "Clarendon BT Roman"
+
+#public_preview
+  label
+    width: 150px !important
+    display: inline-block
+    font-family: "Clarendon BT Roman"
+    color: #abafb2
+    font-size: 13px
+    text-align: right
+    vertical-align: top
+    padding: 18px 10px 0px 0px
+  #preview
+    display: inline-block
+    width: 600px
+    border-top: 1px solid #c4c8cc
+    padding-top: 15px
+    #hdr
+      font-size: 16px
+      color: #5c6266
+      padding-bottom: 10px
+    #fakefb
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+      font-size: 11px
+      #profile_image
+        display: inline-block
+        vertical-align: top
+      #profile_text
+        padding-left: 5px
+        display: inline-block
+        width: 400px
+        #name
+          padding-bottom: 5px
+        #message
+          padding-bottom: 10px
+        #double_preview
+          #double_img
+            width: 92px
+            display: inline-block
+            img
+              width: 92px
+          #double_text
+            width: 295px
+            display: inline-block
+            vertical-align: top
+            padding-left: 5px
+            #description
+              padding-top: 5px
+      #ftr
+        padding: 15px 0px
+
+      .blue
+        color: #3B5998
+      .loud
+        font-weight: bold
+      .quiet
+        color: #888888
+
+
+
+.clearer
+  clear: both
+.hidden
+  display: none

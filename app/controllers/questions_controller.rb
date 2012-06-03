@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  layout 'prototype'
+  layout 'cm'
 
   before_filter :enforce_login, :except => :question
   before_filter :get_fb_access_token, :except => :question
@@ -71,7 +71,16 @@ class QuestionsController < ApplicationController
   end
 
   def new_question
+    @default_question_text = "Ex: Am I a talented singer?"
+    @default_mc_answer_text = "Enter answer choice"
+
     if params['question']
+
+      params['question']['question_text'] = '' if params['question']['question_text'] == @default_question_text
+      params['question']['multiple_choice_options_attributes'].each do |k,v|
+        v['answer_text'] = '' if v['answer_text'] == @default_mc_answer_text
+      end
+
       @question = Question.new(params['question'])
       @question.user_id = @user.id
       @question.multiple_choice_options.delete_all unless @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
@@ -82,13 +91,14 @@ class QuestionsController < ApplicationController
         flash[:show_share] = true
         redirect_to question_path(@question)
       else
-        #render :partial => "questions/form"
+        @fb_share_template = FbShareTemplate.active.random.first
       end
     else
       @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => false)
       2.times do
         @question.multiple_choice_options.build
       end
+      @fb_share_template = FbShareTemplate.active.random.first
       Rails.logger.info "***** #{@question.multiple_choice_options.length}"
     end
   end
