@@ -1,24 +1,20 @@
-- content_for :extra_css do
-  = stylesheet_link_tag "sb_formtastic"
-  = stylesheet_link_tag "questions/screen"
-  = stylesheet_link_tag "share/share"
+.cm_content
+  #newq_top
+    #newq_hdr Ask a Personal Question and Get Honest Answers from Anyone.
+    #newq_subhdr Ever wonder what people would reveal to you if they were being totally honest?
+    #newq_subsub
+      Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
+      = link_to image_tag("questions/blue_question.png"), '#'
 
-= render :partial => "dashboard/dash_nav"
+  .inner_content
+    .inner_nav
+      .over.fuzzy#write Write Question
+      .under.fuzzy#choose= link_to "Choose Question", choose_question_path
+    .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
+      = render :partial => "questions/form"
+      = render :partial => "questions/post_preview"
 
-.prepend-top.prepend-1.span-22.append-1
-  %fieldset
-    Get started by writing a question or choose one of our questions.  Remember, the responses will be anonymous, so feel free to ask private or personal questions or anything you want an <strong>HONEST</strong> answer to.
 
-  %fieldset
-    %legend Setup a New Question
-
-    .span-20
-      .inner_tabs
-        %ul
-          %li.selected Create Your Own Question
-          %li= link_to "Choose a Question", choose_question_path
-          .clear
-      #qform= render :partial => "questions/form"
 
 #share_dialog
 #post_share_dialog
