@@ -5,11 +5,14 @@ class DashboardController < ApplicationController
   def index
     Time.zone = "Central Time (US & Canada)"
     @collection_filter = params['coll'] || "questions"
+    @per_page = 10
     if @collection_filter == "questions"
-      @collection = @user.questions.where(:active => true).order("created_at DESC").paginate(:page => params['page'])
+      scope = @user.questions.where(:active => true).order("created_at DESC")
     else
-      @collection = @user.answers.order("created_at DESC").paginate(:page => params['page'])
+      scope = @user.answers.order("created_at DESC")
     end
+    @num_records = scope.count
+    @collection = scope.paginate(:page => params['page'], :per_page => @per_page)
     @last_five_questions = Question.order('created_at DESC').limit(5)
   end
 end

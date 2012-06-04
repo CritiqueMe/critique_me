@@ -16,7 +16,7 @@
     .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
     .qcontainer.fuzzy
 
-      %table#dashtable
+      %table#dashtable{:data => {:page => params['page'] || 1, :num_questions => @num_records, :per_page => @per_page}}
         %tbody
           - if @collection_filter == "questions"
             - if @collection.empty?
@@ -32,9 +32,13 @@
                   No Answers posted yet.
             - else
               = render :partial => "answer_line_item", :collection => @collection, :as => :answer
+        %tfoot
+          %tr
+            %td{:colspan => 2}= will_paginate @collection, :page_links => false, :previous_label => "Back", :next_label => "Next"
 
 #share_dialog
 #post_share_dialog{:data => {:finish_path => dashboard_path}}
 
 - content_for :extra_javascripts do
   = javascript_include_tag "dashboard/inviter"
+  = javascript_include_tag "dashboard/dash_index"

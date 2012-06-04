@@ -10,6 +10,7 @@
   padding: 25px 0px
   margin: 0px auto
   margin-top: 25px
+  margin-bottom: 25px
   border-collapse: collapse
   td
     border-top: 1px solid #c4c8cc
@@ -44,3 +45,20 @@
       @include border-radius(7px)
       cursor: pointer
       text-decoration: none
+  .invite_friends
+    width: 125px
+  tfoot
+    td
+      text-align: center
+      padding: 20px 0px
+      .disabled
+        color: #c4c9cc
+      .curr_page
+        padding: 0px 20px
+        color: #5c6266
+      a
+        color: #0083cc
+        font-weight: bold
+        text-decoration: none
+        &:hover
+          text-decoration: underline
