@@ -1,148 +1,115 @@
-!!! 5
--# paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
-<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if gt IE 8]><!-->
-%html.no-js{ :lang => "en" }
-  <!--<![endif]-->
-  %head{:prefix => "og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# #{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}: http://ogp.me/ns/fb/#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}#"}
-    %meta{ :charset => "utf-8" }/
-    %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
-    %title= @question.question_text_pretty
-    %meta{ :name => "description", :content => "CritiqueMe" }/
-    %meta{ :name => "author", :content => "critiqueme.com" }/
+- content_for :og_data do
+  %meta{ :property => "fb:app_id", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_id]}" }
+  %meta{ :property => "og:type", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:question" }
+  %meta{ :property => "og:url", :content => "#{question_url(@question)}" }
+  %meta{ :property => "og:title", :content => @question.question_text_pretty }
+  %meta{ :property => "og:description", :content => "Answer the question now!" }
+  - if @question.photo.url
+    %meta{ :property => "og:image", :content => @question.photo.url }
+  - else
+    %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"}
 
-    %meta{ :property => "fb:app_id", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_id]}" }
-    %meta{ :property => "og:type", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:question" }
-    %meta{ :property => "og:url", :content => "#{question_url(@question)}" }
-    %meta{ :property => "og:title", :content => @question.question_text_pretty }
-    %meta{ :property => "og:description", :content => "Answer the question now!" }
-    - if @question.photo.url
-      %meta{ :property => "og:image", :content => @question.photo.url }
-    - else
-      %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"}
+- content_for :extra_css do
+  = stylesheet_link_tag "questions/qpage"
+  = stylesheet_link_tag "share/share"
 
-    -# Mobile viewport optimized: j.mp/bplateviewport
-    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }/
 
-    = stylesheet_link_tag 'splash/screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'dashboard/screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'questions/screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag "share/share"
-    = stylesheet_link_tag 'jquery-ui-smoothness.css'
-    /[if IE]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
-    = yield :extra_css
 
-    -# All JavaScript at the bottom, except for Modernizr and Respond.
-    -# Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-    = javascript_include_tag "modernizr.min.js", "respond.min.js"
+.cm_content
+  .inner_content
+    .qcontainer.fuzzy.all_round#qpage
+      - unless @question.canned_question_id
+        .byline #{@question.user.first_last_initial} asked:
 
-  %body
-    -# 24-column grid layout courtesy of blueprint
-    .container
-      = render :partial => "partials/header"
-      = render :partial => "dashboard/dash_nav"
-
-      #qpage.prepend-1.span-22.append-1.prepend-top.append-bottom
-        - unless @question.canned_question_id
-          .byline #{@question.user.first_last_initial} asked:
-
-        - @questions.each do |q|
-          - if q.photo.url
-            .qimage= image_tag q.photo.thumb.url
-          .qcontent{:id => "question_content_#{q.id}"}
-            - if @user
-              - if @user == q.user
-                .buttons.share_question{:data => {:question_id => q.id}}
-                  = button_to "Share with Friends", '#'
-              - elsif @user.answers.where(:question_id => q.id).count == 0
-                .buttons.post_answer
-                  = button_to "Post Answer", '#', :data => {:question_id => q.id}
-            .qtext
-              = q.question_text_pretty
-            .answers
-              .header Answers Posted
-              - if q.answers.count < 5
-                #not_enough_answers{:data => {:question_id => q.id}}
-                  - if q.user == @user
-                    - if q.answers.count > 0
-                      You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.  #{link_to "Invite more friends now!", '#'}
-                    - else
-                      You haven't gotten any answers to your question yet!  #{link_to "Invite some friends now!", '#'}
+      - @questions.each do |q|
+        - if q.photo.url
+          .qimage= image_tag q.photo.thumb.url
+        .qcontent{:id => "question_content_#{q.id}"}
+          - if @user
+            - if @user == q.user
+              .buttons.share_question{:data => {:question_id => q.id}}
+                = button_to "Share with Friends", '#'
+            - elsif @user.answers.where(:question_id => q.id).count == 0
+              .buttons.post_answer
+                = button_to "Post Answer", '#', :data => {:question_id => q.id}
+          .qtext
+            = q.question_text_pretty
+          .answers
+            .header Answers Posted
+            - if q.answers.count < 5
+              #not_enough_answers{:data => {:question_id => q.id}}
+                - if q.user == @user
+                  - if q.answers.count > 0
+                    You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.  #{link_to "Invite more friends now!", '#'}
                   - else
-                    Not enough answers have been posted yet!
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:open_text)
-                %ol
-                  - q.answers.each do |a|
-                    %li= a.open_text_answer
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-                %ol
-                  - q.multiple_choice_options.sort{|a,b| b.answers.count <=> a.answers.count}.each do |mco|
-                    %li
-                      %b= mco.answer_text
-                      %em (#{mco.answers.count})
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
-                %ol
-                  %li
-                    %b True
-                    %em (#{q.answers.where(:true_false_answer => true).count})
-                  %li
-                    %b False
-                    %em (#{q.answers.where(:true_false_answer => false).count})
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
-                %ol
-                  - q.canned_question_choices.each do |cqc|
-                    %li
-                      %b= cqc.friend_name
-                      %em (#{q.answers.where(:canned_question_choice_id => cqc.id).count})
-
-              - if @user && a = @user.answers.where(:question_id => q.id).first
-                #your_answer
-                  %span Your Answer:
-                  - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
-                    = a.open_text_answer
-                  - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
-                    = a.true_false_answer
-                  - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-                    = a.multiple_choice_option.answer_text
-                  - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
-                    = a.canned_question_choice.friend_name
-
-              = render :partial => "/questions/answer", :locals => {:question => q, :post_url => post_url}
-
-            - unless @user.nil? || @question.user == @user
-              .flagger
-                - if @user.flagged_questions.where(:question_id => @question.id).count > 0
-                  You have flagged this question.
+                    You haven't gotten any answers to your question yet!  #{link_to "Invite some friends now!", '#'}
                 - else
-                  = link_to "Flag This Question &raquo;".html_safe, '#', :data => {:question => q.id}
-              .flag_dlg{:id => "flag_dlg_#{q.id}", :style => "display:none"}= render :partial => "questions/flag", :locals => {:question => q}
+                  Not enough answers have been posted yet!
+            - elsif q.question_type == Question::QUESTION_TYPES.index(:open_text)
+              %ol
+                - q.answers.each do |a|
+                  %li= a.open_text_answer
+            - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+              %ol
+                - q.multiple_choice_options.sort{|a,b| b.answers.count <=> a.answers.count}.each do |mco|
+                  %li
+                    %b= mco.answer_text
+                    %em (#{mco.answers.count})
+            - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
+              %ol
+                %li
+                  %b True
+                  %em (#{q.answers.where(:true_false_answer => true).count})
+                %li
+                  %b False
+                  %em (#{q.answers.where(:true_false_answer => false).count})
+            - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
+              %ol
+                - q.canned_question_choices.each do |cqc|
+                  %li
+                    %b= cqc.friend_name
+                    %em (#{q.answers.where(:canned_question_choice_id => cqc.id).count})
+
+            - if @user && a = @user.answers.where(:question_id => q.id).first
+              #your_answer
+                %span Your Answer:
+                - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
+                  = a.open_text_answer
+                - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
+                  = a.true_false_answer
+                - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+                  = a.multiple_choice_option.answer_text
+                - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
+                  = a.canned_question_choice.friend_name
+
+            = render :partial => "/questions/answer", :locals => {:question => q, :post_url => post_url}
+
+          - unless @user.nil? || @question.user == @user
+            .flagger
+              - if @user.flagged_questions.where(:question_id => @question.id).count > 0
+                You have flagged this question.
+              - else
+                = link_to "Flag This Question &raquo;".html_safe, '#', :data => {:question => q.id}
+            .flag_dlg{:id => "flag_dlg_#{q.id}", :style => "display:none"}= render :partial => "questions/flag", :locals => {:question => q}
 
 
-      = render :partial => "partials/footer"
 
-    #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
-    #post_share_dialog{:data => {:finish_path => @user == @question.user ? dashboard_path : new_question_path}}
+#share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
+#post_share_dialog{:data => {:finish_path => @user == @question.user ? dashboard_path : new_question_path}}
 
-    #powered_by_sb= link_to image_tag("dashboard/PoweredBySB.png"), "http://www.seedblocks.com", :target => "_blank"
-    - if @canned_questions
-      #canned_questions= render :partial => "canned/canned_questions"
+- if @canned_questions
+  #canned_questions= render :partial => "canned/canned_questions"
 
 
-    = javascript_include_tag "application"
-    = javascript_include_tag "jquery-ui-1.8.15.min.js"
-    = javascript_include_tag "questions/answer_question"
-    = javascript_include_tag "questions/flag_question"
+- content_for :extra_javascripts do
+  = javascript_include_tag "questions/answer_question"
+  = javascript_include_tag "questions/flag_question"
 
-    - if @question.user == @user
-      = javascript_include_tag "questions/show_share"
-      = javascript_include_tag "share/share"
-    - elsif @user && @question.canned_question_id && @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
-      = javascript_include_tag "questions/show_canned"
-    - elsif @user && @user.answers.where(:question_id => @question.id).count == 0 && @user.flagged_questions.where(:question_id => @question.id).count == 0
-      -# show answer dialog if user hasn't answered it yet and hasn't flagged it already
-      = javascript_include_tag "questions/show_answer"
-
-    = yield :extra_javascripts
+  - if @question.user == @user
+    = javascript_include_tag "questions/show_share"
+    = javascript_include_tag "share/share"
+  - elsif @user && @question.canned_question_id && @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
+    = javascript_include_tag "questions/show_canned"
+  - elsif @user && @user.answers.where(:question_id => @question.id).count == 0 && @user.flagged_questions.where(:question_id => @question.id).count == 0
+    -# show answer dialog if user hasn't answered it yet and hasn't flagged it already
+    = javascript_include_tag "questions/show_answer"

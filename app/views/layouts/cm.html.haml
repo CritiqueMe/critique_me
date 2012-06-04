@@ -13,11 +13,13 @@
     %meta{ :name => "description", :content => "CritiqueMe" }/
     %meta{ :name => "author", :content => "seedblocks.com" }/
 
+    = yield :og_data
+
     -# Mobile viewport optimized: j.mp/bplateviewport
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }/
 
     = stylesheet_link_tag 'cm.css', :media => 'screen, projection'
-    =# stylesheet_link_tag 'jquery-ui-smoothness.css'
+    = stylesheet_link_tag 'jquery-ui-smoothness.css'
     /[if IE]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     = yield :extra_css
