@@ -11,13 +11,15 @@ body
   font-family: 'helvetica neue', helvetica, arial, sans-serif
   font-weight: 300
   background-image: image-url('crosshatch.jpg')
+  padding-bottom: 50px
 
   #header
     width: 100%
     height: 45px
     @include background-image(linear-gradient(#5aace5, #309ce5))
     font-family: "Clarendon BT Roman"
-    position: relative
+    position: fixed
+    z-index: 100
 
     #logo
       padding: 5px 15px
@@ -46,6 +48,7 @@ body
   .cm_content
     width: 1170px
     margin: 0px auto
+    padding-top: 50px
 
     #newq_top
       color: #5c6266
@@ -61,6 +64,14 @@ body
         font-size: 16px
         img
           vertical-align: bottom
+    #chooseq_top
+      font-family: "Clarendon BT Roman"
+      color: #d7415e
+      text-align: center
+      padding: 30px 0px 15px
+      img
+        vertical-align: bottom
+
 
     .inner_content
       position: relative
@@ -85,11 +96,16 @@ body
           position: absolute
           top: 0px
           left: 0px
+          &.under
+            padding-bottom: 25px
         #choose
           position: absolute
           top: 55px
           left: 0px
-          padding-top: 25px
+          &.under
+            padding-top: 25px
+          &.over
+            top: 65px
         .over
           z-index: 10
           color: #d8415e
@@ -99,13 +115,43 @@ body
             color: #abafb2
             text-decoration: none
       .qcontainer
-        z-index: 1
+        z-index: 2
         position: relative
         margin-left: 180px
-        width: 850px
+        width: 800px
         @include border-top-left-radius(0px)
         fieldset
           border: 0px
+      .qs_asked_today
+        z-index: 1
+        position: absolute
+        right: -30px
+        top: 100px
+        width: 180px
+        padding: 15px 10px
+        @include border-top-left-radius(0px)
+        @include border-bottom-left-radius(0px)
+        #today_hdr
+          font-family: "Clarendon BT Roman"
+          color: #D7415E
+          font-size: 12px
+        ol
+          padding: 0px
+          margin: 0px
+          margin-top: 10px
+          li
+            list-style-type: none
+            color: #5c6266
+            font-size: 12px
+            border-top: 1px solid #c4c8cc
+            padding: 10px 0px
+            .qtext
+              padding-bottom: 5px
+            .qimg
+              display: inline-block
+            .time_ago
+              font-weight: bold
+              display: inline-block
 
 .formtastic
   .inputs
@@ -397,6 +443,106 @@ body
       .quiet
         color: #888888
 
+
+#default_questions
+  width: 95%
+  margin: 0px auto
+  border-collapse: collapse
+  thead
+    th
+      font-family: "Clarendon BT Roman"
+      font-size: 12px
+      color: #5c6266
+      border-bottom: 1px solid #c4c8cc
+      font-weight: normal
+      padding: 25px 10px 10px
+      text-align: left
+  tbody
+    td
+      padding: 15px 10px 25px
+      color: #5c6266
+      border-top: 1px solid #c4c8cc
+      border-bottom: 1px solid #c4c8cc
+      .qtext
+        font-size: 16px
+        font-weight: bold
+        padding-bottom: 5px
+      .cat
+        font-size: 12px
+        a
+          color: #0083cc
+          font-weight: bold
+          text-decoration: none
+          &:hover
+            text-decoration: underline
+      &.askq
+        a
+          font-family: "Clarendon BT Roman"
+          color: white
+          font-size: 14px
+          padding: 10px
+          border: 1px solid #007acc
+          @include background-image(linear-gradient(#47a8eb, #1688d6))
+          @include border-radius(7px)
+          cursor: pointer
+          text-decoration: none
+  tfoot
+    td
+      text-align: center
+      padding: 20px 0px
+      .disabled
+        color: #c4c9cc
+      .curr_page
+        padding: 0px 20px
+        color: #5c6266
+      a
+        color: #0083cc
+        font-weight: bold
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+
+#footer
+  position: fixed
+  bottom: 0px
+  height: 50px
+  width: 100%
+  color: white
+  @include background-image(linear-gradient(#1f2523, #222222))
+  font-family: "Clarendon BT Roman"
+  z-index: 100
+  font-size: 12px
+  a
+    color: #0098ff
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+  #copyright
+    position: absolute
+    left: 15px
+    top: 10px
+  #twitter
+    position: absolute
+    left: 150px
+    top: 10px
+  #facebook
+    position: absolute
+    left: 200px
+    top: 10px
+  #linkedin
+    position: absolute
+    left: 250px
+    top: 10px
+  #powered_by_sb
+    position: absolute
+    right: 15px
+    top: 10px
+  #fnav
+    width: 100%
+    text-align: center
+    line-height: 50px
+    color: #45484b
 
 
 .clearer

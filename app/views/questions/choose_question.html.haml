@@ -1,36 +1,36 @@
-- content_for :extra_css do
-  = stylesheet_link_tag "sb_formtastic"
-  = stylesheet_link_tag "questions/screen"
-  = stylesheet_link_tag "share/share"
+.cm_content
+  #chooseq_top
+    For inspiration, simply choose from one of the popular questions asked by our users.
+    = link_to image_tag("questions/blue_question.png"), '#'
 
-= render :partial => "dashboard/dash_nav"
-
-.prepend-top.prepend-1.span-22.append-1#all_content{:data => {:csrf_token => form_authenticity_token.to_s}}
-  %fieldset
-    %legend Setup a New Question
-
-    .span-20
-      .inner_tabs
-        %ul
-          %li= link_to "Create Your Own Question", new_question_path
-          %li.selected Choose a Question
-          .clear
-
-      .span-9#single_questions
-        = image_tag "questions/single_question_arrow.jpg"
-        %ol
+  .inner_content
+    .inner_nav
+      .under.fuzzy#write= link_to "Write Question", new_question_path
+      .over.fuzzy#choose Choose Question
+    .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+    .qcontainer.fuzzy
+      %table#default_questions{:data => {:page => params['page'] || 1, :num_questions => @num_questions, :per_page => @per_page}}
+        %thead
+          %tr
+            %th
+              Category&nbsp;
+              = select_tag "category_id", options_from_collection_for_select(Category.for_select, 'id', 'name', params['category_id']), :include_blank => true
+            %th &nbsp;
+            %th Last asked
+        %tbody
           - @default_questions.each do |dq|
-            %li.dq{:data => {:default_question_id => dq.id}}= dq.question_text
+            %tr
+              %td
+                .qtext= dq.question_text
+                .cat Category: #{link_to dq.category.name, category_path(dq.category_id)}
+              %td.askq= link_to "Ask this question", '#'
+              %td.last_asked= dq.last_asked_at ? time_ago_in_words(dq.last_asked_at) + " ago" : "never"
+        %tfoot
+          %tr
+            %td{:colspan => 3}
+              = will_paginate @default_questions, :page_links => false, :previous_label => "Back", :next_label => "Next"
 
-      .prepend-1.span-9#questionnaires
-        = image_tag "questions/questionnaire_arrow.jpg"
-        %ul
-          - @questionnaires.each_with_index do |q, i|
-            %li.q{:data => {:questionnaire_id => q.id}}
-              %h5= "#{i+1}. #{q.name.upcase}"
-              %ol
-                - q.default_questions.each do |dq|
-                  %li.dq= dq.question_text
+
 
 #share_dialog
 #post_share_dialog

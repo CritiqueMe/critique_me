@@ -1,0 +1,9 @@
+#asked_today
+  #today_hdr Questions asked today
+  %ol
+    - @last_five_questions.each do |q|
+      %li
+        .qtext= '"' + q.question_text + '"'
+        - if q.photo.url
+          .qimg= image_tag q.photo.mini_thumb.url
+        .time_ago= time_ago_in_words(q.created_at) + " ago"

@@ -10,6 +10,7 @@
     .inner_nav
       .over.fuzzy#write Write Question
       .under.fuzzy#choose= link_to "Choose Question", choose_question_path
+    .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
     .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
       = render :partial => "questions/form"
       = render :partial => "questions/post_preview"

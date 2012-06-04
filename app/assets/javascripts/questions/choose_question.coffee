@@ -36,7 +36,26 @@ init_questionnaires = ->
     window.location = "/questionnaire/" + qid
 
 
+inject_pagination_blurb = ->
+  curr_page = $('#default_questions').data('page')
+  num_qs = $('#default_questions').data('num_questions')
+  per_page = $('#default_questions').data('per_page')
+  actually_on_page = $('#default_questions tbody tr').length
+
+  start = (curr_page-1) * per_page + 1
+  end = start + actually_on_page - 1
+  str = "Results " + start + "-" + end + " of " + num_qs
+
+  new_span = $('<span class="curr_page">').html(str)
+  new_span.insertAfter $('#default_questions .pagination .previous_page')
+
+monitor_category_changer = ->
+  $('#category_id').change ->
+    window.location = "/category/" + $(this).val()
 
 $ ->
   init_single_questions()
   init_questionnaires()
+
+  inject_pagination_blurb()
+  monitor_category_changer()

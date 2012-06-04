@@ -73,6 +73,7 @@ class QuestionsController < ApplicationController
   def new_question
     @default_question_text = "Ex: Am I a talented singer?"
     @default_mc_answer_text = "Enter answer choice"
+    @last_five_questions = Question.order('created_at DESC').limit(5)
 
     if params['question']
 
@@ -119,16 +120,23 @@ class QuestionsController < ApplicationController
   end
 
   def choose_question
+    @num_questions = DefaultQuestion.active.not_in_questionnaire.count
+    @per_page = 7
+
+    @last_five_questions = Question.order('created_at DESC').limit(5)
+
     if request.post?
       @default_question = DefaultQuestion.find(params['id'])
       @question = Question.create_from_default_question(@default_question, @user)
       if @question.valid?
+        @default_question.update_attribute :last_asked_at, Time.now
         post_question_to_open_graph(@question) # TODO: ask for permission to do this
         redirect_to share_path(@question)
       end
     else
-      @default_questions = DefaultQuestion.active.not_in_questionnaire
-      @questionnaires = Questionnaire.active
+      scope = DefaultQuestion.active.not_in_questionnaire
+      scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
+      @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
     end
   end
 

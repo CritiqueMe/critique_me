@@ -47,6 +47,7 @@ add_multiple_choice_answer = () ->
   )
   $('#multiple_choice_answers #answers').append(new_fieldset)
   init_remove_answer_links()
+  init_mc_answer_boxes()
   return false
 
 num_existing_answers = () ->
@@ -120,6 +121,7 @@ ensure_mc_not_blank = (elem) ->
 
 init_mc_answer_boxes = ->
   $('.mchoice input').each ->
+    $(this).unbind()
     ensure_mc_not_blank($(this))
     $(this).blur ->
       ensure_mc_not_blank($(this))
