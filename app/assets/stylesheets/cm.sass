@@ -158,6 +158,8 @@ body
         width: 800px
         min-height: 500px
         @include border-top-left-radius(0px)
+        &.all_round
+          @include border-radius(15px)
         fieldset
           border: 0px
       .qs_asked_today
@@ -586,6 +588,67 @@ body
     color: #45484b
 
 
+.gateway
+  a
+    color: #0098ff
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+  .header_info
+    font-family: "Clarendon BT Roman"
+    padding: 25px
+  .inputs
+    input
+      width: 220px
+      height: 20px
+      border: 3px solid #c4c9cc
+      color: #aaafb2
+      font-family: 'helvetica neue', helvetica, arial, sans-serif
+      font-size: 16px
+      padding: 5px
+      margin-left: 4px
+      @include border-radius(7px)
+      -moz-border-top-colors: $textarea_border_grad
+      -moz-border-left-colors: $textarea_border_grad
+      -moz-border-right-colors: $textarea_border_grad
+      -moz-border-bottom-colors: $textarea_border_grad
+  &#signup
+    .inputs
+      li
+        width: 52%
+        display: inline-block
+      span
+        font-size: 12px
+    #signup_button
+      ul
+        margin: 0px
+        padding: 0px
+        li
+          padding: 0px
+    #fb_button
+      text-align: center
+    #new_user
+      .inputs
+        .inline-errors
+          display: block
+          width: auto
+          padding-left: 170px
+      .actions
+        margin: 0px
+        ol
+          padding-left: 0px
+  &#forgot_pass
+    .inputs
+      label
+        padding-left: 189px
+      .inline-errors
+        display: block
+        text-align: center
+        width: 100%
+
+
+
+
 .flash
   width: 100%
   text-align: center
@@ -593,7 +656,7 @@ body
   color: #D8415E
   padding: 15px 0px 0px
 
-.clearer
+.clearer, .clear
   clear: both
 .hidden
   display: none
