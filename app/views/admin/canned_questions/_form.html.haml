@@ -4,8 +4,8 @@
     = f.input :text, :as => :string, :label => "Question"
     = f.input :num_choices, :as => :number, :label => "Number of Friend Choices"
     .clearer
-  = f.buttons do
+  = f.actions do
     - if @canned_question.new_record?
-      = f.commit_button "Create Canned Question"
+      = f.action :submit, :label => "Create Canned Question"
     - else
-      = f.commit_button "Edit Canned Question"
+      = f.action :submit, :label => "Edit Canned Question"

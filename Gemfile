@@ -31,6 +31,8 @@ group :development do
 end
 
 gem 'jquery-rails'
+gem 'gvis', :git => 'git://github.com/jeremyolliver/gvis.git' # there is a fix in the HEAD of gvis
+gem 'koala'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -58,8 +60,8 @@ gem "sendgrid"
 gem "compass-rails", :group => :assets
 gem "engineyard", :group => :development
 
-#gem "seed_blocks", :path => "../../seed_blocks"
-gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "6ee4ccc041"
+#gem "seed_blocks", :path => "../seed_blocks"
+gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "d85695e70c0d880c96afb00aae534c49aaa8d63e"
 
 
 

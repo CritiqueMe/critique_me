@@ -28,8 +28,7 @@
         = link_to image_tag("/assets/questions/plus_button.png"), '#'
         #add_blurb Add another answer
 
-
-  = f.buttons do
-    = f.commit_button(@question.id ? "Edit Question" : "Create Question")
+  = f.actions do
+    = f.action :submit, :label => @question.id ? "Edit Your Question" : "Create Your Question"
     .spinner= image_tag "/assets/admin/layout/form_spinner.gif"
     .clear
