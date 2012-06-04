@@ -1,26 +1,21 @@
 - content_for :extra_css do
-  = stylesheet_link_tag "sb_formtastic"
-  = stylesheet_link_tag "dashboard/index"
   = stylesheet_link_tag "share/share"
+  = stylesheet_link_tag "dashboard/index"
 
-= render :partial => "dash_nav"
 
-.prepend-top.prepend-1.span-22.append-1
-  %fieldset
-    %legend Your Dashboard
+.cm_content
 
-    .span-4
-      = render :partial => "dash_sidebar"
-    .span-16
-      .inner_tabs
-        %ul
-          - if @collection_filter == "questions"
-            %li.selected Questions Posted
-            %li= link_to "Answers Posted", dashboard_path(:coll => "answers")
-          - else
-            %li= link_to "Questions Posted", dashboard_path(:coll => "questions")
-            %li.selected Answers Posted
-          .clear
+  .inner_content
+    .inner_nav
+      - if @collection_filter == "questions"
+        .over.fuzzy#questions_posted Questions Posted
+        .under.fuzzy#answers_posted= link_to "Answers Posted", dashboard_path(:coll => "answers")
+      - else
+        .under.fuzzy#questions_posted= link_to "Questions Posted", dashboard_path(:coll => "questions")
+        .over.fuzzy#answers_posted Answers Posted
+    .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+    .qcontainer.fuzzy
+
       %table#dashtable
         %tbody
           - if @collection_filter == "questions"

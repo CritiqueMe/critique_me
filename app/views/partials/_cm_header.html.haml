@@ -2,6 +2,9 @@
   #logo= link_to image_tag("logo_white.png"), dashboard_path
   %ol#nav
     %li#dummy &nbsp;
-    %li= link_to "Dashboard", dashboard_path
-    %li.selected= link_to "Questions", questions_path
-    %li= link_to "My Profile", your_profile_path
+    %li{:class => params['controller'] == 'dashboard' && params['action'] == 'index' ? 'selected' : '' }
+      = link_to "Dashboard", dashboard_path
+    %li{:class => params['controller'] == 'questions' ? 'selected' : '' }
+      = link_to "Questions", questions_path
+    %li{:class => params['controller'] == 'dashboard' && params['action'] != 'index' ? 'selected' : ''}
+      = link_to "My Profile", your_profile_path

@@ -1,0 +1,18 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "dashboard/cm_profile_edit"
+
+.cm_content
+
+  .inner_content
+    .inner_nav
+      .over.fuzzy#your_profile My Profile
+      .under.fuzzy#privacy_options= link_to "Privacy Options", privacy_options_path
+      .under.fuzzy#change_pass= link_to "Change Password", change_password_path
+
+
+    .qcontainer.fuzzy
+      = show_flash(flash)
+      %fieldset.form_box
+        .hdr
+          %p Profile Information
+        = render :partial => "user_form"

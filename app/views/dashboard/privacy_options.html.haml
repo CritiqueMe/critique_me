@@ -1,16 +1,17 @@
 - content_for :extra_css do
-  = stylesheet_link_tag "sb_formtastic"
   = stylesheet_link_tag "dashboard/privacy_options"
 
-= render :partial => "dash_nav"
 
-.prepend-top.prepend-1.span-22.append-1
-  %fieldset
-    %legend Edit Your Privacy Options
+.cm_content
 
-    .span-4
-      = render :partial => "dash_sidebar"
-    .span-16
+  .inner_content
+    .inner_nav
+      .under.fuzzy#your_profile= link_to "My Profile", your_profile_path
+      .over.fuzzy#privacy_options Privacy Options
+      .under.fuzzy#change_pass= link_to "Change Password", change_password_path
+
+
+    .qcontainer.fuzzy
       = show_flash(flash)
       %fieldset.form_box
         .hdr
@@ -20,3 +21,7 @@
             = f.input :privacy_ask_questions, :label => "Who can send you questions?", :as => :radio, :collection => [["Anyone can ask you questions.", 0], ["Only CritiqueMe members with name and photos can ask you questions.", 1]]
           = f.actions do
             = f.action :submit, :label => "Save Changes"
+
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "dashboard/privacy_options"
