@@ -35,6 +35,8 @@ class WelcomeController < ApplicationController
         end
       end
       @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id)
+    elsif @path_page.page_type == "register"
+      @last_questions = Question.order('created_at DESC').limit(3)
     end
   end
 

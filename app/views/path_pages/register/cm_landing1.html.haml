@@ -1,0 +1,36 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "path_pages/register/cm_reg"
+
+.cm_content
+  #landing_page
+    #hdr1 Get honest answers from anyone!
+    #hdr2 Get anonymous, honest answers to your burning questions.
+    %ul#circles
+      %li
+        = image_tag "path/grey_circle.png"
+        %br
+        %br
+        You ask 5 or more friends a question.  Any question.
+      %li
+        = image_tag "path/grey_circle.png"
+        %br
+        %br
+        They answer anonymously, so you can't tell who said what.
+      %li
+        = image_tag "path/grey_circle.png"
+        %br
+        %br
+        You get the truth, plain and simple.
+    #hdr3 Are you ready for the truth?
+    #continue= link_to image_tag("path/fb_continue.png"), fb_perms_redirect_url('email,publish_stream,publish_actions')
+    #qs_today
+      #headline Questions asked today
+      %table
+        %tbody
+          %tr
+            - @last_questions.each_with_index do |q,i|
+              %td{:class => i == 1 ? 'middle' : ''}
+                .qtext= q.question_text
+                - if q.photo.url
+                  .qimg= image_tag q.photo.mini_thumb.url
+                .qago= time_ago_in_words(q.created_at) + " ago"
