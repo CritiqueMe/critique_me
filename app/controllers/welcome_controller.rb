@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
   end
 
   def sb_prepare_page_type_variables
-    if @path_page.page_type == "answer"
+    if %w(answer canned_questions).include?(@path_page.page_type)
       if session[:clicked_question_id]
         @question = Question.where(:id => session[:clicked_question_id]).first
         if @questionnaire = @question.default_question.try(:questionnaire)
