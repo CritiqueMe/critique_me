@@ -35,6 +35,28 @@ class WelcomeController < ApplicationController
         end
       end
       @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id)
+
+      # prepare canned questions
+      @canned_questions = CannedQuestion.active.limit(5).order("RAND()")
+      get_fb_friends
+      if @fb_friends && @fb_friends.length >= 3
+        @canned_choices = @canned_questions.map do |cq|
+          this_q_choice = []
+          @fb_friends.shuffle!
+          cq.num_choices.times do |i|
+            friend = @fb_friends[i]
+            this_q_choice << {
+                :name => friend['name'],
+                :id => friend['id']
+            }
+          end
+          this_q_choice
+        end
+      else
+        # no fb friends, so let's not do the canned question thing
+        @canned_questions = nil
+      end
+
     elsif @path_page.page_type == "register"
       @last_questions = Question.order('created_at DESC').limit(3)
     end
