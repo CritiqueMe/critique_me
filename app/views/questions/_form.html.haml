@@ -1,4 +1,4 @@
-= semantic_form_for @question, :url => new_question_path, :multipart => true do |f|
+= semantic_form_for @question, :url => form_url, :multipart => true do |f|
   = f.inputs do
     = f.input :post_to_wall, :as => :public_private, :label => "Settings"
 

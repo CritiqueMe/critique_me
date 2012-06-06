@@ -73,6 +73,7 @@ class QuestionsController < ApplicationController
     @default_question_text = "Ex: Am I a talented singer?"
     @default_mc_answer_text = "Enter answer choice"
     @last_five_questions = Question.order('created_at DESC').limit(5)
+    @fb_share_template = FbShareTemplate.active.random.first
 
     if params['question']
 
@@ -90,20 +91,22 @@ class QuestionsController < ApplicationController
         #redirect_to share_path(@question)
         flash[:show_share] = true
         redirect_to question_path(@question)
-      else
-        @fb_share_template = FbShareTemplate.active.random.first
       end
     else
       @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => false)
       2.times do
         @question.multiple_choice_options.build
       end
-      @fb_share_template = FbShareTemplate.active.random.first
+
     end
   end
 
   def edit_question
     @question = Question.find(params['id'])
+    @default_question_text = "Ex: Am I a talented singer?"
+    @default_mc_answer_text = "Enter answer choice"
+    @last_five_questions = Question.order('created_at DESC').limit(5)
+    @fb_share_template = FbShareTemplate.active.random.first
     if params['question']
       @question.update_attributes params['question']
       @question.multiple_choice_options.delete_all unless @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)

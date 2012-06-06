@@ -1,15 +1,15 @@
-- content_for :extra_css do
-  = stylesheet_link_tag "sb_formtastic"
-  = stylesheet_link_tag "questions/screen"
+.cm_content
+  #newq_top
+    #newq_hdr Update Your Question
 
-= render :partial => "dashboard/dash_nav"
-
-.prepend-top.prepend-1.span-22.append-1
-  %fieldset
-    %legend Edit Question
-
-    .span-20
-      #qform= render :partial => "questions/form"
+  .inner_content
+    .inner_nav
+      .over.fuzzy#write Edit Question
+      .under.fuzzy#choose= link_to "Choose Question", choose_question_path
+    .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+    .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
+      = render :partial => "questions/form", :locals => {:form_url => edit_question_path(@question)}
+      = render :partial => "questions/post_preview"
 
 #share_dialog
 #post_share_dialog
