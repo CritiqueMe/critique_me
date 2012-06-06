@@ -122,7 +122,7 @@ class QuestionsController < ApplicationController
     @num_questions = DefaultQuestion.active.not_in_questionnaire.count
     @per_page = 7
 
-    @last_five_questions = Question.order('created_at DESC').limit(5)
+    #@last_five_questions = Question.order('created_at DESC').limit(5)
 
     if request.post?
       @default_question = DefaultQuestion.find(params['id'])

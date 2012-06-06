@@ -170,6 +170,31 @@ ActiveRecord::Schema.define(:version => 20120604031148) do
     t.datetime "updated_at"
   end
 
+  create_table "karma_levels", :force => true do |t|
+    t.integer  "level_num"
+    t.string   "action"
+    t.integer  "events_needed_per_day"
+    t.integer  "days_needed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "levels", :force => true do |t|
+    t.integer  "level_num"
+    t.integer  "xp_requirement"
+    t.string   "bonuses"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "login_history", :force => true do |t|
+    t.integer  "user_id",          :null => false
+    t.date     "login_date",       :null => false
+    t.string   "login_year_month", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "multiple_choice_options", :force => true do |t|
     t.integer  "question_id"
     t.text     "answer_text"
@@ -267,6 +292,15 @@ ActiveRecord::Schema.define(:version => 20120604031148) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "privacy_ask_questions", :default => 0
+    t.integer  "xp",                    :default => 0
+    t.integer  "level_id"
+    t.integer  "karma_level_id"
+    t.integer  "current_energy"
+    t.integer  "energy_bucket_size"
+    t.integer  "rank_score",            :default => 0
+    t.datetime "friends_updated_at"
+    t.text     "fb_pic_square"
+    t.datetime "last_login"
   end
 
   create_table "variant_combinations", :force => true do |t|

@@ -62,7 +62,7 @@ gem "engineyard", :group => :development
 
 #gem "seed_blocks", :path => "../../seed_blocks"
 gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :branch => "critique_me"
-
+gem 'airbrake'
 
 
 

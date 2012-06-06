@@ -7,7 +7,7 @@
     .inner_nav
       .under.fuzzy#write= link_to "Write Question", new_question_path
       .over.fuzzy#choose Choose Question
-    .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+    /.qs_asked_today.fuzzy= render :partial => "questions/asked_today"
     .qcontainer.fuzzy
       %table#default_questions{:data => {:page => params['page'] || 1, :num_questions => @num_questions, :per_page => @per_page}}
         %thead
