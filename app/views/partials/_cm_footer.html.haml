@@ -3,8 +3,8 @@
     &copy;2012 CritiqueMe
     %br
     All rights reserved.
-  #twitter= link_to image_tag("footer/footer_twitter.png"), 'http://twitter.com/critiquemeapp'
-  #facebook= link_to image_tag("footer/footer_facebook.png"), 'https://www.facebook.com/CritiqueMe'
+  #twitter= link_to image_tag("footer/footer_twitter.png"), 'http://twitter.com/critiquemeapp', :target => "_blank"
+  #facebook= link_to image_tag("footer/footer_facebook.png"), 'https://www.facebook.com/CritiqueMe', :target => "_blank"
   /#linkedin= link_to image_tag("footer/footer_linkedin.png"), '#'
   #fnav
     = link_to "HOME", questions_path
@@ -17,4 +17,4 @@
     - if @user.id
       &nbsp;&bull;&nbsp;
       = link_to "SIGN OUT", sign_out_path
-  #powered_by_sb= link_to image_tag("footer/powered_by_sb.png"), "http://seedblocks.com"
+  #powered_by_sb= link_to image_tag("footer/powered_by_sb.png"), "http://seedblocks.com", :target => "_blank"

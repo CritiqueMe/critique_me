@@ -1,8 +1,4 @@
-@import "dashboard/inner_tabs"
-@import compass/css3
-@import compass/css3/border-radius
-@import compass/css3/font-face
-@include font-face("Clarendon BT Roman", font-files("clarendon_bt_roman.ttf", truetype))
+@import cm_base
 
 // table layout
 #dashtable
@@ -19,7 +15,7 @@
   .none_posted
     text-align: center
     font-family: "Clarendon BT Roman"
-    color: #D8415E
+    color: $cmred
     padding: 70px 0px
     border: 0px
 
@@ -27,7 +23,7 @@
     font-size: 12px
     line-height: 18px
     a
-      color: #0098ff
+      color: $cmblue
       text-decoration: none
       font-weight: bold
       font-size: 16px

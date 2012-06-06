@@ -1,13 +1,10 @@
-@import compass/css3
-@import compass/css3/border-radius
-@import compass/css3/font-face
-@include font-face("Clarendon BT Roman", font-files("clarendon_bt_roman.ttf", truetype))
+@import cm_base
 
 #qpage
   padding: 25px
   .byline
     font-family: "Clarendon BT Roman"
-    color: #D8415E
+    color: $cmred
   .qimage
     float: left
     padding-top: 15px
@@ -19,7 +16,7 @@
       font-size: 20px
       padding: 10px 0px
       font-weight: bold
-      color: #0098FF
+      color: $cmblue
     .buttons
       float: right
       padding-top: 0px
@@ -54,7 +51,7 @@
         li
           padding: 10px 5px
       a
-        color: #0098FF
+        color: $cmblue
         text-decoration: none
         &:hover
           text-decoration: underline

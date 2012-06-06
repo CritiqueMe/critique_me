@@ -129,7 +129,11 @@ init_mc_answer_boxes = ->
       if $(this).val() == default_mc_answer_text_str
         $(this).val('')
 
-
+init_more_info_lightbox = ->
+  $('#newq_subhdr img').mouseover ->
+    $('#newq_lightbox').fadeIn()
+  .mouseout ->
+    $('#newq_lightbox').fadeOut()
 
 init_page = ->
   init_public_private()
@@ -138,7 +142,7 @@ init_page = ->
   init_remove_answer_links()
   init_question_text_box()
   init_mc_answer_boxes()
-
+  init_more_info_lightbox()
 
 $ ->
   init_page()
