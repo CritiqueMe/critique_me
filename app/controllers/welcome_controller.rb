@@ -9,6 +9,11 @@ class WelcomeController < ApplicationController
     redirect_to welcome_path
   end
 
+  def canned_finished
+    increment_page
+    redirect_to welcome_path
+  end
+
   def sb_prepare_page_type_variables
     if @path_page.page_type == "answer"
       if session[:clicked_question_id]

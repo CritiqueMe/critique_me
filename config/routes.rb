@@ -38,7 +38,8 @@ CritiqueMe::Application.routes.draw do
 
   match '/answer/new',                      :to => 'answers#new',               :as => :new_answer
 
-  match '/path_answer',                      :to => 'welcome#path_answer',      :as => :path_answer
+  match '/path_answer',                     :to => 'welcome#path_answer',       :as => :path_answer
+  match '/path_canned_finished',            :to => 'welcome#canned_finished',   :as => :path_canned_finished
 
   match '/share/:question_id',              :to => 'share#index',               :as => :share
   match '/manual_share',                    :to => 'share#manual_share',        :as => :manual_share

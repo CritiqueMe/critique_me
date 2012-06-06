@@ -95,7 +95,7 @@
 
 
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
-#post_share_dialog{:data => {:finish_path => new_question_path}}
+#post_share_dialog{:data => {:finish_path => params['controller'] == 'welcome' ? path_canned_finished_path : new_question_path}}
 
 - if @canned_questions
   #canned_questions= render :partial => "canned/canned_questions"
@@ -113,3 +113,5 @@
   - elsif @user && @user.answers.where(:question_id => @question.id).count == 0 && @user.flagged_questions.where(:question_id => @question.id).count == 0
     -# show answer dialog if user hasn't answered it yet and hasn't flagged it already
     = javascript_include_tag "questions/show_answer"
+  - elsif params['controller'] == 'welcome' && @user.answers.where(:question_id => @question.id).count > 0
+    = javascript_include_tag "questions/show_canned"
