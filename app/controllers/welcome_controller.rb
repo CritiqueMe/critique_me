@@ -50,4 +50,8 @@ class WelcomeController < ApplicationController
     json = JSON.parse(response)
     answer.update_attribute :fb_answer_id, json["id"]
   end
+
+  def default_experiment_delivery_url
+    new_question_path
+  end
 end

@@ -1,12 +1,8 @@
 init_single_questions = ->
   csrf_token = $('#all_content').data('csrf_token')
 
-  $('#single_questions li').mouseover () ->
-    $(this).addClass("hover")
-  .mouseleave () ->
-    $(this).removeClass("hover")
-  .click () ->
-    dqid = $(this).data("default_question_id")
+  $('.askq a').click ->
+    dqid = $(this).parent().data("default_question_id")
     $('#share_dialog').dialog
       title: "Share Your Question With Friends"
       resizable: false
@@ -25,15 +21,6 @@ init_single_questions = ->
       success: (data) ->
         $('#share_dialog').html(data)
     })
-
-init_questionnaires = ->
-  $('#questionnaires li.q').mouseover () ->
-    $(this).addClass("hover")
-  .mouseleave () ->
-    $(this).removeClass("hover")
-  .click () ->
-    qid = $(this).data("questionnaire_id")
-    window.location = "/questionnaire/" + qid
 
 
 inject_pagination_blurb = ->
@@ -55,7 +42,6 @@ monitor_category_changer = ->
 
 $ ->
   init_single_questions()
-  init_questionnaires()
 
   inject_pagination_blurb()
   monitor_category_changer()

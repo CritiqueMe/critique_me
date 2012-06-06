@@ -23,7 +23,8 @@
               %td
                 .qtext= dq.question_text
                 .cat Category: #{link_to dq.category.name, category_path(dq.category_id)}
-              %td.askq= link_to "Ask this question", '#'
+              %td.askq{:data => {:default_question_id => dq.id}}
+                = link_to "Ask this question", '#'
               %td.last_asked= dq.last_asked_at ? time_ago_in_words(dq.last_asked_at) + " ago" : "never"
         %tfoot
           %tr
