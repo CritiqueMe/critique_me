@@ -1,6 +1,5 @@
 class PublicPrivateInput < Formtastic::Inputs::BooleanInput
   def to_html
-    Rails.logger.info "***** #{checked_value} -- #{checked?}"
     input_wrapping do
       label_html <<
           template.check_box_tag("#{object_name}[#{method}]", checked_value, checked?, input_html_options) +

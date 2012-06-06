@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: a3d7f3ab6cf45fad4c9c08b54a13fa584598c0e8
-  ref: critique_me
+  revision: 7fba60b9d2656ab5a54afb96b29c97ba2ddcd087
+  branch: critique_me
   specs:
     seed_blocks (0.0.1)
       airbrake
@@ -82,9 +82,9 @@ GEM
     ansi (1.4.2)
     arel (2.2.3)
     awesome_print (1.0.2)
-    bson (1.6.3)
-    bson_ext (1.6.3)
-      bson (~> 1.6.3)
+    bson (1.6.4)
+    bson_ext (1.6.4)
+      bson (~> 1.6.4)
     builder (3.0.0)
     carrierwave (0.5.8)
       activesupport (~> 3.0)
@@ -146,7 +146,7 @@ GEM
       nokogiri (~> 1.5.0)
       ruby-hmac
     formatador (0.2.3)
-    formtastic (2.2.0)
+    formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.9)
     geoip (1.1.2)

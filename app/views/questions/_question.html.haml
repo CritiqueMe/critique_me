@@ -95,7 +95,7 @@
 
 
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
-#post_share_dialog{:data => {:finish_path => @user == @question.user ? dashboard_path : new_question_path}}
+#post_share_dialog{:data => {:finish_path => new_question_path}}
 
 - if @canned_questions
   #canned_questions= render :partial => "canned/canned_questions"

@@ -99,7 +99,6 @@ class QuestionsController < ApplicationController
         @question.multiple_choice_options.build
       end
       @fb_share_template = FbShareTemplate.active.random.first
-      Rails.logger.info "***** #{@question.multiple_choice_options.length}"
     end
   end
 
