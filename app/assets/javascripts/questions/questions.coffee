@@ -55,7 +55,7 @@ num_existing_answers = () ->
 
 
 update_public_private = (chosen) ->
-  $('#question_post_to_wall').attr 'checked', chosen
+  $('#question_public').attr 'checked', chosen
   if chosen
     $('.pubpriv #priv').removeClass('selected')
     $('.pubpriv #pub').addClass('selected')
@@ -66,7 +66,7 @@ update_public_private = (chosen) ->
     $('#public_preview').slideUp()
 
 init_public_private = ->
-  chosen = $('#question_post_to_wall').attr('checked')
+  chosen = $('#question_public').attr('checked')
   update_public_private(chosen)
 
   $('.pubpriv #pub a').click ->

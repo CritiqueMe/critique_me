@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604031148) do
+ActiveRecord::Schema.define(:version => 20120607225650) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -262,6 +262,7 @@ ActiveRecord::Schema.define(:version => 20120604031148) do
     t.string   "fb_question_id"
     t.integer  "canned_question_id"
     t.boolean  "active",              :default => true
+    t.boolean  "public",              :default => false
   end
 
   create_table "security_codes", :force => true do |t|

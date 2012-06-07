@@ -1,7 +1,7 @@
 = semantic_form_for @question, :url => form_url, :multipart => true do |f|
   = f.inputs do
     = f.input :default_question_id, :as => :hidden
-    = f.input :post_to_wall, :as => :public_private, :label => "Settings"
+    = f.input :public, :as => :public_private, :label => "Settings"
     = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Question"
     = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe
     = f.input :question_type, :as => :radio, :collection => [["Multiple Choice", 0], ["Yes or No", 1], ["Open Ended", 2]], :label => "Type"

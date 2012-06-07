@@ -7,22 +7,22 @@
     #hdr2 Get anonymous, honest answers to your burning questions.
     %ul#circles
       %li
-        = image_tag "path/grey_circle.png"
+        = image_tag "path/question_marks.png"
         %br
         %br
         You ask 5 or more friends a question.  Any question.
       %li
-        = image_tag "path/grey_circle.png"
+        = image_tag "path/speech_bubbles.png"
         %br
         %br
         They answer anonymously, so you can't tell who said what.
       %li
-        = image_tag "path/grey_circle.png"
+        = image_tag "path/lightbulb.png"
         %br
         %br
-        You get the truth, plain and simple.
+        You get the whole truth, from people you know.
     #hdr3 Are you ready for the truth?
-    #continue= link_to image_tag("path/fb_continue.png"), fb_perms_redirect_url('email,publish_stream,publish_actions')
+    #continue= link_to image_tag("path/sign_up_its_free.png"), fb_perms_redirect_url('email,publish_stream,publish_actions')
     #qs_today
       #headline Questions asked today
       %table
@@ -34,3 +34,6 @@
                 - if q.photo.url
                   .qimg= image_tag q.photo.mini_thumb.url
                 .qago= time_ago_in_words(q.created_at) + " ago"
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "path_pages/register/cm_landing1"

@@ -119,9 +119,9 @@ init_fb_friend_list = ->
 
   $('#send_to_friends_form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#select_friends').hide()
-    $('#friend_form_spinner').fadeIn()
+    $('#friend_form_spinner').addClass('inliner')
   ).bind("ajax:complete", (evt, xhr, status) ->
-    $('#friend_form_spinner').hide()
+    $('#friend_form_spinner').removeClass('inliner')
     # remove all already-selected friends from the list
     $('.friend_check').each (elem) ->
       $(this).parent().parent().remove() if $(this).is(':checked')

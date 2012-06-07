@@ -1,18 +1,20 @@
+@import cm_base
+
 .qpreview
   font-size: 12px
   .qimage
-    float: left
-    padding: 15px 15px 0px 0px
+    padding: 15px 15px 15px 0px
   .qcontent
-    float: left
     .qtext
-      font-size: 1.4em
-      font-weight: bold
+      font-size: 24px
+      font-family: "Clarendon BT Roman"
+      color: $cmred
       padding-bottom: 5px
+      text-align: center
       .edit
         a
           font-size: .6em
-          color: #6778b0
+          color: $cmblue
     .qanswers
       textarea
         height: 40px
@@ -21,8 +23,12 @@
 
   #box_header
     text-transform: uppercase
-    font-weight: bold
     text-align: right
+    padding-top: 15px
+    font-family: "Clarendon BT Roman"
+    color: $cmdarkgrey
+    #step2
+      color: $cmred
   #invite_box
     border-top: 1px solid #cbcbcb
     border-left: 1px solid #cbcbcb
@@ -33,12 +39,14 @@
         list-style: none
         padding-left: 0px
         margin-bottom: 0px
+        margin-top: 0px
         li
           line-height: 36px
           font-size: 16px
           background: #eeeff4
           border-bottom: 1px solid #cbcbcb
           border-right: 1px solid #cbcbcb
+          font-family: "Clarendon BT Roman"
           &.selected
             background: white
             border-right: 1px solid white
@@ -82,6 +90,7 @@
           ol
             li
               list-style: none
+              margin: 5px 0px
               label
                 padding-right: 15px
                 line-height: 40px
@@ -96,6 +105,18 @@
                   padding-left: 10px
               input
                 width: 250px
+                height: 30px
+                border: 3px solid #c4c9cc
+                color: #aaafb2
+                font-family: 'helvetica neue', helvetica, arial, sans-serif
+                font-size: 16px
+                padding: 5px 10px
+                margin-left: 4px
+                @include border-radius(7px)
+                -moz-border-top-colors: $textarea_border_grad
+                -moz-border-left-colors: $textarea_border_grad
+                -moz-border-right-colors: $textarea_border_grad
+                -moz-border-bottom-colors: $textarea_border_grad
               &.error
                 padding-bottom: 0.8em
           fieldset
@@ -105,6 +126,18 @@
               margin-left: 140px
               ol
                 padding: 0px
+                margin: 0px
+              input
+                font-family: "Clarendon BT Roman"
+                color: white
+                font-size: 14px
+                padding: 10px 30px
+                border: 1px solid #007acc
+                @include background-image(linear-gradient(#47a8eb, #1688d6))
+                @include border-radius(7px)
+                cursor: pointer
+                width: auto
+                height: 45px
 
         .provider
           text-transform: capitalize
@@ -112,6 +145,11 @@
             text-transform: none
         .error_cntr
           margin: 15px 0px 0px
+          color: $cmred
+          font-family: "Clarendon BT Roman"
+          text-align: center
+          li
+            padding-bottom: 0px !important
         #email_entry
           ol
             padding-left: 0px
@@ -122,8 +160,21 @@
               border: 1px solid #cbcbcb
               height: 215px
               overflow-y: scroll
+              table
+                width: 100%
             .buttons
               margin-left: 0px
+              input
+                font-family: "Clarendon BT Roman"
+                color: white
+                font-size: 14px
+                padding: 10px 30px
+                border: 1px solid #007acc
+                @include background-image(linear-gradient(#47a8eb, #1688d6))
+                @include border-radius(7px)
+                cursor: pointer
+                width: auto
+                height: 45px
         #contact_form_spinner
           display: none
           text-align: center
@@ -133,13 +184,16 @@
         #fb_friend_select
           .friends
             border: 1px solid #cbcbcb
-            height: 215px
+            height: 200px
             overflow-y: scroll
             line-height: 35px
             font-size: 1.4em
             img
               width: 35px
               display: block
+          .selectors
+            a
+              color: $cmblue
           .buttons
             margin-left: 0px
             width: auto
@@ -148,9 +202,26 @@
             display: none
             margin-top: 12px
             margin-left: 10px
-            float: left
+            &.inliner
+              display: inline-block
           #post_to_fb_spinner
             display: none
+        #fb_friend_list
+          .buttons
+            width: 100%
+            text-align: center
+            input
+              font-family: "Clarendon BT Roman"
+              color: white
+              font-size: 14px
+              padding: 10px 30px
+              border: 1px solid #007acc
+              @include background-image(linear-gradient(#47a8eb, #1688d6))
+              @include border-radius(7px)
+              cursor: pointer
+          .friends
+            table
+              width: 100%
         &#manual
           .inputs
             padding-top: 10px
@@ -159,25 +230,69 @@
           input
             width: 250px
             float: left
+            height: 30px
+            border: 3px solid #c4c9cc
+            color: #aaafb2
+            font-family: 'helvetica neue', helvetica, arial, sans-serif
+            font-size: 16px
+            padding: 5px 10px
+            margin-left: 4px
+            @include border-radius(7px)
+            -moz-border-top-colors: $textarea_border_grad
+            -moz-border-left-colors: $textarea_border_grad
+            -moz-border-right-colors: $textarea_border_grad
+            -moz-border-bottom-colors: $textarea_border_grad
           .buttons
             float: left
             margin-left: 15px
             padding-top: 0px
             input
               width: auto
+              font-family: "Clarendon BT Roman"
+              color: white
+              font-size: 14px
+              padding: 10px 30px
+              border: 1px solid #007acc
+              @include background-image(linear-gradient(#47a8eb, #1688d6))
+              @include border-radius(7px)
+              cursor: pointer
+              height: 45px
           #manual_spinner
             display: none
             padding: 10px
             float: left
 
 #oops_dlg
+  text-align: center
+  h3
+    font-family: "Clarendon BT Roman"
+    color: $cmred
+    font-size: 48px
+    font-weight: 300
+    margin: 15px 0px
   #blurb
-    padding: 10px 0px 15px
+    padding: 10px 0px 25px
+    font-size: 16px
     b
       font-weight: bold
   #oops_button
     text-align: center
+    line-height: 45px
+    a
+      font-family: "Clarendon BT Roman"
+      color: white
+      font-size: 14px
+      padding: 10px 30px
+      border: 1px solid #007acc
+      @include background-image(linear-gradient(#47a8eb, #1688d6))
+      @include border-radius(7px)
+      cursor: pointer
 
+
+.even
+  background: #f8f8f8
+.odd
+  background: #ffffff
 
 #thanks_dlg
   margin-top: 200px

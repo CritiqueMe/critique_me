@@ -88,7 +88,7 @@ class QuestionsController < ApplicationController
       @question.multiple_choice_options.delete_all unless @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
       @question.save
       if @question.valid?
-        post_question_to_open_graph(@question) if @question.post_to_wall == "1"
+        post_question_to_open_graph(@question) if @question.public?
         @question.default_question.update_attribute :last_asked_at, Time.now if @question.default_question
         #redirect_to share_path(@question)
         flash[:show_share] = true
@@ -105,7 +105,7 @@ class QuestionsController < ApplicationController
         })
       end
     else
-      @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => false)
+      @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice))
       2.times do
         @question.multiple_choice_options.build
       end
