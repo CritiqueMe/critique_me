@@ -1,16 +1,7 @@
 = semantic_form_for @question, :url => form_url, :multipart => true do |f|
   = f.inputs do
+    = f.input :default_question_id, :as => :hidden
     = f.input :post_to_wall, :as => :public_private, :label => "Settings"
-
-    /
-      - if valid_access_token?
-        = f.input :post_to_wall, :as => :boolean, :label => "Settings"
-      - else
-        %li#sign_in_input
-          %label
-          = oauth_link_tag "Sign in to Facebook to post to your Timeline"
-
-    =# f.input :category, :prompt => "Choose a category", :collection => Category.for_select
     = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Question"
     = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe
     = f.input :question_type, :as => :radio, :collection => [["Multiple Choice", 0], ["Yes or No", 1], ["Open Ended", 2]], :label => "Type"
@@ -21,6 +12,7 @@
     #answers
       - curr_char = 'A'
       = f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
+        = g.input :default_multiple_choice_option_id, :as => :hidden
         = g.input :answer_text, :as => :string, :label => curr_char, :wrapper_html => {:class => 'mchoice'}
         .minus_button= link_to image_tag("/assets/questions/minus_button.png"), '#'
         - curr_char = curr_char.succ

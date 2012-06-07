@@ -33,14 +33,19 @@ class Question < ActiveRecord::Base
 
   attr_accessor :post_to_wall
 
-  def self.create_from_default_question(dq, user)
-    q = Question.create({
+  def self.build_from_default_question(dq, user)
+    Question.new({
         :user_id => user.id,
         :question_type => dq.question_type,
         :question_text => dq.question_text,
         :category_id => dq.category_id,
         :default_question_id => dq.id
     })
+  end
+
+  def self.create_from_default_question(dq, user)
+    q = build_from_default_question(dq, user)
+    q.save
     dq.default_multiple_choice_options.each do |o|
       MultipleChoiceOption.create({
           :question_id => q.id,

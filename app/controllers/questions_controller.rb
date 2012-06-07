@@ -81,7 +81,7 @@ class QuestionsController < ApplicationController
       params['question']['question_text'] = '' if params['question']['question_text'] == @default_question_text
       params['question']['multiple_choice_options_attributes'].each do |k,v|
         v['answer_text'] = '' if v['answer_text'] == @default_mc_answer_text
-      end
+      end if params['question']['multiple_choice_options_attributes']
 
       @question = Question.new(params['question'])
       @question.user_id = @user.id
@@ -89,9 +89,20 @@ class QuestionsController < ApplicationController
       @question.save
       if @question.valid?
         post_question_to_open_graph(@question) if @question.post_to_wall == "1"
+        @question.default_question.update_attribute :last_asked_at, Time.now if @question.default_question
         #redirect_to share_path(@question)
         flash[:show_share] = true
         redirect_to question_path(@question)
+      end
+    elsif params['default_question_id']
+      dq = DefaultQuestion.find(params['default_question_id'])
+      @question = Question.build_from_default_question(dq, @user)
+      dq.default_multiple_choice_options.each do |mco|
+        @question.multiple_choice_options.build({
+            :question_id => @question.id,
+            :answer_text => mco.answer_text,
+            :default_multiple_choice_option_id => mco.id
+        })
       end
     else
       @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice), :post_to_wall => false)
