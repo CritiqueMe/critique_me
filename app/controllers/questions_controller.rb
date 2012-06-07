@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 
   before_filter :enforce_login, :except => :question
   before_filter :get_fb_access_token, :except => :question
+  skip_before_filter :verify_authenticity_token, :only => :choose_question
 
   def question
     @question = Question.find(params['id'])
