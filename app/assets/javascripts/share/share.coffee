@@ -71,13 +71,14 @@ pop_canned_questions_dialog = (content) ->
   # hide the sharer dialog, show the thanks or oops dialog
   $('#share_dialog').dialog('close')
   $('#post_share_dialog').dialog
+    title: "Answer fun questions about your friends and find out what they said about you."
     resizable: false
     draggable: true
     modal: true
     show: 'fade'
     hide: 'fade'
     width: 800
-    height: 550
+    height: 440
     position: 'center'
     dialogClass: 'share-modal'
   .html(content)

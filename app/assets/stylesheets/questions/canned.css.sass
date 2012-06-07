@@ -1,4 +1,4 @@
-@import "compass"
+@import cm_base
 
 #before_see_answer, #see_answer
   text-align: center
@@ -23,33 +23,25 @@
   width: 750px
   margin: 0px auto
   display: none
+  color: $cmdarkgrey
   .qtext
-    border: 2px solid #666
-    padding: 25px
-    width: 90%
-    margin: 0px auto
     text-align: center
-    font-size: 14px
-    font-weight: bold
-  .skip
-    width: 98%
-    text-align: right
-    padding: 10px 0px
-    a
-      color: #6778B0
+    font-size: 24px
+    font-family: "Clarendon BT Roman"
+    padding-top: 20px
   .choices
     text-align: center
     position: relative
     #qform
-      position: absolute
-      top: -25px
-      left: 10px
+      text-align: center
+      padding-top: 10px
+      font-size: 12px
+      font-weight: bold
     ol
       li
         width: 150px
         margin: 10px
         height: 205px
-        border: 2px solid #666
         text-align: center
         display: inline-block
         vertical-align: middle
@@ -57,35 +49,55 @@
           width: 150px
           margin: 0px auto
           &.image
-            padding: 10px 0px
-            background: #ddd
+            padding: 2px
             width: 130px
             margin-top: 10px
-            height: 103px
+            height: 107px
+            border: 1px solid #ececec
+            border-top: 0px
+            @include single-box-shadow(#CCCCCC, 0, 2px, 1px)
             .wrap
               line-height: 103px
               width: auto
+              padding: 2px
+              background: #f0f0f0
               img
                 max-height: 100px
                 display: inline-block
                 vertical-align: middle
           &.name
-            font-weight: bold
-            height: 17px
+            font-weight: 100
+            font-size: 16px
+            height: 25px
             margin: 5px 0px 15px
             overflow-y: hidden
           &.button
             height: 40px
             margin-top: 10px
             a
-              width: auto
-              padding: 10px 25px
-              border: 1px solid #BBBBBB
-              text-decoration: none
-              @include border-radius(5px, 5px)
-              @include background-image(linear-gradient(#d2d2d2, white))
+              font-family: "Clarendon BT Roman"
+              color: white
+              font-size: 14px
+              padding: 10px 30px
+              border: 1px solid #007acc
+              @include background-image(linear-gradient(#47a8eb, #1688d6))
+              @include border-radius(7px)
+              cursor: pointer
   .creator
+    position: absolute
+    width: 100%
+    bottom: 10px
+    left: 0px
     text-align: center
-    padding-bottom: 20px
+    font-size: 12px
+    font-weight: bold
     a
-      color: #6778B0
+      color: $cmblue
+  .skip
+    position: absolute
+    bottom: 10px
+    right: 10px
+    font-size: 12px
+    font-weight: bold
+    a
+      color: $cmblue

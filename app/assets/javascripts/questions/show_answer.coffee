@@ -19,13 +19,14 @@ show_answer_dialog = (qid) ->
     if $('#canned_questions').length > 0
       # show canned questions
       $('#canned_questions').dialog
+        title: "Answer fun questions about your friends and find out what they said about you."
         resizable: false
         draggable: true
         modal: true
         show: 'fade'
         hide: 'fade'
         width: 800
-        height: 500
+        height: 440
         position: 'center'
         dialogClass: 'share-modal'
     else

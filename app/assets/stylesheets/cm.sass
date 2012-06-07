@@ -74,7 +74,7 @@ body
       color: $cmred
 
     #newq_top
-      color: #5c6266
+      color: $cmdarkgrey
       font-size: 20px
       width: 800px
       margin: 0px auto
@@ -228,7 +228,7 @@ body
           margin-top: 10px
           li
             list-style-type: none
-            color: #5c6266
+            color: $cmdarkgrey
             font-size: 12px
             border-top: 1px solid #c4c8cc
             padding: 10px 0px
@@ -293,7 +293,7 @@ body
           @include background-image(linear-gradient(#ffffff, #f0f0f0))
           border: 1px solid #c2c8cc
         a
-          color: #5c6266
+          color: $cmdarkgrey
           font-size: 16px
           font-weight: bold
           text-decoration: none
@@ -326,7 +326,7 @@ body
       #blurb
         display: inline-block
         padding: 0px 15px 0px 5px
-        color: #5c6266
+        color: $cmdarkgrey
         font-size: 12px
       #filefield
         display: inline-block
@@ -419,7 +419,7 @@ body
       height: 25px
       label
         font-size: 16px
-        color: #5c6266
+        color: $cmdarkgrey
         padding: 8px 0px 0px 2px
         width: 18px !important
         text-align: left
@@ -491,7 +491,7 @@ body
     padding-top: 15px
     #hdr
       font-size: 16px
-      color: #5c6266
+      color: $cmdarkgrey
       padding-bottom: 10px
     #fakefb
       font-family: "lucida grande",tahoma,verdana,arial,sans-serif
@@ -539,7 +539,7 @@ body
     th
       font-family: "Clarendon BT Roman"
       font-size: 12px
-      color: #5c6266
+      color: $cmdarkgrey
       border-bottom: 1px solid #c4c8cc
       font-weight: normal
       padding: 25px 10px 10px
@@ -547,7 +547,7 @@ body
   tbody
     td
       padding: 15px 10px 25px
-      color: #5c6266
+      color: $cmdarkgrey
       border-top: 1px solid #c4c8cc
       border-bottom: 1px solid #c4c8cc
       .qtext
@@ -584,7 +584,7 @@ body
         color: #c4c9cc
       .curr_page
         padding: 0px 20px
-        color: #5c6266
+        color: $cmdarkgrey
       a
         color: #0083cc
         font-weight: bold
@@ -693,6 +693,26 @@ body
         text-align: center
         width: 100%
 
+
+// dialogs
+.ui-dialog
+  .ui-dialog-titlebar
+    background: transparent
+    border: 0px
+    font-size: 12px
+    color: $cmdarkgrey
+    font-weight: bold
+    .ui-dialog-titlebar-close
+      right: 1em
+      .ui-icon
+        background-image: image-url('questions/dlg_close.jpg')
+        background-position: center
+        height: 25px
+        width: 24px
+      &.ui-state-hover
+        border: 0px
+        background: none
+        padding: 1px
 
 
 
