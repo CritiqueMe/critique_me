@@ -383,6 +383,7 @@ body
             opacity: 0
             width: 21px
             height: 21px
+            cursor: pointer
           &.radio_selected
             background: image-url('questions/radio_on.png') left center no-repeat
 
@@ -615,11 +616,11 @@ body
     position: absolute
     left: 15px
     top: 10px
-  #twitter
+  #footer_twitter
     position: absolute
     left: 150px
     top: 10px
-  #facebook
+  #footer_facebook
     position: absolute
     left: 200px
     top: 10px
@@ -702,11 +703,19 @@ body
   .ui-dialog-titlebar
     background: transparent
     border: 0px
-    font-size: 12px
-    color: $cmdarkgrey
-    font-weight: bold
+    font-size: 14px
+    color: $cmred
+    font-family: "Clarendon BT Roman"
+    font-weight: normal
+    width: 60%
+    margin: 0px auto
+    text-align: center
+    position: static !important
+    .ui-dialog-title
+      float: none
     .ui-dialog-titlebar-close
-      right: 1em
+      right: 10px
+      top: 12px
       .ui-icon
         background-image: image-url('questions/dlg_close.jpg')
         background-position: center

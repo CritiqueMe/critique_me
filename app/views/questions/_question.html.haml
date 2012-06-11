@@ -10,8 +10,10 @@
     %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"}
 
 - content_for :extra_css do
+  = stylesheet_link_tag "questions/canned"
   = stylesheet_link_tag "questions/qpage"
   = stylesheet_link_tag "share/share"
+
 
 
 
@@ -58,10 +60,10 @@
             - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
               %ol
                 %li
-                  %b True
+                  %b Yes
                   %em (#{q.answers.where(:true_false_answer => true).count})
                 %li
-                  %b False
+                  %b No
                   %em (#{q.answers.where(:true_false_answer => false).count})
             - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
               %ol
@@ -76,7 +78,7 @@
                 - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
                   = a.open_text_answer
                 - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
-                  = a.true_false_answer
+                  = a.true_false_answer ? "Yes" : "No"
                 - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
                   = a.multiple_choice_option.answer_text
                 - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)

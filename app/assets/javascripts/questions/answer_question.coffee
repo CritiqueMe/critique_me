@@ -9,7 +9,7 @@ init_post_answer_button = ->
       show: 'fade'
       hide: 'fade'
       width: 650
-      height: 400
+      height: 450
       dialogClass: 'share-modal'
     $('.qform answer').bind("ajax:beforeSend", (evt, xhr, settings) ->
       $('#dlg_content').hide()

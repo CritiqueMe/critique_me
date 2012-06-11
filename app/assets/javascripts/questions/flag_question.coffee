@@ -6,7 +6,7 @@ $ ->
     show: 'fade'
     hide: 'fade'
     width: 600
-    height: 300
+    height: 330
     title: "Flag Question"
     position: 'center'
     dialogClass: 'share-modal'

@@ -1,13 +1,14 @@
 show_answer_dialog = (qid) ->
+  t = $('#answer_q'+qid).data('title')
   $('#answer_q'+qid).dialog
-    title: "Answer a Question"
+    title: t
     resizable: false
     draggable: true
     modal: true
     show: 'fade'
     hide: 'fade'
     width: 650
-    height: 400
+    height: 450
     dialogClass: 'share-modal'
   $('.qform form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#dlg_content').hide()
@@ -46,7 +47,7 @@ show_answer_dialog = (qid) ->
 
 init_flag_question_button = ->
   $('.dlg_flagger a').click ->
-    answer_dlg = $(this).parent().parent().parent().parent().find('.answer_dialog')
+    answer_dlg = $(this).parent().parent().parent().parent().parent().find('.answer_dialog')
     qid = answer_dlg.data('question_id')
     answer_dlg.dialog('close')
     $('#flag_dlg_'+qid).dialog("open")
@@ -54,8 +55,21 @@ init_flag_question_button = ->
     return false
 
 
+update_tf_radios = ->
+  $('#answer_true_false_answer_input input[type=radio]').each ->
+    if $(this).attr('checked') == 'checked'
+      $(this).parent().addClass('radio_selected')
+    else
+      $(this).parent().removeClass('radio_selected')
+
+init_tf_radios = ->
+  update_tf_radios()
+  $('#answer_true_false_answer_input input[type=radio]').change ->
+    update_tf_radios()
+
 
 $ ->
   default_qid = $('#share_dialog').data('question_id')
   show_answer_dialog(default_qid)
   init_flag_question_button()
+  init_tf_radios()

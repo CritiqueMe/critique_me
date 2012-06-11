@@ -15,9 +15,9 @@
               %label= a
           - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
             = radio_button_tag 'tf', 0, false, :disabled => true
-            %label True
+            %label Yes
             = radio_button_tag 'tf', 0, false, :disabled => true
-            %label False
+            %label No
           - elsif @question.question_type == Question::QUESTION_TYPES.index(:open_text)
             =# text_area_tag 'ot', '', :disabled => true
 
