@@ -3,7 +3,7 @@
     = link_to image_tag("logo_white.png"), dashboard_path
     #tagline Ask the hard questions
   %ol#nav
-    - if @user.try(:id)
+    - if @user && @user.id
       %li#dummy &nbsp;
       %li{:class => params['controller'] == 'dashboard' && params['action'] == 'index' ? 'selected' : '' }
         = link_to "Dashboard", dashboard_path
