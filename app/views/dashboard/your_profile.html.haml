@@ -6,13 +6,10 @@
   .inner_content
     .inner_nav
       .over.fuzzy#your_profile My Profile
-      .under.fuzzy#privacy_options= link_to "Privacy Options", privacy_options_path
-      .under.fuzzy#change_pass= link_to "Change Password", change_password_path
-
 
     .qcontainer.fuzzy
       = show_flash(flash)
       %fieldset.form_box
         .hdr
-          %p Profile Information
+          %p My Private Information
         = render :partial => "user_form"

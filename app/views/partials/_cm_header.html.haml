@@ -13,3 +13,5 @@
         = link_to "My Profile", your_profile_path
     - elsif params['action'] != 'sign_in'
       %li.button= link_to "Log In", sign_in_path
+    - else
+      %li.button= link_to "Sign Up", welcome_path

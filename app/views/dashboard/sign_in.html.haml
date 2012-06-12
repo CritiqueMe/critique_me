@@ -1,25 +1,24 @@
 - content_for :extra_css do
-  = stylesheet_link_tag "dashboard/sign_in"
+  = stylesheet_link_tag "dashboard/cm_sign_in"
 
 .cm_content
   .inner_content
     .qcontainer.fuzzy.all_round.gateway#signup
-      .header_info Not a member?
-      #signup_button.formtastic
-        .actions
-          %ul
-            %li.action= button_to "Sign Up Now!", welcome_path
-      .header_info Sign in with Facebook...
-      #fb_button= link_to image_tag("/assets/welcome/login_or_signup_with_fb.jpg"), fb_perms_redirect_url('email,publish_stream,publish_actions')
-      .header_info ... or with your email address and password:
-      = semantic_form_for @user, :url => sign_in_path do |f|
-        = f.inputs do
-          = f.input :email, :label => "Email Address"
-          = f.input :password
-          %span= link_to "Forgot Password?", forgot_password_path
-          .clearer
-          - if flash[:sign_in_error]
-            .error.inline-errors= flash[:sign_in_error]
-        = f.actions do
-          = f.action :submit, :label => "Sign In"
+      .header_info Sign in with Facebook:
+      #continue= link_to image_tag("path/sign_up_its_free.png"), fb_perms_redirect_url('email,publish_stream,publish_actions')
 
+      - if Rails.env.development?
+        .header_info ... or with your email address and password:
+        = semantic_form_for @user, :url => sign_in_path do |f|
+          = f.inputs do
+            = f.input :email, :label => "Email Address"
+            = f.input :password
+            %span= link_to "Forgot Password?", forgot_password_path
+            .clearer
+            - if flash[:sign_in_error]
+              .error.inline-errors= flash[:sign_in_error]
+          = f.actions do
+            = f.action :submit, :label => "Sign In"
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "dashboard/sign_in"

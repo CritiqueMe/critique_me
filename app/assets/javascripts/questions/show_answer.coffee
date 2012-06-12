@@ -55,17 +55,14 @@ init_flag_question_button = ->
     return false
 
 
-update_tf_radios = ->
-  $('#answer_true_false_answer_input input[type=radio]').each ->
-    if $(this).attr('checked') == 'checked'
-      $(this).parent().addClass('radio_selected')
-    else
-      $(this).parent().removeClass('radio_selected')
-
 init_tf_radios = ->
-  update_tf_radios()
-  $('#answer_true_false_answer_input input[type=radio]').change ->
-    update_tf_radios()
+  $('.true_false_buttons a').click ->
+    if $(this).attr('id') == 'yes'
+      $('#answer_true_false_answer').val(true)
+    else
+      $('#answer_true_false_answer').val(false)
+    $('#new_answer').submit()
+    return false
 
 
 $ ->

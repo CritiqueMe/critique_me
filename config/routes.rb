@@ -50,6 +50,8 @@ CritiqueMe::Application.routes.draw do
   match '/about_us',                        :to => 'corporate#about_us',        :as => :about_us
   match '/faq',                             :to => 'corporate#faq',             :as => :faq
   match '/contact_us',                      :to => 'corporate#contact_us',      :as => :contact_us
+  match '/tos',                             :to => 'corporate#tos',             :as => :tos
+  match '/privacy',                         :to => 'corporate#privacy',         :as => :privacy
 
   # override the splash path
   match '/splash',                          :to => 'welcome#path',              :as => :splash

@@ -11,7 +11,12 @@
           - if question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
             = f.input :multiple_choice_option_id, :as => :select, :collection => question.multiple_choice_options, :member_label => :answer_text
           - elsif question.question_type == Question::QUESTION_TYPES.index(:true_false)
-            = f.input :true_false_answer, :as => :radio, :collection => ['Yes', 'No']
+            = f.input :true_false_answer, :as => :hidden
+            .true_false_buttons
+              %table
+                %tr
+                  %td= link_to "Yes", '#', :id => "yes"
+                  %td= link_to "No", '#', :id => "no"
           - elsif question.question_type == Question::QUESTION_TYPES.index(:open_text)
             = f.input :open_text_answer
           - elsif question.question_type == Question::QUESTION_TYPES.index(:canned_question)
@@ -36,7 +41,7 @@
         = f.actions do
           = f.input :question_id, :as => :hidden, :value => question.id
           = f.input :user_id, :as => :hidden
-          - unless question.question_type == Question::QUESTION_TYPES.index(:canned_question)
+          - unless question.question_type == Question::QUESTION_TYPES.index(:canned_question) || question.question_type == Question::QUESTION_TYPES.index(:true_false)
             = f.action :submit, :label => "Submit"
     .clear
     .answer_footer

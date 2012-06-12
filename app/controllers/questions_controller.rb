@@ -105,7 +105,7 @@ class QuestionsController < ApplicationController
         })
       end
     else
-      @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:multiple_choice))
+      @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:true_false))
       2.times do
         @question.multiple_choice_options.build
       end

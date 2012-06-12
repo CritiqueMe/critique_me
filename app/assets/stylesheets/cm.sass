@@ -109,8 +109,24 @@ body
       padding: 0px 0px 15px
       width: 800px
       margin: 0px auto
+      position: relative
       img
         vertical-align: bottom
+        cursor: help
+      #chooseq_lightbox
+        font-size: 12px
+        position: absolute
+        bottom: -60px
+        right: 115px
+        border: 2px solid black
+        background: white
+        display: none
+        padding: 10px 15px
+        width: 350px
+        z-index: 500
+        font-family: 'helvetica neue', helvetica, arial, sans-serif
+        color: $cmdarkgrey
+        @include border-radius(10px)
 
 
     .inner_content
@@ -601,7 +617,7 @@ body
   bottom: 0px
   height: 50px
   width: 100%
-  min-width: 900px
+  min-width: 1150px
   color: white
   @include background-image(linear-gradient(#1f2523, #222222))
   font-family: "Clarendon BT Roman"
@@ -729,11 +745,15 @@ body
 
 
 .flash
-  width: 100%
-  text-align: center
+  width: 90%
+  margin: 20px auto
   font-family: "Clarendon BT Roman"
-  color: $cmred
-  padding: 15px 0px 0px
+  text-align: center
+  color: $cmdarkgrey !important
+  p
+    margin: 5px 0px
+  .ui-icon
+    display: none
 
 .clearer, .clear
   clear: both

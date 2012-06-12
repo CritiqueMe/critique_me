@@ -5,5 +5,5 @@ class CannedQuestion < ActiveRecord::Base
   scope :active, where(:active => true)
 
   validates :category_id, :presence => true
-  validates :question_id, :presence => true
+  #validates :question_id, :presence => true
 end

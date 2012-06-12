@@ -40,8 +40,17 @@ monitor_category_changer = ->
   $('#category_id').change ->
     window.location = "/category/" + $(this).val()
 
+
+init_helper_mouseover = ->
+  $('#chooseq_top img').mouseover ->
+    $('#chooseq_lightbox').fadeIn()
+  .mouseout ->
+    $('#chooseq_lightbox').fadeOut()
+
+
 $ ->
   init_single_questions()
+  init_helper_mouseover()
 
   inject_pagination_blurb()
   monitor_category_changer()

@@ -4,7 +4,7 @@
     = f.input :public, :as => :public_private, :label => "Settings"
     = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Question"
     = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe
-    = f.input :question_type, :as => :radio, :collection => [["Multiple Choice", 0], ["Yes or No", 1], ["Open Ended", 2]], :label => "Type"
+    = f.input :question_type, :as => :radio, :collection => [["Yes or No", 1], ["Multiple Choice", 0], ["Open Ended", 2]], :label => "Type"
     .clearer
 
   #multiple_choice_answers.hidden
