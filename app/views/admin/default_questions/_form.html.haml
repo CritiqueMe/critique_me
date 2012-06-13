@@ -1,5 +1,7 @@
 = semantic_form_for @default_question, :url => url do |f|
   = f.inputs do
+    = f.input :priority
+    = f.input :featured
     = f.input :category, :prompt => "Choose a category", :collection => Category.for_select
     = f.input :question_text, :as => :string, :label => "Question"
     = f.input :question_type, :as => :question_type, :label => "Answer Format"

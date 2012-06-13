@@ -20,6 +20,8 @@ class DefaultQuestion < ActiveRecord::Base
 
   scope :active, where(:active => true)
   scope :not_in_questionnaire, where(:questionnaire_id => nil)
+  scope :prioritized, order('priority DESC')
+  scope :featured, where(:featured => true)
 
   private
 

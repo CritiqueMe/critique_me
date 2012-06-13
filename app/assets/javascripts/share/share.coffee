@@ -73,7 +73,6 @@ pop_canned_questions_dialog = (content) ->
 
   regex = new RegExp('canned_question')
 
-  console.log(regex.test(content))
   if regex.test(content)
     dlg_title = "Answer fun questions about your friends and find out what they said about you."
   else

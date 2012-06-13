@@ -24,16 +24,15 @@
     #hdr3 Are you ready for the truth?
     #continue= link_to image_tag("path/sign_up_its_free.png"), fb_perms_redirect_url('email,publish_stream,publish_actions')
     #qs_today
-      #headline Questions asked today
-      %table
-        %tbody
-          %tr
-            - @last_questions.each_with_index do |q,i|
-              %td{:class => i == 1 ? 'middle' : ''}
-                .qtext= q.question_text
-                - if q.photo.url
-                  .qimg= image_tag q.photo.mini_thumb.url
-                .qago= time_ago_in_words(q.created_at) + " ago"
+      #headline Recent Questions
+      #table_wrap
+        %table{:style => "width:#{@last_questions.length*260}px"}
+          %tbody
+            %tr
+              - @last_questions.each_with_index do |q,i|
+                %td{:class => i == 0 ? 'leftest' : (i == @last_questions.length-1 ? 'rightest' : '')}
+                  .qtext= q.question_text
+                  .qago= time_ago_in_words(q.last_asked_at || Time.now-13.days) + " ago"
 
 - content_for :extra_javascripts do
   = javascript_include_tag "path_pages/register/cm_landing1"

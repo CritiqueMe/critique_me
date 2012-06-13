@@ -30,6 +30,6 @@ class Admin::DefaultQuestionsController < Admin::SbAdminController
   protected
 
   def collection
-    @default_questions ||= end_of_association_chain.order('id DESC').paginate(:page => params[:page])
+    @default_questions ||= end_of_association_chain.order('priority DESC, id DESC').paginate(:page => params[:page])
   end
 end

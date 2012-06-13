@@ -1,5 +1,9 @@
 %tr{:class => cycle('odd', 'even')}
-  %td.question= link_to default_question.question_text, admin_default_question_path(default_question)
+  %td.priority= default_question.priority
+  %td.question
+    = link_to default_question.question_text, admin_default_question_path(default_question)
+    - if default_question.featured?
+      %sup Featured
   %td.qtype= Question::QUESTION_TYPES[default_question.question_type]
   %td.category= link_to default_question.category.name, admin_category_path(default_question.category)
   %td.questionnaire

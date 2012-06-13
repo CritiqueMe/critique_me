@@ -9,6 +9,7 @@
 %table.merchants.smoothness.highlighter
   %thead
     %tr
+      %th Priority
       %th Question
       %th Type
       %th Category
@@ -17,12 +18,12 @@
       %th &nbsp;
   %tfoot
     %tr
-      %td{:colspan => 6}
+      %td{:colspan => 7}
         = will_paginate
   %tbody
     - if @default_questions.empty?
       %tr
-        %td{:colspan => 6}
+        %td{:colspan => 7}
           %em No default questions found.
     - else
       = render @default_questions

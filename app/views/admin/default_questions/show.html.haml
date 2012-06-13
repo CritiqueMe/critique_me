@@ -12,6 +12,14 @@
 
 %ul.show_page
   %li
+    %label Priority:
+    %p= @default_question.priority
+    .clear
+  %li
+    %label Featured?
+    %p= @default_question.featured?
+    .clear
+  %li
     %label Category:
     %p
       - if @default_question.category

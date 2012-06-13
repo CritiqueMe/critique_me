@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
   def new_question
     @default_question_text = "Ex: Am I a talented singer?"
     @default_mc_answer_text = "Enter answer choice"
-    @last_five_questions = Question.order('created_at DESC').limit(5)
+    @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC').limit(5)
     @fb_share_template = FbShareTemplate.active.random.first
 
     if params['question']
@@ -147,7 +147,7 @@ class QuestionsController < ApplicationController
         redirect_to share_path(@question)
       end
     else
-      scope = DefaultQuestion.active.not_in_questionnaire
+      scope = DefaultQuestion.active.not_in_questionnaire.prioritized
       scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
       @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
     end

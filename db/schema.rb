@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612055909) do
+ActiveRecord::Schema.define(:version => 20120613193111) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(:version => 20120612055909) do
     t.boolean  "active",           :default => true
     t.text     "question_text"
     t.datetime "last_asked_at"
+    t.integer  "priority",         :default => 0
+    t.boolean  "featured",         :default => false
   end
 
   create_table "email_from_lines", :force => true do |t|

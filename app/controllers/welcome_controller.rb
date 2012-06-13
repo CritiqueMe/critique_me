@@ -63,7 +63,7 @@ class WelcomeController < ApplicationController
       end
 
     elsif @path_page.page_type == "register"
-      @last_questions = Question.order('created_at DESC').limit(3)
+      @last_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
     end
   end
 
