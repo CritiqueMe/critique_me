@@ -7,7 +7,7 @@
   #footer_facebook= link_to image_tag("footer/footer_facebook.png"), 'https://www.facebook.com/CritiqueMe', :target => "_blank"
   /#linkedin= link_to image_tag("footer/footer_linkedin.png"), '#'
   #fnav
-    = link_to "HOME", questions_path
+    = link_to "HOME", @user.try(:id) ? questions_path : welcome_path
     &nbsp;&bull;&nbsp;
     = link_to "ABOUT US", about_us_path
     &nbsp;&bull;&nbsp;
@@ -18,7 +18,7 @@
     = link_to "TERMS", tos_path
     &nbsp;&bull;&nbsp;
     = link_to "PRIVACY", privacy_path
-    - if @user.id
+    - if @user.try(:id)
       &nbsp;&bull;&nbsp;
       = link_to "SIGN OUT", sign_out_path
   #powered_by_sb= link_to image_tag("footer/powered_by_sb.png"), "http://seedblocks.com", :target => "_blank"

@@ -133,7 +133,6 @@ class QuestionsController < ApplicationController
   end
 
   def choose_question
-    @num_questions = DefaultQuestion.active.not_in_questionnaire.count
     @per_page = 7
 
     if request.post?
@@ -147,6 +146,7 @@ class QuestionsController < ApplicationController
     else
       scope = DefaultQuestion.active.not_in_questionnaire.prioritized
       scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
+      @num_questions = scope.count
       @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
     end
   end

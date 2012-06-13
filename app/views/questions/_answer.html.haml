@@ -9,7 +9,7 @@
       = semantic_form_for @answer, :url => post_url, :remote => (params['controller'] != 'welcome') do |f|
         = f.inputs do
           - if question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-            = f.input :multiple_choice_option_id, :as => :select, :collection => question.multiple_choice_options, :member_label => :answer_text
+            = f.input :multiple_choice_option_id, :as => :select, :collection => question.multiple_choice_options, :member_label => :answer_text, :include_blank => false
           - elsif question.question_type == Question::QUESTION_TYPES.index(:true_false)
             = f.input :true_false_answer, :as => :hidden
             .true_false_buttons
