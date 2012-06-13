@@ -70,8 +70,17 @@ recycle_contact_rows = ->
 pop_canned_questions_dialog = (content) ->
   # hide the sharer dialog, show the thanks or oops dialog
   $('#share_dialog').dialog('close')
+
+  regex = new RegExp('canned_question')
+
+  console.log(regex.test(content))
+  if regex.test(content)
+    dlg_title = "Answer fun questions about your friends and find out what they said about you."
+  else
+    dlg_title = ''
+
   $('#post_share_dialog').dialog
-    title: "Answer fun questions about your friends and find out what they said about you."
+    title: dlg_title
     resizable: false
     draggable: true
     modal: true
