@@ -13,6 +13,6 @@ class DashboardController < ApplicationController
     end
     @num_records = scope.count
     @collection = scope.paginate(:page => params['page'], :per_page => @per_page)
-    @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC').limit(5)
+    @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
   end
 end

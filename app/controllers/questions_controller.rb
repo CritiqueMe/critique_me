@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
   def new_question
     @default_question_text = "Ex: Am I a talented singer?"
     @default_mc_answer_text = "Enter answer choice"
-    @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC').limit(5)
+    @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
     @fb_share_template = FbShareTemplate.active.random.first
 
     if params['question']
@@ -117,7 +117,7 @@ class QuestionsController < ApplicationController
     @question = Question.find(params['id'])
     @default_question_text = "Ex: Am I a talented singer?"
     @default_mc_answer_text = "Enter answer choice"
-    @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC').limit(5)
+    @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
     @fb_share_template = FbShareTemplate.active.random.first
     if params['question']
       @question.update_attributes params['question']

@@ -1,7 +1,11 @@
 #asked_today
   #today_hdr Recent Questions
-  %ol
-    - @last_five_questions.each do |q|
-      %li
-        .qtext= '"' + q.question_text + '"'
-        .time_ago= time_ago_in_words(q.last_asked_at || Time.now-13.days) + " ago"
+  #scroll_wrap
+    %ol
+      - @last_five_questions.each do |q|
+        %li
+          .qtext= '"' + q.question_text + '"'
+          .time_ago= time_ago_in_words(q.last_asked_at || Time.now-13.days) + " ago"
+
+- content_for :extra_javascripts do
+  = javascript_include_tag  "questions/recent_questions"
