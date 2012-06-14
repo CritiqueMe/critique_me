@@ -26,17 +26,17 @@
     #qs_today
       #headline Recent Questions
       #table_wrap
-        %table{:style => "width:#{@last_questions.length*260}px"}
+        %table{:style => "width:#{@last_questions.length*325}px"}
           %tbody
             %tr
               - @last_questions.each_with_index do |q,i|
                 %td{:class => i == 0 ? 'leftest' : (i == @last_questions.length-1 ? 'rightest' : '')}
                   .qtext= q.question_text
                   .qago= time_ago_in_words(q.last_asked_at || Time.now-13.days) + " ago"
-      %table#arrows
-        %tr
-          %td= link_to "&larr;".html_safe, '#', :id => "left_arrow"
-          %td= link_to "&rarr;".html_safe, '#', :id => "right_arrow"
+      -#%table#arrows
+      -#  %tr
+      -#    %td= link_to "&larr;".html_safe, '#', :id => "left_arrow"
+      -#    %td= link_to "&rarr;".html_safe, '#', :id => "right_arrow"
 
 - content_for :extra_javascripts do
   = javascript_include_tag "path_pages/register/cm_landing1"
