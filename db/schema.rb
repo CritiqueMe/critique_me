@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120613193111) do
+ActiveRecord::Schema.define(:version => 20120615060007) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -28,12 +28,13 @@ ActiveRecord::Schema.define(:version => 20120613193111) do
     t.integer  "affiliate_id"
     t.string   "url_token"
     t.string   "subid_param_name"
-    t.float    "signup_payout",    :default => 0.0
+    t.float    "conversion_payout", :default => 0.0
     t.string   "pingback_url"
     t.integer  "experiment_id"
     t.text     "trigger_html"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "trigger_event"
   end
 
   create_table "affiliates", :force => true do |t|
