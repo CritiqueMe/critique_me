@@ -5,10 +5,10 @@
   %ol#nav
     - if @user && @user.id
       %li#dummy &nbsp;
-      %li{:class => params['controller'] == 'dashboard' && params['action'] == 'index' ? 'selected' : '' }
-        = link_to "Dashboard", dashboard_path
       %li{:class => params['controller'] == 'questions' ? 'selected' : '' }
-        = link_to "Questions", questions_path
+        = link_to "Ask Question", questions_path
+      %li{:class => params['controller'] == 'dashboard' && params['action'] == 'index' ? 'selected' : '' }
+        = link_to "My History", dashboard_path
       %li{:class => params['controller'] == 'dashboard' && params['action'] != 'index' ? 'selected' : ''}
         = link_to "My Profile", your_profile_path
     - elsif params['action'] != 'sign_in'
