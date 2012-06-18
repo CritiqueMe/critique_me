@@ -8,7 +8,7 @@
     - if @question.photo.url
       %meta{ :property => "og:image", :content => @question.photo.url }
     - else
-      %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"}
+      %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_share_image.jpg"}
 
 - content_for :extra_css do
   = stylesheet_link_tag "questions/canned"
