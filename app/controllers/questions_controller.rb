@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
     end
 
     # prepare canned questions
-    #if @question.user != @user
+    if @user
       @canned_questions = CannedQuestion.active.limit(5).order("RAND()")
       get_fb_friends
       if @fb_friends && @fb_friends.length >= 3
@@ -65,7 +65,7 @@ class QuestionsController < ApplicationController
         # no fb friends, so let's not do the canned question thing
         @canned_questions = nil
       end
-    #end
+    end
 
     # build flagged_question object
     @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id) if @user
