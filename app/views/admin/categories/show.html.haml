@@ -11,3 +11,7 @@
     %label Name:
     %p= @category.name
     .clear
+  %li
+    %label Status:
+    %p= @category.active? ? "Active" : "Inactive"
+    .clear

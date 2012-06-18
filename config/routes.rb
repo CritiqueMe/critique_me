@@ -1,7 +1,10 @@
 CritiqueMe::Application.routes.draw do
   namespace :admin do
     # biz logic
-    resources :categories
+    resources :categories do
+      put 'deactivate', :on => :member
+      put 'activate', :on => :member
+    end
     resources :default_questions do
       put 'deactivate', :on => :member
       put 'activate', :on => :member

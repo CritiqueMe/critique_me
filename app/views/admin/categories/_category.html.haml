@@ -1,8 +1,14 @@
 %tr{:class => cycle('odd', 'even')}
   %td.name= link_to category.name, admin_category_path(category)
   %td.qtype= number_with_delimiter category.questions.count
+  %td.status= category.active? ? "Active" : "Inactive"
   %td.actions
     = image_tag 'admin/icons/tool.png', :class => 'tools', 'data-menu' => "#menu_category_#{category.id}"
     %ul[category, :menu]
       %li= link_to 'Show', admin_category_path(category), :class => 'show'
       %li= link_to 'Edit', edit_admin_category_path(category), :class => 'edit'
+      %li
+        - if category.active?
+          = link_to 'Deactivate', deactivate_admin_category_path(category), :class => 'deactivate', :method => :put
+        - else
+          = link_to 'Activate', activate_admin_category_path(category), :class => 'activate', :method => :put

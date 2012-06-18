@@ -10,5 +10,6 @@ class Category < ActiveRecord::Base
   has_many :questions
   has_many :default_questions
 
-  scope :for_select, order("name")
+  scope :active, where(:active => true)
+  scope :for_select, active.order("name")
 end

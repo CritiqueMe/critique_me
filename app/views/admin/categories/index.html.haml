@@ -11,10 +11,11 @@
     %tr
       %th Category
       %th Questions Asked
+      %th Status
       %th &nbsp;
   %tfoot
     %tr
-      %td{:colspan => 6}
+      %td{:colspan => 4}
         = will_paginate
   %tbody
     - if @categories.empty?
