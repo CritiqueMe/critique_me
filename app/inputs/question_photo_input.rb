@@ -9,15 +9,17 @@ class QuestionPhotoInput < Formtastic::Inputs::FileInput
   def open_wrapper
     <<-HTML
       <div id='qphoto'>
-        <div id='camera'><img src='/assets/questions/photo_icon.png' /></div>
-        <div id='blurb'>add photo</div>
-        <div id='filefield'>
+        <label>
+          <div id='camera'><img src='/assets/questions/photo_icon.png' /></div>
+          <div id='blurb'>add photo?</div>
+          <div id='fname'></div>
     HTML
   end
 
   def close_wrapper
     <<-HTML
-        </div>
+
+        </label>
       </div
     HTML
   end

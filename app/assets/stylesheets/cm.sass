@@ -342,17 +342,38 @@ body
       padding: 5px
       width: 500px
       background: #ecedee
-      #camera
-        display: inline-block
-        vertical-align: middle
-        padding: 5px 0px 0px 5px
-      #blurb
-        display: inline-block
-        padding: 0px 15px 0px 5px
-        color: $cmdarkgrey
-        font-size: 12px
-      #filefield
-        display: inline-block
+      position: relative
+      label
+        padding: 0px
+        text-align: left
+        width: 100% !important
+        height: 100%
+        display: block
+        overflow: hidden
+        #camera
+          position: absolute
+          top: 8px
+          left: 8px
+          cursor: pointer
+        #blurb
+          position: absolute
+          top: 10px
+          left: 40px
+          color: $cmdarkgrey
+          font-size: 12px
+          cursor: pointer
+        #fname
+          position: absolute
+          top: 10px
+          right: 8px
+          font-family: 'helvetica neue', helvetica, arial, sans-serif
+          color: $cmdarkgrey
+          font-size: 12px
+        input
+          position: relative
+          float: right
+          @include transparent
+
 
     #question_question_text_input
       margin-bottom: 0px

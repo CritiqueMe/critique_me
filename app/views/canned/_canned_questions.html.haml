@@ -18,13 +18,6 @@
   .canned_question
     .qtext= cq.text
     .choices
-      #qform
-        = form_tag(canned_answer_path(cq.id), :remote => true) do
-          = hidden_field_tag 'friend_ids', @canned_choices[i].map{|choice| choice[:id]}.join(",")
-          = hidden_field_tag 'friend_names', @canned_choices[i].map{|choice| choice[:name]}.join(",")
-          = hidden_field_tag 'chosen_friend'
-          = check_box_tag 'post_to_timeline', '1', true
-          Post to Timeline
       %ol
         - @canned_choices[i].each do |choice|
           %li
@@ -32,6 +25,15 @@
               .wrap= image_tag "http://graph.facebook.com/#{choice[:id]}/picture?type=normal"
             .name= choice[:name]
             .button= link_to "Select", '#', :data => {:friend_id => choice[:id]}
+
+      #qform
+        = form_tag(canned_answer_path(cq.id), :remote => true) do
+          = hidden_field_tag 'friend_ids', @canned_choices[i].map{|choice| choice[:id]}.join(",")
+          = hidden_field_tag 'friend_names', @canned_choices[i].map{|choice| choice[:name]}.join(",")
+          = hidden_field_tag 'chosen_friend'
+          = check_box_tag 'post_to_timeline', '1', true
+          Post to Timeline
+
     .creator= link_to "Or, create your own question to ask", new_question_path
     .skip= link_to "Skip this question &rarr;".html_safe, '#'
 

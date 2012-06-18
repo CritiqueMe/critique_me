@@ -135,9 +135,19 @@ init_more_info_lightbox = ->
   .mouseout ->
     $('#newq_lightbox').fadeOut()
 
+init_photo_input = ->
+  $('#qphoto label div').click ->
+    $('#question_photo').click()
+  $('#question_photo').change ->
+    $('#fname').html($(this).val())
+
+
+
+
 init_page = ->
   init_public_private()
   init_question_types()
+  init_photo_input()
   init_add_answer_link()
   init_remove_answer_links()
   init_question_text_box()

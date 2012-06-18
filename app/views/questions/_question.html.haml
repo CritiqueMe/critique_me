@@ -43,9 +43,13 @@
               #not_enough_answers{:data => {:question_id => q.id}}
                 - if q.user == @user
                   - if q.answers.count > 0
-                    You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.  #{link_to "Invite more friends now!", '#'}
+                    You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.
+                    %br
+                    = link_to "Invite more friends now!", '#'
                   - else
-                    You haven't gotten any answers to your question yet!  #{link_to "Invite some friends now!", '#'}
+                    You haven't gotten any answers to your question yet!
+                    %br
+                    = link_to "Invite some friends now!", '#'
                 - else
                   Not enough answers have been posted yet!
             - elsif q.question_type == Question::QUESTION_TYPES.index(:open_text)
@@ -94,7 +98,10 @@
               - else
                 .righter= link_to "Flag This Question &raquo;".html_safe, '#', :data => {:question => q.id}
             .flag_dlg{:id => "flag_dlg_#{q.id}", :style => "display:none"}= render :partial => "questions/flag", :locals => {:question => q}
+      .clearer
 
+      - if @canned_questions
+        #cq_link= link_to "Have some fun answering some questions about your friends!", '#'
 
 
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
@@ -107,6 +114,8 @@
 - content_for :extra_javascripts do
   = javascript_include_tag "questions/answer_question"
   = javascript_include_tag "questions/flag_question"
+  = javascript_include_tag "questions/canned_link"
+
 
   - if @question.user == @user
     = javascript_include_tag "questions/show_share"
