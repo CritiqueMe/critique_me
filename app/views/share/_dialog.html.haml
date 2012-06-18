@@ -2,7 +2,8 @@
   %table
     %tr
       - if @question.photo.url
-        %td.qimage= image_tag @question.photo.thumb.url
+        %td.qimage{:data => {:question_id => @question.id}}
+          = link_to image_tag(@question.photo.thumb.url), '#'
       %td.qcontent
         .qtext
           = @question.question_text_pretty

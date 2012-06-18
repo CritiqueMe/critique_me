@@ -3,7 +3,8 @@
     %table#img_and_text
       %tr
         - if question.photo.url
-          %td.qimage= image_tag question.photo.try(:url)
+          %td.qimage.qtext= link_to image_tag(question.photo.try(:standard).try(:url)), '#'
+      %tr
         %td.qtext= question.question_text
     .qform
       = semantic_form_for @answer, :url => post_url, :remote => (params['controller'] != 'welcome') do |f|

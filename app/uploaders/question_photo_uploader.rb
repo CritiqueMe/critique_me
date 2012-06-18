@@ -31,13 +31,17 @@ class QuestionPhotoUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process :scale => [200, 300]
 
-  process :resize_to_limit => [160,160]
+  process :resize_to_limit => [600,600]
 
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
+  version :standard do
+    process :resize_to_fit => [160,160]
+  end
+
   version :thumb do
     process :resize_to_fit => [70,70]
   end

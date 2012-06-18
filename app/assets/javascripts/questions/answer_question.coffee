@@ -1,15 +1,17 @@
+
 init_post_answer_button = ->
   $('.post_answer input').click ->
+    t = $('.answer_dialog').data('title')
     qid = $(this).data('question-id')
     $('#answer_q'+qid).dialog
-      title: "Answer a Question"
+      title: t
       resizable: false
       draggable: true
       modal: true
       show: 'fade'
       hide: 'fade'
       width: 650
-      height: 450
+      height: 'auto'
       dialogClass: 'share-modal'
     $('.qform answer').bind("ajax:beforeSend", (evt, xhr, settings) ->
       $('#dlg_content').hide()

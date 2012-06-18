@@ -30,9 +30,10 @@
           .byline #{@question.user.first_last_initial} asked:
 
         - @questions.each do |q|
-          - if q.photo.url
-            .qimage= image_tag q.photo.thumb.url
           .qcontent{:id => "question_content_#{q.id}"}
+            - if q.photo.url
+              .qimage= link_to image_tag(q.photo.thumb.url), '#'
+
             - if @user
               - if @user == q.user
                 .buttons.share_question{:data => {:question_id => q.id}}
@@ -42,6 +43,7 @@
                   = button_to "Post Answer", '#', :data => {:question_id => q.id}
             .qtext
               = q.question_text_pretty
+            .clearer
             .answers
               .header Answers Posted
               - if q.answers.count < 5
@@ -116,6 +118,8 @@
 
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
 #post_share_dialog{:data => {:finish_path => params['controller'] == 'welcome' ? path_canned_finished_path : new_question_path}}
+- if @question.photo.url
+  #qimg_dialog= image_tag @question.photo.url
 
 - if @canned_questions
   #canned_questions= render :partial => "canned/canned_questions"
@@ -125,6 +129,7 @@
   = javascript_include_tag "questions/answer_question"
   = javascript_include_tag "questions/flag_question"
   = javascript_include_tag "questions/canned_link"
+  = javascript_include_tag "questions/photo_dialog"
 
 
   - if @question.user == @user

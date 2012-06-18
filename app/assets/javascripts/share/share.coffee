@@ -166,6 +166,29 @@ init_post_to_graph_link = ->
       $('#fb_post_to_graph_link').hide()
       pop_canned_questions_dialog(data)
 
+
+pop_img_dialog = (qid) ->
+  img = $('#qimg_dialog_'+qid+' img').first()
+  console.log img.attr('src')
+  $('#qimg_dialog_'+qid).dialog
+    resizable: false
+    draggable: true
+    modal: true
+    show: 'fade'
+    hide: 'fade'
+    width: 600
+    height: 600
+    title: ""
+    position: 'center'
+    dialogClass: 'share-modal'
+    autoOpen: true
+  .dialog(width: img.width()+30).height(img.height()+30).dialog("option", "position", "center")
+
+init_qimage_link = ->
+  $('.qimage a').click ->
+    pop_img_dialog($(this).parent().data('question_id'))
+    return false
+
 $ ->
   init_share_nav()
   init_fb_friend_list()
@@ -173,3 +196,4 @@ $ ->
   init_contact_importer()
   init_manual_entry_form()
   init_post_to_graph_link()
+  init_qimage_link()

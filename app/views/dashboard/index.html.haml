@@ -38,6 +38,14 @@
 #share_dialog
 #post_share_dialog{:data => {:finish_path => dashboard_path}}
 
+- @collection.each do |o|
+  - if @collection_filter == 'questions'
+    - if o.photo.url
+      %div{:id => "qimg_dialog_#{o.id}"}= image_tag o.photo.url
+  - else
+    - if o.question.photo.url
+      %div{:id => "qimg_dialog_#{o.question_id}"}= image_tag o.question.photo.url
+
 - content_for :extra_javascripts do
   = javascript_include_tag "dashboard/inviter"
   = javascript_include_tag "dashboard/dash_index"
