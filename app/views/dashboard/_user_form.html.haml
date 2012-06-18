@@ -6,6 +6,6 @@
     = f.input :birthday, :order => [:month, :day, :year], :start_year => 1920, :end_year => 2000, :prompt => {:day => "Day", :month => "Month", :year => "Year"}, :include_blank => false
     .clearer
     = f.input :zip
-    = f.input :gender, :label => "Gender", :as => :select, :collection => [["Female", "F"], ["Male", "M"]]
+    = f.input :gender, :label => "Gender", :as => :select, :collection => [["Female", "f"], ["Male", "m"]]
   = f.actions do
     = f.action :submit, :label => "Save Changes"

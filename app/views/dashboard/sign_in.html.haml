@@ -5,7 +5,7 @@
   .inner_content
     .qcontainer.fuzzy.all_round.gateway#signup
       .header_info Sign in with Facebook:
-      #continue= link_to image_tag("path/sign_up_its_free.png"), fb_perms_redirect_url('email,publish_stream,publish_actions')
+      #continue= link_to image_tag("path/sign_up_its_free.png"), fb_perms_redirect_url('email,user_birthday,publish_stream,publish_actions')
 
       - if Rails.env.development?
         .header_info ... or with your email address and password:
