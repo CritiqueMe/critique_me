@@ -127,6 +127,7 @@ class QuestionsController < ApplicationController
       if @question.valid?
         # TODO: post changes to OpenGraph
         #redirect_to share_path(@question)
+        flash[:show_share] = true
         redirect_to question_path(@question)
       else
         #render :partial => "questions/form"

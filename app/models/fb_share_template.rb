@@ -17,8 +17,8 @@ class FbShareTemplate < ActiveRecord::Base
     subs(link_display, tracking_object, sharer)
   end
 
-  def build_image(tracking_object)
-    tracking_object.photo.try(:thumb).try(:url)
+  def build_image(question)
+    question.public? && question.photo.url ? question.photo.thumb.url : "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"
   end
 
   def build_caption(tracking_object, sharer)

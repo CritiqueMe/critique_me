@@ -1,13 +1,14 @@
-- content_for :og_data do
-  %meta{ :property => "fb:app_id", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_id]}" }
-  %meta{ :property => "og:type", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:question" }
-  %meta{ :property => "og:url", :content => "#{question_url(@question)}" }
-  %meta{ :property => "og:title", :content => @fb_share_template ? @fb_share_template.build_link_display(@question, @question.user) : '' }
-  %meta{ :property => "og:description", :content => @fb_share_template ? @fb_share_template.build_description(@question, @question.user) : '' }
-  - if @question.photo.url
-    %meta{ :property => "og:image", :content => @question.photo.url }
-  - else
-    %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"}
+- if @question.public?
+  - content_for :og_data do
+    %meta{ :property => "fb:app_id", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_id]}" }
+    %meta{ :property => "og:type", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:question" }
+    %meta{ :property => "og:url", :content => "#{question_url(@question)}" }
+    %meta{ :property => "og:title", :content => @fb_share_template ? @fb_share_template.build_link_display(@question, @question.user) : '' }
+    %meta{ :property => "og:description", :content => @fb_share_template ? @fb_share_template.build_description(@question, @question.user) : '' }
+    - if @question.photo.url
+      %meta{ :property => "og:image", :content => @question.photo.url }
+    - else
+      %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_q.jpeg"}
 
 - content_for :extra_css do
   = stylesheet_link_tag "questions/canned"
