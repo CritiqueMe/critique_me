@@ -89,9 +89,9 @@
           - unless @user.nil? || @question.user == @user
             .flagger
               - if @user.flagged_questions.where(:question_id => @question.id).count > 0
-                You have flagged this question.
+                Thank you for flagging this question.  We will look into it immediately.
               - else
-                = link_to "Flag This Question &raquo;".html_safe, '#', :data => {:question => q.id}
+                .righter= link_to "Flag This Question &raquo;".html_safe, '#', :data => {:question => q.id}
             .flag_dlg{:id => "flag_dlg_#{q.id}", :style => "display:none"}= render :partial => "questions/flag", :locals => {:question => q}
 
 

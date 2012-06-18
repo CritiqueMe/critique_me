@@ -1,0 +1,7 @@
+Question "#{link_to @flag.question.question_text, @question_url}" (asked by #{link_to @flag.question.user.full_name, @asker_url}) flagged by #{link_to @flag.user.full_name, @flagger_url} for [#{@flag.flag_reason}] with message:
+%br
+%br
+= @flag.message
+%br
+%br
+= link_to "Take Action &raquo;".html_safe, @flag_url
