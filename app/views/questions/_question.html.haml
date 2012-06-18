@@ -2,8 +2,8 @@
   %meta{ :property => "fb:app_id", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_id]}" }
   %meta{ :property => "og:type", :content => "#{SEED_BLOCKS_ENGINE_CONFIG[:fb_app_namespace]}:question" }
   %meta{ :property => "og:url", :content => "#{question_url(@question)}" }
-  %meta{ :property => "og:title", :content => @question.question_text_pretty }
-  %meta{ :property => "og:description", :content => "Answer the question now!" }
+  %meta{ :property => "og:title", :content => @fb_share_template ? @fb_share_template.build_link_display(@question, @question.user) : '' }
+  %meta{ :property => "og:description", :content => @fb_share_template ? @fb_share_template.build_description(@question, @question.user) : '' }
   - if @question.photo.url
     %meta{ :property => "og:image", :content => @question.photo.url }
   - else

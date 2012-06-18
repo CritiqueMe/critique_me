@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615060007) do
+ActiveRecord::Schema.define(:version => 20120615200632) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -132,9 +132,11 @@ ActiveRecord::Schema.define(:version => 20120615060007) do
     t.string   "link_display"
     t.string   "caption"
     t.text     "description"
-    t.boolean  "active",       :default => true
+    t.boolean  "active",        :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "share_type",    :default => "news-post"
+    t.string   "question_type"
   end
 
   create_table "flagged_questions", :force => true do |t|

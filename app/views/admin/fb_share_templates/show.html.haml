@@ -1,0 +1,41 @@
+= content_for :side_menu do
+  %ol.nav
+    %li
+      = link_to "&laquo; All Templates".html_safe, admin_fb_share_templates_path
+      = link_to "Edit Template &raquo;".html_safe, edit_admin_fb_share_template_path(@fb_share_template)
+
+%h1 FB Share Template Details
+
+%ul.show_page
+  %li
+    %label Name:
+    %p= @fb_share_template.name
+    .clear
+  %li
+    %label Share Type:
+    %p= @fb_share_template.share_type
+    .clear
+  %li
+    %label Question Type:
+    %p= @fb_share_template.question_type
+    .clear
+  %li
+    %label Message:
+    %p= @fb_share_template.message
+    .clear
+  %li
+    %label Caption:
+    %p= @fb_share_template.caption
+    .clear
+  %li
+    %label Description:
+    %p= @fb_share_template.description
+    .clear
+  %li
+    %label Link Display:
+    %p= @fb_share_template.link_display
+    .clear
+  %li
+    %label Active?:
+    %p= @fb_share_template.active ? 'active' : 'inactive'
+    .clear

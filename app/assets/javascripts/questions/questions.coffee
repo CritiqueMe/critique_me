@@ -59,11 +59,11 @@ update_public_private = (chosen) ->
   if chosen
     $('.pubpriv #priv').removeClass('selected')
     $('.pubpriv #pub').addClass('selected')
-    $('#public_preview').slideDown()
+    #$('#public_preview').slideDown()
   else
     $('.pubpriv #pub').removeClass('selected')
     $('.pubpriv #priv').addClass('selected')
-    $('#public_preview').slideUp()
+    #$('#public_preview').slideUp()
 
 init_public_private = ->
   chosen = $('#question_public').attr('checked')

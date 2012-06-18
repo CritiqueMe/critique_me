@@ -14,6 +14,9 @@ init_inviter_buttons = ->
     .html('<img src="/assets/admin/layout/form_spinner.gif" />')
     $.get 'share/'+qid, (data) ->
       $('#share_dialog').html(data)
+    $.get "/fb_share_template", {'tracking_class': 'Question', 'tracking_id':qid}, (data) ->
+      console.log(data)
+      SeedBlocks.facebookShareTemplate = data
     return false
 
 $ ->

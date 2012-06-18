@@ -1,5 +1,9 @@
 Rails::Engine.mixin __FILE__
 class FbShareTemplate < ActiveRecord::Base
+  def self.question_types
+    FbShareTemplate.select("DISTINCT question_type").map(&:question_type)
+  end
+
   def build_message(tracking_object, sharer)
     subs(message, tracking_object, sharer)
   end

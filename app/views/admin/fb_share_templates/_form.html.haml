@@ -1,0 +1,18 @@
+= semantic_form_for @fb_share_template, :url => url do |f|
+  = f.inputs do
+    = render :partial => "admin/fb_share_templates/substitutions"
+    = f.input :name
+    = f.input :share_type, :as => :select, :collection => FbShareTemplate.share_types, :default => "newsfeed_post", :include_blank => false
+    = f.input :question_type, :as => :select, :collection => FbShareTemplate.question_types, :default => "newsfeed_post", :include_blank => false
+    = f.input :message
+    = f.input :link_display
+    = f.input :caption
+    = f.input :description
+    .clearer
+  = f.actions do
+    - if @fb_share_template.new_record?
+      = f.action :submit, :label => "Create FB Share Template"
+      .cancel= link_to "Cancel", admin_fb_share_templates_path
+    - else
+      = f.action :submit, :label => "Edit FB Share Template"
+      .cancel= link_to "Cancel", admin_fb_share_template_path(@fb_share_template)

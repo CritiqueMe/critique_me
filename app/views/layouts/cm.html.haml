@@ -32,7 +32,7 @@
     -# Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
     = javascript_include_tag "modernizr.min.js", "respond.min.js"
 
-  %body
+  %body{:data => {:tracking_object_class => "Question", :tracking_object_id => @question.try(:id)}}
     -# 24-column grid layout courtesy of blueprint
     .container
       = render :partial => "partials/cm_header"

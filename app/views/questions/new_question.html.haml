@@ -15,7 +15,7 @@
     .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
     .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
       = render :partial => "questions/form", :locals => {:form_url => new_question_path}
-      = render :partial => "questions/post_preview"
+      =# render :partial => "questions/post_preview"
 
 
 

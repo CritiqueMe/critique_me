@@ -39,7 +39,9 @@ class QuestionsController < ApplicationController
         redirect_to welcome_path and return
       end
     else
-
+      @fb_share_template = FbShareTemplate.active.
+          where(:share_type => "open_graph", :question_type => (@question.canned_question_id ? "canned" : (@question.public? ? "public" : "private"))).
+          random.first
     end
 
     # prepare canned questions

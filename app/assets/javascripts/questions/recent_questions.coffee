@@ -5,7 +5,6 @@ autoscroll_recent_questions = ->
   scroll_height = 0
   while num < 5
     scroll_height += $($('#scroll_wrap ol li').get(num)).height() + 20  # extra 20 is for top/bottom padding of 10px
-    console.log scroll_height
     num++
 
   $('#scroll_wrap').animate {scrollTop:scroll_height}, 2000, ->

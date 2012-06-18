@@ -1,0 +1,18 @@
+%tr{:class => cycle('odd', 'even')}
+  %td.share_type= fb_share_template.share_type
+  %td.question_type= fb_share_template.question_type
+  %td.name= link_to fb_share_template.name, admin_fb_share_template_path(fb_share_template)
+  %td.date
+    %small= fb_share_template.created_at.strftime "%m-%d-%Y"
+  %td
+    %small= fb_share_template.active? ? "ACTIVE" : "INACTIVE"
+  %td.actions
+    = image_tag 'admin/icons/tool.png', :class => 'tools', 'data-menu' => "#menu_fb_share_template_#{fb_share_template.id}"
+    %ul[fb_share_template, :menu]
+      %li= link_to 'Show', admin_fb_share_template_path(fb_share_template), :class => 'show'
+      %li= link_to 'Edit', edit_admin_fb_share_template_path(fb_share_template), :class => 'edit'
+      %li
+        - if fb_share_template.active?
+          = link_to 'Deactivate', deactivate_admin_fb_share_template_path(fb_share_template), :class => 'deactivate', :method => :put
+        - else
+          = link_to 'Activate', activate_admin_fb_share_template_path(fb_share_template), :class => 'activate', :method => :put
