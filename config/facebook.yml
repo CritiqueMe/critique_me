@@ -19,8 +19,8 @@ staging:
   landing_url: "http://apps.facebook.com/cmstg"
   namespace: 'cmstg'
 production:
-  app_id: 217150938390983 # wyd-prod
-  secret_key: 8bb48dcb78e0313ad521a99c156c9e0a
-  callback_url: "http://wydtest.dev/fb_canvas_callback"
-  landing_url: "http://apps.facebook.com/wheresyourdollar"
+  app_id: 462731043755063
+  secret_key: fed84440e51e21f8eb69988520dfa069
+  callback_url: ""
+  landing_url: "http://apps.facebook.com/critiqueme"
   namespace: 'wheresyourdollar'
