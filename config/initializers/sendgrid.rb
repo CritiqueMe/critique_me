@@ -5,7 +5,7 @@ ActionMailer::Base.smtp_settings = {
     :address => "smtp.sendgrid.net",
     :port => 25,
     :authentication => :plain,
-    :domain => "critique_me.com",
+    :domain => "critiqueme.com",
     :user_name => "seedblocks",
     :password => "momoney123"
 }

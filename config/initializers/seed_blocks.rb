@@ -1,5 +1,5 @@
 host = case Rails.env
-         when "production" then "critique_me.com"
+         when "production" then "critiqueme.com"
          when "staging" then "critiquestg.com"
          else "critiqueme.local:3000"
        end
@@ -21,7 +21,7 @@ SEED_BLOCKS_ENGINE_CONFIG = {
     :fb_app_id            => fb_app_id,
     :fb_app_secret        => fb_app_secret,
     :fb_app_namespace     => fb_app_namespace,
-    :default_from_address => "contact@critique_me.com",
+    :default_from_address => "contact@critiqueme.com",
     :host                 => host,
     :http_authenticate    => ["staging"],
     :http_basic_id        => "critique_me",
