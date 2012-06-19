@@ -1,6 +1,6 @@
 #header
   #logo
-    = link_to image_tag("logo_white.png"), dashboard_path
+    = link_to image_tag("logo_white.png"), @user && @user.id ? dashboard_path : welcome_path
     #tagline Ask the hard questions
   %ol#nav
     - if @user && @user.id

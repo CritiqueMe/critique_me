@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     inv_count = Invite.where(:invitee_id => self.id, :tracking_object_id => q.id).count > 0
     inv_count2 = self.email && Invite.where(:invitee_email => self.email, :tracking_object_id => q.id).count > 0
     fbs_count = FbShare.where(:invitee_id => self.id, :tracking_object_id => q.id).count > 0
-    fbs_count2 = self.fb_user_id && FbShare.where(:invitee_id => self.fb_user_id, :tracking_object_id => q.id).count > 0
+    fbs_count2 = self.fb_user_id && FbShare.where(:invitee_fb_user_id => self.fb_user_id, :tracking_object_id => q.id).count > 0
     inv_count || inv_count2 || fbs_count || fbs_count2
   end
 end
