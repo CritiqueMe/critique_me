@@ -37,10 +37,7 @@
     .creator= link_to "Or, create your own question to ask", new_question_path
     .skip= link_to "Skip this question &rarr;".html_safe, '#'
 
-- if params['controller'] == 'questions' || params['controller'] == 'welcome'
-  = stylesheet_link_tag "questions/canned"
-  - content_for :extra_javascripts do
-    = javascript_include_tag "questions/canned"
-- else
-  = stylesheet_link_tag "questions/canned"
+
+= stylesheet_link_tag "questions/canned"
+- content_for :extra_javascripts do
   = javascript_include_tag "questions/canned"

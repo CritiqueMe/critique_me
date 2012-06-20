@@ -1,30 +1,37 @@
 question_length = 5
 
-init_canned_questions = ->
-  $('.canned_question').first().delay(100).queue ->
-    init_canned_form($(this))
+init_skip_question = (dlg) ->
+  dlg.find('.skip a').click ->
+    dlg.find('.canned_question').first().remove()
+    if dlg.find('.canned_question').length > 0
+      next = dlg.find('.canned_question').first()
+      next.fadeIn()
+      init_canned_form(dlg, next)
+    else
+      finish_path = $('#post_share_dialog').data('finish_path')
+      window.location = finish_path
+    return false
+
+
+window.CritiqueMe = {}
+CritiqueMe.init_canned_questions = init_canned_questions = (dlg) ->
+  dlg.find('.canned_question').first().delay(500).queue ->
+    init_canned_form(dlg, $(this))
     $(this).show()
+  init_skip_question(dlg)
 
-init_canned_form = (cq) ->
+init_canned_form = (dlg, cq) ->
   cq.find('form').bind("ajax:beforeSend", (evt, xhr, settings) ->
-    $('.canned_question').first().hide()
-    $('#spinner').fadeIn()
+    dlg.find('.canned_question').first().hide()
+    dlg.find('#spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
-    $('.canned_question').first().remove()
+    dlg.find('.canned_question').first().remove()
 
-    # handle the viral messaging
-    if $('#before_see_answer').length > 0
-      $('#before_see_answer').remove()
-      $('#see_answer').show()
-    else if $('#see_answer').length > 0
-      $('#see_answer').remove()
-      $('#done_showing_answer').show()
-
-    $('#spinner').hide()
-    if $('.canned_question').length > 0
-      ques = $('.canned_question').first()
+    dlg.find('#spinner').hide()
+    if dlg.find('.canned_question').length > 0
+      ques = dlg.find('.canned_question').first()
       ques.fadeIn()
-      init_canned_form(ques)
+      init_canned_form(dlg, ques)
     else
       finish_path = $('#post_share_dialog').data('finish_path')
       window.location = finish_path
@@ -37,18 +44,8 @@ init_canned_form = (cq) ->
     choice_block.find('form').submit()
     return false
 
-init_skip_question = ->
-  $('.skip a').click ->
-    $('.canned_question').first().remove()
-    if $('.canned_question').length > 0
-      next = $('.canned_question').first()
-      next.fadeIn()
-      init_canned_form(next)
-    else
-      finish_path = $('#post_share_dialog').data('finish_path')
-      window.location = finish_path
-    return false
+
+
 
 $ ->
-  init_canned_questions()
-  init_skip_question()
+  CritiqueMe.init_canned_questions($('.canned_question').first().parent())

@@ -9,3 +9,4 @@ config/database.yml
 .idea/
 public/question_photos/
 .DS_Store
+config/mongoid.yml

@@ -115,4 +115,14 @@ class Question < ActiveRecord::Base
   def already_shared_today?
     FbShare.where(:tracking_object_id => self.id, :created_at.gte => Time.midnight).count > 0
   end
+
+  def answer_dialog_title
+    if self.canned_question_id
+      user.first_last_initial + " was asked..."
+    elsif public?
+      user.first_last_initial + " asked..."
+    else
+      "#{user.first_last_initial} invited you and <i>at least</i> 5 other people to answer this private question.  You can be completely open and honest with #{user.first_name}.  Don't worry, all responses on CritiqueMe are <b>totally anonymous</b>.  #{user.first_name} will only see the answers once 5 people have answered and we NEVER reveal whose answers were whose.  #{user.first_name} asked..."
+    end
+  end
 end

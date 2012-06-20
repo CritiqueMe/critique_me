@@ -1,4 +1,4 @@
-.answer_dialog{:id => "answer_q"+question.id.to_s, :data => {:question_id => question.id, :title => "#{question.user.first_last_initial}#{question.question_type == Question::QUESTION_TYPES.index(:canned_question) ? ' was' : ' '} asked..."}}
+.answer_dialog{:id => "answer_q"+question.id.to_s, :data => {:question_id => question.id, :title => question.answer_dialog_title}}
   #dlg_content
     %table#img_and_text
       %tr

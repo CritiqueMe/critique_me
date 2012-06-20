@@ -110,6 +110,7 @@ pop_canned_questions_dialog = (content) ->
 
   # initialize canned question
   $('#post_share_dialog .canned_question').first().show()
+  CritiqueMe.init_canned_questions($('#post_share_dialog'))
 
 init_manual_entry_form = ->
   $('#manual form').bind("ajax:beforeSend", (evt, xhr, settings) ->
