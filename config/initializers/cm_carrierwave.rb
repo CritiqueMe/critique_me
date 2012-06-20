@@ -14,7 +14,7 @@ else
   CarrierWave.configure do |config|
     # ============ PRODUCTION MODE (push to AWS; does image processing)
     if Rails.env == 'production'
-      env_dir = 'sb'
+      env_dir = 'cmprod'
       #env_cdn = 'http://c683851.r51.cf2.rackcdn.com'
     # ============ STAGING MODE (push to AWS (staging); does image processing)
     elsif Rails.env == 'staging'
