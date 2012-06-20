@@ -41,10 +41,10 @@
 - @collection.each do |o|
   - if @collection_filter == 'questions'
     - if o.photo.url
-      %div{:id => "qimg_dialog_#{o.id}"}= image_tag o.photo.url
+      .qimg_dlg{:id => "qimg_dialog_#{o.id}"}= image_tag o.photo.url
   - else
     - if o.question.photo.url
-      %div{:id => "qimg_dialog_#{o.question_id}"}= image_tag o.question.photo.url
+      .qimg_dlg{:id => "qimg_dialog_#{o.question_id}"}= image_tag o.question.photo.url
 
 - content_for :extra_javascripts do
   = javascript_include_tag "dashboard/inviter"

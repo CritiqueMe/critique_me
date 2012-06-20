@@ -209,6 +209,15 @@ ActiveRecord::Schema.define(:version => 20120618200413) do
     t.integer  "default_multiple_choice_option_id"
   end
 
+  create_table "order_history", :force => true do |t|
+    t.integer  "user_id",                          :null => false
+    t.integer  "order_package",                    :null => false
+    t.integer  "fb_credit_amount",  :default => 0, :null => false
+    t.integer  "our_credit_amount", :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "path_element_groups", :force => true do |t|
     t.integer  "experiment_id"
     t.string   "name"
