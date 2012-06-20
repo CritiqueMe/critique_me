@@ -9,7 +9,7 @@ show_answer_dialog = (qid) ->
     hide: 'fade'
     width: 650
     height: 'auto'
-    dialogClass: 'share-modal'
+    dialogClass: 'answerq_dlg'
   $('.qform form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#dlg_content').hide()
     $('#post_answer_spinner').fadeIn()

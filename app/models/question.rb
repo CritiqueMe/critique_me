@@ -122,7 +122,7 @@ class Question < ActiveRecord::Base
     elsif public?
       user.first_last_initial + " asked..."
     else
-      "#{user.first_last_initial} invited you and <i>at least</i> 5 other people to answer this private question.  You can be completely open and honest with #{user.first_name}.  Don't worry, all responses on CritiqueMe are <b>totally anonymous</b>.  #{user.first_name} will only see the answers once 5 people have answered and we NEVER reveal whose answers were whose.  #{user.first_name} asked..."
+      "#{user.first_last_initial} invited you and <i>at least</i> 5 other people to answer this private question.  You can be completely open and honest with #{user.first_name}.  Don't worry, all responses on CritiqueMe are <b>totally anonymous</b>.  #{user.first_name} will only see the answers once 5 people have answered and we NEVER reveal whose answers were whose.<br />#{user.first_name} asked..."
     end
   end
 end
