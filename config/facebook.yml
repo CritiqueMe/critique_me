@@ -23,4 +23,4 @@ production:
   secret_key: fed84440e51e21f8eb69988520dfa069
   callback_url: ""
   landing_url: "http://apps.facebook.com/critiqueme"
-  namespace: 'wheresyourdollar'
+  namespace: 'critiqueme'

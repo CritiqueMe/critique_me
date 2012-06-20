@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 5923464f13ba8b3438363120c034d1a6c5d685f3
+  revision: 0b5daa60c1650fce85659612d2e64d53d80cc5ec
   branch: fb_share_update
   specs:
     seed_blocks (0.0.1)
