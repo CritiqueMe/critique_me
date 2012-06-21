@@ -1,3 +1,5 @@
+send_to_create_question_page = ->
+  window.location = "/new_question"
 
 init_post_answer_button = ->
   $('.post_answer input').click ->
@@ -33,6 +35,7 @@ init_post_answer_button = ->
           height: 440
           position: 'center'
           dialogClass: 'share-modal'
+          close: send_to_create_question_page
       else
         # show answer posted dialog
         $('#answer_posted_dialog').dialog
@@ -45,6 +48,7 @@ init_post_answer_button = ->
           width: 400
           height: 200
           dialogClass: 'share-modal'
+          close: send_to_create_question_page
     )
     return false
 

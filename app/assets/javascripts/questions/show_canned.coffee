@@ -1,3 +1,6 @@
+send_to_create_question_page = ->
+  window.location = "/new_question"
+
 pop_canned_questions_dialog = ->
   $('#canned_questions').dialog
     title: "Answer fun questions about your friends and find out what they said about you."
@@ -10,6 +13,7 @@ pop_canned_questions_dialog = ->
     height: 440
     position: 'center'
     dialogClass: 'share-modal'
+    close: send_to_create_question_page
 
 
 $ ->

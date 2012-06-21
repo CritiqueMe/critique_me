@@ -112,6 +112,18 @@ class QuestionsController < ApplicationController
         @question.multiple_choice_options.build
       end
 
+      if params['show_canned_answer'] == '1' && session[:show_canned_answer]
+        if q = Question.find(session[:show_canned_answer])
+          a = q.answers.first
+          selected_answer = if a.canned_question_choice.friend_fb_id == @user.fb_user_id
+            a.canned_question_choice.friend_name
+          else
+            "you"
+          end
+          @show_canned_answer = "#{q.user.first_name} selected #{selected_answer} as the answer to \"#{q.question_text}\""
+        end
+        session[:show_canned_answer] = nil
+      end
     end
   end
 

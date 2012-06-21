@@ -25,7 +25,8 @@ namespace :hipchat do
     env         = args[:env].gsub('\'', '').gsub('"', '')
     branch      = args[:branch].gsub('\'', '').gsub('"', '')
     migrations  = args[:migrations].gsub('\'', '').gsub('"', '')
+    deploy_str  = "Deployed #{link_to_github_branch branch} (#{link_to_github_commit rev}) to #{link_to_site env}#{" (running migrations)" if migrations == 'true'}."
 
-    client['SeedBlocks'].send("CritiqueMe Deploy", "Deployed #{link_to_github_branch branch} (#{link_to_github_commit rev}) to #{link_to_site env}#{" (running migrations)" if migrations == 'true'}.", true)
+    client['SeedBlocks'].send("CritiqueMe Deploy", deploy_str, :notify => true)
   end
 end

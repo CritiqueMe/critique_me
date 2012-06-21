@@ -24,6 +24,11 @@ class WelcomeController < ApplicationController
           @questions = [@question]
         end
         @answer = Answer.new(:question_id => @question.id, :user_id => @user.id, :post_to_wall => true)
+
+        # populate a session var so we can show them what their friend answered, later
+        if @question.canned_question_id
+          session[:show_canned_answer] = @question.id
+        end
       elsif @referrer
         if @referrer.questions.count > 0
           @question = @referrer.questions.last

@@ -40,12 +40,12 @@
                   = button_to "Share with Friends", '#'
               - elsif @user.answers.where(:question_id => q.id).count == 0
                 .buttons.post_answer
-                  = button_to "Post Answer", '#', :data => {:question_id => q.id}
+                  = button_to "Submit Answer", '#', :data => {:question_id => q.id}
             .qtext
               = q.question_text_pretty
             .clearer
             .answers
-              .header Answers Posted
+              .header Answers Given
               - if q.answers.count < 5
                 #not_enough_answers{:data => {:question_id => q.id}}
                   - if q.user == @user
@@ -57,8 +57,8 @@
                       You haven't gotten any answers to your question yet!
                       %br
                       = link_to "Invite some friends now!", '#'
-                  - else
-                    Not enough answers have been posted yet!
+                  - elsif @user.answers.where(:question_id => q.id) == 0
+                    You haven't answered this question yet!
               - elsif q.question_type == Question::QUESTION_TYPES.index(:open_text)
                 %ol
                   - q.answers.each do |a|

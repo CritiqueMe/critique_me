@@ -8,10 +8,10 @@
     .inner_nav
       - if @collection_filter == "questions"
         .over.fuzzy#questions_posted Questions Posted
-        .under.fuzzy#answers_posted= link_to "Answers Posted", dashboard_path(:coll => "answers")
+        .under.fuzzy#answers_posted= link_to "Answers Given", dashboard_path(:coll => "answers")
       - else
         .under.fuzzy#questions_posted= link_to "Questions Posted", dashboard_path(:coll => "questions")
-        .over.fuzzy#answers_posted Answers Posted
+        .over.fuzzy#answers_posted Answers Given
     .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
     .qcontainer.fuzzy
 
@@ -28,7 +28,7 @@
             - if @collection.empty?
               %tr
                 %td.none_posted
-                  No Answers posted yet.
+                  No Answers given yet.
             - else
               = render :partial => "answer_line_item", :collection => @collection, :as => :answer
         %tfoot

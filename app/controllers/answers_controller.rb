@@ -41,6 +41,7 @@ class AnswersController < ApplicationController
           :question_id => q.id,
           :canned_question_choice_id => cqc.id
       })
+      FbShare.share(@user, q, session[:fb_access_token], friend_ids)
       post_answer_to_open_graph(a) if params['post_to_timeline'] == '1'
       render :text => "success"
     end

@@ -34,6 +34,7 @@ init_canned_form = (dlg, cq) ->
       init_canned_form(dlg, ques)
     else
       finish_path = $('#post_share_dialog').data('finish_path')
+      finish_path = finish_path + "?show_canned_answer=1"
       window.location = finish_path
   )
 

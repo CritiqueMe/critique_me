@@ -1,3 +1,6 @@
+send_to_create_question_page = ->
+  window.location = "/new_question"
+
 show_answer_dialog = (qid) ->
   t = $('#answer_q'+qid).data('title')
   $('#answer_q'+qid).dialog
@@ -11,6 +14,7 @@ show_answer_dialog = (qid) ->
     height: 'auto'
     dialogClass: 'answerq_dlg'
   $('.qform form').bind("ajax:beforeSend", (evt, xhr, settings) ->
+    $('.post_answer').hide()
     $('#dlg_content').hide()
     $('#post_answer_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
@@ -30,10 +34,11 @@ show_answer_dialog = (qid) ->
         height: 440
         position: 'center'
         dialogClass: 'share-modal'
+        close: send_to_create_question_page
     else
       # show answer posted dialog
       $('#answer_posted_dialog').dialog
-        title: "Answer Posted"
+        title: "Answer Given"
         resizable: false
         draggable: true
         modal: true
@@ -42,6 +47,7 @@ show_answer_dialog = (qid) ->
         width: 400
         height: 200
         dialogClass: 'share-modal'
+        close: send_to_create_question_page
   )
   return false
 
