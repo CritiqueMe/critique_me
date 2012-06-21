@@ -49,4 +49,4 @@ init_canned_form = (dlg, cq) ->
 
 
 $ ->
-  CritiqueMe.init_canned_questions($('.canned_question').first().parent())
+  CritiqueMe.init_canned_questions($('#canned_questions .canned_question').first().parent())
