@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: abc4a156412b5be9e8cbf6b2e72a6ef87954c6a4
+  revision: 50fd0d665edf013415f314863ba989182371ada4
   branch: fb_share_update
   specs:
     seed_blocks (0.0.1)
@@ -182,7 +182,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     metaclass (0.0.1)
-    mime-types (1.18)
+    mime-types (1.19)
     mocha (0.11.4)
       metaclass (~> 0.0.1)
     mongo (1.6.2)

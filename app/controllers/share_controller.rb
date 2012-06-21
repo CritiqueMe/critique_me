@@ -56,7 +56,7 @@ class ShareController < ApplicationController
 
     FbShare.share(@user, @question, session[:fb_access_token], friend_ids)
 
-    if friend_ids.length > 5 #@question.shared_with_minimum?
+    if friend_ids.length >= 5 #@question.shared_with_minimum?
       finished_sharing(friend_ids.length)
     else
       render :partial => "share/oops"
