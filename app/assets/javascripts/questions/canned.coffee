@@ -9,6 +9,7 @@ init_skip_question = (dlg) ->
       init_canned_form(dlg, next)
     else
       finish_path = $('#post_share_dialog').data('finish_path')
+      finish_path = finish_path + "?show_canned_answer=1"
       window.location = finish_path
     return false
 
