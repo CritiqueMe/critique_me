@@ -19,6 +19,12 @@ class QuestionsController < ApplicationController
     end
     @answer = Answer.new(:question => @question, :user => @user, :post_to_wall => true)
     if params['fb_action_ids'] || params['cmfb']  # This is the result of an FB click
+
+      # populate a session var so we can show them what their friend answered, later
+      if @question.canned_question_id
+        session[:show_canned_answer] = @question.id
+      end
+
       if @user.nil?
         session[:referrer_id] = @question.user_id  # make sure the user gets a viral path
         session[:clicked_question_id] = @question.id
