@@ -20,14 +20,18 @@
             %th &nbsp;
             %th Last asked
         %tbody
-          - @default_questions.each do |dq|
+          - @default_questions.each_with_index do |dq, i|
             %tr
               %td
                 .qtext= dq.question_text
                 .cat Category: #{link_to dq.category.name, category_path(dq.category_id)}
               %td.askq{:data => {:default_question_id => dq.id}}
                 = link_to "Ask this question", new_question_path(:default_question_id => dq.id)
-              %td.last_asked= dq.last_asked_at ? time_ago_in_words(dq.last_asked_at) + " ago" : "never"
+              %td.last_asked
+                =# dq.last_asked_at ? time_ago_in_words(dq.last_asked_at) + " ago" : "never"
+                - # the above has been commented out so it doesn't always say "never", until there's more data in the system
+                - mins_ago = ((params['page'] || 1).to_i - 1) * @per_page + i + 1
+                = pluralize(mins_ago, "min") + " ago"
         %tfoot
           %tr
             %td{:colspan => 3}

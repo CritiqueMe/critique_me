@@ -46,8 +46,6 @@ class ShareController < ApplicationController
 
   def share_friends
     @question = Question.find(params['question_id'])
-    url = "https://graph.facebook.com/#{@user.fb_user_id}/feed"
-    qtext = @question.question_text_pretty
 
     friend_ids = []
     params['imported_friends'].split(",").each_with_index do |f, i|
@@ -56,7 +54,7 @@ class ShareController < ApplicationController
 
     FbShare.share(@user, @question, session[:fb_access_token], friend_ids)
 
-    if friend_ids.length >= 5 #@question.shared_with_minimum?
+    if @question.shared_with_minimum? || friend_ids.length >= 5
       finished_sharing(friend_ids.length)
     else
       render :partial => "share/oops"
@@ -94,3 +92,4 @@ class ShareController < ApplicationController
 
 
 end
+

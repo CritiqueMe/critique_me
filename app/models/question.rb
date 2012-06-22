@@ -105,10 +105,14 @@ class Question < ActiveRecord::Base
     if fb_question_id
       true
     else
-      num_invites = Invite.where(:tracking_object_id => self.id).count
-      num_fb_shares = FbShare.where(:tracking_object_id => self.id).count
-      num_invites + num_fb_shares >= 5
+      num_invited >= 5
     end
+  end
+
+  def num_invited
+    num_invites = Invite.where(:tracking_object_id => self.id).count
+    num_fb_shares = FbShare.where(:tracking_object_id => self.id).count
+    num_invites + num_fb_shares
   end
 
   # we only allow users to share once per day
@@ -122,7 +126,7 @@ class Question < ActiveRecord::Base
     elsif public?
       user.first_last_initial + " asked..."
     else
-      "#{user.first_last_initial} invited you and <i>at least</i> 5 other people to answer this private question.  You can be completely open and honest with #{user.first_name}.  Don't worry, all responses on CritiqueMe are <b>totally anonymous</b>.  #{user.first_name} will only see the answers once 5 people have answered and we NEVER reveal whose answers were whose.<br />#{user.first_name} asked..."
+      "#{user.first_last_initial} asked you #{"and #{self.num_invited-1} other #{self.num_invited-1 == 1 ? "person" : "people"} " if self.num_invited>1}a private question.  All responses on CritiqueMe are <b>totally anonymous</b>.  We NEVER reveal the identity of the answerer."
     end
   end
 end

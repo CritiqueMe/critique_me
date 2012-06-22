@@ -27,6 +27,10 @@ class Answer < ActiveRecord::Base
 
   def notify_asker_of_answer
     a_cnt = Answer.where(:question_id => self.question_id).count
-    EmailDelivery.user_mail(:answers_gathered, self.user, {:question_id => self.question_id}) if a_cnt == 5 && self.user.try(:email)
+    begin
+      EmailDelivery.user_mail(:answers_gathered, self.user, {:question_id => self.question_id}) if a_cnt == 5 && self.user.try(:email)
+    rescue Exception => e
+      Rails.logger.info "**** Failed to send :answers_gathered email to asker!"
+    end
   end
 end
