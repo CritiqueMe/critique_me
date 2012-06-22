@@ -8,7 +8,7 @@ $ ->
       show: 'fade'
       hide: 'fade'
       width: 800
-      height: 440
+      height: 'auto'
       position: 'center'
       dialogClass: 'share-modal'
     return false

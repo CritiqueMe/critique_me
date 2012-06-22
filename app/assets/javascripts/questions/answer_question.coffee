@@ -32,7 +32,7 @@ init_post_answer_button = ->
           show: 'fade'
           hide: 'fade'
           width: 800
-          height: 440
+          height: 'auto'
           position: 'center'
           dialogClass: 'share-modal'
           close: send_to_create_question_page

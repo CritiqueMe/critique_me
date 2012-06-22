@@ -31,7 +31,7 @@ show_answer_dialog = (qid) ->
         show: 'fade'
         hide: 'fade'
         width: 800
-        height: 440
+        height: 'auto'
         position: 'center'
         dialogClass: 'share-modal'
         close: send_to_create_question_page

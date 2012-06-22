@@ -19,7 +19,7 @@ namespace :hipchat do
   desc "Send deploy notification to the SeedBlocks HipChat room"
   task :deploy, :env, :rev, :branch, :migrations do |t, args|
     # send a message to HipChat
-    client = HipChat::Client.new("43a0d8d35d0af7ec2b3aec1e390a6e")
+    client = HipChat::Client.new("4e2fff27d31341253eb941b6798df7")
 
     rev         = args[:rev].gsub('\'', '').gsub('"', '')
     env         = args[:env].gsub('\'', '').gsub('"', '')
@@ -27,6 +27,6 @@ namespace :hipchat do
     migrations  = args[:migrations].gsub('\'', '').gsub('"', '')
     deploy_str  = "Deployed #{link_to_github_branch branch} (#{link_to_github_commit rev}) to #{link_to_site env}#{" (running migrations)" if migrations == 'true'}."
 
-    client['SeedBlocks'].send("CritiqueMe Deploy", deploy_str, :notify => true)
+    client['67421'].send("CritiqueMe Deploy", deploy_str, :notify => true)
   end
 end

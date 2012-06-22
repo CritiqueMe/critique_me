@@ -86,7 +86,7 @@ pop_canned_questions_dialog = (content) ->
     show: 'fade'
     hide: 'fade'
     width: 800
-    height: 440
+    height: 'auto'
     position: 'center'
     dialogClass: 'share-modal'
   .html(content)

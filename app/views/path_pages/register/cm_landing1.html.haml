@@ -32,7 +32,9 @@
               - @last_questions.each_with_index do |q,i|
                 %td{:class => i == 0 ? 'leftest' : (i == @last_questions.length-1 ? 'rightest' : '')}
                   .qtext= q.question_text
-                  .qago= time_ago_in_words(q.last_asked_at || Time.now-13.days) + " ago"
+                  .qago
+                    =# time_ago_in_word(q.last_asked_at) + " ago"
+                    = time_ago_in_words(Time.now-((i+rand(100)*0.01).minutes)) + " ago"
       -#%table#arrows
       -#  %tr
       -#    %td= link_to "&larr;".html_safe, '#', :id => "left_arrow"
