@@ -75,6 +75,14 @@ init_public_private = ->
   $('.pubpriv #priv a').click ->
     update_public_private(false)
     return false
+  $('.pubpriv #pub a').mouseover ->
+    $('.pubpriv #pub .rollover').fadeIn()
+  .mouseout ->
+    $('.pubpriv #pub .rollover').fadeOut()
+  $('.pubpriv #priv a').mouseover ->
+    $('.pubpriv #priv .rollover').fadeIn()
+  .mouseout ->
+    $('.pubpriv #priv .rollover').fadeOut()
 
 
 update_qtype_radios = ->

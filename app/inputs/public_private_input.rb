@@ -10,8 +10,18 @@ class PublicPrivateInput < Formtastic::Inputs::BooleanInput
   def visible_selectors
     <<-HTML
       <div class='pubpriv'>
-        <div id='priv'><a href='#' id='publink'>Private</a></div>
-        <div id='pub'><a href='#' id='privlink'>Public</a></div>
+        <div id='priv'>
+          <a href='#' id='privlink'>Private</a>
+          <div class='rollover'>
+            Only the people you invite can see or answer this question, and all answers are anonymous
+          </div>
+        </div>
+        <div id='pub'>
+          <a href='#' id='publink'>Public</a>
+          <div class='rollover'>
+            Anyone can see and answer this question, though answers will still be anonymous.
+          </div>
+        </div>
       </div>
       <div class='clearer'></div>
     HTML

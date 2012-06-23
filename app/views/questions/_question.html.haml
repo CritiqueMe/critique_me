@@ -37,7 +37,7 @@
             - if @user
               - if @user == q.user
                 .buttons.share_question{:data => {:question_id => q.id}}
-                  = button_to "Share with Friends", '#'
+                  = button_to "Get More Answers", '#'
               - elsif @user.answers.where(:question_id => q.id).count == 0
                 .buttons.post_answer
                   = button_to "Submit Answer", '#', :data => {:question_id => q.id}
@@ -59,30 +59,31 @@
                       = link_to "Invite some friends now!", '#'
                   - elsif @user.answers.where(:question_id => q.id) == 0
                     You haven't answered this question yet!
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:open_text)
-                %ol
-                  - q.answers.each do |a|
-                    %li= a.open_text_answer
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-                %ol
-                  - q.multiple_choice_options.sort{|a,b| b.answers.count <=> a.answers.count}.each do |mco|
+              - elsif q.user_id == @user.id
+                - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
+                  %ol
+                    - q.answers.each do |a|
+                      %li= a.open_text_answer
+                - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+                  %ol
+                    - q.multiple_choice_options.sort{|a,b| b.answers.count <=> a.answers.count}.each do |mco|
+                      %li
+                        %b= mco.answer_text
+                        %em (#{mco.answers.count})
+                - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
+                  %ol
                     %li
-                      %b= mco.answer_text
-                      %em (#{mco.answers.count})
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
-                %ol
-                  %li
-                    %b Yes
-                    %em (#{q.answers.where(:true_false_answer => true).count})
-                  %li
-                    %b No
-                    %em (#{q.answers.where(:true_false_answer => false).count})
-              - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
-                %ol
-                  - q.canned_question_choices.each do |cqc|
+                      %b Yes
+                      %em (#{q.answers.where(:true_false_answer => true).count})
                     %li
-                      %b= cqc.friend_name
-                      %em (#{q.answers.where(:canned_question_choice_id => cqc.id).count})
+                      %b No
+                      %em (#{q.answers.where(:true_false_answer => false).count})
+                - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
+                  %ol
+                    - q.canned_question_choices.each do |cqc|
+                      %li
+                        %b= cqc.friend_name
+                        %em (#{q.answers.where(:canned_question_choice_id => cqc.id).count})
 
               - if @user && a = @user.answers.where(:question_id => q.id).first
                 #your_answer
@@ -108,12 +109,14 @@
         .clearer
 
         - if @canned_questions
-          #cq_link= link_to "Have some fun answering some questions about your friends!", '#'
+          #cq_link.cq_link= link_to "Have some fun answering some questions about your friends!", '#'
 
       - else  # User can't view this question
         %h2 This question is private!
         %p CritiqueMe respects the privacy of our users!
         %p This question can only be viewed by people who have been invited by the asker.
+        %p= link_to "Ask your own question &raquo;".html_safe, new_question_path
+        %p.cq_link= link_to "Have some fun answering some questions about your friends!", '#'
 
 
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}

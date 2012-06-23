@@ -78,18 +78,19 @@ pop_canned_questions_dialog = (content) ->
   else
     dlg_title = ''
 
-  $('#post_share_dialog').dialog
-    title: dlg_title
-    resizable: false
-    draggable: true
-    modal: true
-    show: 'fade'
-    hide: 'fade'
-    width: 800
-    height: 'auto'
-    position: 'center'
-    dialogClass: 'share-modal'
-  .html(content)
+  $('#post_share_dialog').html(content).delay(700).queue ->
+    $(this).dialog
+      title: dlg_title
+      resizable: false
+      draggable: true
+      modal: true
+      show: 'fade'
+      hide: 'fade'
+      width: 800
+      height: 'auto'
+      position: 'center'
+      dialogClass: 'share-modal'
+    $(this).dequeue()
 
   # initialize oops button and thanks buttons
   $('#oops_button a').click ->

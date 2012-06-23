@@ -1,5 +1,5 @@
 $ ->
-  $("#cq_link a").click ->
+  $(".cq_link a").click ->
     $('#canned_questions').dialog
       title: "Answer fun questions about your friends and find out what they said about you."
       resizable: false

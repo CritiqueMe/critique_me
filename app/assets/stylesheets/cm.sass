@@ -324,6 +324,7 @@ body
           padding: 10px 25px
           @include background-image(linear-gradient(#ffffff, #f0f0f0))
           border: 1px solid #c2c8cc
+          position: relative
         a
           color: $cmdarkgrey
           font-size: 16px
@@ -339,6 +340,18 @@ body
           background: #585e62
           a
             color: white
+        .rollover
+          font-size: 12px
+          position: absolute
+          bottom: -50px
+          right: 115px
+          border: 2px solid black
+          background: white
+          display: none
+          padding: 10px 15px
+          width: 350px
+          z-index: 500
+          @include border-radius(10px)
     #qphoto
       display: inline-block
       border: 3px solid #c4c9cc
