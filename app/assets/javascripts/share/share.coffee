@@ -191,10 +191,16 @@ init_qimage_link = ->
     pop_img_dialog($(this).parent().data('question_id'))
     return false
 
+init_twitter = ->
+  qid = $('.qpreview').data('question_id')
+  $.get '/build_tweet_button', {question_id: qid}, (html) ->
+    $('#invite_content #twitter').html(html)
+
 $ ->
   init_share_nav()
   init_fb_friend_list()
   init_fb_selectors()
+  init_twitter()
   init_contact_importer()
   init_manual_entry_form()
   init_post_to_graph_link()

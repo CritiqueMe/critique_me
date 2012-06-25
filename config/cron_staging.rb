@@ -11,6 +11,10 @@ every :day, :at => '8am' do
   lockrun_scheduled_task "send_invite_reminders"
 end
 
+every :day do
+  lockrun_scheduled_task "purge_twitter_shares"
+end
+
 every :hour do
   lockrun_rake "reports:hourly:all"
 end

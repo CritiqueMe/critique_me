@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120618200413) do
+ActiveRecord::Schema.define(:version => 20120625171347) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -299,6 +299,17 @@ ActiveRecord::Schema.define(:version => 20120618200413) do
   create_table "security_codes", :force => true do |t|
     t.string   "code"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "twitter_share_templates", :force => true do |t|
+    t.string   "name"
+    t.string   "button_text"
+    t.string   "message"
+    t.string   "hashtags"
+    t.text     "related_accounts"
+    t.boolean  "active",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

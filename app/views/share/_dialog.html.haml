@@ -1,4 +1,4 @@
-.qpreview
+.qpreview{:data => {:question_id => @question.id}}
   %table
     %tr
       - if @question.photo.url
@@ -43,7 +43,7 @@
 
       - if @question.public?
         .content_block#twitter
-          = render :partial => "partials/tweet_button", :locals => {:hashtag => "CritiqueMe", :text => "Come answer my question!", :related => ''}
+          =# render :partial => "partials/tweet_button", :locals => {:hashtag => "CritiqueMe", :text => "Come answer my question!", :related => ''}
 
       .content_block#contact
         .content_header Invite Your <span class='provider'></span> Contacts
