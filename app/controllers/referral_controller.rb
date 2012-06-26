@@ -11,7 +11,7 @@ class ReferralController < ApplicationController
       )
       session[:twitter_entrance_id] = tracker.id
       share.clicked!
-      session[:clicked_question_id] = share.tracking_question_id
+      session[:clicked_question_id] = share.tracking_object_id
     end
   end
 end
