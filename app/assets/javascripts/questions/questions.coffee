@@ -138,7 +138,7 @@ init_mc_answer_boxes = ->
         $(this).val('')
 
 init_more_info_lightbox = ->
-  $('#newq_subhdr img').mouseover ->
+  $('#newq_subhdr a').mouseover ->
     $('#newq_lightbox').fadeIn()
   .mouseout ->
     $('#newq_lightbox').fadeOut()

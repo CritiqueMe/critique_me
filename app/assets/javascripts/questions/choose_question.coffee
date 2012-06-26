@@ -42,7 +42,7 @@ monitor_category_changer = ->
 
 
 init_helper_mouseover = ->
-  $('#chooseq_top img').mouseover ->
+  $('#chooseq_top a').mouseover ->
     $('#chooseq_lightbox').fadeIn()
   .mouseout ->
     $('#chooseq_lightbox').fadeOut()
