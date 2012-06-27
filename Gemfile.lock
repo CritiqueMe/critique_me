@@ -5,10 +5,8 @@ GIT
     gvis (2.0.3)
       json
 
-GIT
-  remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 12d9f9040dcf0d26c840cb1f63f9731e31ac93aa
-  branch: fb_share_update
+PATH
+  remote: ../../seed_blocks
   specs:
     seed_blocks (0.0.1)
       airbrake
@@ -102,8 +100,8 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-rails (1.0.2)
-      compass (>= 0.12.0, < 0.14)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     date_validator (0.6.3)
       activemodel (~> 3.0)
     delayed_job (3.0.3)
@@ -124,7 +122,7 @@ GEM
       json_pure
     erubis (2.7.0)
     escape (0.0.4)
-    excon (0.14.1)
+    excon (0.14.2)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (3.2.0)

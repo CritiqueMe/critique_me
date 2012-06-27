@@ -129,4 +129,16 @@ class Question < ActiveRecord::Base
       "#{user.first_last_initial} asked you #{"and #{self.num_invited-1} other #{self.num_invited-1 == 1 ? "person" : "people"} " if self.num_invited>1}a private question.  All responses on CritiqueMe are <b>totally anonymous</b>.  We NEVER reveal the identity of the answerer."
     end
   end
+
+  def self.send_invite_reminders
+    Question.joins("LEFT JOIN answers ON questions.id = answers.question_id").
+        where(:canned_question_id => nil).
+        where('questions.created_at>=? AND questions.created_at<?', Time.now-8.days, Time.now-7.days).
+        select('questions.*, COUNT(answers.question_id) AS num_answers').
+        having('num_answers < 5').
+        group('questions.id').find_each do |q|
+
+      EmailDelivery.user_mail(:question_invite_reminder, q.user, {:question => q})
+    end
+  end
 end

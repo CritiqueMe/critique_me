@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625171347) do
+ActiveRecord::Schema.define(:version => 20120627210348) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -352,6 +352,7 @@ ActiveRecord::Schema.define(:version => 20120625171347) do
     t.datetime "friends_updated_at"
     t.text     "fb_pic_square"
     t.datetime "last_login"
+    t.integer  "email_preferences",     :default => 0
   end
 
   create_table "variant_combinations", :force => true do |t|

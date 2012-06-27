@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :flagged_questions
 
+  EMAIL_PREFERENCES = [:once_per_week, :no_third_party, :no_email]
+
   def self.sb_combine_accounts(u1, u2)
     u2.questions.update_all(:user_id => u1.id)
     u2.answers.update_all(:user_id => u1.id)
@@ -17,5 +19,19 @@ class User < ActiveRecord::Base
     fbs_count = FbShare.where(:invitee_id => self.id, :tracking_object_id => q.id).count > 0
     fbs_count2 = self.fb_user_id && FbShare.where(:invitee_fb_user_id => self.fb_user_id, :tracking_object_id => q.id).count > 0
     canned_invitee || inv_count || inv_count2 || fbs_count || fbs_count2
+  end
+
+  # Run daily via a cron job
+  def self.send_login_reminders
+    User.where('last_login >= ? AND last_login < ?', Time.now-15.days, Time.now-14.days).find_each do |u|
+      EmailDelivery.user_mail(:login_reminder, u)
+    end
+  end
+
+  def self.send_weekly_email
+    # TODO: make this a bulk mailing?
+    User.where('email_preferences != ?', EMAIL_PREFERENCES.index(:no_email)).find_each do |u|
+      EmailDelivery.user_mail(:weekly_email, u)
+    end
   end
 end

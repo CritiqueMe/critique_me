@@ -1,8 +1,10 @@
-%p
-  Hi #{@user.full_name},
+%html
+  %body
+    %p Woo hoo!  You have received at least 5 answers to your question, "#{@question.question_text_pretty}".  Are you ready to see the results?
+    %p= link_to "Here they are!", @url
+    %p
+      Congrats!
+      %br
+      The CritiqueMe Team
 
-  You've gotten enough answers to your question "#{@question.question_text_pretty}".  #{link_to "Click here", @url} to see what your friends answered!
-
-  Thanks for using CritiqueMe!
-
-= email_tracking @tracker_id
+    = email_tracking @tracker_id

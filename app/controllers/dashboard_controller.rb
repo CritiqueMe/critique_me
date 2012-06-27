@@ -16,4 +16,13 @@ class DashboardController < ApplicationController
     @collection = scope.paginate(:page => params['page'], :per_page => @per_page)
     @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
   end
+
+  def email_preferences
+    if params['user']
+      @user.update_attributes params['user']
+      if @user.valid?
+        flash[:profile_updated] = "Your email preferences have been updated."
+      end
+    end
+  end
 end

@@ -27,6 +27,7 @@ CritiqueMe::Application.routes.draw do
   end
 
   match '/privacy_options',                 :to => 'dashboard#privacy_options', :as => :privacy_options
+  match '/email_preferences',               :to => 'dashboard#email_preferences', :as => :email_preferences
 
   match '/question/:id',                    :to => 'questions#question',        :as => :question
   match '/questions',                       :to => 'questions#new_question',    :as => :questions

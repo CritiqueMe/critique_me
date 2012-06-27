@@ -1,0 +1,22 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "dashboard/cm_profile_edit"
+
+.cm_content
+
+  .inner_content
+    .inner_nav
+      .over.fuzzy#your_profile My Profile
+
+    .qcontainer.fuzzy
+      = show_flash(flash)
+      %fieldset.form_box.email_prefs
+        .hdr
+          %p Email Preferences
+        = semantic_form_for @user, :url => email_preferences_path do |f|
+          = f.inputs do
+            = f.input :email_preferences, :label => "", :as => :radio, :collection => [['Receive emails from us no more than once a week', 0], ['Unsubscribe from third party promotions', 1], ['Unsubscribe from all emails', 2]]
+          = f.actions do
+            = f.action :submit, :label => "Save Changes"
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "dashboard/email_preferences"

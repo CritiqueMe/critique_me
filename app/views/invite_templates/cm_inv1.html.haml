@@ -1,0 +1,12 @@
+%html
+  %body
+    %p #{@inviter.first_name.capitalize} just asked you a question on CritiqueMe because they're looking for the unrestrained truth from you.  Keep in mind that anything you write in response will be shared with #{@inviter.first_name.capitalize}, but #{@inviter.first_name.capitalize} will never see who wrote it.
+    %p Your answer is 100% completely anonymous, so it's your chance to be completely honest.
+    %p See what they asked #{link_to "here", @url}.
+    %p On behalf of #{@inviter.first_name.capitalize}, thank you for sharing the whole truth.
+    %p
+      Best,
+      %br
+      The CritiqueMe Team
+
+    = invite_tracking(@tracker_id)
