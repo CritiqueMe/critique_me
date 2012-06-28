@@ -30,7 +30,25 @@
     .posted Your Answer has been Posted!
     Close this dialog to begin creating your own question that you can share with your friends!
 
+- if @show_pitch_dlg
+  #pitch_dlg
+    %table
+      %tr
+        %td.num 1
+        %td.blurb You ask 5 or more friends any question (even something personal!).
+      %tr
+        %td.num 2
+        %td.blurb They answer anonymously so you get the real truth.
+      %tr
+        %td.num 3
+        %td.blurb You learn things about yourself that people aren't telling you.
+    .closer= link_to "Click Here to Get Started", '#'
+    #do_not_show
+      = check_box_tag "do_not_show_again"
+      Do not show this again
+
 
 - content_for :extra_javascripts do
   = javascript_include_tag 'questions/questions'
   = javascript_include_tag "questions/answer_posted" if flash[:notice] == 'Answer Posted'
+  = javascript_include_tag "questions/pitch_dialog" if @show_pitch_dlg

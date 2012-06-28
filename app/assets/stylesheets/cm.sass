@@ -800,6 +800,37 @@ body
   .ui-dialog-titlebar
     width: 90% !important
 
+#pitch_dlg
+  display: none
+  position: relative
+  table
+    width: 400px
+    margin: 0px auto
+    td
+      padding: 5px
+      &.num
+        font-size: 18px
+        font-weight: bold
+  .closer
+    text-align: center
+    margin: 40px auto
+    a
+      font-family: "Clarendon BT Roman"
+      color: white
+      font-size: 18px
+      padding: 10px
+      border: 1px solid #007acc
+      @include background-image(linear-gradient(#47a8eb, #1688d6))
+      @include border-radius(7px)
+      cursor: pointer
+      text-decoration: none
+  #do_not_show
+    position: absolute
+    bottom: 5px
+    right: 10px
+    font-size: 12px
+
+
 
 
 .flash

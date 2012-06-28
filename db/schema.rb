@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627210348) do
+ActiveRecord::Schema.define(:version => 20120627235112) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -342,17 +342,18 @@ ActiveRecord::Schema.define(:version => 20120627210348) do
     t.string   "affiliate_subid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "privacy_ask_questions", :default => 0
-    t.integer  "xp",                    :default => 0
+    t.integer  "privacy_ask_questions",  :default => 0
+    t.integer  "xp",                     :default => 0
     t.integer  "level_id"
     t.integer  "karma_level_id"
     t.integer  "current_energy"
     t.integer  "energy_bucket_size"
-    t.integer  "rank_score",            :default => 0
+    t.integer  "rank_score",             :default => 0
     t.datetime "friends_updated_at"
     t.text     "fb_pic_square"
     t.datetime "last_login"
-    t.integer  "email_preferences",     :default => 0
+    t.integer  "email_preferences",      :default => 0
+    t.boolean  "pitch_dlg_acknowledged", :default => false
   end
 
   create_table "variant_combinations", :force => true do |t|

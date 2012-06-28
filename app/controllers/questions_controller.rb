@@ -10,13 +10,8 @@ class QuestionsController < ApplicationController
 
     redirect_to dashboard_path and return unless @question.active?
 
-    if @questionnaire = @question.default_question.try(:questionnaire)
-      @questions = @question.user.questions.joins(:default_question).
-          where('default_questions.questionnaire_id=?', @questionnaire.id).
-          where('questions.created_at>=? AND questions.created_at<?', @question.created_at-30.seconds, @question.created_at+30.seconds)
-    else
-      @questions = [@question]
-    end
+    @questions = [@question]
+
     @answer = Answer.new(:question => @question, :user => @user, :post_to_wall => true)
     if params['fb_action_ids'] || params['cmfb']  # This is the result of an FB click
 
@@ -41,7 +36,7 @@ class QuestionsController < ApplicationController
           session[:viral_entrance_id] = tracker.id
         end
 
-        session[:straight_outta_fb] = true
+        session[:do_fb_oauth_redirect] = true
         redirect_to welcome_path and return
       end
     else
@@ -83,6 +78,13 @@ class QuestionsController < ApplicationController
     @default_mc_answer_text = "Enter answer choice"
     @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
     @fb_share_template = FbShareTemplate.active.random.first
+
+    if session[:show_pitch_dlg] && @user.show_pitch_dlg?
+      @show_pitch_dlg = true
+    else
+      @show_pitch_dlg = false
+    end
+    session[:show_pitch_dlg] = false
 
     if params['question']
 
@@ -199,6 +201,11 @@ class QuestionsController < ApplicationController
     @flagged_question = FlaggedQuestion.new(params['flagged_question'])
     @flagged_question.save
     redirect_to question_path(@flagged_question.question)
+  end
+
+  def toggle_pitch_dlg
+    @user.update_attribute :pitch_dlg_acknowledged, true
+    render :text => "OK"
   end
 
 

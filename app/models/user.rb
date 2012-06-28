@@ -34,4 +34,8 @@ class User < ActiveRecord::Base
       EmailDelivery.user_mail(:weekly_email, u)
     end
   end
+
+  def show_pitch_dlg?
+    !referrer_id.nil? && !pitch_dlg_acknowledged?
+  end
 end

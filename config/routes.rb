@@ -39,6 +39,7 @@ CritiqueMe::Application.routes.draw do
   match '/post_to_graph/:id',               :to => 'questions#post_to_graph',   :as => :post_to_graph
   match '/canned_answer/:id',               :to => 'answers#canned_answer',     :as => :canned_answer
   match '/flag_question',                   :to => 'questions#flag',            :as => :new_flag
+  match '/toggle_pitch_dlg',                :to => 'questions#toggle_pitch_dlg',:as => :toggle_pitch_dlg
 
   match '/answer/new',                      :to => 'answers#new',               :as => :new_answer
 
