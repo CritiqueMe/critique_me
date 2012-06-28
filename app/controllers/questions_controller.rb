@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   layout 'cm'
 
   before_filter :enforce_login, :except => :question
-  before_filter :get_fb_access_token, :except => :question
+  before_filter :get_fb_access_token, :except => [:question, :toggle_pitch_dlg]
   skip_before_filter :verify_authenticity_token, :only => :choose_question
 
   def question
