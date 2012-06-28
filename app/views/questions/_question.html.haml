@@ -139,15 +139,16 @@
     = javascript_include_tag "questions/show_share"
     = javascript_include_tag "share/share"
   - elsif @user && @question.canned_question_id && @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
+    - session[:showed_canned_in_path] = true
     = javascript_include_tag "questions/show_canned"
   - elsif @user && @user.answers.where(:question_id => @question.id).count == 0 && @user.flagged_questions.where(:question_id => @question.id).count == 0
     -# show answer dialog if user hasn't answered it yet and hasn't flagged it already
     = javascript_include_tag "questions/show_answer"
   - elsif params['controller'] == 'welcome' && @user.answers.where(:question_id => @question.id).count > 0
     - if session[:showed_canned_in_path]
-      - session[:show_canned_in_path] = false
+      - session[:showed_canned_in_path] = false
       :javascript
         window.location = "/path_canned_finished"
     - else
-      - session[:show_canned_in_path] = true
+      - session[:showed_canned_in_path] = true
       = javascript_include_tag "questions/show_canned"
