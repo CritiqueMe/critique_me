@@ -1,10 +1,11 @@
 = semantic_form_for @question, :url => form_url, :multipart => true do |f|
   = f.inputs do
     = f.input :default_question_id, :as => :hidden
-    = f.input :public, :as => :public_private, :label => "Settings"
-    = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Question"
+    .character_counter{:data => {:chars => 200}}
+      = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Question"
     = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe
     = f.input :question_type, :as => :radio, :collection => [["Yes or No", 1], ["Multiple Choice", 0], ["Open Ended", 2]], :label => "Type"
+    = f.input :public, :as => :public_private, :label => "Settings"
     .clearer
 
   #multiple_choice_answers.hidden

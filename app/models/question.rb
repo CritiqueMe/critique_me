@@ -30,6 +30,7 @@ class Question < ActiveRecord::Base
 
   validates :user_id, :presence => true, :unless => Proc.new{|x| x.question_type == QUESTION_TYPES.index(:canned_question)}
   validates_presence_of :question_text, :question_type, :message => "Required"
+  validates_length_of :question_text, :maximum => 200
 
   attr_accessor :post_to_wall
 

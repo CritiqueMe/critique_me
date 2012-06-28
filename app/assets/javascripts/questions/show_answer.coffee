@@ -13,7 +13,24 @@ show_answer_dialog = (qid) ->
     width: 650
     height: 'auto'
     dialogClass: 'answerq_dlg'
-  $('.qform form').bind("ajax:beforeSend", (evt, xhr, settings) ->
+  $('.qform form').bind("ajax:before", (evt, form) ->
+    # Answer form validations
+    if $('#answer_multiple_choice_option_id_input').length > 0
+      selected = $('.mc_options input[type=radio]:checked').val()
+      if selected == undefined
+        console.log "ERROR - no multiple choice option checked"
+        return false
+    else if $('#answer_open_text_answer_input').length > 0
+      text = $('#answer_open_text_answer').val()
+      max_length = $('.character_counter').data('chars')
+      if text.length == 0
+        console.log "ERROR - no open text answer given"
+        return false
+      else if text.length > max_length
+        console.log "ERROR - open text answer too long"
+        return false
+
+  ).bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('.post_answer').hide()
     $('#dlg_content').hide()
     $('#post_answer_spinner').fadeIn()
@@ -70,9 +87,24 @@ init_tf_radios = ->
     $('#new_answer').submit()
     return false
 
+update_mc_radios = ->
+  $('.mc_options input[type=radio]').each ->
+    if $(this).attr('checked') == 'checked'
+      $(this).parent().addClass('radio_selected')
+    else
+      $(this).parent().removeClass('radio_selected')
+
+init_mc_radios = ->
+  update_mc_radios()
+  $('.mc_options input[type=radio]').change ->
+    update_mc_radios()
+
+
+
 
 $ ->
   default_qid = $('#share_dialog').data('question_id')
   show_answer_dialog(default_qid)
   init_flag_question_button()
   init_tf_radios()
+  init_mc_radios()

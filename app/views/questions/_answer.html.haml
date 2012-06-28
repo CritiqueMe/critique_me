@@ -10,7 +10,8 @@
       = semantic_form_for @answer, :url => post_url, :remote => (params['controller'] != 'welcome') do |f|
         = f.inputs do
           - if question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
-            = f.input :multiple_choice_option_id, :as => :select, :collection => question.multiple_choice_options, :member_label => :answer_text, :include_blank => false
+            .mc_options
+              = f.input :multiple_choice_option_id, :as => :radio, :collection => question.multiple_choice_options, :member_label => :answer_text
           - elsif question.question_type == Question::QUESTION_TYPES.index(:true_false)
             = f.input :true_false_answer, :as => :hidden
             .true_false_buttons
@@ -19,7 +20,8 @@
                   %td= link_to "Yes", '#', :id => "yes"
                   %td= link_to "No", '#', :id => "no"
           - elsif question.question_type == Question::QUESTION_TYPES.index(:open_text)
-            = f.input :open_text_answer
+            .character_counter{:data => {:chars => 200}}
+              = f.input :open_text_answer
           - elsif question.question_type == Question::QUESTION_TYPES.index(:canned_question)
             = f.input :canned_question_choice_id, :as => :hidden
             .canned_question

@@ -85,7 +85,7 @@ body
     #newq_top
       color: $cmdarkgrey
       font-size: 20px
-      width: 800px
+      width: 825px
       margin: 0px auto
       padding: 0px 0px 15px
       position: relative
@@ -405,16 +405,21 @@ body
 
     #question_question_text_input
       margin-bottom: 0px
+      margin-top: 12px
+      label
+        font-weight: bold
       .inline-errors
         display: none
       &.error
         textarea
           border: 3px solid red
           margin-bottom: 3px
+
     #question_photo_input
       margin-top: -3px
     #question_question_type_input
       margin-bottom: 0px
+      height: 35px
 
     .choices
       padding: 0px
@@ -456,6 +461,25 @@ body
             cursor: pointer
           &.radio_selected
             background: image-url('questions/radio_on.png') left center no-repeat
+    .character_counter
+      color: $cmdarkgrey
+      position: relative
+      div
+        display: inline-block
+      .expl
+        font-size: 10px
+        position: absolute
+        bottom: 0px
+        right: 55px
+      .counter
+        font-size: 14px
+        font-weight: bold
+        position: absolute
+        bottom: -1px
+        right: 12px
+        width: 40px
+      .error
+        color: $cmred
 
   .buttons, .actions
     padding: 0px
