@@ -14,6 +14,7 @@ pop_canned_questions_dialog = ->
     position: 'center'
     dialogClass: 'share-modal'
     close: send_to_create_question_page
+  .delay(500).dialog('option', 'position', 'center')
 
 
 $ ->
