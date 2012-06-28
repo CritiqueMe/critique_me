@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
     @answer = Answer.new(params['answer'])
     @answer.save
     post_answer_to_open_graph(@answer) if @answer.post_to_wall == "1"
-    session[:clicked_question_id] = nil
+    #session[:clicked_question_id] = nil
     increment_page
     redirect_to welcome_path
   end
