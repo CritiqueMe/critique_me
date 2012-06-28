@@ -7,9 +7,9 @@ pop_pitch_dialog = ->
     hide: 'fade'
     width: 700
     height: 'auto'
-    title: "Ever Wonder What People Are Not Telling You?<br />Ask Any Question & Get the Real Truth from Anyone!"
+    title: "Ever Wonder What People Are Not Telling You?"
     position: 'center'
-    dialogClass: 'share-modal'
+    dialogClass: 'pitch_dlg'
     autoOpen: true
   $('#pitch_dlg .closer a').click ->
     $('#pitch_dlg').dialog('close')

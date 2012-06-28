@@ -800,25 +800,47 @@ body
   .ui-dialog-titlebar
     width: 90% !important
 
+.pitch_dlg
+  .ui-dialog-titlebar
+    font-size: 24px
+    width: 90%
 #pitch_dlg
   display: none
   position: relative
+  font-family: 'helvetica neue', helvetica, arial, sans-serif
+  .subhdr
+    font-family: "Clarendon BT Roman"
+    text-align: center
+    font-size: 16px
+    color: $cmdarkgrey
+    width: 430px
+    margin: 0px auto
+    padding-bottom: 20px
   table
-    width: 400px
+    width: 335px
     margin: 0px auto
     td
-      padding: 5px
+      padding: 0px
       &.num
-        font-size: 18px
-        font-weight: bold
+        font-size: 32px
+        color: $cmblue
+        padding: 0px 20px 0px 10px
+      &.blurb
+        color: $cmdarkgrey
+        font-size: 16px
+        b
+          font-weight: bold
+      &.arrow
+        text-align: center
+        padding-top: 10px
   .closer
     text-align: center
-    margin: 40px auto
+    margin: 50px auto
     a
       font-family: "Clarendon BT Roman"
       color: white
-      font-size: 18px
-      padding: 10px
+      font-size: 24px
+      padding: 15px 35px
       border: 1px solid #007acc
       @include background-image(linear-gradient(#47a8eb, #1688d6))
       @include border-radius(7px)
@@ -827,8 +849,9 @@ body
   #do_not_show
     position: absolute
     bottom: 5px
-    right: 10px
+    left: 10px
     font-size: 12px
+    color: $cmdarkgrey
 
 
 

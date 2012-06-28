@@ -32,20 +32,25 @@
 
 - if @show_pitch_dlg
   #pitch_dlg
+    .subhdr Ask Any Question on Our Anonymous Feedback App & Get the Truth From Anyone!
     %table
       %tr
         %td.num 1
-        %td.blurb You ask 5 or more friends any question (even something personal!).
+        %td.blurb You <b>ask 5 or more friends</b><br />any question (even something personal!)
+      %tr
+        %td.arrow{:colspan => 2}= image_tag "questions/down_arrow.png"
       %tr
         %td.num 2
-        %td.blurb They answer anonymously so you get the real truth.
+        %td.blurb They <b>answer anonymously</b><br />so you get the real truth
+      %tr
+        %td.arrow{:colspan => 2}= image_tag "questions/down_arrow.png"
       %tr
         %td.num 3
-        %td.blurb You learn things about yourself that people aren't telling you.
-    .closer= link_to "Click Here to Get Started", '#'
+        %td.blurb You <b>learn things about yourself</b><br />that people aren't telling you.
+    .closer= link_to "Ask My First Question!", '#'
     #do_not_show
       = check_box_tag "do_not_show_again"
-      Do not show this again
+      Don't show this again
 
 
 - content_for :extra_javascripts do
