@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :flagged_questions
 
-  EMAIL_PREFERENCES = [:once_per_week, :no_third_party, :no_email]
+  EMAIL_PREFERENCES = [:no_restrictions, :once_per_week, :no_third_party, :no_email]
 
   def self.sb_combine_accounts(u1, u2)
     u2.questions.update_all(:user_id => u1.id)
