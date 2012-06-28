@@ -80,10 +80,10 @@ class WelcomeController < ApplicationController
   end
 
   def default_experiment_delivery_url
-    if session[:clicked_question_id]
-      question_path session[:clicked_question_id]
-    else
+    #if session[:clicked_question_id]
+    #  question_path session[:clicked_question_id]
+    #else
       new_question_path
-    end
+    #end
   end
 end

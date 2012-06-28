@@ -15,7 +15,7 @@ pop_canned_questions_dialog = ->
     dialogClass: 'share-modal'
     close: send_to_create_question_page
   $('#canned_questions').delay(500).queue ->
-    dialog('option', 'position', 'center')
+    $(this).dialog('option', 'position', 'center')
 
 
 $ ->

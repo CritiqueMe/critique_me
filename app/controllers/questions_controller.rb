@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
       if @question.canned_question_id
         session[:show_canned_answer] = @question.id
       end
+      session[:show_pitch_dlg] = true
 
       if @user.nil?
         session[:referrer_id] = @question.user_id  # make sure the user gets a viral path
