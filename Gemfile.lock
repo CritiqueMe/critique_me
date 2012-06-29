@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: c72d96130f17dacaa73b1c107cf3f4d380a42a77
+  revision: 5d2517c8dbcc50be75d512e0258eafd51157c1ca
   branch: fb_share_update
   specs:
     seed_blocks (0.0.1)
@@ -267,7 +267,7 @@ GEM
     turn (0.9.5)
       ansi
     tzinfo (0.3.33)
-    uglifier (1.2.5)
+    uglifier (1.2.6)
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
     unicode_utils (1.0.0)

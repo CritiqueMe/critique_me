@@ -41,7 +41,7 @@
             = link_to image_tag("logo_white.png"), @user && @user.id ? new_question_path : welcome_path
             #tagline Ask the hard questions
           %ol#nav
-            %li.button= link_to "Login &rarr;".html_safe, welcome_path
+            %li.button= link_to "Login &rarr;".html_safe, fb_perms_redirect_url('email,user_birthday,publish_stream,publish_actions')
 
 
 
