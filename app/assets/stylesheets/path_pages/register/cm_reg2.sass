@@ -1,0 +1,213 @@
+@import compass/css3
+@import compass/css3/box-shadow
+@import compass/css3/border-radius
+@import compass/css3/font-face
+@import compass/css3/opacity
+@import compass/css3/background-size
+
+@include font-face("Helvetica Neue LT Std", font-files("helvetica_neue_lt_std.otf", opentype))
+@include font-face("Impact", font-files("impact.ttf", truetype))
+
+body
+  margin: 0px
+  font-family: 'helvetica neue', helvetica, arial, sans-serif
+  font-weight: 300
+  padding-bottom: 50px
+  background: #ade1f9
+
+  a
+    color: blue
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
+  #header
+    width: 100%
+    min-width: 900px
+    height: 45px
+    background: #001f4d
+    position: fixed
+    z-index: 100
+    #hinner
+      width: 990px
+      margin: 0px auto
+      position: relative
+    #logo
+      padding: 5px 15px
+      position: relative
+      #tagline
+        position: absolute
+        left: 165px
+        top: 15px
+        font-size: 16px
+        color: white
+    #nav
+      position: absolute
+      top: 0px
+      right: 0px
+      margin: 0px
+      padding: 0px
+      line-height: 45px
+      li
+        list-style-type: none
+        float: left
+        padding: 0px 25px
+        border-left: 1px solid #85c4ef
+        border-right: 1px solid #006fcc
+        a
+          color: white
+          text-decoration: none
+        &#dummy
+          border-left: 0px
+        &.selected
+          background: #0083cc
+          border: 0px
+        &.button
+          @include background-image(linear-gradient(#3cceee, #156bcb))
+          border: 1px solid #0083cc
+          @include border-radius(5px)
+          margin: 4px 15px 0px
+          padding: 5px 25px 5px 30px
+          line-height: 25px
+  #clouds
+    padding-top: 45px
+    .cm_content
+      background: image-url('path/clouds.png')
+      @include background-size('cover')
+      #landing_page
+        width: 990px
+        margin: 0px auto
+        #hdr1
+          color: #e37118
+          font-size: 36px
+          text-align: center
+          font-family: "Helvetica Neue LT Std"
+          padding-top: 15px
+          #not
+            color: #001f4d
+        #hdr2
+          color: #062451
+          font-size: 22px
+          text-align: center
+          font-family: "Helvetica Neue LT Std"
+          margin-bottom: 50px
+        #main_left
+          width: 600px
+          float: left
+          td
+            font-family: "Helvetica Neue LT Std"
+            font-size: 22px
+            color: #001f4d
+            img
+              height: 70px
+            em
+              font-family: "Impact"
+              color: #e37118
+              font-size: 24px
+              font-style: normal
+            &.icon
+              text-align: center
+              padding: 10px 20px
+        #continue
+          width: 1163px
+          margin-left: -120px
+        #qs_today
+          margin: 20px 0px
+          #headline
+            float: left
+            font-size: 24px
+            color: #001f4d
+            background: image-url('path/right_arrow.png') no-repeat
+            background-position: right
+            padding-right: 40px
+            margin-right: 10px
+            margin-top: 15px
+            height: 70px
+            line-height: 60px
+            vertical-align: middle
+            em
+              font-family: "Impact"
+              color: #e37118
+              font-size: 24px
+              font-style: normal
+          #table_wrap
+            width: 780px
+            margin: 0px auto 5px
+            padding: 5px 0px 10px
+            overflow-x: hidden
+          table
+            padding: 0px
+            margin: 0px auto
+            border-collapse: collapse
+            td
+              width: 220px
+              padding: 0px 5px
+              vertical-align: middle
+              text-align: center
+              &.leftest
+                border-left: 0px
+              &.rightest
+                border-right: 0px
+              .qtext
+                padding-bottom: 10px
+                color: #001f4d
+                font-size: 18px
+              .qimg
+                display: inline-block
+                padding-right: 5px
+              .qago
+                display: inline-block
+                font-size: 12px
+                font-weight: bold
+                vertical-align: top
+                padding-top: 2px
+                color: #e37118
+                font-size: 14px
+
+
+
+
+
+
+
+
+  #footer
+    position: fixed
+    bottom: 0px
+    height: 50px
+    width: 100%
+    min-width: 1150px
+    color: #9cdff7
+    background: #001f4d
+    z-index: 100
+    font-size: 12px
+    #finner
+      width: 990px
+      margin: 0px auto
+      position: relative
+    a
+      color: #9cdff7
+      text-decoration: none
+      &:hover
+        text-decoration: underline
+    #copyright
+      position: absolute
+      right: 15px
+      top: 17px
+    #footer_twitter
+      position: absolute
+      right: 220px
+      top: 10px
+    #footer_facebook
+      position: absolute
+      right: 255px
+      top: 10px
+    #fnav
+      width: 100%
+      text-align: left
+      line-height: 50px
+      color: #45484b
+
+
+.clearer
+  clear: both
