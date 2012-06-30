@@ -5,8 +5,10 @@ GIT
     gvis (2.0.3)
       json
 
-PATH
-  remote: ../../seed_blocks
+GIT
+  remote: git@github.com:jgeggatt/SeedBlocks.git
+  revision: f71b31e737fb9d13f3d3ac89b69a12a9fc5687b7
+  branch: fb_share_update
   specs:
     seed_blocks (0.0.1)
       airbrake
