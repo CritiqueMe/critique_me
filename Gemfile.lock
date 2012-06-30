@@ -5,10 +5,8 @@ GIT
     gvis (2.0.3)
       json
 
-GIT
-  remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: c4679e2793b02631262bc5070e68775fe79d12dd
-  branch: fb_share_update
+PATH
+  remote: ../../seed_blocks
   specs:
     seed_blocks (0.0.1)
       airbrake
@@ -238,7 +236,7 @@ GEM
       mime-types (>= 1.16)
     rmagick (2.12.2)
     ruby-hmac (0.4.0)
-    sass (3.1.19)
+    sass (3.1.20)
     sass-rails (3.1.5)
       actionpack (~> 3.1.0)
       railties (~> 3.1.0)
