@@ -1,6 +1,7 @@
 # Be sure to restart your server when you modify this file.
 
-CritiqueMe::Application.config.session_store :cookie_store, key: '_critique_me_session'
+domain = Rails.env.production? ? 'critiqueme.com' : (Rails.env.staging? ? 'critiquestg.com' : 'critiqueme.local')
+CritiqueMe::Application.config.session_store :cookie_store, key: '_critique_me_session', :domain => domain
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
