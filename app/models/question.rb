@@ -139,7 +139,7 @@ class Question < ActiveRecord::Base
         having('num_answers < 5').
         group('questions.id').find_each do |q|
 
-      EmailDelivery.user_mail(:question_invite_reminder, q.user, {:question => q})
+      EmailDelivery.user_mail(:question_invite_reminder, q.user, {:question_id => q.id})
     end
   end
 end

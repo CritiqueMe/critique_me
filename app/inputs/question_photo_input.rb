@@ -10,7 +10,7 @@ class QuestionPhotoInput < Formtastic::Inputs::FileInput
     <<-HTML
       <div id='qphoto'>
         <label>
-          <div id='camera'><img src='/assets/questions/photo_icon.png' /></div>
+          <div id='camera'><img src='/assets/questions/img_upload.png' /></div>
           <div id='blurb'>add photo?</div>
           <div id='fname'></div>
     HTML

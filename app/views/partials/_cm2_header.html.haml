@@ -1,0 +1,17 @@
+#header
+  %div{:class => params[:controller] == 'welcome' ? "hinner" : ''}
+    #logo
+      = link_to image_tag("logo_white.png"), @user && @user.id ? new_question_path : welcome_path
+      #tagline Ask the hard questions
+    %ol#nav
+      - if @user && @user.id
+        %li.leftest
+          = link_to "Ask Question", questions_path
+        %li
+          = link_to "My History", dashboard_path
+        %li.rightest
+          = link_to "My Profile", your_profile_path
+      - elsif params['action'] != 'sign_in'
+        %li.button= link_to "Log In", fb_perms_redirect_url('email,user_birthday,publish_stream,publish_actions')
+      - else
+        %li.button= link_to "Sign Up", welcome_path

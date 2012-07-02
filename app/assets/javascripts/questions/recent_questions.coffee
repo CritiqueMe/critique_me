@@ -3,13 +3,13 @@ autoscroller = null
 autoscroll_recent_questions = ->
   num = 0
   scroll_height = 0
-  while num < 5
-    scroll_height += $($('#scroll_wrap ol li').get(num)).height() + 20  # extra 20 is for top/bottom padding of 10px
+  while num < 4
+    scroll_height += $($('#scroll_wrap ol li').get(num)).height() + 10  # extra 10 is for top padding of 10px
     num++
 
   $('#scroll_wrap').animate {scrollTop:scroll_height}, 2000, ->
-    # remove first five questions and append them to the end
-    num = 6
+    # remove first four questions and append them to the end
+    num = 5
     while num -= 1
       list = $('#scroll_wrap ol')
       orig = list.find('li').first()

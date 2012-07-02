@@ -80,7 +80,7 @@ class QuestionsController < ApplicationController
     @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
     @fb_share_template = FbShareTemplate.active.random.first
 
-    if session[:show_pitch_dlg] && @user.show_pitch_dlg?
+    if true#session[:show_pitch_dlg] && @user.show_pitch_dlg?
       @show_pitch_dlg = true
     else
       @show_pitch_dlg = false
@@ -134,6 +134,8 @@ class QuestionsController < ApplicationController
         session[:show_canned_answer] = nil
       end
     end
+
+    render :layout => "cm2"
   end
 
   def edit_question

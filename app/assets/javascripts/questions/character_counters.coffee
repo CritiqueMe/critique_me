@@ -2,7 +2,7 @@ init_character_counters = ->
   $('.character_counter').each ->
     limit = $(this).data('chars')
     curr_count = $(this).find('input,textarea').val().length
-    $(this).append("<div class='expl'>characters left</div><div class='counter'>" + (limit-curr_count) + "</span>")
+    $(this).append("<div class='expl'>chars left</div><div class='counter'>" + (limit-curr_count) + "</span>")
     $('.counter').digits()
     if limit-curr_count < 0
       $(this).find('div').not('.field_with_errors').addClass("error")

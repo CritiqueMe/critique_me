@@ -2,9 +2,9 @@
   = f.inputs do
     = f.input :default_question_id, :as => :hidden
     .character_counter{:data => {:chars => 200}}
-      = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Question"
+      = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Your Question"
     = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe
-    = f.input :question_type, :as => :radio, :collection => [["Yes or No", 1], ["Multiple Choice", 0], ["Open Ended", 2]], :label => "Type"
+    = f.input :question_type, :as => :radio, :collection => [["Yes or No", 1], ["Multiple Choice", 0], ["Open Ended", 2]], :label => "Type of Question"
     = f.input :public, :as => :public_private, :label => "Settings"
     .clearer
 
@@ -12,7 +12,7 @@
     #add_answers Answers
     #answers
       - curr_char = 'A'
-      = f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
+      - f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
         = g.input :default_multiple_choice_option_id, :as => :hidden
         = g.input :answer_text, :as => :string, :label => curr_char, :wrapper_html => {:class => 'mchoice'}
         .minus_button= link_to image_tag("/assets/questions/minus_button.png"), '#'
@@ -25,4 +25,4 @@
     = f.action :submit, :label => @question.id ? "Edit Your Question" : "Create Your Question"
     .spinner= image_tag "/assets/admin/layout/form_spinner.gif"
     .clear
-  #bottom_blurb You will choose who sees this on the next page.
+  #bottom_blurb You will invite people to view your question on the next page.

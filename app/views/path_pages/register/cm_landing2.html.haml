@@ -1,103 +1,40 @@
-!!! 5
--# paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
-<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if gt IE 8]><!-->
-%html.no-js{ :lang => "en" }
-  <!--<![endif]-->
-  %head
-    %meta{ :charset => "utf-8" }/
-    %meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }/
-    %title CritiqueMe
-    %meta{ :name => "description", :content => "CritiqueMe" }/
-    %meta{ :name => "author", :content => "seedblocks.com" }/
+- content_for :extra_css do
+  = stylesheet_link_tag "path_pages/register/cm_reg2"
 
-    %link{:rel => "apple-touch-icon-precomposed", :sizes => "144x144", :href => "/assets/apple-touch-icon-144x144.png"}
-    %link{:rel => "apple-touch-icon-precomposed", :sizes => "114x114", :href => "/assets/apple-touch-icon-114x114.png"}
-    %link{:rel => "shortcut icon", :href => "/assets/favicon.png"}
+#clouds
+  .cm_content
+    #landing_page
+      #hdr1 Ever Wonder What People Are <span id='not'>Not</span> Telling You?
+      #hdr2 Ask Any Question and Get the <b>Real Truth</b> from Anyone
+      #main_left
+        %table
+          %tr
+            %td.icon= image_tag "path/two_heads.png"
+            %td You <em>ask 5 or more friends</em><br /> any question (even something personal!)
+          %tr
+            %td.icon= image_tag "path/bubbles2.png", :style => "height: 60px"
+            %td They <em>answer anonymously</em>,<br /> so you get the <i>real</i> truth.
+          %tr
+            %td.icon= image_tag "path/magnifier.png"
+            %td You <em>learn things about yourself</em><br />that people aren't telling you.
+      #main_right= image_tag "path/qbubble.png"
+      .clearer
 
-    = yield :og_data
-
-    -# Mobile viewport optimized: j.mp/bplateviewport
-    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }/
-
-    = stylesheet_link_tag 'path_pages/register/cm_reg2.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'jquery-ui-smoothness.css'
-    /[if IE]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
-    = yield :extra_css
-
-    -# All JavaScript at the bottom, except for Modernizr and Respond.
-    -# Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-    = javascript_include_tag "modernizr.min.js", "respond.min.js"
-
-  %body{:data => {:tracking_object_class => "Question", :tracking_object_id => @question.try(:id)}}
-    -# 24-column grid layout courtesy of blueprint
-    .container
-      #header
-        #hinner
-          #logo
-            = link_to image_tag("logo_white.png"), @user && @user.id ? new_question_path : welcome_path
-            #tagline Ask the hard questions
-          %ol#nav
-            %li.button= link_to "Login &rarr;".html_safe, fb_perms_redirect_url('email,user_birthday,publish_stream,publish_actions')
+      #continue= link_to image_tag("path/sign_in_with_fb.png"), fb_perms_redirect_url('email,user_birthday,publish_stream,publish_actions')
+      #qs_today
+        #headline Questions <em>Asked Today</em>
+        #table_wrap
+          %table{:style => "width:#{@last_questions.length*260}px"}
+            %tbody
+              %tr
+                - @last_questions.each_with_index do |q,i|
+                  %td{:class => i == 0 ? 'leftest' : (i == @last_questions.length-1 ? 'rightest' : '')}
+                    .qtext= q.question_text
+                    .qago
+                      =# time_ago_in_word(q.last_asked_at) + " ago"
+                      = time_ago_in_words(Time.now-((i+rand(100)*0.01).minutes)) + " ago"
+        .clearer
 
 
-
-      #clouds
-        .cm_content
-          #landing_page
-            #hdr1 Ever Wonder What People Are <span id='not'>Not</span> Telling You?
-            #hdr2 Ask Any Question and Get the <b>Real Truth</b> from Anyone
-            #main_left
-              %table
-                %tr
-                  %td.icon= image_tag "path/two_heads.png"
-                  %td You <em>ask 5 or more friends</em><br /> any question (even something personal!)
-                %tr
-                  %td.icon= image_tag "path/bubbles2.png", :style => "height: 60px"
-                  %td They <em>answer anonymously</em>,<br /> so you get the <i>real</i> truth.
-                %tr
-                  %td.icon= image_tag "path/magnifier.png"
-                  %td You <em>learn things about yourself</em><br />that people aren't telling you.
-            #main_right= image_tag "path/qbubble.png"
-            .clearer
-
-            #continue= link_to image_tag("path/sign_in_with_fb.png"), fb_perms_redirect_url('email,user_birthday,publish_stream,publish_actions')
-            #qs_today
-              #headline Questions <em>Asked Today</em>
-              #table_wrap
-                %table{:style => "width:#{@last_questions.length*260}px"}
-                  %tbody
-                    %tr
-                      - @last_questions.each_with_index do |q,i|
-                        %td{:class => i == 0 ? 'leftest' : (i == @last_questions.length-1 ? 'rightest' : '')}
-                          .qtext= q.question_text
-                          .qago
-                            =# time_ago_in_word(q.last_asked_at) + " ago"
-                            = time_ago_in_words(Time.now-((i+rand(100)*0.01).minutes)) + " ago"
-              .clearer
-
-
-      #footer
-        #finner
-          #fnav
-            = link_to "HOME", @user.try(:id) ? questions_path : welcome_path
-            &nbsp;&nbsp;
-            = link_to "ABOUT US", about_us_path
-            &nbsp;&nbsp;
-            = link_to "FAQ", faq_path
-            &nbsp;&nbsp;
-            = link_to "CONTACT US", contact_us_path
-            &nbsp;&nbsp;
-            = link_to "TERMS", tos_path
-            &nbsp;&nbsp;
-            = link_to "PRIVACY", privacy_path
-          #footer_twitter= link_to image_tag("path/landing2_tw.png"), 'http://twitter.com/critiquemeapp', :target => "_blank"
-          #footer_facebook= link_to image_tag("path/landing2_fb.png"), 'https://www.facebook.com/CritiqueMe', :target => "_blank"
-          #copyright &copy;2012 CritiqueMe.  All rights reserved.
-
-    = javascript_include_tag "application"
-    = javascript_include_tag "jquery-ui-1.8.15.min.js"
-    = javascript_include_tag "path_pages/register/cm_landing2"
+- content_for :extra_javascripts do
+  = javascript_include_tag "path_pages/register/cm_landing2"
