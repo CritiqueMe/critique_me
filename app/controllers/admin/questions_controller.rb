@@ -18,6 +18,6 @@ class Admin::QuestionsController < Admin::SbAdminController
   protected
 
   def collection
-    @questions ||= end_of_association_chain.paginate(:page => params[:page])
+    @questions ||= end_of_association_chain.order('id DESC').paginate(:page => params[:page])
   end
 end

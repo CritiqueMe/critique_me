@@ -1,0 +1,21 @@
+#pitch_dlg
+  .hdr Ever Wonder What People Are <em>Not</em> Telling You?
+  .subhdr Ask Any Question & get the Real Truth from Anyone!
+  %table
+    %tr
+      %td.icon= image_tag "path/two_heads.png"
+      %td.blurb You <em>ask 5 or more friends</em><br />any question (even something personal!)
+    %tr
+      %td.arrow{:colspan => 2}= image_tag "questions/down_arrow.png"
+    %tr
+      %td.icon= image_tag "path/bubbles2.png", :style => "height: 60px"
+      %td.blurb They <em>answer anonymously</em><br />so you get the <i>real</i> truth
+    %tr
+      %td.arrow{:colspan => 2}= image_tag "questions/down_arrow.png"
+    %tr
+      %td.icon= image_tag "path/magnifier.png"
+      %td.blurb You <em>learn things about yourself</em><br />that people aren't telling you.
+  .closer= link_to image_tag("questions/get_started_button.png"), '#'
+  #do_not_show
+    = check_box_tag "do_not_show_again"
+    Don't show this again

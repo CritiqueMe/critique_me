@@ -1,0 +1,537 @@
+@import cm_base2
+
+.grad_bg
+  width: 100%
+  background: image-url('questions/cm2_grad_bg.jpg') no-repeat
+  @include background-size('cover')
+
+.cm_content
+  width: 1170px
+  margin: 0px auto
+  padding-top: 70px
+  position: relative
+
+  #curr_step
+    position: absolute
+    top: 75px
+    right: 0px
+    font-family: "Clarendon BT Roman"
+    color: $cmred
+  #canned_answer
+    position: absolute
+    top: 100px
+    right: 0px
+    color: $cmred
+    width: 240px
+    text-align: right
+    font-size: 12px
+
+  #newq_top
+    color: $cmdarkgrey
+    font-size: 20px
+    width: 825px
+    margin: 0px auto
+    padding: 0px 0px 15px
+    position: relative
+    text-align: center
+    #newq_hdr
+      font-family: "Myriad Pro Bold Cond"
+      color: $cmorange
+      font-size: 22px
+    #newq_subhdr
+      padding: 5px 0px
+      text-align: center
+      font-size: 16px
+      color: $cmdarkblue
+      img
+        vertical-align: baseline
+        cursor: help
+      a
+        font-size: 12px
+        cursor: help
+        color: $cmorange
+        text-decoration: underline
+    #newq_lightbox
+      font-size: 12px
+      position: absolute
+      bottom: -50px
+      right: 115px
+      border: 2px solid black
+      background: white
+      display: none
+      padding: 10px 15px
+      width: 350px
+      z-index: 500
+      @include border-radius(10px)
+
+  .inner_content
+    position: relative
+    padding-bottom: 25px
+    .fuzzy
+      background: white
+      border: 5px solid #47A1D1
+      @include border-radius(8px)
+      -moz-border-bottom-colors: $border_grad
+      -moz-border-top-colors: $border_grad
+      -moz-border-left-colors: $border_grad
+      -moz-border-right-colors: $border_grad
+    .inner_nav
+      div
+        @include border-top-right-radius(0px)
+        @include border-bottom-right-radius(0px)
+        font-size: 15px
+        border-right: 0px
+        width: 148px
+        padding: 15px 10px
+        text-align: right
+        font-weight: 400
+      .over
+        z-index: 10
+        color: white
+        background: #4ec0ff
+        border: 1px solid #47a1d1
+      .under
+        z-index: 0
+        border: 1px solid #d1dee3
+        @include background-image(linear-gradient(#e9eaea, #fefefe))
+        @include single-box-shadow(#222222, 0, 2px, 5px)
+        a
+          color: $cmdarkblue
+          text-decoration: none
+      #write
+        position: absolute
+        top: 20px
+        left: -5px
+        &.under
+          padding-bottom: 25px
+      #choose
+        position: absolute
+        top: 85px
+        left: -5px
+    .qcontainer
+      z-index: 2
+      position: relative
+      margin-left: 165px
+      width: 800px
+      min-height: 415px
+      padding-top: 10px
+      @include border-top-left-radius(0px)
+      &.all_round
+        @include border-radius(15px)
+      fieldset
+        border: 0px
+      #bottom_blurb
+        font-size: 16px
+        color: $cmorange
+        text-align: center
+        padding-bottom: 25px
+      .actions
+        ol
+          padding: 0px
+    .curr_step
+      z-index: 1
+      position: absolute
+      right: 100px
+      top: 40px
+      width: 75px
+      padding: 12px 10px
+      @include border-top-left-radius(0px)
+      @include border-bottom-left-radius(0px)
+      color: white
+      background: #4ec0ff
+      border: 1px solid #47a1d1
+      font-size: 14px
+      font-weight: 500
+    .qs_asked_today
+      z-index: 1
+      position: absolute
+      right: -55px
+      top: 95px
+      width: 230px
+      padding: 15px 10px
+      @include border-top-left-radius(0px)
+      @include border-bottom-left-radius(0px)
+      border: 1px solid #d9d9d9
+      border-left: 0px
+
+      #today_hdr
+        color: $cmdarkblue
+        font-size: 16px
+      #scroll_wrap
+        height: 275px
+        overflow-y: hidden
+      ol
+        padding: 0px
+        margin: 0px
+        margin-top: 10px
+        li
+          list-style-type: none
+          color: #77706e
+          font-size: 13px
+          padding: 10px 0px 0px
+          height: 56px
+          .qtext
+            padding-bottom: 5px
+          .qimg
+            display: inline-block
+          .time_ago
+            display: inline-block
+            color: $cmbluebg
+
+.formtastic
+  .inputs
+    padding: 0px
+    margin: 0px
+
+    ol
+      padding: 0px
+      margin: 0px !important
+    li
+      width: 99%
+      list-style-type: none
+      margin: 10px 0px
+      &.error
+        label
+          color: red
+    label
+      width: 180px !important
+      display: inline-block
+      color: $cmdarkblue
+      font-weight: bold
+      font-size: 16px
+      text-align: right
+      vertical-align: top
+      padding: 12px 10px 0px 0px
+      abbr
+        display: none
+    textarea
+      width: 500px
+      height: 50px
+      border: 3px solid #e1e1e1
+      color: $cmdarkgrey
+      font-family: 'helvetica neue', helvetica, arial, sans-serif
+      font-size: 16px
+      padding: 10px 5px 5px
+      margin-left: 4px
+      resize: none
+      background: #eeeeee
+      @include border-radius(7px)
+      -moz-border-top-colors: $textarea_border_grad
+      -moz-border-bottom-colors: $textarea_border_grad
+      -moz-border-left-colors: $textarea_border_grad
+      -moz-border-right-colors: $textarea_border_grad
+
+    .public_private
+      input
+        display: none
+      .pubpriv
+        display: inline-block
+        div
+          float: left
+          padding: 10px 25px
+          @include background-image(linear-gradient(#ffffff, #f0f0f0))
+          border: 1px solid #c2c8cc
+          position: relative
+        a
+          color: $cmdarkgrey
+          font-size: 16px
+          font-weight: bold
+          text-decoration: none
+        #priv
+          @include border-top-left-radius(5px)
+          @include border-bottom-left-radius(5px)
+        #pub
+          @include border-top-right-radius(5px)
+          @include border-bottom-right-radius(5px)
+        .selected
+          background: $cmbluebg
+          border: 1px solid $cmbluebg
+          a
+            color: white
+        .rollover
+          font-size: 12px
+          position: absolute
+          bottom: -60px
+          left: 0px
+          border: 2px solid black
+          background: white
+          display: none
+          padding: 10px 15px
+          width: 350px
+          z-index: 500
+          @include border-radius(10px)
+    #qphoto
+      display: inline-block
+      padding: 5px
+      width: 500px
+      position: relative
+      label
+        padding: 0px
+        text-align: left
+        width: 100% !important
+        height: 100%
+        display: block
+        overflow: hidden
+        #camera
+          position: absolute
+          top: 8px
+          left: 8px
+          cursor: pointer
+        #blurb
+          position: absolute
+          top: 10px
+          left: 35px
+          color: #77706E
+          font-size: 16px
+          cursor: pointer
+          font-weight: 100
+        #fname
+          position: absolute
+          top: 10px
+          right: 8px
+          font-family: 'helvetica neue', helvetica, arial, sans-serif
+          color: #77706E
+          font-size: 12px
+        input
+          position: relative
+          float: right
+          @include transparent
+
+
+    #question_question_text_input
+      margin-bottom: 0px
+      margin-top: 12px
+      .inline-errors
+        display: none
+      &.error
+        textarea
+          border: 3px solid red
+          margin-bottom: 3px
+
+    #question_photo_input
+      margin-top: -3px
+    #question_question_type_input
+      margin-bottom: 0px
+      height: 35px
+
+    .choices
+      padding: 0px
+      width: 720px
+      float: left
+      legend
+        float: left
+        padding: 0px
+        width: 180px
+        label
+          padding-right: 0px
+          width: 100% !important
+      ol
+        padding-left: 15px
+        label
+          width: 140px !important
+          color: $cmbluebg
+          font-size: 16px
+    .inline-errors
+      display: inline-block
+      width: 60px
+      font-size: 12px
+      color: red
+      font-weight: bold
+      padding-top: 3px
+    .choices-group
+      display: inline-block
+      margin: 0px
+      li
+        display: inline-block
+        width: auto
+        margin-top: 5px
+        margin-bottom: 0px
+        height: 32px
+        label
+          font-family: 'helvetica neue', helvetica, arial, sans-serif
+          font-size: 16px
+          background: image-url('questions/radio_off.png') left center no-repeat
+          padding: 0px 30px 0px 0px
+          cursor: pointer
+          text-align: left
+          vertical-align: middle
+          font-weight: 300
+
+          input[type='radio']
+            opacity: 0
+            width: 21px
+            height: 21px
+            cursor: pointer
+          &.radio_selected
+            background: image-url('questions/radio_on.png') left center no-repeat
+    .character_counter
+      color: $cmdarkgrey
+      position: relative
+      div
+        display: inline-block
+      .expl
+        font-size: 10px
+        position: absolute
+        bottom: 0px
+        right: 45px
+      .counter
+        font-size: 14px
+        font-weight: bold
+        position: absolute
+        bottom: -1px
+        right: 2px
+        width: 40px
+      .error
+        color: $cmred
+
+  .buttons, .actions
+    padding: 0px
+    margin-top: 20px
+    ol
+      margin: 0px
+    li
+      list-style-type: none
+      &.button, &.action
+        text-align: center
+        padding: 17px 0px 30px
+        background: image-url('questions/cm2_button_bg.png') no-repeat
+        width: 306px
+        height: 40px
+        margin: 0px auto
+        input
+          background: transparent
+          font-family: Arial
+          color: white
+          font-size: 20px
+          font-weight: bold
+          text-transform: uppercase
+          @include text-shadow(0 -1px 0px #1e5060)
+          border: 0px
+          cursor: pointer
+    .spinner
+      position: absolute
+      top: 5px
+      right: 5px
+      display: none
+
+#multiple_choice_answers
+  position: relative
+  padding-bottom: 25px
+  ol
+    position: relative
+    height: 40px
+    margin: 0px
+    li
+      height: 25px
+      label
+        font-size: 16px
+        color: $cmdarkgrey
+        padding: 8px 0px 0px 2px
+        width: 18px !important
+        text-align: left
+      input
+        width: 220px
+        height: 20px
+        border: 3px solid #c4c9cc
+        color: #aaafb2
+        font-family: 'helvetica neue', helvetica, arial, sans-serif
+        font-size: 16px
+        padding: 5px
+        margin-left: 4px
+        @include border-radius(7px)
+        -moz-border-top-colors: $textarea_border_grad
+        -moz-border-left-colors: $textarea_border_grad
+        -moz-border-right-colors: $textarea_border_grad
+
+
+  #add_answers
+    width: 180px !important
+    display: inline-block
+    color: $cmdarkblue
+    font-size: 16px
+    font-weight: bold
+    text-align: right
+    vertical-align: top
+    padding: 17px 10px 0px 0px
+  #answers
+    display: inline-block
+    position: relative
+    width: 500px
+    li
+      font-size: 16px
+      &.error
+        input
+          border: 3px solid red
+      label
+        color: $cmdarkblue
+    .minus_button
+      position: absolute
+      top: 8px
+      left: 270px
+    #add_button
+      position: absolute
+      bottom: -35px
+      left: -4px
+      z-index: 5
+      #add_blurb
+        position: absolute
+        left: 30px
+        top: 5px
+        width: 300px
+        font-size: 12px
+        color: #aaafb2
+
+
+#pitch_dlg
+  display: none
+  position: relative
+  font-family: 'helvetica neue', helvetica, arial, sans-serif
+  background: image-url('questions/clouds_dlg.jpg') no-repeat
+  @include background-size('cover')
+
+  .hdr
+    color: $cmorange
+    font-size: 36px
+    text-align: center
+    em
+      color: $cmdarkblue
+      font-style: normal
+  .subhdr
+    text-align: center
+    font-size: 22px
+    color: $cmdarkblue
+    text-align: center
+    padding-bottom: 50px
+  table
+    width: 525px
+    margin: 0px auto
+    td
+      padding: 0px
+      &.icon
+        font-size: 32px
+        color: $cmblue
+        padding: 0px 20px 0px 10px
+        img
+          height: 70px
+      &.blurb
+        color: $cmdarkblue
+        font-size: 22px
+        em
+          color: $cmorange
+          font-family: "Impact"
+          font-size: 28px
+          font-style: normal
+      &.arrow
+        text-align: center
+  .closer
+    text-align: center
+    margin: 0px auto 20px
+    padding-left: 200px
+    a
+      outline: 0
+  #do_not_show
+    position: absolute
+    bottom: 5px
+    left: 10px
+    font-size: 12px
+    color: $cmdarkgrey

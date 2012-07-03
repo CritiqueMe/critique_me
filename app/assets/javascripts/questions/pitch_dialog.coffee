@@ -5,9 +5,9 @@ pop_pitch_dialog = ->
     modal: true
     show: 'fade'
     hide: 'fade'
-    width: 700
+    width: 800
     height: 'auto'
-    title: "Ever Wonder What People Are Not Telling You?"
+    title: ""
     position: 'center'
     dialogClass: 'pitch_dlg'
     autoOpen: true
