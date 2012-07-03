@@ -12,6 +12,9 @@
       = link_to "TERMS", tos_path
       &nbsp;&nbsp;
       = link_to "PRIVACY", privacy_path
+      - if @user.try(:id)
+        &nbsp;&nbsp;
+        = link_to "SIGN OUT", sign_out_path
     #footer_twitter= link_to image_tag("path/landing2_tw.png"), 'http://twitter.com/critiquemeapp', :target => "_blank"
     #footer_facebook= link_to image_tag("path/landing2_fb.png"), 'https://www.facebook.com/CritiqueMe', :target => "_blank"
     #copyright &copy;2012 CritiqueMe.  All rights reserved.
