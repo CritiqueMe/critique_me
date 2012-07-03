@@ -103,7 +103,7 @@ class QuestionsController < ApplicationController
         @question.default_question.update_attribute :last_asked_at, Time.now if @question.default_question
         #redirect_to share_path(@question)
         flash[:show_share] = true
-        redirect_to question_path(@question)
+        redirect_to question_path(@question) and return
       end
     elsif params['default_question_id']
       dq = DefaultQuestion.find(params['default_question_id'])
