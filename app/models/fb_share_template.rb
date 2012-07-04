@@ -32,6 +32,7 @@ class FbShareTemplate < ActiveRecord::Base
   private
 
   def subs(str, question, inviter)
+    return '' if str.nil?
     str.gsub! "*question_text*", question.try(:question_text_pretty) || ""
     str.gsub! "*inviter_first*", inviter.first_name
     str.gsub! "*inviter_last*", inviter.last_name

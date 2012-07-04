@@ -1,4 +1,4 @@
-- if @question.public?
+- if @question.canned_question_id || @question.public?
   - content_for :og_data do
     %meta{ :property => "fb:app_id", :content => "#{Facebook::CONFIG["app_id"]}" }
     %meta{ :property => "og:type", :content => "#{Facebook::CONFIG["namespace"]}:question" }
