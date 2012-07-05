@@ -37,7 +37,6 @@ class QuestionsController < ApplicationController
           session[:viral_entrance_id] = tracker.id
         end
 
-        session[:do_fb_oauth_redirect] = true
         redirect_to welcome_path and return
       end
     else

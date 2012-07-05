@@ -63,7 +63,7 @@ class WelcomeController < ApplicationController
         @canned_questions = nil
       end
 
-    elsif @path_page.page_type == "register"
+    elsif @path_page.page_type == "register" || @path_page.page_type == "splash"
       @last_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
     end
   end
