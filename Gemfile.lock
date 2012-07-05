@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 4d2ac7219e3baf48106bc55005f170027a6da552
+  revision: 80e454f1a8f9b5b9f012de0f6cb4bcfaff80fa9d
   branch: fb_share_update
   specs:
     seed_blocks (0.0.1)
@@ -124,7 +124,7 @@ GEM
       json_pure
     erubis (2.7.0)
     escape (0.0.4)
-    excon (0.14.2)
+    excon (0.14.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (3.2.0)
