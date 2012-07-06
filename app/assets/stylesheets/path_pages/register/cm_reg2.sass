@@ -22,6 +22,24 @@
         text-align: center
         font-family: "Helvetica Neue LT Std"
         margin-bottom: 20px
+        position: relative
+        a
+          font-size: 16px
+          font-weight: normal
+          color: $cmblue
+          cursor: help
+        #hdr2_lightbox
+          font-size: 20px
+          position: absolute
+          bottom: -125px
+          right: 215px
+          border: 2px solid black
+          background: white
+          display: none
+          padding: 10px 15px
+          width: 450px
+          z-index: 500
+          @include border-radius(10px)
       #main_left
         width: 515px
         float: left

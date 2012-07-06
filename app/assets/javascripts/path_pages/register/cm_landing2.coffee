@@ -43,10 +43,22 @@ resize_cm_content = ->
     total_height = window_height
   else
     total_height = html_height
-  #console.log "*** window_height: " + window_height + " -- html_height: " + html_height + " -- total_height: " + total_height
+  landing_page_height = $('#landing_page').height()
   header_height = $('#header').height()
   footer_height = $('#footer').height()
+  if landing_page_height > window_height
+    $('.container').height(landing_page_height + header_height + footer_height + 30)
+  else
+    $('.container').height(total_height)
+  #console.log "*** window_height: " + window_height + " -- html_height: " + html_height + " -- total_height: " + total_height + " -- heider_height: " + header_height + " -- footer_height: " + footer_height
   $('.cm_content').height total_height - header_height - footer_height
+
+init_more_info_lightbox = ->
+  $('#hdr2 a').mouseover ->
+    $('#hdr2_lightbox').fadeIn()
+  .mouseout ->
+    $('#hdr2_lightbox').fadeOut()
+
 
 $ ->
   resize_cm_content()
@@ -55,3 +67,5 @@ $ ->
 
   init_button()
   autoscroller = setTimeout autoscroll_recent_questions, 5000
+
+  init_more_info_lightbox()
