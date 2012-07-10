@@ -1,0 +1,20 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "path_pages/splash/cheating"
+
+#clouds
+  .cm_content
+    #landing_page
+    #cheating_dlg
+      #hdr Find Out if Your <em>#{significant_other} is Cheating</em>
+      #sub or Get Answers to ANY of Your Personal Questions!
+      #button= link_to image_tag("path/login_cheating.png"), fb_button_click_path
+      #three_steps= image_tag "path/three_steps.png"
+      #ftr
+        Your social network knows info they won't tell you directly!
+        %em By using our anonymous answer app
+        %br
+        their identity is kept confidential so
+        %em They tell you the real truth!
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "path_pages/splash/cheating"
