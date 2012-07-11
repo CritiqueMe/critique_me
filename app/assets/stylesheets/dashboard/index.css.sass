@@ -1,4 +1,4 @@
-@import cm_base
+@import cm_base2
 
 // table layout
 #dashtable
@@ -15,32 +15,23 @@
   .none_posted
     text-align: center
     font-family: "Clarendon BT Roman"
-    color: $cmred
+    color: $cmorange
     padding: 70px 0px
     border: 0px
 
   .question_item
     font-size: 12px
     line-height: 18px
+    color: #77706e
     a
-      color: $cmblue
+      color: $cmbluebg
       text-decoration: none
-      font-weight: bold
-      font-size: 16px
+      font-weight: 400
+      font-size: 18px
       &:hover
         text-decoration: underline
   .see_answers, .invite_friends
     text-align: right
-    a
-      font-family: "Clarendon BT Roman"
-      color: white
-      font-size: 14px
-      padding: 10px
-      border: 1px solid #007acc
-      @include background-image(linear-gradient(#47a8eb, #1688d6))
-      @include border-radius(7px)
-      cursor: pointer
-      text-decoration: none
   .invite_friends
     width: 125px
   tfoot
@@ -54,7 +45,7 @@
         padding: 0px 20px
         color: $cmdarkgrey
       a
-        color: #0083cc
+        color: $cmbluebg
         font-weight: bold
         text-decoration: none
         &:hover

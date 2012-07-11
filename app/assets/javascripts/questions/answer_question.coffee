@@ -2,7 +2,7 @@ send_to_create_question_page = ->
   window.location = "/new_question"
 
 init_post_answer_button = ->
-  $('.post_answer input').click ->
+  $('.post_answer a').click ->
     t = $('.answer_dialog').data('title')
     qid = $(this).data('question-id')
     $('#answer_q'+qid).dialog
@@ -52,6 +52,17 @@ init_post_answer_button = ->
     )
     return false
 
+init_mouseovers = ->
+  $('.share_question a').mouseover ->
+    $(this).find('img').attr('src', '/assets/questions/get_more_answers_over.png')
+  .mouseout ->
+    $(this).find('img').attr('src', '/assets/questions/get_more_answers.png')
+
+  $('.post_answer a').mouseover ->
+    $(this).find('img').attr('src', '/assets/questions/submit_answer_button_over.png')
+  .mouseout ->
+    $(this).find('img').attr('src', '/assets/questions/submit_answer_button.png')
 
 $ ->
   init_post_answer_button()
+  init_mouseovers()

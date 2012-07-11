@@ -11,5 +11,17 @@ inject_pagination_blurb = ->
   new_span = $('<span class="curr_page">').html(str)
   new_span.insertAfter $('#dashtable .pagination .previous_page')
 
+init_mouseovers = ->
+  $('#dashtable .invite_friends a').mouseover ->
+    $(this).find('img').attr('src', '/assets/questions/invite_friends_button_over.png')
+  .mouseout ->
+    $(this).find('img').attr('src', '/assets/questions/invite_friends_button.png')
+
+  $('#dashtable .see_answers a').mouseover ->
+    $(this).find('img').attr('src', '/assets/questions/see_answers_button_over.png')
+  .mouseout ->
+    $(this).find('img').attr('src', '/assets/questions/see_answers_button.png')
+
 $ ->
   inject_pagination_blurb()
+  init_mouseovers()

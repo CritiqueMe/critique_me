@@ -6,7 +6,7 @@
     %span.quiet= question.created_at.strftime "%-m/%-d/%Y %I:%M %p"
   - if question.answers.count < 5
     %td.invite_friends
-      = link_to "Invite Friends", '#', :data => {'question-id' => question.id}
+      = link_to image_tag("questions/invite_friends_button.png"), '#', :data => {'question-id' => question.id}
   - else
     %td.see_answers
-      = link_to "See Answers", question_path(question)
+      = link_to image_tag("questions/see_answers_button.png"), question_path(question)

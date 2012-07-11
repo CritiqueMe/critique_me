@@ -1,41 +1,45 @@
-.cm_content
-  #chooseq_top
-    For inspiration, simply choose from one of these popular questions.
-    = link_to "More Info", '#'
-    #chooseq_lightbox
-      Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
+- content_for :extra_css do
+  = stylesheet_link_tag "questions/new_question"
 
-  .inner_content
-    .inner_nav
-      .under.fuzzy#write= link_to "Write Question", new_question_path
-      .over.fuzzy#choose Choose Question
-    /.qs_asked_today.fuzzy= render :partial => "questions/asked_today"
-    .qcontainer.fuzzy
-      %table#default_questions{:data => {:page => params['page'] || 1, :num_questions => @num_questions, :per_page => @per_page}}
-        %thead
-          %tr
-            %th
-              Category&nbsp;
-              = select_tag "category_id", options_from_collection_for_select(Category.for_select, 'id', 'name', params['category_id']), :include_blank => true
-            %th &nbsp;
-            %th Last asked
-        %tbody
-          - @default_questions.each_with_index do |dq, i|
+.grad_bg
+  .cm_content
+    #chooseq_top
+      For inspiration, simply choose from one of these popular questions.
+      = link_to "More Info", '#'
+      #chooseq_lightbox
+        Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
+
+    .inner_content
+      .inner_nav
+        .under.fuzzy#write= link_to "Write Question", new_question_path
+        .over.fuzzy#choose Choose Question
+      /.qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+      .qcontainer.fuzzy
+        %table#default_questions{:data => {:page => params['page'] || 1, :num_questions => @num_questions, :per_page => @per_page}}
+          %thead
             %tr
-              %td
-                .qtext= dq.question_text
-                .cat Category: #{link_to dq.category.name, category_path(dq.category_id)}
-              %td.askq{:data => {:default_question_id => dq.id}}
-                = link_to "Ask this question", new_question_path(:default_question_id => dq.id)
-              %td.last_asked
-                =# dq.last_asked_at ? time_ago_in_words(dq.last_asked_at) + " ago" : "never"
-                - # the above has been commented out so it doesn't always say "never", until there's more data in the system
-                - mins_ago = ((params['page'] || 1).to_i - 1) * @per_page + i + 1
-                = pluralize(mins_ago, "min") + " ago"
-        %tfoot
-          %tr
-            %td{:colspan => 3}
-              = will_paginate @default_questions, :page_links => false, :previous_label => "Back", :next_label => "Next"
+              %th
+                Category&nbsp;
+                = select_tag "category_id", options_from_collection_for_select(Category.for_select, 'id', 'name', params['category_id']), :include_blank => true
+              %th &nbsp;
+              %th Last asked
+          %tbody
+            - @default_questions.each_with_index do |dq, i|
+              %tr
+                %td
+                  .qtext= dq.question_text
+                  .cat Category: #{link_to dq.category.name, category_path(dq.category_id)}
+                %td.askq{:data => {:default_question_id => dq.id}}
+                  = link_to image_tag("questions/ask_this_question.png"), new_question_path(:default_question_id => dq.id)
+                %td.last_asked
+                  =# dq.last_asked_at ? time_ago_in_words(dq.last_asked_at) + " ago" : "never"
+                  - # the above has been commented out so it doesn't always say "never", until there's more data in the system
+                  - mins_ago = ((params['page'] || 1).to_i - 1) * @per_page + i + 1
+                  = pluralize(mins_ago, "min") + " ago"
+          %tfoot
+            %tr
+              %td{:colspan => 3}
+                = will_paginate @default_questions, :page_links => false, :previous_label => "Back", :next_label => "Next"
 
 
 
@@ -45,3 +49,4 @@
 
 - content_for :extra_javascripts do
   = javascript_include_tag "questions/choose_question"
+  = javascript_include_tag "questions/resize_cm_content"

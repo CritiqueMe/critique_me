@@ -5,11 +5,11 @@
       #tagline Ask the hard questions
     %ol#nav
       - if @user && @user.id
-        %li.leftest
+        %li.leftest{:class => params['controller'] == 'questions' ? 'selected' : '' }
           = link_to "Ask Question", questions_path
-        %li
+        %li{:class => params['controller'] == 'dashboard' && params['action'] == 'index' ? 'selected' : '' }
           = link_to "My History", dashboard_path
-        %li.rightest
+        %li.rightest{:class => params['controller'] == 'dashboard' && params['action'] != 'index' ? 'selected' : ''}
           = link_to "My Profile", your_profile_path
       - elsif params['action'] != 'sign_in'
         - if params['controller'] == 'welcome'

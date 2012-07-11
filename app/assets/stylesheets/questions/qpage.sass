@@ -1,10 +1,10 @@
-@import cm_base
+@import cm_base2
 
 #qpage
   padding: 25px
   .byline
-    font-family: "Clarendon BT Roman"
-    color: $cmred
+    color: $cmbluebg
+    font-weight: 400
   #cq_link
     padding: 50px 0px
     text-align: center
@@ -29,7 +29,6 @@
       font-size: 12px
       .header
         background: #eaeaea
-        font-family: "Clarendon BT Roman"
         padding: 5px 15px
         font-size: 16px
       #not_enough_answers
@@ -63,6 +62,11 @@
         text-decoration: none
         &:hover
           text-decoration: underline
+    .share_question, .post_answer
+      text-align: center
+    .cq_link
+      a
+        color: $cmblue
 
 .answer_dialog
   display: none
@@ -81,7 +85,7 @@
     border: 0px
     margin: 0px
     label
-      display: none
+      display: none !important
     ol
       list-style-type: none
       padding-left: 0px
@@ -126,6 +130,8 @@
           width: auto !important
         .error
           color: $cmred
+  #answer_post_to_wall_input
+    list-style-type: none
   .mc_options
     li
       display: block !important

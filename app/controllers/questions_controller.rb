@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  layout 'cm'
+  layout 'cm2'
 
   before_filter :enforce_login, :except => :question
   before_filter :get_fb_access_token, :except => [:question, :toggle_pitch_dlg]
@@ -9,8 +9,6 @@ class QuestionsController < ApplicationController
     @question = Question.find(params['id'])
 
     redirect_to dashboard_path and return unless @question.active?
-
-    @questions = [@question]
 
     @answer = Answer.new(:question => @question, :user => @user, :post_to_wall => true)
     if params['fb_action_ids'] || params['cmfb']  # This is the result of an FB click
@@ -133,8 +131,6 @@ class QuestionsController < ApplicationController
         session[:show_canned_answer] = nil
       end
     end
-
-    render :layout => "cm2"
   end
 
   def edit_question

@@ -14,109 +14,113 @@
   = stylesheet_link_tag "questions/canned"
   = stylesheet_link_tag "questions/qpage"
   = stylesheet_link_tag "share/share"
+  = stylesheet_link_tag "questions/new_question"
 
 
 
 
-.cm_content
-  .inner_content
-    .qcontainer.fuzzy.all_round#qpage
+.grad_bg
+  .cm_content
+    .inner_content
+      .qcontainer.fuzzy.all_round#qpage
 
-      - if @user.nil?
-        %h2 Sign in to View Questions
-        %p You must #{link_to "sign up", welcome_path} or #{link_to "log in", sign_in_path} in order to view questions on CritiqueMe.
-      - elsif @question.user == @user || @question.public? || @user.invited_to_question?(@question)
-        - unless @question.canned_question_id
-          .byline #{@question.user.first_last_initial} asked:
+        - if @user.nil?
+          %h2 Sign in to View Questions
+          %p You must #{link_to "sign up", welcome_path} or #{link_to "log in", sign_in_path} in order to view questions on CritiqueMe.
+        - elsif @question.user == @user || @question.public? || @user.invited_to_question?(@question)
+          - unless @question.canned_question_id
+            .byline #{@question.user.first_last_initial} asked:
 
-        - @questions.each do |q|
-          .qcontent{:id => "question_content_#{q.id}"}
-            - if q.photo.url
-              .qimage= link_to image_tag(q.photo.thumb.url), '#'
+          .qcontent{:id => "question_content_#{@question.id}"}
+            - if @question.photo.url
+              .qimage= link_to image_tag(@question.photo.thumb.url), '#'
 
-            - if @user
-              - if @user == q.user
-                .buttons.share_question{:data => {:question_id => q.id}}
-                  = button_to "Get More Answers", '#'
-              - elsif @user.answers.where(:question_id => q.id).count == 0
-                .buttons.post_answer
-                  = button_to "Submit Answer", '#', :data => {:question_id => q.id}
             .qtext
-              = q.question_text_pretty
+              = @question.question_text_pretty
             .clearer
             .answers
               .header Answers Given
-              - if q.answers.count < 5
-                #not_enough_answers{:data => {:question_id => q.id}}
-                  - if q.user == @user
-                    - if q.answers.count > 0
-                      You've only gotten #{pluralize q.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.
+              - if @question.answers.count < 5
+                #not_enough_answers{:data => {:question_id => @question.id}}
+                  - if @question.user == @user
+                    - if @question.answers.count > 0
+                      You've only gotten #{pluralize @question.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.
                       %br
                       = link_to "Invite more friends now!", '#'
                     - else
                       You haven't gotten any answers to your question yet!
                       %br
                       = link_to "Invite some friends now!", '#'
-                  - elsif @user.answers.where(:question_id => q.id) == 0
+                  - elsif @user.answers.where(:question_id => @question.id) == 0
                     You haven't answered this question yet!
-              - elsif q.user_id == @user.id
-                - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
+              - elsif @question.user_id == @user.id
+                - if @question.question_type == Question::QUESTION_TYPES.index(:open_text)
                   %ol
-                    - q.answers.each do |a|
+                    - @question.answers.each do |a|
                       %li= a.open_text_answer
-                - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+                - elsif @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
                   %ol
-                    - q.multiple_choice_options.sort{|a,b| b.answers.count <=> a.answers.count}.each do |mco|
+                    - @question.multiple_choice_options.sort{|a,b| b.answers.count <=> a.answers.count}.each do |mco|
                       %li
                         %b= mco.answer_text
                         %em (#{mco.answers.count})
-                - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
+                - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
                   %ol
                     %li
                       %b Yes
-                      %em (#{q.answers.where(:true_false_answer => true).count})
+                      %em (#{@question.answers.where(:true_false_answer => true).count})
                     %li
                       %b No
-                      %em (#{q.answers.where(:true_false_answer => false).count})
-                - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
+                      %em (#{@question.answers.where(:true_false_answer => false).count})
+                - elsif @question.question_type == Question::QUESTION_TYPES.index(:canned_question)
                   %ol
-                    - q.canned_question_choices.each do |cqc|
+                    - @question.canned_question_choices.each do |cqc|
                       %li
                         %b= cqc.friend_name
-                        %em (#{q.answers.where(:canned_question_choice_id => cqc.id).count})
+                        %em (#{@question.answers.where(:canned_question_choice_id => cqc.id).count})
 
-              - if @user && a = @user.answers.where(:question_id => q.id).first
+              - if @user && a = @user.answers.where(:question_id => @question.id).first
                 #your_answer
                   %span Your Answer:
-                  - if q.question_type == Question::QUESTION_TYPES.index(:open_text)
+                  - if @question.question_type == Question::QUESTION_TYPES.index(:open_text)
                     = a.open_text_answer
-                  - elsif q.question_type == Question::QUESTION_TYPES.index(:true_false)
+                  - elsif @question.question_type == Question::QUESTION_TYPES.index(:true_false)
                     = a.true_false_answer ? "Yes" : "No"
-                  - elsif q.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+                  - elsif @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
                     = a.multiple_choice_option.answer_text
-                  - elsif q.question_type == Question::QUESTION_TYPES.index(:canned_question)
+                  - elsif @question.question_type == Question::QUESTION_TYPES.index(:canned_question)
                     = a.canned_question_choice.friend_name
 
-              = render :partial => "/questions/answer", :locals => {:question => q, :post_url => post_url}
+              = render :partial => "/questions/answer", :locals => {:question => @question, :post_url => post_url}
 
             - unless @user.nil? || @question.user == @user
               .flagger
                 - if @user.flagged_questions.where(:question_id => @question.id).count > 0
                   Thank you for flagging this question.  We will look into it immediately.
                 - else
-                  .righter= link_to "Flag This Question &raquo;".html_safe, '#', :data => {:question => q.id}
-              .flag_dlg{:id => "flag_dlg_#{q.id}", :style => "display:none"}= render :partial => "questions/flag", :locals => {:question => q}
-        .clearer
+                  .righter= link_to "Flag This Question &raquo;".html_safe, '#', :data => {:question => @question.id}
+              .flag_dlg{:id => "flag_dlg_#{@question.id}", :style => "display:none"}= render :partial => "questions/flag", :locals => {:question => @question}
 
-        - if @canned_questions
-          #cq_link.cq_link= link_to "Have some fun answering some questions about your friends!", '#'
+            - if @canned_questions
+              #cq_link.cq_link= link_to "Have some fun answering some questions about your friends!", '#'
 
-      - else  # User can't view this question
-        %h2 This question is private!
-        %p CritiqueMe respects the privacy of our users!
-        %p This question can only be viewed by people who have been invited by the asker.
-        %p= link_to "Ask your own question &raquo;".html_safe, new_question_path
-        %p.cq_link= link_to "Have some fun answering some questions about your friends!", '#'
+            - if @user
+              - if @user == @question.user
+                .share_question{:data => {:question_id => @question.id}}
+                  = link_to image_tag("questions/get_more_answers.png"), '#'
+              - elsif @user.answers.where(:question_id => @question.id).count == 0
+                .post_answer
+                  = link_to image_tag("questions/submit_answer_button.png"), '#', :data => {:question_id => @question.id}
+
+          .clearer
+
+
+        - else  # User can't view this question
+          %h2 This question is private!
+          %p CritiqueMe respects the privacy of our users!
+          %p This question can only be viewed by people who have been invited by the asker.
+          %p= link_to "Ask your own question &raquo;".html_safe, new_question_path
+          %p.cq_link= link_to "Have some fun answering some questions about your friends!", '#'
 
 
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
@@ -133,6 +137,7 @@
   = javascript_include_tag "questions/flag_question"
   = javascript_include_tag "questions/canned_link"
   = javascript_include_tag "questions/photo_dialog"
+  = javascript_include_tag "questions/resize_cm_content"
 
 
   - if @question.user == @user

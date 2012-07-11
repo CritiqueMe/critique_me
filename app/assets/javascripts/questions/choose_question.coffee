@@ -47,6 +47,12 @@ init_helper_mouseover = ->
   .mouseout ->
     $('#chooseq_lightbox').fadeOut()
 
+init_mouseovers = ->
+  $('#default_questions .askq a').mouseover ->
+    $(this).find('img').attr('src', '/assets/questions/ask_this_question_over.png')
+  .mouseout ->
+    $(this).find('img').attr('src', '/assets/questions/ask_this_question.png')
+
 
 $ ->
   init_single_questions()
@@ -54,3 +60,4 @@ $ ->
 
   inject_pagination_blurb()
   monitor_category_changer()
+  init_mouseovers()

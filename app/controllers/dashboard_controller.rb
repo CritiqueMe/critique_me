@@ -1,6 +1,6 @@
 Rails::Engine.mixin __FILE__
 class DashboardController < ApplicationController
-  layout "cm"
+  layout "cm2"
 
   def index
     Time.zone = "Central Time (US & Canada)"

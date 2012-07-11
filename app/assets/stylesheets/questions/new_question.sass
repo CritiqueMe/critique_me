@@ -90,6 +90,8 @@
         color: white
         background: #4ec0ff
         border: 1px solid #47a1d1
+        border-right: 0px
+        width: 149px
       .under
         z-index: 0
         border: 1px solid #d1dee3
@@ -102,12 +104,38 @@
         position: absolute
         top: 20px
         left: -5px
-        &.under
-          padding-bottom: 25px
       #choose
         position: absolute
         top: 85px
         left: -5px
+      #questions_posted
+        position: absolute
+        top: 20px
+        left: -5px
+      #answers_posted
+        position: absolute
+        top: 85px
+        left: -5px
+      #your_profile
+        position: absolute
+        top: 0px
+        left: 0px
+      #privacy_options
+        position: absolute
+        top: 55px
+        left: 0px
+        z-index: 1
+        &.over
+          top: 65px
+          z-index: 3
+      #change_pass
+        position: absolute
+        top: 115px
+        left: 0px
+        &.over
+          top: 115px
+
+
     .qcontainer
       z-index: 2
       position: relative
@@ -157,6 +185,7 @@
       #today_hdr
         color: $cmdarkblue
         font-size: 16px
+        border-bottom: 1px solid #d9d9d9
       #scroll_wrap
         height: 275px
         overflow-y: hidden
@@ -535,3 +564,7 @@
     left: 10px
     font-size: 12px
     color: $cmdarkgrey
+
+#user_email_preferences_input
+  label
+    width: auto !important

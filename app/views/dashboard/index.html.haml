@@ -1,39 +1,40 @@
 - content_for :extra_css do
   = stylesheet_link_tag "share/share"
   = stylesheet_link_tag "dashboard/index"
+  = stylesheet_link_tag "questions/new_question"
 
-.cm_content
+.grad_bg
+  .cm_content
+    .inner_content
+      .inner_nav
+        - if @collection_filter == "questions"
+          .over.fuzzy#questions_posted Questions Posted
+          .under.fuzzy#answers_posted= link_to "Answers Given", dashboard_path(:coll => "answers")
+        - else
+          .under.fuzzy#questions_posted= link_to "Questions Posted", dashboard_path(:coll => "questions")
+          .over.fuzzy#answers_posted Answers Given
+      .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+      .qcontainer.fuzzy
 
-  .inner_content
-    .inner_nav
-      - if @collection_filter == "questions"
-        .over.fuzzy#questions_posted Questions Posted
-        .under.fuzzy#answers_posted= link_to "Answers Given", dashboard_path(:coll => "answers")
-      - else
-        .under.fuzzy#questions_posted= link_to "Questions Posted", dashboard_path(:coll => "questions")
-        .over.fuzzy#answers_posted Answers Given
-    .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
-    .qcontainer.fuzzy
-
-      %table#dashtable{:data => {:page => params['page'] || 1, :num_questions => @num_records, :per_page => @per_page}}
-        %tbody
-          - if @collection_filter == "questions"
-            - if @collection.empty?
-              %tr
-                %td.none_posted
-                  No Questions posted yet.  #{link_to "Post one now!", questions_path}
+        %table#dashtable{:data => {:page => params['page'] || 1, :num_questions => @num_records, :per_page => @per_page}}
+          %tbody
+            - if @collection_filter == "questions"
+              - if @collection.empty?
+                %tr
+                  %td.none_posted
+                    No Questions posted yet.  #{link_to "Post one now!", questions_path}
+              - else
+                = render :partial => "question_line_item", :collection => @collection, :as => :question
             - else
-              = render :partial => "question_line_item", :collection => @collection, :as => :question
-          - else
-            - if @collection.empty?
-              %tr
-                %td.none_posted
-                  No Answers given yet.
-            - else
-              = render :partial => "answer_line_item", :collection => @collection, :as => :answer
-        %tfoot
-          %tr
-            %td{:colspan => 2}= will_paginate @collection, :page_links => false, :previous_label => "Back", :next_label => "Next"
+              - if @collection.empty?
+                %tr
+                  %td.none_posted
+                    No Answers given yet.
+              - else
+                = render :partial => "answer_line_item", :collection => @collection, :as => :answer
+          %tfoot
+            %tr
+              %td{:colspan => 2}= will_paginate @collection, :page_links => false, :previous_label => "Back", :next_label => "Next"
 
 #share_dialog
 #post_share_dialog{:data => {:finish_path => dashboard_path}}
@@ -50,3 +51,4 @@
   = javascript_include_tag "dashboard/inviter"
   = javascript_include_tag "dashboard/dash_index"
   = javascript_include_tag "questions/canned"
+  = javascript_include_tag "questions/resize_cm_content"

@@ -1,16 +1,20 @@
 - content_for :extra_css do
+  = stylesheet_link_tag "questions/new_question"
   = stylesheet_link_tag "dashboard/cm_profile_edit"
 
-.cm_content
+.grad_bg
+  .cm_content
+    .inner_content
+      .inner_nav
+        .over.fuzzy#your_profile My Profile
 
-  .inner_content
-    .inner_nav
-      .over.fuzzy#your_profile My Profile
+      .qcontainer.fuzzy
+        = show_flash(flash)
+        %fieldset.form_box
+          .hdr
+            %p My Private Information
+          %p= link_to "Email Preferences", email_preferences_path
+          = render :partial => "user_form"
 
-    .qcontainer.fuzzy
-      = show_flash(flash)
-      %fieldset.form_box
-        .hdr
-          %p My Private Information
-        %p= link_to "Email Preferences", email_preferences_path
-        = render :partial => "user_form"
+- content_for :extra_javascripts do
+  = javascript_include_tag "questions/resize_cm_content"
