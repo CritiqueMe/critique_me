@@ -52,7 +52,7 @@ class ShareController < ApplicationController
       friend_ids << f if params["friend_#{i}"]
     end
 
-    FbShare.share(@user, @question, session[:fb_access_token], friend_ids)
+    FbShare.share(@user, @question, session[:fb_access_token], friend_ids, nil, 'my_wall')
 
     if @question.shared_with_minimum? || friend_ids.length >= 5
       finished_sharing(friend_ids.length)
