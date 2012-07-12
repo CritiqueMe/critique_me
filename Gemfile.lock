@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: b5a7e8d845e5feb7d8eddf24b99f02946f87bb88
+  revision: 76ff9b78f3a89a3f0d1411d1a96cbe6d1e0a87c7
   specs:
     seed_blocks (0.0.1)
       airbrake
