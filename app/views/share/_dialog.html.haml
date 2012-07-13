@@ -28,16 +28,16 @@
   #invite_box
     #invite_nav
       %ul
-        %li.selected= link_to "Facebook", '#', :class => "facebook"
+        %li.selected= link_to "Manually", '#', :class => "manual"
         - if false#@question.public?
           %li= link_to "Twitter", '#', :class => "twitter"
         /%li= link_to "Gmail", '#', :class => "gmail"
         %li= link_to "Yahoo", '#', :class => "yahoo"
         %li= link_to "Hotmail/Live", '#', :class => "hotmail"
-        %li= link_to "Manually", '#', :class => "manual"
+        %li= link_to "Facebook", '#', :class => "facebook"
         /%li= link_to "Critiquers", '#', :class => "critiquers"
     #invite_content
-      .content_block#facebook.selected
+      .content_block#facebook
         =# render :partial => "partials/fb_like_button"
         = render :partial => "partials/fb_friend_select"
 
@@ -52,7 +52,7 @@
           #contact_table.content_form
         #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
 
-      .content_block#manual
+      .content_block#manual.selected
         Have a stack of business cards?  Invite your contacts manually via email.
         = form_tag manual_share_path, :remote => true do
           = hidden_field_tag 'question_id', @question.id
