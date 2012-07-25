@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 3fd0c4a5dd620be5bd397a8ed31dde6662ad3228 
+  revision: 795cb84654ea82b130a325ab56820bfac20103d1 
   branch: invite_reporting
   specs:
     seed_blocks (0.0.1)
