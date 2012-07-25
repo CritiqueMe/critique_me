@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/jeremyolliver/gvis.git
-  revision: 018819a0e0a974eafc38f2c87d214d37f4fb27ab
+  revision: 26fa0f8185fe5cd0358ca8cd0c140327eafc6df8 
   specs:
     gvis (2.0.3)
       json
