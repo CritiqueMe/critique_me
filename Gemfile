@@ -61,8 +61,12 @@ gem "compass-rails", :group => :assets
 gem "engineyard", :group => :development
 
 #gem "seed_blocks", :path => "../seed_blocks"
-gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :branch => "invite_reporting"
+gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "HEAD"
 gem 'airbrake'
+
+gem 'gdata', git: 'https://github.com/agentrock/gdata.git'
+gem 'contacts', git: 'https://github.com/agentrock/contacts.git'
+gem 'hpricot'
 
 
 

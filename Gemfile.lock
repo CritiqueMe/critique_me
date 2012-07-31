@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 795cb84654ea82b130a325ab56820bfac20103d1 
-  branch: invite_reporting
+  revision: 795cb84654ea82b130a325ab56820bfac20103d1
+  ref: HEAD
   specs:
     seed_blocks (0.0.1)
       airbrake
@@ -43,6 +43,19 @@ GIT
       valium (>= 0.4.0)
       whenever
       will_paginate (~> 3.0)
+
+GIT
+  remote: https://github.com/agentrock/contacts.git
+  revision: 1396bef975e3d8cce883f65b2bac9620f3e4532f
+  specs:
+    contacts (1.2.4)
+      json (>= 1.1.1)
+
+GIT
+  remote: https://github.com/agentrock/gdata.git
+  revision: 271d0b49d7dbe97b16969f06104f3e91022c40bc
+  specs:
+    gdata (1.1.1)
 
 GEM
   remote: http://rubygems.org/
@@ -124,7 +137,7 @@ GEM
       json_pure
     erubis (2.7.0)
     escape (0.0.4)
-    excon (0.14.3)
+    excon (0.15.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (3.2.0)
@@ -136,9 +149,9 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
-    fog (1.4.0)
+    fog (1.5.0)
       builder
-      excon (~> 0.14.0)
+      excon (~> 0.14)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0)
@@ -157,6 +170,7 @@ GEM
     hike (1.2.1)
     hipchat (0.4.1)
       httparty
+    hpricot (0.8.6)
     html5-boilerplate (1.0.0)
       compass (>= 0.11.1)
     httparty (0.8.3)
@@ -170,7 +184,7 @@ GEM
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
-    json (1.7.3)
+    json (1.7.4)
     json_pure (1.7.3)
     koala (1.4.1)
       faraday (~> 0.7.0)
@@ -287,10 +301,13 @@ DEPENDENCIES
   awesome_print
   coffee-rails (~> 3.1.0)
   compass-rails
+  contacts!
   engineyard
   factory_girl (~> 3.2.0)
   factory_girl_rails (~> 3.2.0)
+  gdata!
   gvis!
+  hpricot
   jquery-rails
   koala
   mocha
