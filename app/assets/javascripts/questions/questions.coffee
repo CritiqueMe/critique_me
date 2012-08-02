@@ -48,6 +48,7 @@ add_multiple_choice_answer = () ->
   $('#multiple_choice_answers #answers').append(new_fieldset)
   init_remove_answer_links()
   init_mc_answer_boxes()
+  $(window).resize()
   return false
 
 num_existing_answers = () ->
@@ -97,7 +98,8 @@ update_qtype_radios = ->
         if num_to_add > 0
           add_multiple_choice_answer() for num in [1..num_to_add]
 
-        $('#multiple_choice_answers').removeClass("hidden").slideDown()
+        $('#multiple_choice_answers').removeClass("hidden").slideDown 500, ->
+          $(window).resize()
       else
         $('#multiple_choice_answers').slideUp()
 

@@ -1,5 +1,5 @@
 $ ->
   $('#continue img').mouseover ->
-    $(this).attr 'src', '/assets/path/sign_up_its_free_over.png'
+    $(this).attr 'src', '/assets/dashboard/fb_sign_in_button_over.png'
   .mouseout ->
-    $(this).attr 'src', '/assets/path/sign_up_its_free.png'
+    $(this).attr 'src', '/assets/dashboard/fb_sign_in_button.png'
