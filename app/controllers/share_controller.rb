@@ -1,6 +1,7 @@
 #Rails::Engine.mixin __FILE__
 class ShareController < ApplicationController
   def index
+    Rails.logger.info "*** session = #{session.inspect}"
     @question = Question.find(params['question_id'])
     session[:question_to_share] = @question.id
     if request.post?
