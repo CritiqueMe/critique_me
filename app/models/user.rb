@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
 
   def self.send_weekly_email
     # TODO: make this a bulk mailing?
-    User.where('email_preferences != ?', EMAIL_PREFERENCES.index(:no_email)).find_each do |u|
+    User.where('email IS NOT NULL AND email != "" AND email_preferences != ?', EMAIL_PREFERENCES.index(:no_email)).find_each do |u|
       EmailDelivery.user_mail(:weekly_email, u)
     end
   end
