@@ -6,7 +6,7 @@ popupCenter = (url, width, height, name) ->
 window.contacts_callback = (resp) ->
   $('#contact_form_spinner').hide()
   $('#select_contacts').fadeIn()
-  $('#contact_list').html(resp)
+  $('#contact_table').html(resp)
   init_selectors()
   init_send_contacts_form()
   $("#invite_dialog").dialog("option", "position", "center");
