@@ -1,3 +1,18 @@
+popupCenter = (url, width, height, name) ->
+  left = (screen.width/2)-(width/2)
+  top = (screen.height/2)-(height/2)
+  return window.open(url, name, "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top)
+
+window.contacts_callback = (resp) ->
+  $('#contact_form_spinner').hide()
+  $('#select_contacts').fadeIn()
+  $('#contact_list').html(resp)
+  init_selectors()
+  init_send_contacts_form()
+  $("#invite_dialog").dialog("option", "position", "center");
+
+
+
 init_share_nav = ->
   $('#invite_nav ul li a').click ->
     share_class = $(this).attr("class")
@@ -13,6 +28,8 @@ init_share_nav = ->
       $('#contact').show()
       $('.provider').html(share_class)
       $('#provider').val(share_class)
+
+      popupCenter '/contacts/'+share_class, 600, 400, 'contactPopup'
     else
       $('#' + share_class).show()
     $(this).parent().addClass("selected")  # select the correct nav item

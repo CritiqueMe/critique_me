@@ -28,10 +28,10 @@
   #invite_box
     #invite_nav
       %ul
-        %li.selected= link_to "Manually", '#', :class => "manual"
+        %li.selected= link_to "Enter Emails", '#', :class => "manual"
         - if false#@question.public?
           %li= link_to "Twitter", '#', :class => "twitter"
-        /%li= link_to "Gmail", '#', :class => "gmail"
+        %li= link_to "Gmail", '#', :class => "gmail"
         %li= link_to "Yahoo", '#', :class => "yahoo"
         %li= link_to "Hotmail/Live", '#', :class => "hotmail"
         %li= link_to "Facebook", '#', :class => "facebook"
@@ -50,17 +50,31 @@
         #email_entry.content_form= render :partial => "share/get_contacts"
         #select_contacts
           #contact_table.content_form
+
+          = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
+            #contact_table.content_form
+            %p.selectors
+              %small
+                %em
+                  = link_to "[select all]", '#', :id => 'select_all'
+                  &nbsp;&nbsp;
+                  = link_to "[unselect all]", '#', :id => 'unselect_all'
+            %p.buttons= submit_tag "Send Question to Contacts"
         #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
 
       .content_block#manual.selected
-        Have a stack of business cards?  Invite your contacts manually via email.
         = form_tag manual_share_path, :remote => true do
           = hidden_field_tag 'question_id', @question.id
           %fieldset.inputs.single_row.inline
             = text_field_tag 'emails'
             .buttons.inline= submit_tag "Invite"
             .inline#manual_spinner= image_tag "/assets/admin/layout/form_spinner.gif"
-        %small Lots of people to invite?  Separate multiple email addresses with commas
+        %p
+          You can also import contacts from
+          = link_to image_tag("share/icon_gmail.jpg"), '#'
+          = link_to image_tag("share/icon_yahoo.jpg"), '#'
+          = link_to image_tag("share/icon_hotmail.jpg"), '#'
+          = link_to image_tag("share/icon_fb.jpg"), '#'
 
 
       .content_block#critiquers

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627235112) do
+ActiveRecord::Schema.define(:version => 20120717031823) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20120627235112) do
     t.datetime "updated_at"
     t.string   "share_type",    :default => "news-post"
     t.string   "question_type"
+    t.integer  "experiment_id"
   end
 
   create_table "flagged_questions", :force => true do |t|
@@ -186,10 +187,11 @@ ActiveRecord::Schema.define(:version => 20120627235112) do
 
   create_table "invite_templates", :force => true do |t|
     t.string   "name"
-    t.boolean  "active",     :default => true
-    t.boolean  "reminder",   :default => false
+    t.boolean  "active",        :default => true
+    t.boolean  "reminder",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "experiment_id"
   end
 
   create_table "karma_levels", :force => true do |t|
@@ -312,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20120627235112) do
     t.boolean  "active",           :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "experiment_id"
   end
 
   create_table "user_upgrades", :force => true do |t|
@@ -354,6 +357,11 @@ ActiveRecord::Schema.define(:version => 20120627235112) do
     t.datetime "last_login"
     t.integer  "email_preferences",      :default => 0
     t.boolean  "pitch_dlg_acknowledged", :default => false
+    t.string   "status"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "state"
+    t.boolean  "email_verified",         :default => false
   end
 
   create_table "variant_combinations", :force => true do |t|

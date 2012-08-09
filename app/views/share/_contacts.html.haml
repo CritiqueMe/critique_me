@@ -1,17 +1,10 @@
-= form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
-  = hidden_field_tag "imported_emails", @contacts.map{|c| c[:email]}.join(",")
-  = hidden_field_tag "question_id", @question.id
-  .contacts
-    %table
-      - @contacts.each_with_index do |c, i|
-        %tr{:class => cycle('odd', 'even')}
-          %td= check_box_tag "contact_#{i}", "1", true, :class => "contact_check"
-          %td= c[:name]
-          %td= c[:email]
-  %p.selectors
-    %small
-      %em
-        = link_to "[select all]", '#', :id => 'select_all'
-        &nbsp;&nbsp;
-        = link_to "[unselect all]", '#', :id => 'unselect_all'
-  %p.buttons= submit_tag "Send Question to Contacts"
+= hidden_field_tag "imported_emails", @contacts.map{|c| c['email']}.join(",")
+= hidden_field_tag "imported_names", @contacts.map{|c| c['name']}.join(";")
+= hidden_field_tag "question_id", @question.id
+.contacts
+  %table
+    - @contacts.each_with_index do |c, i|
+      %tr{:class => cycle('odd', 'even')}
+        %td= check_box_tag "contact_#{i}", "1", true, :class => "contact_check"
+        %td= c['name']
+        %td= c['email']

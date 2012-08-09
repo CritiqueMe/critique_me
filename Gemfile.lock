@@ -7,10 +7,10 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 795cb84654ea82b130a325ab56820bfac20103d1
+  revision: b1f92484cbdf903c679c3216385418347ed1915e
   ref: HEAD
   specs:
-    seed_blocks (0.0.1)
+    seed_blocks (2.0.0)
       airbrake
       bson_ext
       carrierwave
@@ -33,6 +33,7 @@ GIT
       mongoid_fulltext
       mysql2 (~> 0.3.6)
       nokogiri
+      omnicontacts
       rails (~> 3.1.3)
       redis (~> 2.2.2)
       rest-client
@@ -43,19 +44,6 @@ GIT
       valium (>= 0.4.0)
       whenever
       will_paginate (~> 3.0)
-
-GIT
-  remote: https://github.com/agentrock/contacts.git
-  revision: 1396bef975e3d8cce883f65b2bac9620f3e4532f
-  specs:
-    contacts (1.2.4)
-      json (>= 1.1.1)
-
-GIT
-  remote: https://github.com/agentrock/gdata.git
-  revision: 271d0b49d7dbe97b16969f06104f3e91022c40bc
-  specs:
-    gdata (1.1.1)
 
 GEM
   remote: http://rubygems.org/
@@ -103,7 +91,7 @@ GEM
     carrierwave (0.5.8)
       activesupport (~> 3.0)
     chronic (0.6.7)
-    chunky_png (1.2.5)
+    chunky_png (1.2.6)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -170,7 +158,6 @@ GEM
     hike (1.2.1)
     hipchat (0.4.1)
       httparty
-    hpricot (0.8.6)
     html5-boilerplate (1.0.0)
       compass (>= 0.11.1)
     httparty (0.8.3)
@@ -217,6 +204,9 @@ GEM
       net-ssh (>= 1.99.1)
     net-ssh (2.2.2)
     nokogiri (1.5.5)
+    omnicontacts (0.2.2)
+      json
+      rack
     polyglot (0.3.3)
     rack (1.3.6)
     rack-cache (1.2)
@@ -301,13 +291,10 @@ DEPENDENCIES
   awesome_print
   coffee-rails (~> 3.1.0)
   compass-rails
-  contacts!
   engineyard
   factory_girl (~> 3.2.0)
   factory_girl_rails (~> 3.2.0)
-  gdata!
   gvis!
-  hpricot
   jquery-rails
   koala
   mocha
