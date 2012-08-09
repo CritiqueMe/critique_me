@@ -2,6 +2,7 @@
 class ShareController < ApplicationController
   def index
     @question = Question.find(params['question_id'])
+    session[:question_to_share] = @question.id
     if request.post?
       get_contacts(params['email'], params['password'], params['provider'])
       if flash[:importer_error].nil?
