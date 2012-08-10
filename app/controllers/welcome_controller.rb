@@ -86,4 +86,8 @@ class WelcomeController < ApplicationController
       new_question_path
     #end
   end
+
+  def already_signed_in_redirect
+    question_path(session[:clicked_question_id])
+  end
 end
