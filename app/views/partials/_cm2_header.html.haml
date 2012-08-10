@@ -1,12 +1,12 @@
 #header
   %div{:class => params[:controller] == 'welcome' ? "hinner" : ''}
     #logo
-      = link_to image_tag("logo_white.png"), @user && @user.id ? new_question_path : welcome_path
+      = link_to image_tag("logo_white.png"), @user && @user.id ? choose_question_path : welcome_path
       #tagline Ask the hard questions
     %ol#nav
       - if @user && @user.id
         %li.leftest{:class => params['controller'] == 'questions' ? 'selected' : '' }
-          = link_to "Ask Question", questions_path
+          = link_to "Ask Question", choose_question_path
         %li{:class => params['controller'] == 'dashboard' && params['action'] == 'index' ? 'selected' : '' }
           = link_to "My History", dashboard_path
         %li.rightest{:class => params['controller'] == 'dashboard' && params['action'] != 'index' ? 'selected' : ''}

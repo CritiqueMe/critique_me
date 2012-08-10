@@ -83,7 +83,7 @@ class WelcomeController < ApplicationController
     #if session[:clicked_question_id]
     #  question_path session[:clicked_question_id]
     #else
-      new_question_path
+      choose_question_path
     #end
   end
 

@@ -8,11 +8,11 @@
       = link_to "More Info", '#'
       #chooseq_lightbox
         Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
-
+    #chooseq_top2 Or you can write your own questions #{link_to "here", new_question_path}.
     .inner_content
       .inner_nav
-        .under.fuzzy#write= link_to "Write Question", new_question_path
         .over.fuzzy#choose Choose Question
+        .under.fuzzy#write= link_to "Write Question", new_question_path
       /.qs_asked_today.fuzzy= render :partial => "questions/asked_today"
       .qcontainer.fuzzy
         %table#default_questions{:data => {:page => params['page'] || 1, :num_questions => @num_questions, :per_page => @per_page}}

@@ -51,7 +51,7 @@
       .answer_footer
         You can be completely open and honest with #{@question.user.first_name.capitalize}.  We only reveal answers when at least 4 other people have also answered.  The answers are anonymous, so #{@question.user.first_name.capitalize} won't know which answer was yours.
     .answer_links
-      = link_to "You can also create your own question!", new_question_path
+      = link_to "You can also create your own question!", choose_question_path
       - if @user && @user.flagged_questions.where(:question_id => question.id).count == 0
         %span.dlg_flagger= link_to "Flag This Question &raquo;".html_safe, '#'
 

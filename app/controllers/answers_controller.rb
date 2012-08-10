@@ -13,12 +13,12 @@ class AnswersController < ApplicationController
       if questionnaire = @answer.question.default_question.try(:questionnaire)
         qs = @answer.question.user.questions.joins(:default_question).where('default_questions.questionnaire_id=?', questionnaire.id)
         if @user.answers.where(:question_id => qs.map(&:id)).count == qs.length
-          redirect_to new_question_path
+          redirect_to choose_question_path
         else
           redirect_to question_path(@answer.question)
         end
       else
-        redirect_to new_question_path
+        redirect_to choose_question_path
       end
     else
       redirect_to dashboard_path
