@@ -50,11 +50,14 @@ class ShareController < ApplicationController
     @question = Question.find(params['question_id'])
 
     friend_ids = []
+    friend_names = []
+    names = params['imported_names'].split(";")
     params['imported_friends'].split(",").each_with_index do |f, i|
       friend_ids << f if params["friend_#{i}"]
+      friend_names << names[i] if params["friend_#{i}"]
     end
 
-    FbShare.share(@user, @question, session[:fb_access_token], friend_ids, nil, 'friends_wall')
+    FbShare.share(@user, @question, session[:fb_access_token], friend_ids, friend_names, nil, 'friends_wall')
 
     if @question.shared_with_minimum? || friend_ids.length >= 5
       finished_sharing(friend_ids.length)
