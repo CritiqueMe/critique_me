@@ -1,3 +1,3 @@
 class CorporateController < ApplicationController
-  layout 'cm'
+  layout 'cm2'
 end

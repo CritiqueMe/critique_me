@@ -1,18 +1,28 @@
-.cm_content
-  %h2 Frequently Asked Questions
+- content_for :extra_css do
+  = stylesheet_link_tag "questions/new_question"
+  = stylesheet_link_tag "corporate"
 
-  %h3 How is this different from other Q & A sites?
-  %p Other question and answer sites can be great for getting technical help or generic relationship advice, but what about when you have a personal question and you need completely honest answers?
-  %p No other site allows you to ask the hard questions, the questions you need totally honest answers to, from your friends or contacts in a private and anonymous setting. Every time you send a question to your friends with CritiqueMe, they know they can answer with the whole truth, because their answers are 100% anonymous. The asker will never know which answerer said what.
-  %p This means the answers you get are the honest truth, every time. And for those really personal questions, you can ask a private CritiqueMe question: no one but the invited answerers can see it, and answerers will share the truth thanks to our 100% anonymous answers.
-  %h3 What gets posted on Facebook?
-  %p We post a link on your Facebook wall when you ask a public question on CritiqueMe so that your friends can start answering ASAP. The link will never share the text of your question, just a link to answer the question on CritiqueMe, so you can be sure you don’t reveal too much. Sometimes we’ll ask you to answer fun questions about your friends, too, and a link to those will be posted on Facebook.
-  %p We take privacy very seriously, so of course, for private questions, the link to answer is never shared with anyone on Facebook other than the friends that you invite.
-  %h3 What is a public question?
-  %p Public questions are questions you can send to specific friends on Facebook but that will also be available for anyone to answer if they discover the link on Facebook or otherwise. The link that is posted on Facebook will not display your question, but it will state that you asked a question on CritiqueMe that you need honest answers for. Anyone who clicks on that link can answer the question 100% anonymously.
-  %h3 What is a private question?
-  %p When you ask a question on CritiqueMe, it is private by default. Private questions are intended for personal things you’d like to ask a select few friends to answer. The answers will still be anonymous, so you can get the whole truth, but as an additional layer of protection, only the people you’ve invited to answer the question can see or use a link to answer the question.
-  %p Unlike public questions, no one else can see or use links to private questions. If a person whom you have not invited to answer a private question obtains the link, he or she will not be able to view the question on either Facebook or CritiqueMe.
-  %h3 How can I be sure my answer is anonymous?
-  %p We never share the names of answerers to CritiqueMe questions, and we will only show answers once at least 5 friends have answered the question. This prevents the question asker from figuring out who said what.
-  %p Anyone who invites you to answer a CritiqueMe question is looking for the unrestrained truth from you. Keep in mind that anything you write in response will be shared with the asker, and they will never see who wrote it. It’s your chance to be completely honest.
+.grad_bg
+  .cm_content
+    %h2 Frequently Asked Questions
+
+    %h3 How is this different from other Q & A sites?
+    %p Other question and answer sites can be great for getting technical help or generic relationship advice, but what about when you have a personal question and you need completely honest answers?
+    %p No other site allows you to ask the hard questions, the questions you need totally honest answers to, from your friends or contacts in a private and anonymous setting. Every time you send a question to your friends with CritiqueMe, they know they can answer with the whole truth, because their answers are 100% anonymous. The asker will never know which answerer said what.
+    %p This means the answers you get are the honest truth, every time. And for those really personal questions, you can ask a private CritiqueMe question: no one but the invited answerers can see it, and answerers will share the truth thanks to our 100% anonymous answers.
+    %h3 What gets posted on Facebook?
+    %p We post a link on your Facebook wall when you ask a public question on CritiqueMe so that your friends can start answering ASAP. The link will never share the text of your question, just a link to answer the question on CritiqueMe, so you can be sure you don’t reveal too much. Sometimes we’ll ask you to answer fun questions about your friends, too, and a link to those will be posted on Facebook.
+    %p We take privacy very seriously, so of course, for private questions, the link to answer is never shared with anyone on Facebook other than the friends that you invite.
+    %h3 What is a public question?
+    %p Public questions are questions you can send to specific friends on Facebook but that will also be available for anyone to answer if they discover the link on Facebook or otherwise. The link that is posted on Facebook will not display your question, but it will state that you asked a question on CritiqueMe that you need honest answers for. Anyone who clicks on that link can answer the question 100% anonymously.
+    %h3 What is a private question?
+    %p When you ask a question on CritiqueMe, it is private by default. Private questions are intended for personal things you’d like to ask a select few friends to answer. The answers will still be anonymous, so you can get the whole truth, but as an additional layer of protection, only the people you’ve invited to answer the question can see or use a link to answer the question.
+    %p Unlike public questions, no one else can see or use links to private questions. If a person whom you have not invited to answer a private question obtains the link, he or she will not be able to view the question on either Facebook or CritiqueMe.
+    %h3 How can I be sure my answer is anonymous?
+    %p We never share the names of answerers to CritiqueMe questions, and we will only show answers once at least 5 friends have answered the question. This prevents the question asker from figuring out who said what.
+    %p Anyone who invites you to answer a CritiqueMe question is looking for the unrestrained truth from you. Keep in mind that anything you write in response will be shared with the asker, and they will never see who wrote it. It’s your chance to be completely honest.
+    %br
+    %br
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "questions/resize_cm_content"

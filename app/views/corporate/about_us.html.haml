@@ -1,6 +1,16 @@
-.cm_content
-  %h2 About Us
-  %p CritiqueMe offers you a unique way to receive unrestrained, honest feedback from your friends and contacts to any questions you ask them.
-  %p Think about it: sometimes it’s hard to share the whole truth, even with the people closest to you. Maybe you don’t want to hurt someone’s feelings, or perhaps you’re embarrassed by what you have to say. It’s nothing against the relationship; it’s because you care so much that it’s difficult to be totally honest.
-  %p That’s why we offer 100% anonymity for answerers, all the time. All answers you or your friends give through CritiqueMe are completely anonymous, which means everyone knows they can open up and tell you the complete story. Askers get the satisfaction of hearing the whole, honest truth from the people they care about, and answerers get to say what they really want to say without impacting an important relationship.
-  %p It’s time for some honesty on the internet. With CritiqueMe you get the real truth that is impossible to get any other way.
+- content_for :extra_css do
+  = stylesheet_link_tag "questions/new_question"
+  = stylesheet_link_tag "corporate"
+
+.grad_bg
+  .cm_content
+    %h2 About Us
+    %p CritiqueMe offers you a unique way to receive unrestrained, honest feedback from your friends and contacts to any questions you ask them.
+    %p Think about it: sometimes it’s hard to share the whole truth, even with the people closest to you. Maybe you don’t want to hurt someone’s feelings, or perhaps you’re embarrassed by what you have to say. It’s nothing against the relationship; it’s because you care so much that it’s difficult to be totally honest.
+    %p That’s why we offer 100% anonymity for answerers, all the time. All answers you or your friends give through CritiqueMe are completely anonymous, which means everyone knows they can open up and tell you the complete story. Askers get the satisfaction of hearing the whole, honest truth from the people they care about, and answerers get to say what they really want to say without impacting an important relationship.
+    %p It’s time for some honesty on the internet. With CritiqueMe you get the real truth that is impossible to get any other way.
+    %br
+    %br
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "questions/resize_cm_content"
