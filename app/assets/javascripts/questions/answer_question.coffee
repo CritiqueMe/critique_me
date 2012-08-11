@@ -1,5 +1,5 @@
 send_to_create_question_page = ->
-  window.location = "/new_question"
+  window.location = "/choose_question"
 
 init_post_answer_button = ->
   $('.post_answer a').click ->

@@ -1,4 +1,4 @@
 $ ->
   window.setTimeout ->
-    window.location = '/new_question'
+    window.location = '/choose_question'
   , 5000

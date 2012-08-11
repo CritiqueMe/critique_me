@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 81476ef01d6418126508d0069418bca5923d1af9
+  revision: ba6799bae9b5a70d11ff1991a2d2be83b43979be
   ref: HEAD
   specs:
     seed_blocks (2.0.0)
@@ -242,7 +242,7 @@ GEM
       mime-types (>= 1.16)
     rmagick (2.12.2)
     ruby-hmac (0.4.0)
-    sass (3.1.20)
+    sass (3.1.21)
     sass-rails (3.1.5)
       actionpack (~> 3.1.0)
       railties (~> 3.1.0)

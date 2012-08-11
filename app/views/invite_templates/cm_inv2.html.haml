@@ -1,0 +1,9 @@
+%html
+  %body
+    %p #{@inviter.first_name.try(:capitalize) || "Your friend"} is using CritiqueMe to gather anonymous feedback, and you have been invited to respond.
+    %p CritiqueMe is a fast and simple way for you to leave 100% anonymous answers to your friends' personal questions.  We never reveal who said what to #{@inviter.first_name.try(:capitalize) || "your friend"}, and #{@inviter.first_name.try(:capitalize) || "your friend"} can only see the responses once at least 4 other people have also responded.  This anonymity ensures that you can say whatever you like, knowing that your specific response cannot be tied to you.
+    %p Your feedback will be very helpful to #{@inviter.first_name.try(:capitalize) || "your friend"}, so respond now!
+    %p
+      Best,
+      %br
+      The CritiqueMe Team

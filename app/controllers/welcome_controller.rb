@@ -88,6 +88,6 @@ class WelcomeController < ApplicationController
   end
 
   def already_signed_in_redirect
-    question_path(session[:clicked_question_id])
+    session[:clicked_question_id] ? question_path(session[:clicked_question_id]) : choose_question_path
   end
 end

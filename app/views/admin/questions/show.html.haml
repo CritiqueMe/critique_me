@@ -26,3 +26,27 @@
     %label Active?:
     %p= @question.active? ? "Active" : "Inactive"
     .clear
+
+
+- if @question.answers.count > 0
+  %h1 Answers for this Question
+  %table.smoothness.highlighter
+    %thead
+      %tr
+        %th Answer
+        %th Answerer
+        %th Answered at
+    %tbody
+      - @question.answers.each do |a|
+        %tr
+          %td
+            - if a.question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+              = a.multiple_choice_option.answer_text
+            - elsif a.question.question_type == Question::QUESTION_TYPES.index(:true_false)
+              = a.true_false_answer
+            - elsif a.question.question_type == Question::QUESTION_TYPES.index(:open_text)
+              = a.open_text_answer
+            - else
+              = a.canned_question_choice.friend_name
+          %td= link_to a.user.full_name, admin_user_path(a.user)
+          %td= a.created_at.strftime "%-m/%-d/%Y"

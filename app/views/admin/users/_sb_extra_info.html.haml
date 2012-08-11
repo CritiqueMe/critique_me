@@ -1,0 +1,29 @@
+- if @questions.length > 0
+  %h1 Questions Asked by #{@user.first_name.capitalize}
+  %table.smoothness.highlighter
+    %thead
+      %tr
+        %th Question
+        %th Asked
+        %th Answers
+    %tbody
+      - @questions.each do |q|
+        %tr{:class => cycle("even", "odd")}
+          %td= link_to q.question_text, admin_question_path(q)
+          %td= q.created_at.strftime "%-m/%-d/%Y"
+          %td= q.answers.count
+
+- if @answers.length > 0
+  %h1 Answers Given by #{@user.first_name.capitalize}
+  %table.smoothness.highlighter
+    %thead
+      %tr
+        %th Question
+        %th Asker
+        %th Answered
+    %tbody
+      - @answers.each do |a|
+        %tr{:class => cycle("even", "odd")}
+          %td= link_to a.question.question_text, admin_question_path(a.question)
+          %td= link_to a.question.user.full_name, admin_user_path(a.question.user)
+          %td= a.created_at.strftime "%-m/%-d/%Y"

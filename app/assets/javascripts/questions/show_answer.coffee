@@ -1,5 +1,5 @@
 send_to_create_question_page = ->
-  window.location = "/new_question"
+  window.location = "/choose_question"
 
 show_answer_dialog = (qid) ->
   t = $('#answer_q'+qid).data('title')

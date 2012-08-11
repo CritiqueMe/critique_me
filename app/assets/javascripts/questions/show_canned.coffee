@@ -1,5 +1,5 @@
 send_to_create_question_page = ->
-  window.location = "/new_question"
+  window.location = "/choose_question"
 
 pop_canned_questions_dialog = ->
   $('#canned_questions').dialog
