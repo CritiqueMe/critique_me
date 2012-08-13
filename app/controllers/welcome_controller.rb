@@ -87,7 +87,7 @@ class WelcomeController < ApplicationController
 
     elsif @path_page.page_type == "register" || @path_page.page_type == "splash"
       @last_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
-    elsif @path_page.page_type == "choose_question"
+    elsif @path_page.page_type == "choose_question" || @path_page.page_type == "choose_q_about_cm_dlg"
       @per_page = 7
       scope = DefaultQuestion.active.not_in_questionnaire.prioritized
       scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
