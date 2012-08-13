@@ -1,0 +1,46 @@
+- is_welcome_path = params['controller'] == 'welcome'
+
+.grad_bg
+  .cm_content
+    #chooseq_top
+      For inspiration, simply choose from one of these popular questions.
+      = link_to "More Info", '#'
+      #chooseq_lightbox
+        Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
+    - unless is_welcome_path
+      #chooseq_top2 Or you can write your own questions #{link_to "here", new_question_path}.
+    .inner_content
+      - unless is_welcome_path
+        .inner_nav
+          .over.fuzzy#choose Choose Question
+          .under.fuzzy#write= link_to "Write Question", new_question_path
+      /.qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+      .qcontainer.fuzzy
+        %table#default_questions{:data => {:page => params['page'] || 1, :num_questions => @num_questions, :per_page => @per_page}}
+          %thead
+            %tr
+              %th
+                Category&nbsp;
+                = select_tag "category_id", options_from_collection_for_select(Category.for_select, 'id', 'name', params['category_id']), :include_blank => true
+              %th &nbsp;
+              %th Last asked
+          %tbody
+            - @default_questions.each_with_index do |dq, i|
+              %tr
+                %td
+                  .qtext= dq.question_text
+                  .cat Category: #{link_to dq.category.name, category_path(dq.category_id)}
+                %td.askq{:data => {:default_question_id => dq.id}}
+                  - if is_welcome_path
+                    = link_to image_tag("questions/ask_this_question.png"), path_choose_question_path(:default_question_id => dq.id)
+                  - else
+                    = link_to image_tag("questions/ask_this_question.png"), new_question_path(:default_question_id => dq.id)
+                %td.last_asked
+                  =# dq.last_asked_at ? time_ago_in_words(dq.last_asked_at) + " ago" : "never"
+                  - # the above has been commented out so it doesn't always say "never", until there's more data in the system
+                  - mins_ago = ((params['page'] || 1).to_i - 1) * @per_page + i + 1
+                  = pluralize(mins_ago, "min") + " ago"
+          %tfoot
+            %tr
+              %td{:colspan => 3}
+                = will_paginate @default_questions, :page_links => false, :previous_label => "Back", :next_label => "Next"

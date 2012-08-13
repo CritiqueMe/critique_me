@@ -6,10 +6,6 @@
 #share_dialog
 #post_share_dialog
 
-- if @show_pitch_dlg
-  = render :partial => "partials/pitch_dialog2"
-
 - content_for :extra_javascripts do
   = javascript_include_tag "questions/choose_question"
   = javascript_include_tag "questions/resize_cm_content"
-  = javascript_include_tag "questions/pitch_dialog" if @show_pitch_dlg

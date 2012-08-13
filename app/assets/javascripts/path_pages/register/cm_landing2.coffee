@@ -31,10 +31,11 @@ autoscroll_recent_questions = ->
     autoscroller = setTimeout callback, 5000
 
 init_button = ->
-  $('#continue img').mouseover ->
-    $(this).attr 'src', '/assets/path/sign_in_with_fb_over.png'
-  .mouseout ->
-    $(this).attr 'src', '/assets/path/sign_in_with_fb.png'
+  if $('#continue img').attr('src') == '/assets/path/sign_in_with_fb.png'
+    $('#continue img').mouseover ->
+      $(this).attr 'src', '/assets/path/sign_in_with_fb_over.png'
+    .mouseout ->
+      $(this).attr 'src', '/assets/path/sign_in_with_fb.png'
 
 resize_cm_content = ->
   window_height = $(window).height()

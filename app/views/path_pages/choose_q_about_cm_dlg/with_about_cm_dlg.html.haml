@@ -1,0 +1,10 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "questions/new_question"
+
+= render :partial => "questions/choose_q"
+
+#about_cm_dlg
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "questions/choose_question"
+  = javascript_include_tag "questions/resize_cm_content"

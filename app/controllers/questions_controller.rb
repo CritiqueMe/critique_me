@@ -169,6 +169,13 @@ class QuestionsController < ApplicationController
       scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
       @num_questions = scope.count
       @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
+
+      if true#session[:show_pitch_dlg] && @user.show_pitch_dlg?
+        @show_pitch_dlg = true
+      else
+        @show_pitch_dlg = false
+      end
+      session[:show_pitch_dlg] = false
     end
   end
 

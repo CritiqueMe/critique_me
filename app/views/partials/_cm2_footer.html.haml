@@ -1,7 +1,7 @@
 #footer
   #finner
     #fnav
-      = link_to "HOME", @user.try(:id) ? questions_path : welcome_path
+      = link_to "HOME", @user.try(:id) ? choose_question_path : welcome_path
       &nbsp;&nbsp;
       = link_to "ABOUT US", about_us_path
       &nbsp;&nbsp;

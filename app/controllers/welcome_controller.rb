@@ -15,6 +15,28 @@ class WelcomeController < ApplicationController
     redirect_to welcome_path
   end
 
+  def choose_question
+    if @user && @user.id
+      @default_question = DefaultQuestion.find(params['default_question_id'])
+      if @user.questions.where(:default_question_id => @default_question.id).count == 0
+        @question = Question.create_from_default_question(@default_question, @user)
+        if @question.valid?
+          @default_question.update_attribute :last_asked_at, Time.now
+          post_question_to_open_graph(@question) # TODO: ask for permission to do this
+        end
+      end
+    else
+      session[:path_chosen_question_id] = params['default_question_id']
+    end
+    @tracker.log(:question_chosen, "User chose a question to ask")
+    @tracker.converted = true if @experiment.conversion_event == "question_chosen"
+    save_path_tracker
+    increment_page
+    redirect_to welcome_path
+  end
+
+
+
   def sb_prepare_page_type_variables
     if %w(answer canned_questions).include?(@path_page.page_type)
       if session[:clicked_question_id]
@@ -65,9 +87,14 @@ class WelcomeController < ApplicationController
 
     elsif @path_page.page_type == "register" || @path_page.page_type == "splash"
       @last_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
+    elsif @path_page.page_type == "choose_question"
+      @per_page = 7
+      scope = DefaultQuestion.active.not_in_questionnaire.prioritized
+      scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
+      @num_questions = scope.count
+      @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
     end
   end
-
 
   private
 
@@ -77,6 +104,20 @@ class WelcomeController < ApplicationController
     Rails.logger.info "posted answer to open graph, response = #{response}"
     json = JSON.parse(response)
     answer.update_attribute :fb_answer_id, json["id"]
+  end
+
+  def sb_after_register
+    if session[:path_chosen_question_id]   # this is set in welcome#choose_question
+      @default_question = DefaultQuestion.find(session[:path_chosen_question_id])
+      if @user.questions.where(:default_question_id => @default_question.id).count == 0
+        @question = Question.create_from_default_question(@default_question, @user)
+        if @question.valid?
+          @default_question.update_attribute :last_asked_at, Time.now
+          post_question_to_open_graph(@question) # TODO: ask for permission to do this
+        end
+      end
+      session[:path_chosen_question_id] = nil
+    end
   end
 
   def default_experiment_delivery_url
