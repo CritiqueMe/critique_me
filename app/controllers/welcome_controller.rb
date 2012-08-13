@@ -93,6 +93,8 @@ class WelcomeController < ApplicationController
       scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
       @num_questions = scope.count
       @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
+    elsif @path_page.page_type == "share"
+      @question = @user.questions.last
     end
   end
 
@@ -121,11 +123,11 @@ class WelcomeController < ApplicationController
   end
 
   def default_experiment_delivery_url
-    #if session[:clicked_question_id]
-    #  question_path session[:clicked_question_id]
-    #else
+    if @user.questions.count > 0
+      question_path @user.questions.last
+    else
       choose_question_path
-    #end
+    end
   end
 
   def already_signed_in_redirect
