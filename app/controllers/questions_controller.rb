@@ -170,7 +170,7 @@ class QuestionsController < ApplicationController
       @num_questions = scope.count
       @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
 
-      if true#session[:show_pitch_dlg] && @user.show_pitch_dlg?
+      if session[:show_pitch_dlg] && @user.show_pitch_dlg?
         @show_pitch_dlg = true
       else
         @show_pitch_dlg = false

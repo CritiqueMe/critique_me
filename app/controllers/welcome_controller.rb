@@ -94,6 +94,9 @@ class WelcomeController < ApplicationController
       scope = scope.where(:category_id => params['category_id']) if params['category_id'] && params['category_id'] != ''
       @num_questions = scope.count
       @default_questions = scope.paginate(:page => params['page'], :per_page => @per_page)
+      if @path_page.page_type == "choose_q_about_cm_dlg"
+        @show_pitch_dlg = true
+      end
     elsif @path_page.page_type == "share"
       @question = @user.questions.last
     end

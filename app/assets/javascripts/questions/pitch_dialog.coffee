@@ -5,8 +5,8 @@ pop_pitch_dialog = ->
     modal: true
     show: 'fade'
     hide: 'fade'
-    width: 800
-    height: 'auto'
+    width: 870
+    height: 500
     title: ""
     position: 'center'
     dialogClass: 'pitch_dlg'
@@ -17,6 +17,10 @@ pop_pitch_dialog = ->
   $('#do_not_show input').change ->
     $.post('/toggle_pitch_dlg')
     $('#pitch_dlg').dialog('close')
+
+  $('#pitch_dlg #button a').click ->
+    $('#pitch_dlg').dialog('close')
+    return false
 
 $ ->
   pop_pitch_dialog()
