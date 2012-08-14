@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: ba6799bae9b5a70d11ff1991a2d2be83b43979be
+  revision: 791501020633c69d7653d208976eff3cde9f786f
   ref: HEAD
   specs:
     seed_blocks (2.0.0)
@@ -152,7 +152,7 @@ GEM
       actionpack (>= 3.0)
     fssm (0.2.9)
     geoip (1.1.2)
-    haml (3.1.6)
+    haml (3.1.7)
     has_scope (0.5.1)
     highline (1.6.12)
     hike (1.2.1)
