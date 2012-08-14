@@ -23,6 +23,7 @@ class WelcomeController < ApplicationController
         if @question.valid?
           @default_question.update_attribute :last_asked_at, Time.now
           post_question_to_open_graph(@question) # TODO: ask for permission to do this
+          flash[:show_share] = true
         end
       end
     else
