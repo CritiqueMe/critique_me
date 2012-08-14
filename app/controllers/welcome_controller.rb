@@ -119,6 +119,7 @@ class WelcomeController < ApplicationController
         end
       end
       session[:path_chosen_question_id] = nil
+      flash[:show_share] = true
     end
   end
 
