@@ -91,7 +91,8 @@
                   - elsif @question.question_type == Question::QUESTION_TYPES.index(:canned_question)
                     = a.canned_question_choice.friend_name
 
-              = render :partial => "/questions/answer", :locals => {:question => @question, :post_url => post_url}
+              - unless @user == @question.user
+                = render :partial => "/questions/answer", :locals => {:question => @question, :post_url => post_url}
 
             - unless @user.nil? || @question.user == @user
               .flagger
