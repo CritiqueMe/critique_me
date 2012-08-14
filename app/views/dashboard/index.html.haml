@@ -22,7 +22,7 @@
               - if @collection.empty?
                 %tr
                   %td.none_posted
-                    No Questions posted yet.  #{link_to "Post one now!", questions_path}
+                    No Questions posted yet.  #{link_to "Post one now!", choose_question_path}
               - else
                 = render :partial => "question_line_item", :collection => @collection, :as => :question
             - else

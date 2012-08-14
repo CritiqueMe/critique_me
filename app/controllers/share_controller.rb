@@ -4,6 +4,7 @@ class ShareController < ApplicationController
     Rails.logger.info "*** session = #{session.inspect}"
     @question = Question.find(params['question_id'])
     session[:question_to_share] = @question.id
+    Rails.logger.info "***222 session = #{session.inspect}"
     if request.post?
       get_contacts(params['email'], params['password'], params['provider'])
       if flash[:importer_error].nil?

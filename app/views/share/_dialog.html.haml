@@ -66,7 +66,7 @@
         = form_tag manual_share_path, :remote => true do
           = hidden_field_tag 'question_id', @question.id
           %fieldset.inputs.single_row.inline
-            = text_field_tag 'emails'
+            = text_area_tag 'emails'
             .buttons.inline= submit_tag "Invite"
             .inline#manual_spinner= image_tag "/assets/admin/layout/form_spinner.gif"
         %p
