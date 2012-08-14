@@ -2,6 +2,8 @@
 
 .grad_bg
   .cm_content
+    - if @show_canned_answer
+      #canned_answer= @show_canned_answer
     #chooseq_top
       For inspiration, simply choose from one of these popular questions.
       = link_to "More Info", '#'

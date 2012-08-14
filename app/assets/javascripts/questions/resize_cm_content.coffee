@@ -15,9 +15,11 @@ resize_cm_content = ->
   console.log "*** window_height: " + window_height + " -- html_height: " + html_height + " -- total_height: " + total_height + " -- heider_height: " + header_height + " -- footer_height: " + footer_height
   $('.grad_bg').height total_height #- header_height # - footer_height
 
-
+do_resize = ->
+  $(window).resize()
 
 $ ->
   resize_cm_content()
   $(window).resize ->
     resize_cm_content()
+  setInterval do_resize, 3000
