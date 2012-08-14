@@ -36,6 +36,6 @@ class User < ActiveRecord::Base
   end
 
   def show_pitch_dlg?
-    !referrer_id.nil? && !pitch_dlg_acknowledged?
+    (!referrer_id.nil? || !affiliate_link_id.nil?) && !pitch_dlg_acknowledged?
   end
 end
