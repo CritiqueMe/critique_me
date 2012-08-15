@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:jgeggatt/SeedBlocks.git
-  revision: 791501020633c69d7653d208976eff3cde9f786f
+  revision: 6b3916753858897741230d41ca193d7778bf180c
   ref: HEAD
   specs:
     seed_blocks (2.0.0)
@@ -125,7 +125,7 @@ GEM
       json_pure
     erubis (2.7.0)
     escape (0.0.4)
-    excon (0.15.5)
+    excon (0.16.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (3.2.0)
