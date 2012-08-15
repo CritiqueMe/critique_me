@@ -11,14 +11,22 @@ class User < ActiveRecord::Base
     u2.answers.update_all(:user_id => u1.id)
   end
 
-  # TODO: make this less painful...
+  def allowed_to_view_question?(q)
+    q.public? || q.user == self || canned_invitee?(q) || invited_to_question?(q) || fb_shared?(q)
+  end
+
+  def canned_invitee?(q)
+    q.canned_question_choices.any?{|cqc| cqc.friend_fb_id == self.fb_user_id}
+  end
+
   def invited_to_question?(q)
-    canned_invitee = q.canned_question_choices.any?{|cqc| cqc.friend_fb_id == self.fb_user_id}
-    inv_count = Invite.where(:invitee_id => self.id, :tracking_object_id => q.id).count > 0
-    inv_count2 = self.email && Invite.where(:invitee_email => self.email, :tracking_object_id => q.id).count > 0
-    fbs_count = FbShare.where(:invitee_id => self.id, :tracking_object_id => q.id).count > 0
-    fbs_count2 = self.fb_user_id && FbShare.where(:invitee_fb_user_id => self.fb_user_id, :tracking_object_id => q.id).count > 0
-    canned_invitee || inv_count || inv_count2 || fbs_count || fbs_count2
+    Invite.where(:invitee_id => self.id, :tracking_object_id => q.id).count > 0 ||
+      (self.email && Invite.where(:invitee_email => self.email, :tracking_object_id => q.id).count > 0)
+  end
+
+  def fb_shared?(q)
+    FbShare.where(:invitee_id => self.id, :tracking_object_id => q.id).count > 0 ||
+      (self.fb_user_id && FbShare.where(:invitee_fb_user_id => self.fb_user_id, :tracking_object_id => q.id).count > 0)
   end
 
   # Run daily via a cron job

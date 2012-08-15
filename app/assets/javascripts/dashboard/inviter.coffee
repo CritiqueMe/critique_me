@@ -8,7 +8,7 @@ init_inviter_buttons = ->
       modal: true
       show: 'fade'
       hide: 'fade'
-      width: 800
+      width: 1000
       height: 575
       dialogClass: 'share-modal'
     .html('<img src="/assets/admin/layout/form_spinner.gif" />')

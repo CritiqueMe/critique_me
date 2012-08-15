@@ -27,7 +27,7 @@
         - if @user.nil?
           %h2 Sign in to View Questions
           %p You must #{link_to "sign up", welcome_path} or #{link_to "log in", sign_in_path} in order to view questions on CritiqueMe.
-        - elsif @question.user == @user || @question.public? || @user.invited_to_question?(@question)
+        - elsif @user.allowed_to_view_question?(@question)
           - unless @question.canned_question_id
             .byline #{@question.user.first_last_initial} asked:
 

@@ -28,7 +28,8 @@
   #invite_box
     #invite_nav
       %ul
-        %li.selected= link_to "Enter Emails", '#', :class => "manual"
+        %li.selected= link_to "Share URL", '#', :class => "share_url"
+        %li= link_to "Enter Emails", '#', :class => "manual"
         - if false#@question.public?
           %li= link_to "Twitter", '#', :class => "twitter"
         %li= link_to "Gmail", '#', :class => "gmail"
@@ -37,6 +38,10 @@
         %li= link_to "Facebook", '#', :class => "facebook"
         /%li= link_to "Critiquers", '#', :class => "critiquers"
     #invite_content
+      .content_block#share_url.selected
+        .content_header Share This URL With Your Friends
+        .ref_link= question_referral_url(@user.referral_token[@user.referral_token.length-4, 4], @question.id)
+
       .content_block#facebook
         =# render :partial => "partials/fb_like_button"
         = render :partial => "partials/fb_friend_select"
@@ -62,11 +67,12 @@
             %p.buttons= submit_tag "Send Question to Contacts"
         #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
 
-      .content_block#manual.selected
+      .content_block#manual
+        =# render :partial => "share/manual_entry"
         = form_tag manual_share_path, :remote => true do
           = hidden_field_tag 'question_id', @question.id
           %fieldset.inputs.single_row.inline
-            = text_area_tag 'emails'
+            = text_field_tag 'emails'
             .buttons.inline= submit_tag "Invite"
             .inline#manual_spinner= image_tag "/assets/admin/layout/form_spinner.gif"
         %p

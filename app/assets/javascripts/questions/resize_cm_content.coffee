@@ -12,7 +12,7 @@ resize_cm_content = ->
     $('.container').height(cm_content_height)
   else
     $('.container').height(total_height)
-  console.log "*** window_height: " + window_height + " -- html_height: " + html_height + " -- total_height: " + total_height + " -- heider_height: " + header_height + " -- footer_height: " + footer_height
+  #console.log "*** window_height: " + window_height + " -- html_height: " + html_height + " -- total_height: " + total_height + " -- heider_height: " + header_height + " -- footer_height: " + footer_height
   $('.grad_bg').height total_height #- header_height # - footer_height
 
 do_resize = ->

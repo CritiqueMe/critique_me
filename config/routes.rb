@@ -30,6 +30,7 @@ CritiqueMe::Application.routes.draw do
   match '/email_preferences',               :to => 'dashboard#email_preferences', :as => :email_preferences
 
   match '/question/:id',                    :to => 'questions#question',        :as => :question
+  match '/q/:token/:question_id',           :to => 'referral#incoming',         :as => :question_referral
   match '/questions',                       :to => 'questions#new_question',    :as => :questions
   match '/new_question',                    :to => 'questions#new_question',    :as => :new_question
   match '/edit_question/:id',               :to => 'questions#edit_question',   :as => :edit_question

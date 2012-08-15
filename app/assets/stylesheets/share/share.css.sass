@@ -73,7 +73,7 @@
               background-image: image-url('share/icon_manual.jpg')
     #invite_content
       float: left
-      width: 570px
+      width: 750px
       padding-top: 20px
       padding-left: 15px
       .content_block
@@ -223,26 +223,61 @@
           .friends
             table
               width: 100%
+        &#share_url
+          .ref_link
+            width: 60%
+            margin: 25px auto
+            border: 1px solid #CCCCCC
+            padding:  15px 30px
+            font-size:  22px
+            @include border-radius(5px)
         &#manual
           .inputs
             padding-top: 10px
           fieldset
             border: 0px
-          input
-            width: 250px
+          .lft
             float: left
-            height: 30px
-            border: 3px solid #c4c9cc
-            color: #aaafb2
-            font-family: 'helvetica neue', helvetica, arial, sans-serif
-            font-size: 16px
-            padding: 5px 10px
-            margin-left: 4px
-            @include border-radius(7px)
-            -moz-border-top-colors: $textarea_border_grad
-            -moz-border-left-colors: $textarea_border_grad
-            -moz-border-right-colors: $textarea_border_grad
-            -moz-border-bottom-colors: $textarea_border_grad
+            width: 50%
+          .rgt
+            float: right
+            width: 50%
+            &:after
+              clear: both
+          #manual_tokens
+            border: 1px solid #cbcbcb
+            height: 150px
+            padding: 5px
+            li
+              width: auto
+              float: left
+              list-style-type: none
+              font-size:  12px
+              margin-right: 15px
+              @include border-radius(3px)
+              padding:  3px 0px 3px 5px
+              margin-bottom: 5px
+              &.valid
+                border: 1px solid #690
+                background: #CF9
+                color: #690
+                a
+                  color: #690
+                  font-weight: bold
+              &.invalid
+                border: 1px solid #C00
+                background: #FCC
+                color: #C00
+                a
+                  color: #C00
+                  font-weight: bold
+              .token_closer
+                padding: 0px 5px
+                color:  #AAA
+            input
+              float: left
+              width:  30px
+              border:  0px
           .buttons
             float: left
             margin-left: 15px

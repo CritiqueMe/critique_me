@@ -130,12 +130,35 @@ pop_canned_questions_dialog = (content) ->
   $('#post_share_dialog .canned_question').first().show()
   CritiqueMe.init_canned_questions($('#post_share_dialog'))
 
+tokenize_manual_entries = ->
+  friend = $('#manual_token_entry').val().replace(',', '').replace(' ', '')
+  email_regex = /\S+@\S+/  # very simple validation, more rigorous checking is done on the server
+  if email_regex.test(friend)
+    $('<li class="valid"></li>').html(friend + "<span class='token_closer'><a href='#'>x</a></span>").insertBefore('#manual_token_entry')
+  else
+    $('<li class="invalid"></li>').html(friend + "<span class='token_closer'><a href='#'>x</a></span>").insertBefore('#manual_token_entry')
+  $('#manual_token_entry').val('').width(30)
+  $('.token_closer a').unbind().click ->
+    $(this).parent().parent().remove()
+
+
 init_manual_entry_form = ->
   $('#manual form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#manual_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
     pop_canned_questions_dialog(xhr.responseText)
   )
+
+  $('#manual_token_entry').keyup (evt) ->
+    # adjust width of entry box
+    num_chars = $(this).val().length
+    if num_chars > 3 && num_chars < 25
+      new_width = $(this).val().length * 10
+      $(this).width(new_width)
+
+    last_key = evt.keyCode
+    if last_key == 13 || last_key == 10 || last_key == 188  # carriage return, line return, or comma
+      tokenize_manual_entries()
 
 init_fb_friend_list = ->
   $('#show_friends_list_link').click () ->

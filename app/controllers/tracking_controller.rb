@@ -1,6 +1,5 @@
 Rails::Engine.mixin __FILE__
 class TrackingController < ApplicationController
-
   private
 
   def sb_handle_tracking_object(tracker)
