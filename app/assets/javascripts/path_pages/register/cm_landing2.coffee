@@ -36,6 +36,11 @@ init_button = ->
       $(this).attr 'src', '/assets/path/sign_in_with_fb_over.png'
     .mouseout ->
       $(this).attr 'src', '/assets/path/sign_in_with_fb.png'
+  else if $('#continue img').attr('src') == '/assets/path/sign_in_with_fb2.jpg'
+    $('#continue img').mouseover ->
+      $(this).attr 'src', '/assets/path/sign_in_with_fb2_over.jpg'
+    .mouseout ->
+      $(this).attr 'src', '/assets/path/sign_in_with_fb2.jpg'
 
 resize_cm_content = ->
   window_height = $(window).height()
