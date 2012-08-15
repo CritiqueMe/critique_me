@@ -31,21 +31,32 @@ autoscroll_recent_questions = ->
     autoscroller = setTimeout callback, 5000
 
 init_button = ->
-  if $('#continue img').attr('src') == '/assets/path/sign_in_with_fb.png'
+  img1 = /sign_in_with_fb.+png/
+  img2 = /sign_in_with_fb2.+jpg/
+  img3 = /get_started.+png/
+  img_src = $('#continue img').attr('src')
+  if img1.test(img_src)
     $('#continue img').mouseover ->
-      $(this).attr 'src', '/assets/path/sign_in_with_fb_over.png'
+      src = img_src.replace 'sign_in_with_fb', 'sign_in_with_fb_over'
+      $(this).attr 'src', src
     .mouseout ->
-      $(this).attr 'src', '/assets/path/sign_in_with_fb.png'
+      src = img_src.replace 'sign_in_with_fb_over', 'sign_in_with_fb'
+      $(this).attr 'src', src
   else if $('#continue img').attr('src') == '/assets/path/sign_in_with_fb2.jpg'
     $('#continue img').mouseover ->
-      $(this).attr 'src', '/assets/path/sign_in_with_fb2_over.jpg'
+      src = img_src.replace 'sign_in_with_fb2', 'sign_in_with_fb2_over'
+      $(this).attr 'src', src
     .mouseout ->
-      $(this).attr 'src', '/assets/path/sign_in_with_fb2.jpg'
+      src = img_src.replace 'sign_in_with_fb2_over', 'sign_in_with_fb2'
+      $(this).attr 'src', src
   else if $('#continue img').attr('src') == '/assets/path/get_started.png'
     $('#continue img').mouseover ->
-      $(this).attr 'src', '/assets/path/get_started_over.png'
+      src = img_src.replace 'get_started', 'get_started_over'
+      $(this).attr 'src', src
     .mouseout ->
-      $(this).attr 'src', '/assets/path/get_started.png'
+      src = img_src.replace 'get_started_over', 'get_started'
+      $(this).attr 'src', src
+
 
 resize_cm_content = ->
   window_height = $(window).height()
