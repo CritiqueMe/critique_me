@@ -37,14 +37,14 @@ init_button = ->
   img_src = $('#continue img').attr('src')
   if img1.test(img_src)
     $('#continue img').mouseover ->
-      $(this).attr 'src', 'assets/path/sign_in_wth_fb_over.png'
+      $(this).attr 'src', 'assets/path/sign_in_with_fb_over.png'
     .mouseout ->
-      $(this).attr 'src', 'assets/path/sign_in_wth_fb.png'
+      $(this).attr 'src', 'assets/path/sign_in_with_fb.png'
   else if img2.test(img_src)
     $('#continue img').mouseover ->
-      $(this).attr 'src', 'assets/path/sign_in_wth_fb2_over.jpg'
+      $(this).attr 'src', 'assets/path/sign_in_with_fb2_over.jpg'
     .mouseout ->
-      $(this).attr 'src', 'assets/path/sign_in_wth_fb2.jpg'
+      $(this).attr 'src', 'assets/path/sign_in_with_fb2.jpg'
   else if img3.test(img_src)
     $('#continue img').mouseover ->
       $(this).attr 'src', 'assets/path/get_started_over.png'
