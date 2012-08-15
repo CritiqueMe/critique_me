@@ -18,7 +18,11 @@ pop_pitch_dialog = ->
     $.post('/toggle_pitch_dlg')
     $('#pitch_dlg').dialog('close')
 
-  $('#pitch_dlg #button a').click ->
+  $('#pitch_dlg #button a').mouseover ->
+    $(this).find('img').attr 'src', 'assets/path/get_started_over.png'
+  .mouseout ->
+    $(this).find('img').attr 'src', 'assets/path/get_started.png'
+  .click ->
     $('#pitch_dlg').dialog('close')
     return false
 
