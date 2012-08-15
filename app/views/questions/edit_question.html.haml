@@ -1,18 +1,23 @@
-.cm_content
-  #newq_top
-    #newq_hdr Update Your Question
+- content_for :extra_css do
+  = stylesheet_link_tag "questions/new_question"
 
-  .inner_content
-    .inner_nav
-      .over.fuzzy#write Edit Question
-      .under.fuzzy#choose= link_to "Choose Question", choose_question_path
-    .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
-    .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
-      = render :partial => "questions/form", :locals => {:form_url => edit_question_path(@question)}
-      =# render :partial => "questions/post_preview"
+.grad_bg
+  .cm_content
+    #newq_top
+      #newq_hdr Update Your Question
+
+    .inner_content
+      .inner_nav
+        .over.fuzzy#write Edit Question
+        .under.fuzzy#choose= link_to "Choose Question", choose_question_path
+      .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+      .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
+        = render :partial => "questions/form", :locals => {:form_url => edit_question_path(@question)}
+        =# render :partial => "questions/post_preview"
 
 #share_dialog
 #post_share_dialog
 
 - content_for :extra_javascripts do
   = javascript_include_tag 'questions/questions'
+  = javascript_include_tag "questions/resize_cm_content"

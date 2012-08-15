@@ -12,7 +12,7 @@
     #add_answers Answers
     #answers
       - curr_char = 'A'
-      - f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
+      = f.inputs :class => "inputs multi_choice", :for => :multiple_choice_options do |g|
         = g.input :default_multiple_choice_option_id, :as => :hidden
         = g.input :answer_text, :as => :string, :label => curr_char, :wrapper_html => {:class => 'mchoice'}
         .minus_button= link_to image_tag("/assets/questions/minus_button.png"), '#'
