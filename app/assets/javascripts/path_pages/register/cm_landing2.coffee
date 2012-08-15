@@ -37,25 +37,19 @@ init_button = ->
   img_src = $('#continue img').attr('src')
   if img1.test(img_src)
     $('#continue img').mouseover ->
-      src = img_src.replace 'sign_in_with_fb', 'sign_in_with_fb_over'
-      $(this).attr 'src', src
+      $(this).attr 'src', 'assets/path/sign_in_wth_fb_over.png'
     .mouseout ->
-      src = img_src.replace 'sign_in_with_fb_over', 'sign_in_with_fb'
-      $(this).attr 'src', src
+      $(this).attr 'src', 'assets/path/sign_in_wth_fb.png'
   else if img2.test(img_src)
     $('#continue img').mouseover ->
-      src = img_src.replace 'sign_in_with_fb2', 'sign_in_with_fb2_over'
-      $(this).attr 'src', src
+      $(this).attr 'src', 'assets/path/sign_in_wth_fb2_over.jpg'
     .mouseout ->
-      src = img_src.replace 'sign_in_with_fb2_over', 'sign_in_with_fb2'
-      $(this).attr 'src', src
+      $(this).attr 'src', 'assets/path/sign_in_wth_fb2.jpg'
   else if img3.test(img_src)
     $('#continue img').mouseover ->
-      src = img_src.replace 'get_started', 'get_started_over'
-      $(this).attr 'src', src
+      $(this).attr 'src', 'assets/path/get_started_over.png'
     .mouseout ->
-      src = img_src.replace 'get_started_over', 'get_started'
-      $(this).attr 'src', src
+      $(this).attr 'src', 'assets/path/get_started.png'
 
 
 resize_cm_content = ->
