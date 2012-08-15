@@ -42,14 +42,14 @@ init_button = ->
     .mouseout ->
       src = img_src.replace 'sign_in_with_fb_over', 'sign_in_with_fb'
       $(this).attr 'src', src
-  else if $('#continue img').attr('src') == '/assets/path/sign_in_with_fb2.jpg'
+  else if img2.test(img_src)
     $('#continue img').mouseover ->
       src = img_src.replace 'sign_in_with_fb2', 'sign_in_with_fb2_over'
       $(this).attr 'src', src
     .mouseout ->
       src = img_src.replace 'sign_in_with_fb2_over', 'sign_in_with_fb2'
       $(this).attr 'src', src
-  else if $('#continue img').attr('src') == '/assets/path/get_started.png'
+  else if img3.test(img_src)
     $('#continue img').mouseover ->
       src = img_src.replace 'get_started', 'get_started_over'
       $(this).attr 'src', src
