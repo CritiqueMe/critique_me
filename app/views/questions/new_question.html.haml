@@ -17,9 +17,9 @@
       .inner_nav
         .under.fuzzy#choose= link_to "Suggested Questions", choose_question_path
         .over.fuzzy#write Write Question
-      .curr_step.fuzzy Step 1 of 2
       .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
       .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
+        #qform_hdr Step 1 of 2: Write Your Question
         = render :partial => "questions/form", :locals => {:form_url => new_question_path}
         =# render :partial => "questions/post_preview"
 
