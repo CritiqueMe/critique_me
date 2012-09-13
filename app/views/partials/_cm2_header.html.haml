@@ -12,6 +12,6 @@
         %li.rightest{:class => params['controller'] == 'dashboard' && params['action'] != 'index' ? 'selected' : ''}
           = link_to "My Profile", your_profile_path
       - elsif params['action'] != 'sign_in'
-        %li.button= link_to "Sign In", sign_in_path
+        %li= link_to "Sign In", sign_in_path
       - else
         %li= link_to "Sign Up", welcome_path

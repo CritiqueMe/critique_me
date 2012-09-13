@@ -6,21 +6,18 @@
   .cm_content
     .inner_content
       .qcontainer.fuzzy.all_round.gateway#signup
-        #continue
-          = link_to image_tag("dashboard/fb_sign_in_button.png"), fb_perms_redirect_url('email,user_birthday,publish_stream,publish_actions')
 
-        - if Rails.env.development?
-          .header_info ... or with your email address and password:
-          = semantic_form_for @user, :url => sign_in_path do |f|
-            = f.inputs do
-              = f.input :email, :label => "Email Address"
-              = f.input :password
-              %span= link_to "Forgot Password?", forgot_password_path
-              .clearer
-              - if flash[:sign_in_error]
-                .error.inline-errors= flash[:sign_in_error]
-            = f.actions do
-              = f.action :submit, :label => "Sign In"
+        .form_hdr Sign in with your email address and password:
+        = semantic_form_for @user, :url => sign_in_path do |f|
+          = f.inputs do
+            = f.input :email, :label => "Email Address"
+            = f.input :password
+            .clearer
+            - if flash[:sign_in_error]
+              .error.inline-errors= flash[:sign_in_error]
+            #forgotter= link_to "Forgot Password?", forgot_password_path
+          = f.actions do
+            = f.action :submit, :label => "Sign In"
 
 - content_for :extra_javascripts do
   = javascript_include_tag "dashboard/sign_in"
