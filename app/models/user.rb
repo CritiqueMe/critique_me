@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   EMAIL_PREFERENCES = [:no_restrictions, :once_per_week, :no_third_party, :no_email]
 
+  validates :first_name, :exclusion => { :in => ["First Name"], :message => "First Name is required" }
+  validates :last_name, :exclusion => { :in => ["Last Name"], :message => "Last Name is required" }
+
   def self.sb_combine_accounts(u1, u2)
     u2.questions.update_all(:user_id => u1.id)
     u2.answers.update_all(:user_id => u1.id)

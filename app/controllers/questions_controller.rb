@@ -14,9 +14,10 @@ class QuestionsController < ApplicationController
     if params['fb_action_ids'] || params['cmfb']  # This is the result of an FB click
 
       # populate a session var so we can show them what their friend answered, later
-      if @question.canned_question_id
-        session[:show_canned_answer] = @question.id
-      end
+      # UPDATE - turning off canned question functionality - jtg 9/13/12
+      #if @question.canned_question_id
+      #  session[:show_canned_answer] = @question.id
+      #end
       session[:show_pitch_dlg] = true
 
       if @user.nil?
@@ -44,27 +45,29 @@ class QuestionsController < ApplicationController
     end
 
     # prepare canned questions
-    if @user
-      @canned_questions = CannedQuestion.active.limit(5).order("RAND()")
-      get_fb_friends
-      if @fb_friends && @fb_friends.length >= 3
-        @canned_choices = @canned_questions.map do |cq|
-          this_q_choice = []
-          @fb_friends.shuffle!
-          cq.num_choices.times do |i|
-            friend = @fb_friends[i]
-            this_q_choice << {
-                :name => friend['name'],
-                :id => friend['id']
-            }
-          end
-          this_q_choice
-        end
-      else
-        # no fb friends, so let's not do the canned question thing
-        @canned_questions = nil
-      end
-    end
+    # UPDATE - turning off canned question functionality - jtg 9/13/12
+    @canned_questions = nil
+    #if @user
+    #  @canned_questions = CannedQuestion.active.limit(5).order("RAND()")
+    #  get_fb_friends
+    #  if @fb_friends && @fb_friends.length >= 3
+    #    @canned_choices = @canned_questions.map do |cq|
+    #      this_q_choice = []
+    #      @fb_friends.shuffle!
+    #      cq.num_choices.times do |i|
+    #        friend = @fb_friends[i]
+    #        this_q_choice << {
+    #            :name => friend['name'],
+    #            :id => friend['id']
+    #        }
+    #      end
+    #      this_q_choice
+    #    end
+    #  else
+    #    # no fb friends, so let's not do the canned question thing
+    #    @canned_questions = nil
+    #  end
+    #end
 
     # build flagged_question object
     @flagged_question = FlaggedQuestion.new(:question_id => @question.id, :user_id => @user.id) if @user

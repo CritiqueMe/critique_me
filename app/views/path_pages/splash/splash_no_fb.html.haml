@@ -1,0 +1,32 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "path_pages/register/cm_reg3"
+
+.grad_bg
+  .cm_content
+    #landing_page
+      #hdr1 Ever Wonder What People Are <i>Not</i> Telling You?
+      #hdr2
+        Get constructive, anonymous feedback from your peers
+        = link_to "more info", '#'
+        #hdr2_lightbox
+          Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
+
+      #continue= link_to image_tag('path/get_started.png'), advance_page_path
+      #three_steps= image_tag "path/3steps.png"
+      #qs_today
+        #headline Questions <em>Asked Today</em>
+        #table_wrap
+          %table{:style => "width:#{@last_questions.length*260}px"}
+            %tbody
+              %tr
+                - @last_questions.each_with_index do |q,i|
+                  %td{:class => i == 0 ? 'leftest' : (i == @last_questions.length-1 ? 'rightest' : '')}
+                    .qtext= q.question_text
+                    .qago
+                      =# time_ago_in_word(q.last_asked_at) + " ago"
+                      = time_ago_in_words(Time.now-((i+rand(100)*0.01).minutes)) + " ago"
+        .clearer
+
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "path_pages/register/cm_landing2"

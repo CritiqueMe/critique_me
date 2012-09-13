@@ -40,7 +40,8 @@ class Question < ActiveRecord::Base
         :question_type => dq.question_type,
         :question_text => dq.question_text,
         :category_id => dq.category_id,
-        :default_question_id => dq.id
+        :default_question_id => dq.id,
+        :public => true
     })
   end
 
