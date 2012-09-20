@@ -114,6 +114,7 @@ class WelcomeController < ApplicationController
       end
     elsif @path_page.page_type == "share"
       @question = @user.questions.last
+      session[:question_to_share] = @question.id
     end
   end
 
