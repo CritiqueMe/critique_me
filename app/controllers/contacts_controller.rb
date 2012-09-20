@@ -14,8 +14,8 @@ class ContactsController < ApplicationController
   def callback
     Rails.logger.info "contacts = #{request.env['omnicontacts.contacts']}"
     Rails.logger.info "*** session = #{session.inspect}"
-    q = Question.where(:id => session[:question_to_share]).first
-    ic = ImportedContacts.create(:user_id => @user.id, :contacts => request.env['omnicontacts.contacts'], :question_id => q.try(:id))
+    @question = Question.where(:id => session[:question_to_share]).first
+    ic = ImportedContacts.create(:user_id => @user.id, :contacts => request.env['omnicontacts.contacts'], :question_id => @question.try(:id))
     session[:imported_contacts_id] = ic.id
     render :layout => false
   end
