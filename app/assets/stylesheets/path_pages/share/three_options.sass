@@ -1,0 +1,111 @@
+@import cm_base2
+
+#content_top
+  border-bottom: 1px solid #c3c3c3
+  width: 95%
+  margin: 10px auto
+  padding-bottom: 10px
+  .left
+    float: left
+    font-size: 13px
+    font-weight: bold
+    color: black
+  .right
+    float: right
+    a
+      color: #019cf1
+      font-size: 13px
+  #step
+    font-size: 14px
+    color: #979797
+    font-weight: normal
+    padding-right: 5px
+    margin-top: -1px
+
+#content_title
+  text-align: center
+  font-size: 24px
+  color: #019cf1
+  font-weight: bold
+  padding-bottom: 20px
+
+#three_options
+  .num
+    float: left
+    width: 25px
+    background: #c5c5c5
+    @include border-radius(15px)
+    font-size: 18px
+    color: white
+    font-weight: bold
+    margin: 0px 10px 0px 75px
+    padding: 2px 1px
+    text-align: center
+  .option
+    float: left
+    width: 600px
+    color: $cmbluebg
+    padding-bottom: 40px
+    .hdr
+      font-size: 18px
+      font-weight: 400
+    .blurb
+      font-size: 12px
+      padding-bottom: 10px
+    .referral_link
+      float: left
+      width: 375px
+      border: 3px solid #e1e1e1
+      color: $cmdarkgrey
+      font-family: 'helvetica neue', helvetica, arial, sans-serif
+      padding: 5px 15px
+      background: #eeeeee
+      @include border-radius(7px)
+      -moz-border-top-colors: $textarea_border_grad
+      -moz-border-bottom-colors: $textarea_border_grad
+      -moz-border-left-colors: $textarea_border_grad
+      -moz-border-right-colors: $textarea_border_grad
+      text-align: center
+      a
+        font-size: 18px
+        font-weight: 400
+        color: $cmbluebg
+        &:hover
+          text-decoration: none
+          background: #dff1f9
+      input[type='text']
+        width: 375px
+        font-size: 18px
+        font-family: 'helvetica neue', helvetica, arial, sans-serif
+        padding: 0px
+        background: transparent
+        border: 0px
+        text-align: center
+    .more_info
+      float: left
+      padding: 5px 0px 0px 10px
+      &:after
+        clear: both
+    .importers
+      .importer_link
+        float: left
+        margin-right: 5px
+    .manual
+      textarea
+        width: 375px
+        border: 3px solid #e1e1e1
+        color: $cmbluebg
+        font-family: 'helvetica neue', helvetica, arial, sans-serif
+        padding: 5px 15px
+        background: #eeeeee
+        @include border-radius(7px)
+        resize: none
+        -moz-border-top-colors: $textarea_border_grad
+        -moz-border-bottom-colors: $textarea_border_grad
+        -moz-border-left-colors: $textarea_border_grad
+        -moz-border-right-colors: $textarea_border_grad
+      input[type='image']
+        margin-left: 10px
+        padding-bottom: 7px
+
+

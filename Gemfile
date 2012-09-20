@@ -61,7 +61,9 @@ gem "compass-rails", :group => :assets
 gem "engineyard", :group => :development
 
 #gem "seed_blocks", :path => "../../seed_blocks"
-gem "seed_blocks", "~> 2.1.0", :git => "git@github.com:jgeggatt/SeedBlocks.git"
+#gem "seed_blocks", "~> 2.1.0", :git => "git@github.com:jgeggatt/SeedBlocks.git"
+gem "seed_blocks", :git => "git@github.com:jgeggatt/SeedBlocks.git", :ref => "HEAD"
+
 gem 'airbrake'
 
 

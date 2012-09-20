@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717031823) do
+ActiveRecord::Schema.define(:version => 20120911180754) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -361,7 +361,9 @@ ActiveRecord::Schema.define(:version => 20120717031823) do
     t.string   "address1"
     t.string   "address2"
     t.string   "state"
-    t.boolean  "email_verified",         :default => false
+    t.integer  "cint_id"
+    t.integer  "usamp_id"
+    t.integer  "flags",                  :default => 0
   end
 
   create_table "variant_combinations", :force => true do |t|

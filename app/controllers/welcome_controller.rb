@@ -36,6 +36,21 @@ class WelcomeController < ApplicationController
     redirect_to welcome_path
   end
 
+  def manual_share
+    if request.post?
+      @question = Question.find(params['question_id'])
+      invitees = params['emails'].gsub(" ", '').split(",").collect{|x| {:email => x}}
+      Invite.queue_invites(@user, invitees, @question.id)
+
+      @tracker.converted = true if @experiment.conversion_event == "invites_sent"
+      @tracker.invites_sent = invitees.length
+      @tracker.save
+
+      after_inviting_contacts
+      redirect_to welcome_path
+    end
+  end
+
 
 
   def sb_prepare_page_type_variables

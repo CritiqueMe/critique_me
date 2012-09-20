@@ -1,0 +1,6 @@
+windows_live:
+  appid: 00000000480CF256
+  secret: G8l-H3FlFheKMAjmxVBVeLlEEmIdhWZB
+  security_algorithm: wsignin1.0
+  return_url: https://www.critiqueme.com/contacts/live/callback
+  policy_url: http://www.critiqueme.com/privacy

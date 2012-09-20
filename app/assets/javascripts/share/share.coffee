@@ -24,7 +24,7 @@ init_share_nav = ->
     $('.error_cntr').remove()  # remove any old errors
 
     # choose the correct content pane to show
-    if share_class == 'gmail' || share_class == 'yahoo' || share_class == 'hotmail'
+    if share_class == 'gmail' || share_class == 'yahoo' || share_class == 'live'
       $('#contact').show()
       $('.provider').html(share_class)
       $('#provider').val(share_class)

@@ -34,7 +34,7 @@
           %li= link_to "Twitter", '#', :class => "twitter"
         %li= link_to "Gmail", '#', :class => "gmail"
         %li= link_to "Yahoo", '#', :class => "yahoo"
-        %li= link_to "Hotmail/Live", '#', :class => "hotmail"
+        %li= link_to "Hotmail/Live", '#', :class => "live"
         /%li= link_to "Facebook", '#', :class => "facebook"
         /%li= link_to "Critiquers", '#', :class => "critiquers"
     #invite_content
@@ -54,8 +54,6 @@
         .content_header Invite Your <span class='provider'></span> Contacts
         #email_entry.content_form= render :partial => "share/get_contacts"
         #select_contacts
-          #contact_table.content_form
-
           = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
             #contact_table.content_form
             %p.selectors
