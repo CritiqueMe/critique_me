@@ -51,6 +51,25 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def invite_contacts
+    # Create invite for each selected contact
+    invitees = []
+    imported_emails = params['imported_emails'].gsub(" ", "").split(",")
+    imported_names = params['imported_names'] ? params['imported_names'].split(";") : []
+    imported_emails.each_with_index do |c, i|
+      invitees << {:email => c, :name => imported_names[i]} if params["contact_#{i}"]
+    end
+    @question = Question.find(params['question_id'])
+    Invite.queue_invites(@user, invitees, @question.id)
+
+    @tracker.converted = true if @experiment.conversion_event == "invites_sent"
+    @tracker.invites_sent = invitees.length
+    @tracker.save
+
+    after_inviting_contacts
+    redirect_to welcome_path
+  end
+
 
 
   def sb_prepare_page_type_variables

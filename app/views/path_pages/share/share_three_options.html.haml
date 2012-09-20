@@ -44,14 +44,14 @@
           .clearer
 
 #imported
-  #contact_table.content_form
-  %p.selectors
-    %small
-      %em
+  = form_tag invite_contacts_path do
+    #contact_table.content_form
+    %p.selectors
+      %small
         = link_to "[select all]", '#', :id => 'select_all'
         &nbsp;&nbsp;
         = link_to "[unselect all]", '#', :id => 'unselect_all'
-  %p.buttons= submit_tag "Done"
+    %p.buttons= image_submit_tag "path/done_button.png"
 
 - content_for :extra_javascripts do
   = javascript_include_tag "path_pages/share/three_options"

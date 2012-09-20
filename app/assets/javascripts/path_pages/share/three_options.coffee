@@ -40,7 +40,7 @@ window.contacts_callback = (resp) ->
     modal: true
     show: 'fade'
     hide: 'fade'
-    width: 500
+    width: 600
     height: 'auto'
     position: 'center'
     dialogClass: 'share-modal'
