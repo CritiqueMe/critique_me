@@ -13,6 +13,16 @@ init_highlightable = ->
     text_box.select()
     return false
 
+init_selectors = ->
+  $('#select_all').click () ->
+    $('.contacts input').each (index) ->
+      $(this).prop('checked', true)
+    return false
+  $('#unselect_all').click () ->
+    $('.contact_check').each (index) ->
+      $(this).prop('checked', false)
+    return false
+
 child = null
 child_monitor = null
 popupCenter = (url, width, height, name) ->
@@ -31,8 +41,7 @@ window.contacts_callback = (resp) ->
   clearInterval(child_monitor)
 
   $('#contact_table').html(resp)
-  #init_selectors()
-  #init_send_contacts_form()
+  init_selectors()
   $('#imported').dialog
     title: ''
     resizable: false
