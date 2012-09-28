@@ -3,4 +3,4 @@ windows_live:
   secret: G8l-H3FlFheKMAjmxVBVeLlEEmIdhWZB
   security_algorithm: wsignin1.0
   return_url: https://www.critiqueme.com/contacts/live/callback
-  policy_url: http://www.critiqueme.com/privacy
+  policy_url: https://www.critiqueme.com/privacy

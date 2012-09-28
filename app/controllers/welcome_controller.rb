@@ -36,6 +36,23 @@ class WelcomeController < ApplicationController
     redirect_to welcome_path
   end
 
+  def write_question
+    if @user && @user.id
+      # todo
+    else
+      session[:path_written_question] = {
+          :question_text => params['question']['question_text'],
+          :question_type => params['question']['question_type'],
+          :mc_options => params['question']['multiple_choice_options_attributes'].keys.map{|k| params['question']['multiple_choice_options_attributes'][k]['answer_text']}
+      }
+    end
+    @tracker.log(:question_written, "User wrote a question")
+    @tracker.converted = true if @experiment.conversion_event == "question_written"
+    save_path_tracker
+    increment_page
+    redirect_to welcome_path
+  end
+
   def manual_share
     if request.post?
       @question = Question.find(params['question_id'])
@@ -131,6 +148,16 @@ class WelcomeController < ApplicationController
       if @path_page.page_type == "choose_q_about_cm_dlg"
         @show_pitch_dlg = true
       end
+
+      # Needed for "write question" page
+      @ask_method = params['ask_method'] || 'choose'
+      @default_question_text = "Ex: Am I a talented singer?"
+      @default_mc_answer_text = "Enter answer choice"
+      @last_five_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
+      @question = Question.new(:question_type => Question::QUESTION_TYPES.index(:true_false))
+      2.times do
+        @question.multiple_choice_options.build
+      end
     elsif @path_page.page_type == "share"
       @question = @user.questions.last
       session[:question_to_share] = @question.id
@@ -159,6 +186,18 @@ class WelcomeController < ApplicationController
       end
       session[:path_chosen_question_id] = nil
       flash[:show_share] = true
+    elsif session[:path_written_question]
+      @question = Question.new
+      @question.question_text = session[:path_written_question][:question_text]
+      @question.question_type = session[:path_written_question][:question_type]
+      @question.user_id = @user.id
+      if @question.save && @question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
+        session[:path_written_question][:mc_options].each do |mc|
+          @question.multiple_choice_options << MultipleChoiceOption.new(:answer_text => mc)
+        end
+        post_question_to_open_graph(@question) # TODO: ask for permission to do this
+      end
+      session[:path_written_question] = nil
     end
   end
 

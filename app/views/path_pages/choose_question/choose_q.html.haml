@@ -1,12 +1,41 @@
-- content_for :extra_css do
-  = stylesheet_link_tag "questions/new_question"
-  = stylesheet_link_tag "path_pages/choose_question/choose"
+- if @ask_method == "choose"
+  - content_for :extra_css do
+    = stylesheet_link_tag "questions/new_question"
+    = stylesheet_link_tag "path_pages/choose_question/choose"
 
-= render :partial => "questions/choose_q"
+  = render :partial => "questions/choose_q"
 
-#share_dialog
-#post_share_dialog
+  #share_dialog
+  #post_share_dialog
 
-- content_for :extra_javascripts do
-  = javascript_include_tag "questions/choose_question"
-  = javascript_include_tag "questions/resize_cm_content"
+  - content_for :extra_javascripts do
+    = javascript_include_tag "questions/choose_question"
+    = javascript_include_tag "questions/resize_cm_content"
+
+- elsif @ask_method == "write"
+  - content_for :extra_css do
+    = stylesheet_link_tag "questions/new_question"
+
+  .grad_bg
+    .cm_content
+      #newq_top
+        #newq_hdr Write a Question Below OR Choose from our Suggested Questions
+        #newq_subhdr
+          Our Anonymous Answer App means You Discover the Real Truth to Hard Questions
+          = link_to "more info", '#'
+        #newq_lightbox
+          Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
+
+      .inner_content
+        .inner_nav
+          .under.fuzzy#choose= link_to "Suggested Questions", welcome_path(:ask_method => 'choose')
+          .over.fuzzy#write Write Question
+        .qs_asked_today.fuzzy= render :partial => "questions/asked_today"
+        .qcontainer.fuzzy#qform{:data => {:default_question_text => @default_question_text, :default_mc_answer_text => @default_mc_answer_text}}
+          #qform_hdr Step 1 of 2: Write Your Question
+          = render :partial => "questions/form", :locals => {:form_url => path_write_question_path}
+          =# render :partial => "questions/post_preview"
+
+  - content_for :extra_javascripts do
+    = javascript_include_tag 'questions/questions'
+    = javascript_include_tag "questions/resize_cm_content"

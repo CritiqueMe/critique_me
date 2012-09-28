@@ -3,7 +3,7 @@
     = f.input :default_question_id, :as => :hidden
     .character_counter{:data => {:chars => 200}}
       = f.input :question_text, :as => :text, :prompt => "Ex: Am I a talented singer?", :label => "Enter Your Question"
-    = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe
+    = f.input :photo, :as => :question_photo, :label => "&nbsp;".html_safe unless params['controller'] == 'welcome'
     = f.input :question_type, :as => :radio, :collection => [["Yes or No", 1], ["Multiple Choice", 0], ["Open Ended", 2]], :label => "Type of Question"
     =# f.input :public, :as => :public_private, :label => "Settings"
     = f.input :public, :as => :hidden, :value => true
