@@ -9,7 +9,17 @@ window.contacts_callback = (resp) ->
   $('#contact_table').html(resp)
   init_selectors()
   init_send_contacts_form()
-  $("#invite_dialog").dialog("option", "position", "center");
+  $('#imported').dialog
+      title: ''
+      resizable: false
+      draggable: true
+      modal: true
+      show: 'fade'
+      hide: 'fade'
+      width: 600
+      height: 'auto'
+      position: 'center'
+      dialogClass: 'share-modal'
 
 
 
