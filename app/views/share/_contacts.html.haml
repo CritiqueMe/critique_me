@@ -1,6 +1,6 @@
 = hidden_field_tag "imported_emails", @contacts.map{|c| c['email']}.join(",")
 = hidden_field_tag "imported_names", @contacts.map{|c| c['name']}.join(";")
-= hidden_field_tag "question_id", @question.id
+= hidden_field_tag "question_id", @question.try(:id)
 .contacts
   %table
     - @contacts.each_with_index do |c, i|

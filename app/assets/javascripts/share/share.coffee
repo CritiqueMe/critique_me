@@ -21,6 +21,9 @@ window.contacts_callback = (resp) ->
       position: 'center'
       dialogClass: 'share-modal'
 
+  qid = $('.qpreview').data('question_id')
+  $('#contact_table #question_id').val(qid)
+
 
 
 #init_share_nav = ->
