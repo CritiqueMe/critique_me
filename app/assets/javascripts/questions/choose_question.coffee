@@ -17,10 +17,10 @@ monitor_category_changer = ->
 
 
 init_helper_mouseover = ->
-  $('#chooseq_top a').mouseover ->
-    $('#chooseq_lightbox').fadeIn()
+  $('#newq_hdr a').mouseover ->
+    $('#newq_lightbox').fadeIn()
   .mouseout ->
-    $('#chooseq_lightbox').fadeOut()
+    $('#newq_lightbox').fadeOut()
 
 init_mouseovers = ->
   $('#default_questions .askq a').mouseover ->

@@ -4,13 +4,13 @@
   .cm_content
     - if @show_canned_answer
       #canned_answer= @show_canned_answer
-    #chooseq_top
-      For inspiration, simply choose from one of these popular questions.
-      = link_to "More Info", '#'
-      #chooseq_lightbox
+    #newq_top
+      #newq_hdr
+        For inspiration, simply choose from one of these popular questions.
+        = link_to "More Info", '#'
+      #newq_lightbox
         Our 100% anonymous question and answer network allows you to ask anyone anything and get completely truthful responses even about things they would never tell you directly.
-    - unless is_welcome_path
-      #chooseq_top2 Or you can write your own questions #{link_to "here", new_question_path}.
+      #newq_subhdr.chooser Or you can write your own questions #{link_to "here", is_welcome_path ? welcome_path(:ask_method => 'write') : new_question_path}.
     .inner_content
       .inner_nav
         .over.fuzzy#choose Choose Question

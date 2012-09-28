@@ -1,0 +1,30 @@
+- content_for :extra_css do
+  = stylesheet_link_tag "dashboard/index"
+  = stylesheet_link_tag "questions/new_question"
+  = stylesheet_link_tag "path_pages/register/reg_no_fb"
+
+.grad_bg
+  .cm_content
+    .inner_content#landing_page
+      .qcontainer.fuzzy#qform
+        .form_hdr For each question, we'll track your results and protect the anonymity of answerers.
+        .form_sub To do that, we need some basic information
+        = semantic_form_for @user, :url => register_path do |f|
+          = f.inputs do
+            = f.input :first_name, :label => "First Name"
+            = f.input :last_name, :label => "Last Name"
+            .clearer
+            %li.blurb So we can tell your friends who's asking
+            = f.input :email, :label => "Email Address"
+            %li.blurb Where we'll send the results
+            %li= text_field_tag 'pw_clear', "Enter a Password"
+            = f.input :password
+            .clearer
+          = f.actions do
+            = f.action :submit, :button_html => { :value => "Sign Up!"}
+
+= render :partial => "partials/pitch_dialog2"
+
+- content_for :extra_javascripts do
+  = javascript_include_tag "path_pages/register/reg_no_fb"
+  = javascript_include_tag "questions/pitch_dialog"

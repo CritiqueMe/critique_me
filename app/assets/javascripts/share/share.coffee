@@ -249,6 +249,7 @@ init_qimage_link = ->
 #    $('#invite_content #twitter').html(html)
 
 init_highlightable = ->
+  console.log "*** in init_highlightable"
   $('.highlightable a').click ->
     content = $(this).html()
     text_box = $('<input type="text" id="dummy" readonly="readonly"></select>').val(content)
@@ -285,3 +286,4 @@ $ ->
   init_manual_entry_form()
 #  init_post_to_graph_link()
   init_qimage_link()
+  init_highlightable()
