@@ -26,64 +26,102 @@
     Invite your friends to answer -
     %span#step2 STEP 2 OF 2
   #invite_box
-    #invite_nav
-      %ul
-        %li.selected= link_to "Share URL", '#', :class => "share_url"
-        %li= link_to "Enter Emails", '#', :class => "manual"
-        - if false#@question.public?
-          %li= link_to "Twitter", '#', :class => "twitter"
-        %li= link_to "Gmail", '#', :class => "gmail"
-        %li= link_to "Yahoo", '#', :class => "yahoo"
-        %li= link_to "Hotmail/Live", '#', :class => "live"
-        /%li= link_to "Facebook", '#', :class => "facebook"
-        /%li= link_to "Critiquers", '#', :class => "critiquers"
-    #invite_content
-      .content_block#share_url.selected
-        .content_header Share This URL With Your Friends
-        .ref_link= question_referral_url(@user.referral_token[@user.referral_token.length-4, 4], @question.id)
 
-      .content_block#facebook
-        =# render :partial => "partials/fb_like_button"
-        = render :partial => "partials/fb_friend_select"
+    /#content_title Three Options for Sharing Your Question
+    %br
+    %br
+    #three_options
+      .num 1
+      .option
+        .hdr Copy/Paste Your Unique Question Link
+        .blurb Share in Emails, on Facebook, or on Twitter.  The more people you share with, the more valuable the feedback.
+        .referral_link.highlightable= link_to question_referral_url(@user.referral_token[@user.referral_token.length-4, 4], @question.id), '#'
+        .more_info= link_to image_tag("path/info_i.png"), '#'
+      .clearer
 
-      - if @question.public?
-        .content_block#twitter
-          =# render :partial => "partials/tweet_button", :locals => {:hashtag => "CritiqueMe", :text => "Come answer my question!", :related => ''}
+      .num 2
+      .option
+        .hdr Choose From Your Existing Contacts on the Following Services:
+        .blurb Quickly scan your address book from any of these services to find people you know.
+        .importers
+          .importer_link{:data => {:provider => 'gmail'}}= link_to image_tag('path/grey_gmail.jpg'), '#'
+          .importer_link{:data => {:provider => 'yahoo'}}= link_to image_tag('path/grey_yahoo.jpg'), '#'
+          .importer_link{:data => {:provider => 'live'}}= link_to image_tag('path/grey_hotmail.jpg'), '#'
+          .more_info= link_to image_tag("path/info_i.png"), '#'
+      .clearer
 
-      .content_block#contact
-        .content_header Invite Your <span class='provider'></span> Contacts
-        #email_entry.content_form= render :partial => "share/get_contacts"
-        #select_contacts
-          = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
-            #contact_table.content_form
-            %p.selectors
-              %small
-                %em
-                  = link_to "[select all]", '#', :id => 'select_all'
-                  &nbsp;&nbsp;
-                  = link_to "[unselect all]", '#', :id => 'unselect_all'
-            %p.buttons= submit_tag "Send Question to Contacts"
-        #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
-
-      .content_block#manual
-        =# render :partial => "share/manual_entry"
-        = form_tag manual_share_path, :remote => true do
-          = hidden_field_tag 'question_id', @question.id
-          %fieldset.inputs.single_row.inline
-            = text_field_tag 'emails'
-            .buttons.inline= submit_tag "Invite"
+      .num 3
+      .option#manual
+        .hdr Enter Your Friends' Email Addresses:
+        .blurb Separate email addresses with a comma.
+        .manual
+          = form_tag manual_share_path, :remote => true do
+            = hidden_field_tag 'question_id', @question.id
+            = text_area_tag "emails"
+            = image_submit_tag "path/email_question_button.png"
             .inline#manual_spinner= image_tag "/assets/admin/layout/form_spinner.gif"
-        %p
-          You can also import contacts from
-          = link_to image_tag("share/icon_gmail.jpg"), '#'
-          = link_to image_tag("share/icon_yahoo.jpg"), '#'
-          = link_to image_tag("share/icon_hotmail.jpg"), '#'
-          = link_to image_tag("share/icon_fb.jpg"), '#'
+      .clearer
 
 
-      .content_block#critiquers
-        Critiquers
+    -##invite_nav
+    -#  %ul
+    -#    %li.selected= link_to "Share URL", '#', :class => "share_url"
+    -#    %li= link_to "Enter Emails", '#', :class => "manual"
+    -#    - if false#@question.public?
+    -#      %li= link_to "Twitter", '#', :class => "twitter"
+    -#    %li= link_to "Gmail", '#', :class => "gmail"
+    -#    %li= link_to "Yahoo", '#', :class => "yahoo"
+    -#    %li= link_to "Hotmail/Live", '#', :class => "live"
+    -#    /%li= link_to "Facebook", '#', :class => "facebook"
+    -#    /%li= link_to "Critiquers", '#', :class => "critiquers"
+    -##invite_content
+    -#  .content_block#share_url.selected
+    -#    .content_header Share This URL With Your Friends
+    -#    .ref_link= question_referral_url(@user.referral_token[@user.referral_token.length-4, 4], @question.id)
+    -#
+    -#  .content_block#facebook
+    -#    =# render :partial => "partials/fb_like_button"
+    -#    = render :partial => "partials/fb_friend_select"
+    -#
+    -#  - if @question.public?
+    -#    .content_block#twitter
+    -#      =# render :partial => "partials/tweet_button", :locals => {:hashtag => "CritiqueMe", :text => "Come answer my question!", :related => ''}
+    -#
+    -#  .content_block#contact
+    -#    .content_header Invite Your <span class='provider'></span> Contacts
+    -#    #email_entry.content_form= render :partial => "share/get_contacts"
+    -#    #select_contacts
+    -#      = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
+    -#        #contact_table.content_form
+    -#        %p.selectors
+    -#          %small
+    -#            %em
+    -#              = link_to "[select all]", '#', :id => 'select_all'
+    -#              &nbsp;&nbsp;
+    -#              = link_to "[unselect all]", '#', :id => 'unselect_all'
+    -#        %p.buttons= submit_tag "Send Question to Contacts"
+    -#    #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
+    -#
+    -#  .content_block#manual
+    -#    =# render :partial => "share/manual_entry"
+    -#    = form_tag manual_share_path, :remote => true do
+    -#      = hidden_field_tag 'question_id', @question.id
+    -#      %fieldset.inputs.single_row.inline
+    -#        = text_field_tag 'emails'
+    -#        .buttons.inline= submit_tag "Invite"
+    -#        .inline#manual_spinner= image_tag "/assets/admin/layout/form_spinner.gif"
+    -#    %p
+    -#      You can also import contacts from
+    -#      = link_to image_tag("share/icon_gmail.jpg"), '#'
+    -#      = link_to image_tag("share/icon_yahoo.jpg"), '#'
+    -#      = link_to image_tag("share/icon_hotmail.jpg"), '#'
+    -#      = link_to image_tag("share/icon_fb.jpg"), '#'
+    -#
+    -#
+    -#  .content_block#critiquers
+    -#    Critiquers
 
     .clear
 
 = javascript_include_tag "share/share"
+=# javascript_include_tag "path_pages/share/three_options"

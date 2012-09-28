@@ -13,28 +13,28 @@ window.contacts_callback = (resp) ->
 
 
 
-init_share_nav = ->
-  $('#invite_nav ul li a').click ->
-    share_class = $(this).attr("class")
-
-    $('#invite_content .content_block').hide()  # hide all current content containers
-    $('#invite_nav ul li').removeClass('selected')  # unselect the nav item
-    $('#select_contacts').hide()  # reset the importer forms
-    $('#email_entry').show()
-    $('.error_cntr').remove()  # remove any old errors
-
-    # choose the correct content pane to show
-    if share_class == 'gmail' || share_class == 'yahoo' || share_class == 'live'
-      $('#contact').show()
-      $('.provider').html(share_class)
-      $('#provider').val(share_class)
-
-      popupCenter '/contacts/'+share_class, 600, 400, 'contactPopup'
-    else
-      $('#' + share_class).show()
-    $(this).parent().addClass("selected")  # select the correct nav item
-
-    return false
+#init_share_nav = ->
+#  $('#invite_nav ul li a').click ->
+#    share_class = $(this).attr("class")
+#
+#    $('#invite_content .content_block').hide()  # hide all current content containers
+#    $('#invite_nav ul li').removeClass('selected')  # unselect the nav item
+#    $('#select_contacts').hide()  # reset the importer forms
+#    $('#email_entry').show()
+#    $('.error_cntr').remove()  # remove any old errors
+#
+#    # choose the correct content pane to show
+#    if share_class == 'gmail' || share_class == 'yahoo' || share_class == 'live'
+#      $('#contact').show()
+#      $('.provider').html(share_class)
+#      $('#provider').val(share_class)
+#
+#      popupCenter '/contacts/'+share_class, 600, 400, 'contactPopup'
+#    else
+#      $('#' + share_class).show()
+#    $(this).parent().addClass("selected")  # select the correct nav item
+#
+#    return false
 
 init_selectors = ->
   $('#select_all').click () ->
@@ -143,6 +143,7 @@ tokenize_manual_entries = ->
 
 
 init_manual_entry_form = ->
+  console.log "*** in init_manual_entry_form"
   $('#manual form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#manual_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
@@ -160,53 +161,53 @@ init_manual_entry_form = ->
     if last_key == 13 || last_key == 10 || last_key == 188  # carriage return, line return, or comma
       tokenize_manual_entries()
 
-init_fb_friend_list = ->
-  $('#show_friends_list_link').click () ->
-    $('#fb_post_to_graph_link').hide()
-    $('#fb_friend_list').fadeIn()
-    $('#fb_friend_blurb').fadeIn()
-    return false
-
-  $('#send_to_friends_form').bind("ajax:beforeSend", (evt, xhr, settings) ->
-    $('#select_friends').hide()
-    $('#friend_form_spinner').addClass('inliner')
-  ).bind("ajax:complete", (evt, xhr, status) ->
-    $('#friend_form_spinner').removeClass('inliner')
-    # remove all already-selected friends from the list
-    $('.friend_check').each (elem) ->
-      $(this).parent().parent().remove() if $(this).is(':checked')
-    recycle_friend_rows()
-    pop_canned_questions_dialog(xhr.responseText)
-  )
-
-recycle_friend_rows = ->
-  $('.friends tr').each (index) ->
-    if index % 2 == 0
-      $(this).removeClass('odd').addClass('even')
-    else
-      $(this).removeClass('even').addClass('odd')
-
-init_fb_selectors = ->
-  $('#fb_select_all').click () ->
-    $('.friends input').each (index) ->
-      $(this).prop('checked', true)
-    return false
-  $('#fb_unselect_all').click () ->
-    $('.friend_check').each (index) ->
-      $(this).prop('checked', false)
-    return false
-
-init_post_to_graph_link = ->
-  $('#post_to_graph_link').click ->
-    $('#fb_post_to_graph_link').hide()
-    $('#post_to_fb_spinner').fadeIn()
-    qid = $(this).data("question-id")
-    $.get '/post_to_graph/'+qid, (data) ->
-      $('#post_to_fb_spinner').hide()
-      $('#fb_friend_blurb').show()
-      $('#fb_friend_list').show()
-      $('#fb_post_to_graph_link').hide()
-      pop_canned_questions_dialog(data)
+#init_fb_friend_list = ->
+#  $('#show_friends_list_link').click () ->
+#    $('#fb_post_to_graph_link').hide()
+#    $('#fb_friend_list').fadeIn()
+#    $('#fb_friend_blurb').fadeIn()
+#    return false
+#
+#  $('#send_to_friends_form').bind("ajax:beforeSend", (evt, xhr, settings) ->
+#    $('#select_friends').hide()
+#    $('#friend_form_spinner').addClass('inliner')
+#  ).bind("ajax:complete", (evt, xhr, status) ->
+#    $('#friend_form_spinner').removeClass('inliner')
+#    # remove all already-selected friends from the list
+#    $('.friend_check').each (elem) ->
+#      $(this).parent().parent().remove() if $(this).is(':checked')
+#    recycle_friend_rows()
+#    pop_canned_questions_dialog(xhr.responseText)
+#  )
+#
+#recycle_friend_rows = ->
+#  $('.friends tr').each (index) ->
+#    if index % 2 == 0
+#      $(this).removeClass('odd').addClass('even')
+#    else
+#      $(this).removeClass('even').addClass('odd')
+#
+#init_fb_selectors = ->
+#  $('#fb_select_all').click () ->
+#    $('.friends input').each (index) ->
+#      $(this).prop('checked', true)
+#    return false
+#  $('#fb_unselect_all').click () ->
+#    $('.friend_check').each (index) ->
+#      $(this).prop('checked', false)
+#    return false
+#
+#init_post_to_graph_link = ->
+#  $('#post_to_graph_link').click ->
+#    $('#fb_post_to_graph_link').hide()
+#    $('#post_to_fb_spinner').fadeIn()
+#    qid = $(this).data("question-id")
+#    $.get '/post_to_graph/'+qid, (data) ->
+#      $('#post_to_fb_spinner').hide()
+#      $('#fb_friend_blurb').show()
+#      $('#fb_friend_list').show()
+#      $('#fb_post_to_graph_link').hide()
+#      pop_canned_questions_dialog(data)
 
 
 pop_img_dialog = (qid) ->
@@ -231,17 +232,32 @@ init_qimage_link = ->
     pop_img_dialog($(this).parent().data('question_id'))
     return false
 
-init_twitter = ->
-  qid = $('.qpreview').data('question_id')
-  $.get '/build_tweet_button', {question_id: qid}, (html) ->
-    $('#invite_content #twitter').html(html)
+#init_twitter = ->
+#  qid = $('.qpreview').data('question_id')
+#  $.get '/build_tweet_button', {question_id: qid}, (html) ->
+#    $('#invite_content #twitter').html(html)
+
+init_highlightable = ->
+  $('.highlightable a').click ->
+    content = $(this).html()
+    text_box = $('<input type="text" id="dummy" readonly="readonly"></select>').val(content)
+    $(this).parent().append(text_box)
+    $(this).hide()
+    text_box.blur ->
+      $(this).parent().find('a').show()
+      $(this).remove()
+    .click ->
+      $(this).parent().find('a').show()
+      $(this).remove()
+    text_box.select()
+    return false
 
 $ ->
-  init_share_nav()
-  init_fb_friend_list()
-  init_fb_selectors()
-  init_twitter()
+#  init_share_nav()
+#  init_fb_friend_list()
+#  init_fb_selectors()
+#  init_twitter()
   init_contact_importer()
   init_manual_entry_form()
-  init_post_to_graph_link()
+#  init_post_to_graph_link()
   init_qimage_link()
