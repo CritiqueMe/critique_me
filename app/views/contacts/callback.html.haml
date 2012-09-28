@@ -1,4 +1,4 @@
-%body{:data => {:question_id => @question.id}}
+%body{:data => {:question_id => @question.try(:id)}}
 
 = javascript_include_tag "jquery"
 = javascript_include_tag "contacts/callback"
