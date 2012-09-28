@@ -56,23 +56,23 @@ init_selectors = ->
       $(this).prop('checked', false)
     return false
 
-init_contact_importer = ->
-  $('#contact_importer').bind("ajax:beforeSend", (evt, xhr, settings) ->
-    $('#email_entry').hide()
-    $('#contact_form_spinner').fadeIn()
-  ).bind("ajax:complete", (evt, xhr, status) ->
-    $('#contact_form_spinner').hide()
-    re = /Failure:/
-    resp = xhr.responseText
-    if re.test(resp)
-      $('.error_cntr').remove()  # remove any old errors
-      $('#email_entry').prepend("<ol class='error_cntr'><li class='error'>" + resp + "</li></ol>").fadeIn()
-    else
-      $('#select_contacts').fadeIn()
-      $('#contact_table').html(resp)
-      init_selectors()
-      init_send_contacts_form()
-  )
+#init_contact_importer = ->
+#  $('#contact_importer').bind("ajax:beforeSend", (evt, xhr, settings) ->
+#    $('#email_entry').hide()
+#    $('#contact_form_spinner').fadeIn()
+#  ).bind("ajax:complete", (evt, xhr, status) ->
+#    $('#contact_form_spinner').hide()
+#    re = /Failure:/
+#    resp = xhr.responseText
+#    if re.test(resp)
+#      $('.error_cntr').remove()  # remove any old errors
+#      $('#email_entry').prepend("<ol class='error_cntr'><li class='error'>" + resp + "</li></ol>").fadeIn()
+#    else
+#      $('#select_contacts').fadeIn()
+#      $('#contact_table').html(resp)
+#      init_selectors()
+#      init_send_contacts_form()
+#  )
 
 init_send_contacts_form = ->
   $('#send_to_contacts_form').bind("ajax:beforeSend", (evt, xhr, settings) ->

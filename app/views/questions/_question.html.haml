@@ -128,19 +128,17 @@
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
 #post_share_dialog{:data => {:finish_path => params['controller'] == 'welcome' ? path_canned_finished_path : choose_question_path}}
 #imported
-  = form_tag share_contacts_path do
-    .content_header Invite Your <span class='provider'></span> Contacts"
-    #select_contacts
-      = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
-        #contact_table.content_form
-        %p.selectors
-          %small
-            %em
-              = link_to "[select all]", '#', :id => 'select_all'
-              &nbsp;&nbsp;
-              = link_to "[unselect all]", '#', :id => 'unselect_all'
-        %p.buttons= submit_tag "Send Question to Contacts"
-    #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
+  #select_contacts
+    = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
+      #contact_table.content_form
+      %p.selectors
+        %small
+          %em
+            = link_to "[select all]", '#', :id => 'select_all'
+            &nbsp;&nbsp;
+            = link_to "[unselect all]", '#', :id => 'unselect_all'
+      %p.buttons= submit_tag "Send Question to Contacts"
+  #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
 
 - if @question.photo.url
   #qimg_dialog= image_tag @question.photo.url
