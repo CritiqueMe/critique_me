@@ -64,6 +64,8 @@ class WelcomeController < ApplicationController
       @tracker.save
 
       after_inviting_contacts
+      session[:show_oops] = !@question.shared_with_minimum?
+
       redirect_to welcome_path
     end
   end
@@ -84,6 +86,8 @@ class WelcomeController < ApplicationController
     @tracker.save
 
     after_inviting_contacts
+    session[:show_oops] = !@question.shared_with_minimum?
+
     redirect_to welcome_path
   end
 

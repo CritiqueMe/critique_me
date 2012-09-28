@@ -127,6 +127,8 @@
 
 #share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
 #post_share_dialog{:data => {:finish_path => params['controller'] == 'welcome' ? path_canned_finished_path : choose_question_path}}
+  - if session[:show_oops]
+    = render :partial => "share/oops"
 #imported
   #select_contacts
     = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
@@ -156,6 +158,9 @@
 
 
   - # jtg update 9/13/12 - turning off canned question functionality by hard-coding "false" into conditionals
+  - if session[:show_oops]
+    session[:show_oops] = false
+    = javascript_include_tag "questions/show_oops"
   - if @question.user == @user
     = javascript_include_tag "questions/show_share"
     = javascript_include_tag "share/share"

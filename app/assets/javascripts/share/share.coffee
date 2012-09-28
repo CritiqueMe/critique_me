@@ -97,6 +97,7 @@ recycle_contact_rows = ->
 pop_canned_questions_dialog = (content) ->
   # hide the sharer dialog, show the thanks or oops dialog
   $('#share_dialog').dialog('close')
+  $('#imported').dialog('close')
 
   regex = new RegExp('canned_question')
 
