@@ -12,10 +12,16 @@ class ContactsController < ApplicationController
   end
 
   def callback
-    Rails.logger.info "contacts = #{request.env['omnicontacts.contacts']}"
-    Rails.logger.info "*** session = #{session.inspect}"
+    if params[:importer] == 'live'
+      live = Contacts::WindowsLive.new(contacts_callback_url('live'))
+      Rails.logger.info "contacts = #{request.raw_post}"
+      contacts = live.contacts(request.raw_post)
+    else
+      Rails.logger.info "contacts = #{request.env['omnicontacts.contacts']}"
+      contacts = request.env['omnicontacts.contacts']
+    end
     @question = Question.where(:id => session[:question_to_share]).first
-    ic = ImportedContacts.create(:user_id => @user.id, :contacts => request.env['omnicontacts.contacts'], :question_id => @question.try(:id))
+    ic = ImportedContacts.create(:user_id => @user.id, :contacts => contacts, :question_id => @question.try(:id))
     session[:imported_contacts_id] = ic.id
     render :layout => false
   end

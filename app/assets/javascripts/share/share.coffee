@@ -252,11 +252,24 @@ init_highlightable = ->
     text_box.select()
     return false
 
+init_importers = ->
+  $('.importer_link a').click ->
+    prov = $(this).parent().data('provider')
+    if prov == 'live'
+      width = 1000
+      height = 600
+    else
+      width = 600
+      height = 400
+    popupCenter '/contacts/'+prov, width, height, 'contactPopup'
+    return false
+
 $ ->
 #  init_share_nav()
 #  init_fb_friend_list()
 #  init_fb_selectors()
 #  init_twitter()
+  init_importers()
   init_contact_importer()
   init_manual_entry_form()
 #  init_post_to_graph_link()

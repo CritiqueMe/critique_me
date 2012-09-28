@@ -9,7 +9,7 @@ init_inviter_buttons = ->
       show: 'fade'
       hide: 'fade'
       width: 1000
-      height: 600
+      height: 650
       dialogClass: 'share-modal'
     .html('<img src="/assets/admin/layout/form_spinner.gif" />')
     $.get 'share/'+qid, (data) ->
