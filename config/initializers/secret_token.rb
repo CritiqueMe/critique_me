@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-CritiqueMe::Application.config.secret_token = '43d0f7cfd30f823404bd754bf6f903fb8f6b0ebd191fb12a0f5a92490fe3ee38591e91539d28e9f3355ee09fe5261f758e4d8ae8068b5567079d68665f5aa571'
+CritiqueMe::Application.config.secret_token = 'da651b25fd82d7ec4b5671c49ee09196708395450df69b022b156d47425c5d5d199495f855ce56c52a27b6770439af97ec9166f7381cf365ace6ef22e0411133'
