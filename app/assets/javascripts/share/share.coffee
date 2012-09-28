@@ -280,7 +280,7 @@ $ ->
 #  init_fb_selectors()
 #  init_twitter()
   init_importers()
-  init_contact_importer()
+#  init_contact_importer()
   init_manual_entry_form()
 #  init_post_to_graph_link()
   init_qimage_link()
