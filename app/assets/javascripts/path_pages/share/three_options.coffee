@@ -54,6 +54,9 @@ window.contacts_callback = (resp) ->
     position: 'center'
     dialogClass: 'share-modal'
 
+  qid = $('body').data('tracking_object_id')
+  $('#contact_table #question_id').val(qid)
+
 
 
 init_importers = ->
