@@ -159,7 +159,7 @@
 
   - # jtg update 9/13/12 - turning off canned question functionality by hard-coding "false" into conditionals
   - if session[:show_oops]
-    session[:show_oops] = false
+    - session[:show_oops] = false
     = javascript_include_tag "questions/show_oops"
   - if @question.user == @user
     = javascript_include_tag "questions/show_share"
