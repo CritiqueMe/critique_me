@@ -1,4 +1,5 @@
 send_to_create_question_page = ->
+  console.log "**** sending to create question page"
   window.location = "/choose_question"
 
 show_answer_dialog = (qid) ->
@@ -13,7 +14,7 @@ show_answer_dialog = (qid) ->
     width: 650
     height: 'auto'
     dialogClass: 'answerq_dlg'
-  $('.qform form').bind("ajax:before", (evt, form) ->
+  $('.qform #new_answer').bind("ajax:before", (evt, form) ->
     # Answer form validations
     if $('#answer_multiple_choice_option_id_input').length > 0
       selected = $('.mc_options input[type=radio]:checked').val()
@@ -39,6 +40,7 @@ show_answer_dialog = (qid) ->
     $(this).parent().parent().parent().dialog('close')
 
     if $('#canned_questions').length > 0
+      console.log "AAAA"
       # show canned questions
       $('#canned_questions').dialog
         title: "Answer fun questions about your friends and find out what they said about you."
@@ -53,6 +55,7 @@ show_answer_dialog = (qid) ->
         dialogClass: 'share-modal'
         close: send_to_create_question_page
     else
+      console.log "BBBB"
       # show answer posted dialog
       $('#answer_posted_dialog').dialog
         title: "Answer Given"

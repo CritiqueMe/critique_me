@@ -9,7 +9,13 @@
 - if @show_pitch_dlg
   = render :partial => "partials/pitch_dialog2"
 
+- if flash[:notice] == "Answer Posted"
+  #answer_posted_dialog
+    .posted Your Answer has been Posted!
+    Close this dialog to begin creating your own question that you can share with your friends!
+
 - content_for :extra_javascripts do
   = javascript_include_tag "questions/choose_question"
   = javascript_include_tag "questions/resize_cm_content"
   = javascript_include_tag "questions/pitch_dialog" if @show_pitch_dlg
+  = javascript_include_tag "questions/answer_posted" if flash[:notice] == 'Answer Posted'

@@ -15,7 +15,7 @@ init_post_answer_button = ->
       width: 650
       height: 'auto'
       dialogClass: 'share-modal'
-    $('.qform answer').bind("ajax:beforeSend", (evt, xhr, settings) ->
+    $('.qform #new_answer').bind("ajax:beforeSend", (evt, xhr, settings) ->
       $('#dlg_content').hide()
       $('#post_answer_spinner').fadeIn()
     ).bind("ajax:complete", (evt, xhr, status) ->

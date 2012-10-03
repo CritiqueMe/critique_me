@@ -7,7 +7,7 @@
       %tr
         %td.qtext= question.question_text
     .qform
-      = semantic_form_for @answer, :url => post_url, :remote => (params['controller'] != 'welcome') do |f|
+      = semantic_form_for @answer, :url => post_url do |f|
         = f.inputs do
           - if question.question_type == Question::QUESTION_TYPES.index(:multiple_choice)
             .mc_options

@@ -1,6 +1,6 @@
 $ ->
   $('#answer_posted_dialog').dialog
-    title: "Answer Posted"
+    title: ""
     resizable: false
     draggable: true
     modal: true
