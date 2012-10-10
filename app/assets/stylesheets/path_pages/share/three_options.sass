@@ -117,6 +117,10 @@
       input[type='image']
         margin-left: 10px
         padding-bottom: 7px
+      #manual_spinner
+        display: none
+        float: right
+        margin-top: 27px
 
 #imported
   display: none
@@ -150,4 +154,18 @@
   z-index: 500
   @include border-radius(10px)
 
+#thanks_dlg
+  margin-top: 50px 0px
+  text-align: center
+  padding-bottom: 20px
+  #blurb
+    padding: 10px 0px 15px
+  #ask_more, #no_thanks
+    display: inline-block
+    a
+      color: $cmblue
+      text-decoration: underline
+  #no_thanks
+    padding-top: 15px
+    padding-left: 20px
 

@@ -18,6 +18,12 @@ class ShareController < ApplicationController
     end
   end
 
+  def three_options
+    @question = Question.find(params['id'])
+    session[:question_to_share] = @question.id
+    render :layout => "cm2"
+  end
+
   def manual_share
     if request.post?
       @question = Question.find(params['question_id'])

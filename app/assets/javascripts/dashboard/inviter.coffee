@@ -20,4 +20,4 @@ init_inviter_buttons = ->
     return false
 
 $ ->
-  init_inviter_buttons()
+  #init_inviter_buttons()

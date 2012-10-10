@@ -47,11 +47,11 @@
                     - if @question.answers.count > 0
                       You've only gotten #{pluralize @question.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.
                       %br
-                      = link_to "Invite more friends now!", '#'
+                      = link_to "Invite more friends now!", share_question_path(@question)
                     - else
                       You haven't gotten any answers to your question yet!
                       %br
-                      = link_to "Invite some friends now!", '#'
+                      = link_to "Invite some friends now!", share_question_path(@question)
                   - elsif @user.answers.where(:question_id => @question.id) == 0
                     You haven't answered this question yet!
               - elsif @question.user_id == @user.id
@@ -109,7 +109,7 @@
             - if @user
               - if @user == @question.user
                 .share_question{:data => {:question_id => @question.id}}
-                  = link_to image_tag("questions/get_more_answers.png"), '#'
+                  = link_to image_tag("questions/get_more_answers.png"), share_question_path(@question)
               - elsif @user.answers.where(:question_id => @question.id).count == 0
                 .post_answer
                   = link_to image_tag("questions/submit_answer_button.png"), '#', :data => {:question_id => @question.id}
@@ -125,22 +125,7 @@
           %p.cq_link= link_to "Have some fun answering some questions about your friends!", '#'
 
 
-#share_dialog{:data => {:question_id => @question.id, :autoshow => (@question.user == @user && @question.answers.length < 5 && flash[:show_share] ? 'pop' : 'hide')}}
-#post_share_dialog{:data => {:finish_path => params['controller'] == 'welcome' ? path_canned_finished_path : choose_question_path}}
-  - if session[:show_oops]
-    = render :partial => "share/oops"
-#imported
-  #select_contacts
-    = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
-      #contact_table.content_form
-      %p.selectors
-        %small
-          %em
-            = link_to "[select all]", '#', :id => 'select_all'
-            &nbsp;&nbsp;
-            = link_to "[unselect all]", '#', :id => 'unselect_all'
-      %p.buttons= submit_tag "Send Question to Contacts"
-  #contact_form_spinner= image_tag("/assets/admin/layout/form_spinner.gif")
+
 
 - if @question.photo.url
   #qimg_dialog= image_tag @question.photo.url
@@ -162,8 +147,8 @@
     - session[:show_oops] = false
     = javascript_include_tag "questions/show_oops"
   - if @question.user == @user
-    = javascript_include_tag "questions/show_share"
-    = javascript_include_tag "share/share"
+    =# javascript_include_tag "questions/show_share"
+    =# javascript_include_tag "share/share"
   - elsif false #@user && @question.canned_question_id && @question.canned_question_choices.any?{|cqc| cqc.friend_fb_id == @user.fb_user_id}
     - session[:showed_canned_in_path] = true
     = javascript_include_tag "questions/show_canned"

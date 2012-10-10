@@ -138,42 +138,44 @@ pop_canned_questions_dialog = (content) ->
     return false
   $('#no_thanks').click ->
     $('#post_share_dialog').dialog('close')
+    window.location = $('#post_share_dialog').data('finish_path')
     return false
 
   # initialize canned question
-  $('#post_share_dialog .canned_question').first().show()
-  CritiqueMe.init_canned_questions($('#post_share_dialog'))
+#  $('#post_share_dialog .canned_question').first().show()
+#  CritiqueMe.init_canned_questions($('#post_share_dialog'))
 
-tokenize_manual_entries = ->
-  friend = $('#manual_token_entry').val().replace(',', '').replace(' ', '')
-  email_regex = /\S+@\S+/  # very simple validation, more rigorous checking is done on the server
-  if email_regex.test(friend)
-    $('<li class="valid"></li>').html(friend + "<span class='token_closer'><a href='#'>x</a></span>").insertBefore('#manual_token_entry')
-  else
-    $('<li class="invalid"></li>').html(friend + "<span class='token_closer'><a href='#'>x</a></span>").insertBefore('#manual_token_entry')
-  $('#manual_token_entry').val('').width(30)
-  $('.token_closer a').unbind().click ->
-    $(this).parent().parent().remove()
+#tokenize_manual_entries = ->
+#  friend = $('#manual_token_entry').val().replace(',', '').replace(' ', '')
+#  email_regex = /\S+@\S+/  # very simple validation, more rigorous checking is done on the server
+#  if email_regex.test(friend)
+#    $('<li class="valid"></li>').html(friend + "<span class='token_closer'><a href='#'>x</a></span>").insertBefore('#manual_token_entry')
+#  else
+#    $('<li class="invalid"></li>').html(friend + "<span class='token_closer'><a href='#'>x</a></span>").insertBefore('#manual_token_entry')
+#  $('#manual_token_entry').val('').width(30)
+#  $('.token_closer a').unbind().click ->
+#    $(this).parent().parent().remove()
 
 
 init_manual_entry_form = ->
   console.log "*** in init_manual_entry_form"
-  $('#manual form').bind("ajax:beforeSend", (evt, xhr, settings) ->
+  $('.manual form').bind("ajax:beforeSend", (evt, xhr, settings) ->
     $('#manual_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
+    $('#manual_spinner').hide()
     pop_canned_questions_dialog(xhr.responseText)
   )
 
-  $('#manual_token_entry').keyup (evt) ->
-    # adjust width of entry box
-    num_chars = $(this).val().length
-    if num_chars > 3 && num_chars < 25
-      new_width = $(this).val().length * 10
-      $(this).width(new_width)
-
-    last_key = evt.keyCode
-    if last_key == 13 || last_key == 10 || last_key == 188  # carriage return, line return, or comma
-      tokenize_manual_entries()
+#  $('#manual_token_entry').keyup (evt) ->
+#    # adjust width of entry box
+#    num_chars = $(this).val().length
+#    if num_chars > 3 && num_chars < 25
+#      new_width = $(this).val().length * 10
+#      $(this).width(new_width)
+#
+#    last_key = evt.keyCode
+#    if last_key == 13 || last_key == 10 || last_key == 188  # carriage return, line return, or comma
+#      tokenize_manual_entries()
 
 #init_fb_friend_list = ->
 #  $('#show_friends_list_link').click () ->
@@ -224,27 +226,27 @@ init_manual_entry_form = ->
 #      pop_canned_questions_dialog(data)
 
 
-pop_img_dialog = (qid) ->
-  img = $('#qimg_dialog_'+qid+' img').first()
-  console.log img.attr('src')
-  $('#qimg_dialog_'+qid).dialog
-    resizable: false
-    draggable: true
-    modal: true
-    show: 'fade'
-    hide: 'fade'
-    width: 600
-    height: 600
-    title: ""
-    position: 'center'
-    dialogClass: 'share-modal'
-    autoOpen: true
-  .dialog(width: img.width()+30).height(img.height()+30).dialog("option", "position", "center")
-
-init_qimage_link = ->
-  $('.qimage a').click ->
-    pop_img_dialog($(this).parent().data('question_id'))
-    return false
+#pop_img_dialog = (qid) ->
+#  img = $('#qimg_dialog_'+qid+' img').first()
+#  console.log img.attr('src')
+#  $('#qimg_dialog_'+qid).dialog
+#    resizable: false
+#    draggable: true
+#    modal: true
+#    show: 'fade'
+#    hide: 'fade'
+#    width: 600
+#    height: 600
+#    title: ""
+#    position: 'center'
+#    dialogClass: 'share-modal'
+#    autoOpen: true
+#  .dialog(width: img.width()+30).height(img.height()+30).dialog("option", "position", "center")
+#
+#init_qimage_link = ->
+#  $('.qimage a').click ->
+#    pop_img_dialog($(this).parent().data('question_id'))
+#    return false
 
 #init_twitter = ->
 #  qid = $('.qpreview').data('question_id')
@@ -294,6 +296,6 @@ $ ->
 #  init_contact_importer()
   init_manual_entry_form()
 #  init_post_to_graph_link()
-  init_qimage_link()
+#  init_qimage_link()
   init_highlightable()
   init_more_infos()

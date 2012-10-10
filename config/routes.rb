@@ -55,6 +55,7 @@ CritiqueMe::Application.routes.draw do
   match '/get_contacts',                    :to => 'share#get_contacts',        :as => :get_contacts
   match '/share_contacts',                  :to => 'share#share_contacts',      :as => :share_contacts
   match '/share_friends',                   :to => 'share#share_friends',       :as => :share_friends
+  match '/share_question/:id',              :to => 'share#three_options',       :as => :share_question
 
   match '/about_us',                        :to => 'corporate#about_us',        :as => :about_us
   match '/faq',                             :to => 'corporate#faq',             :as => :faq
