@@ -279,6 +279,12 @@ init_importers = ->
     popupCenter '/contacts/'+prov, width, height, 'contactPopup'
     return false
 
+init_more_infos = ->
+  $('.more_info a').mouseover ->
+    $(this).parent().parent().find('.info_lightbox').fadeIn()
+  .mouseout ->
+    $(this).parent().parent().find('.info_lightbox').fadeOut()
+
 $ ->
 #  init_share_nav()
 #  init_fb_friend_list()
@@ -290,3 +296,4 @@ $ ->
 #  init_post_to_graph_link()
   init_qimage_link()
   init_highlightable()
+  init_more_infos()

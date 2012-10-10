@@ -64,4 +64,6 @@ CritiqueMe::Application.routes.draw do
 
   # override the splash path
   match '/splash',                          :to => 'welcome#path',              :as => :splash
+
+  root :to => "questions#choose_question"
 end

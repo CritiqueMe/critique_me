@@ -9,5 +9,10 @@ class ApplicationController < ActionController::Base
     json = JSON.parse(response)
     question.update_attribute :fb_question_id, json["id"]
   end
+
+  # overwrite this to direct to the welcome path
+  def enforce_login
+    redirect_to welcome_path if @user.nil?
+  end
 end
 

@@ -14,11 +14,14 @@
         #content_title Three Options for Sharing Your Question
         #three_options
           .num 1
-          .option
+          .option#option1
             .hdr Copy/Paste Your Unique Question Link
             .blurb Share in Emails, on Facebook, or on Twitter.  The more people you share with, the more valuable the feedback.
             .referral_link.highlightable= link_to question_referral_url(@user.referral_token[@user.referral_token.length-4, 4], @question.id), '#'
-            .more_info= link_to image_tag("path/info_i.png"), '#'
+            .more_info
+              = link_to image_tag("path/info_i.png"), '#'
+              .info_lightbox Click on the link in the box to select the text, then copy the link by hitting control-C. You can then paste this link in any email, blog post, Twitter post or Facebook page where you want people to see and respond to your question anonymously!
+            .fb_send= render :partial => "partials/fb_send_button", :locals => {:url => question_referral_url(@user.referral_token[@user.referral_token.length-4, 4], @question.id)}
           .clearer
 
           .num 2
@@ -29,7 +32,9 @@
               .importer_link{:data => {:provider => 'gmail'}}= link_to image_tag('path/grey_gmail.jpg'), '#'
               .importer_link{:data => {:provider => 'yahoo'}}= link_to image_tag('path/grey_yahoo.jpg'), '#'
               .importer_link{:data => {:provider => 'live'}}= link_to image_tag('path/grey_hotmail.jpg'), '#'
-              .more_info= link_to image_tag("path/info_i.png"), '#'
+              .more_info
+                = link_to image_tag("path/info_i.png"), '#'
+                .info_lightbox Choose your email provider to the left, then sign in. We will automatically pull your contact list and allow you to select individuals you would like to answer your question. We will NEVER store your login information to these services.
           .clearer
 
           .num 3

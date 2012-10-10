@@ -71,6 +71,13 @@ init_importers = ->
     popupCenter '/contacts/'+prov, width, height, 'contactPopup'
     return false
 
+init_more_infos = ->
+  $('.more_info a').mouseover ->
+    $(this).parent().parent().find('.info_lightbox').fadeIn()
+  .mouseout ->
+    $(this).parent().parent().find('.info_lightbox').fadeOut()
+
 $ ->
   init_highlightable()
   init_importers()
+  init_more_infos()

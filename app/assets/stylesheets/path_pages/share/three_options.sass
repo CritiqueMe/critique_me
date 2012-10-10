@@ -46,6 +46,8 @@
     width: 600px
     color: $cmbluebg
     padding-bottom: 40px
+    &#option1
+      padding-bottom: 20px
     .hdr
       font-size: 18px
       font-weight: 400
@@ -84,8 +86,16 @@
     .more_info
       float: left
       padding: 5px 0px 0px 10px
+      position: relative
       &:after
         clear: both
+      a
+        cursor: help
+    .fb_send
+      clear: left
+      width: 405px
+      text-align: right
+      padding-top: 10px
     .importers
       .importer_link
         float: left
@@ -126,5 +136,18 @@
       color: #019cf1
   .buttons
     text-align: center
+
+.info_lightbox
+  font-size: 12px
+  position: absolute
+  left: 30px
+  top: 30px
+  border: 2px solid black
+  background: white
+  display: none
+  padding: 10px 15px
+  width: 350px
+  z-index: 500
+  @include border-radius(10px)
 
 

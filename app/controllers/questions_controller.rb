@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   layout 'cm2'
 
   before_filter :enforce_login, :except => :question
-  before_filter :get_fb_access_token, :except => [:question, :toggle_pitch_dlg]
+  #before_filter :get_fb_access_token, :except => [:question, :toggle_pitch_dlg]
   skip_before_filter :verify_authenticity_token, :only => :choose_question
 
   def question
@@ -38,6 +38,9 @@ class QuestionsController < ApplicationController
 
         redirect_to welcome_path and return
       end
+    elsif params['fb_ref']  # This is the result of an FB Like or Send Button click
+      session[:clicked_question_id] = @question.id
+      redirect_to welcome_path(:fb_ref => params['fb_ref'], :fb_source => params['fb_source']) and return
     else
       @fb_share_template = FbShareTemplate.active.
           where(:share_type => "open_graph", :question_type => (@question.canned_question_id ? "canned" : (@question.public? ? "public" : "private"))).
