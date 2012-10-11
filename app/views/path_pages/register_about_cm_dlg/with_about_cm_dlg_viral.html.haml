@@ -3,6 +3,17 @@
   = stylesheet_link_tag "questions/new_question"
   = stylesheet_link_tag "path_pages/register/reg_no_fb"
 
+- content_for :og_data do
+  %meta{ :property => "fb:app_id", :content => "#{Facebook::CONFIG["app_id"]}" }
+  %meta{ :property => "og:type", :content => "#{Facebook::CONFIG["namespace"]}:question" }
+  %meta{ :property => "og:url", :content => "#{question_url(@question)}" }
+  %meta{ :property => "og:title", :content => "Hi, Your friend asked a question using CritiqueMe and wants to hear your response!" }
+  %meta{ :property => "og:description", :content => "CritiqueMe is a 100% anonymous Q&A site, where you can leave constructive, honest feedback to questions. Your name will never be associated with your answer." }
+  - if @question.photo.url
+    %meta{ :property => "og:image", :content => @question.photo.url }
+  - else
+    %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_share_image.jpg"}
+
 .grad_bg
   .cm_content
     .inner_content#landing_page
