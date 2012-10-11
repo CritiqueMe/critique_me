@@ -1,6 +1,14 @@
 - content_for :extra_css do
   = stylesheet_link_tag "path_pages/register/cm_reg3"
 
+- content_for :og_data do
+  %meta{ :property => "fb:app_id", :content => "#{Facebook::CONFIG["app_id"]}" }
+  %meta{ :property => "og:type", :content => "#{Facebook::CONFIG["namespace"]}:question" }
+  %meta{ :property => "og:url", :content => "#{root_url}" }
+  %meta{ :property => "og:title", :content => "Hi, Your friend asked a question using CritiqueMe and wants to hear your response!" }
+  %meta{ :property => "og:description", :content => "CritiqueMe is a 100% anonymous Q&A site, where you can leave constructive, honest feedback to questions. Your name will never be associated with your answer." }
+  %meta{ :property => "og:image", :content => "http://#{SEED_BLOCKS_ENGINE_CONFIG[:host]}/assets/questions/default_share_image.jpg"}
+
 .grad_bg
   .cm_content
     #landing_page
