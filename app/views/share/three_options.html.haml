@@ -53,6 +53,7 @@
 #imported
   #select_contacts
     = form_tag(share_contacts_path, :remote => true, :id => "send_to_contacts_form") do
+      = hidden_field_tag 'question_id', @question.id
       #contact_table.content_form
       %p.selectors
         %small

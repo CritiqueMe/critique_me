@@ -87,7 +87,7 @@ init_send_contacts_form = ->
     $('.contact_check').each (elem) ->
       $(this).parent().parent().remove() if $(this).is(':checked')
     recycle_contact_rows()
-    pop_canned_questions_dialog(xhr.responseText)
+    pop_post_share_dialog(xhr.responseText)
   )
 
 recycle_contact_rows = ->
@@ -97,9 +97,8 @@ recycle_contact_rows = ->
     else
       $(this).removeClass('even').addClass('odd')
 
-pop_canned_questions_dialog = (content) ->
-  # hide the sharer dialog, show the thanks or oops dialog
-  $('#share_dialog').dialog('close')
+pop_post_share_dialog = (content) ->
+  # hide the importer dialog, show the thanks or oops dialog
   $('#imported').dialog('close')
 
   regex = new RegExp('canned_question')
@@ -126,13 +125,11 @@ pop_canned_questions_dialog = (content) ->
   # initialize oops button and thanks buttons
   $('#oops_button a').click ->
     $('#post_share_dialog').dialog('close')
-    $('#share_dialog').dialog('open')
     $('#contact_form_spinner').hide()
     $('#manual_spinner').hide()
     return false
   $('#ask_more a').click ->
     $('#post_share_dialog').dialog('close')
-    $('#share_dialog').dialog('open')
     $('#contact_form_spinner').hide()
     $('#manual_spinner').hide()
     return false
@@ -163,7 +160,7 @@ init_manual_entry_form = ->
     $('#manual_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
     $('#manual_spinner').hide()
-    pop_canned_questions_dialog(xhr.responseText)
+    pop_post_share_dialog(xhr.responseText)
   )
 
 #  $('#manual_token_entry').keyup (evt) ->
