@@ -20,6 +20,8 @@ window.contacts_callback = (resp) ->
       height: 'auto'
       position: 'center'
       dialogClass: 'share-modal'
+  qid = $('body').data('tracking_object_id')
+  $('#contact_table #question_id').val(qid)
 
 
 
@@ -79,6 +81,7 @@ init_send_contacts_form = ->
     $('#select_contacts').hide()
     $('#contact_form_spinner').fadeIn()
   ).bind("ajax:complete", (evt, xhr, status) ->
+    $('#imported').dialog('close')
     $('#select_contacts').show()
     # remove all already-selected contacts from the list
     $('.contact_check').each (elem) ->
