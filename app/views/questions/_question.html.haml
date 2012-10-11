@@ -45,7 +45,7 @@
                 #not_enough_answers{:data => {:question_id => @question.id}}
                   - if @question.user == @user
                     - if @question.answers.count > 0
-                      You've only gotten #{pluralize @question.answers.count, 'answer'} so far!  You must get at least 5 answers to see the results.
+                      You've only gotten #{pluralize @question.answers.count, 'answer'} so far!  You must get at least 3 answers to see the results.
                       %br
                       = link_to "Invite more friends now!", share_question_path(@question)
                     - else

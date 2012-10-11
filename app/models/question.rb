@@ -107,7 +107,7 @@ class Question < ActiveRecord::Base
     if fb_question_id
       true
     else
-      num_invited >= 5
+      num_invited >= 3
     end
   end
 
@@ -137,7 +137,7 @@ class Question < ActiveRecord::Base
         where(:canned_question_id => nil).
         where('questions.created_at>=? AND questions.created_at<?', Time.now-8.days, Time.now-7.days).
         select('questions.*, COUNT(answers.question_id) AS num_answers').
-        having('num_answers < 5').
+        having('num_answers < 3').
         group('questions.id').find_each do |q|
 
       EmailDelivery.user_mail(:question_invite_reminder, q.user, {:question_id => q.id})

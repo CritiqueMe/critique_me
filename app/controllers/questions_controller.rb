@@ -105,8 +105,8 @@ class QuestionsController < ApplicationController
         post_question_to_open_graph(@question) if @question.public?
         @question.default_question.update_attribute :last_asked_at, Time.now if @question.default_question
         #redirect_to share_path(@question)
-        flash[:show_share] = true
-        redirect_to question_path(@question) and return
+        #flash[:show_share] = true
+        redirect_to share_question_path(@question) and return
       end
     elsif params['default_question_id']
       dq = DefaultQuestion.find(params['default_question_id'])
@@ -151,8 +151,8 @@ class QuestionsController < ApplicationController
       if @question.valid?
         # TODO: post changes to OpenGraph
         #redirect_to share_path(@question)
-        flash[:show_share] = true
-        redirect_to question_path(@question)
+        #flash[:show_share] = true
+        redirect_to share_question_path(@question)
       else
         #render :partial => "questions/form"
       end

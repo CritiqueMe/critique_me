@@ -1,0 +1,9 @@
+%html
+  %body
+    %p #{@inviter.first_name.try(:capitalize) || "Your friend"} still wants to know what you think about the question #{@inviter.first_name.try(:capitalize) || "they"} asked on CritiqueMe.
+    %p Are you ready to answer? &nbsp;&nbsp; #{link_to "Yes", @url} &nbsp;&nbsp;No
+    %p CritiqueMe is the only site where you can leave constructive, anonymous answers to your friends' personal questions.
+    %p
+      Best,
+      %br
+      The CritiqueMe Team

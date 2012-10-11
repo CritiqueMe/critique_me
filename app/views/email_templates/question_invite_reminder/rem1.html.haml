@@ -1,6 +1,6 @@
 %html
   %body
-    %p Hey #{@user.first_name.capitalize}!  You recently asked some friends "#{@question.question_text}", but you haven't received the minimum 5 responses to view the answers.  Why not #{link_to "invite some more friends", question_url(@question)}?
+    %p Hey #{@user.first_name.capitalize}!  You recently asked some friends "#{@question.question_text}", but you haven't received the minimum 3 responses to view the answers.  Why not #{link_to "invite some more friends", question_url(@question)}?
     %p
       The truth is out there... ;)
       %br

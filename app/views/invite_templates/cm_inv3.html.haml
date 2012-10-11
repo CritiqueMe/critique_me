@@ -1,0 +1,9 @@
+%html
+  %body
+    %p #{@inviter.first_name.try(:capitalize) || "Your friend"} just asked you a question on CritiqueMe in order to hear your constructive, anonymous feedback; if you choose to respond, CritiqueMe will pass on your response to #{@inviter.first_name.try(:capitalize) || "your friend"} but will not share your name.
+    %p Do you want to help #{@inviter.first_name.try(:capitalize) || "your friend"}? &nbsp;&nbsp; #{link_to "Yes, I want to help #{@inviter.first_name.try(:capitalize) || "my friend"}", @url} &nbsp;&nbsp;No, thanks
+    %p Your answer is 100% anonymous, so it's your chance to be completely honest.
+    %p
+      Best,
+      %br
+      The CritiqueMe Team

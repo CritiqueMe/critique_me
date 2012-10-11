@@ -14,9 +14,7 @@
             = f.input :first_name, :label => "First Name"
             = f.input :last_name, :label => "Last Name"
             .clearer
-            %li.blurb So we can tell your friends who's asking
             = f.input :email, :label => "Email Address"
-            %li.blurb Where we'll send the results
             %li= text_field_tag 'pw_clear', "Enter a Password"
             = f.input :password
             .clearer

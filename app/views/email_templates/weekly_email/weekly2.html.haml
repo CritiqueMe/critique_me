@@ -1,0 +1,14 @@
+%html
+  %body
+    %p
+      Here are the top 3 questions our users asked this week:
+      %ul
+        - @default_questions.each do |dq|
+          %li= link_to dq.question_text, new_question_url(:default_question_id => dq.id)
+    %p
+      All the best,
+      %br
+      The CritiqueMe Team
+
+
+    = email_tracking @tracker_id
