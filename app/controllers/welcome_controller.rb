@@ -142,7 +142,7 @@ class WelcomeController < ApplicationController
       end
 
     elsif @path_page.page_type == "register" || @path_page.page_type == "splash"
-      @last_questions = DefaultQuestion.active.featured.order('last_asked_at DESC')
+      @last_questions = DefaultQuestion.active.featured.order('RAND()')
     elsif @path_page.page_type == "choose_question" || @path_page.page_type == "choose_q_about_cm_dlg"
       @per_page = 7
       scope = DefaultQuestion.active.not_in_questionnaire.prioritized
