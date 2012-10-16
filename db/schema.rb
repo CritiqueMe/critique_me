@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911180754) do
+ActiveRecord::Schema.define(:version => 20121009204817) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email"
@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(:version => 20120911180754) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "password_salt"
+    t.string   "password_hash"
   end
 
   create_table "answers", :force => true do |t|
@@ -212,11 +215,19 @@ ActiveRecord::Schema.define(:version => 20120911180754) do
   end
 
   create_table "login_history", :force => true do |t|
-    t.integer  "user_id",          :null => false
-    t.date     "login_date",       :null => false
-    t.string   "login_year_month", :null => false
+    t.integer  "user_id",               :null => false
+    t.date     "login_date",            :null => false
+    t.string   "login_year_month",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "os_name"
+    t.string   "os_major_version"
+    t.string   "os_minor_version"
+    t.string   "browser_name"
+    t.string   "browser_major_version"
+    t.string   "browser_minor_version"
+    t.string   "platform"
+    t.boolean  "is_mobile"
   end
 
   create_table "multiple_choice_options", :force => true do |t|
