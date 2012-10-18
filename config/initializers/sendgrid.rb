@@ -7,7 +7,7 @@ ActionMailer::Base.smtp_settings = {
     :authentication => :plain,
     :domain => "critiqueme.com",
     :user_name => "critiqueme",
-    :password => "critiqueme"
+    :password => "luv2fart"
     #:user_name => "seedblocks",
     #:password => "momoney123"
 }
